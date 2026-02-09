@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Sequences & Functions | Nyantakyi Francis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- KaTeX for beautiful math formatting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+
+        .question-card {
+            transition: border-color 0.2s;
+        }
+
+        .question-card:focus-within {
+            border-color: #4f46e5;
+        }
+
+        .katex-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+
+<body class="pb-20">
+
+    <!-- Header -->
+    <header class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../index.html" class="text-indigo-600 font-bold flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+                Back to Portal
+            </a>
+            <div class="text-right">
+                <h1 class="font-bold text-slate-800">Mathematics</h1>
+                <p class="text-xs text-slate-500 uppercase tracking-widest">Module 3: Sequences & Functions</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-8">
+        <form id="quizForm" action="https://formspree.io/f/xvzbgroo" method="POST">
+
+            <!-- Student Info Section -->
+            <div class="bg-indigo-700 rounded-xl p-8 mb-8 text-white shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center underline underline-offset-8">Student Information</h2>
+                <div class="grid md:grid-cols-1 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-indigo-100 mb-2">Full Name</label>
+                        <input type="text" name="student_name" required placeholder="Enter your full name"
+                            class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Email Address</label>
+                            <input type="email" name="student_email" required placeholder="example@email.com"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Phone Number</label>
+                            <input type="tel" name="student_phone" required placeholder="e.g. +233 50 000 0000"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Questions Container -->
+            <div id="questions-container" class="space-y-6"></div>
+
+            <!-- Metadata for Formspree -->
+            <input type="hidden" name="quiz_topic" value="Sequences and Functions">
+            <input type="hidden" name="final_score" id="score_field">
+            <input type="hidden" name="_subject" id="email_subject" value="New Math Quiz Submission">
+
+            <div class="mt-12 text-center p-8 bg-white rounded-xl shadow-sm border border-slate-200">
+                <button type="submit" id="submitBtn"
+                    class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                    Finish & Submit Results
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        const questions = [
+            // --- ARITHMETIC PROGRESSIONS (AP) ---
+            { q: "Find the 10th term of the A.P: $2, 5, 8, \\dots$", options: ["$27$", "$29$", "$31$", "$33$"], correct: 1 },
+            { q: "In an A.P, the first term is $5$ and the common difference is $3$. Find the sum of the first $20$ terms.", options: ["$670$", "$640$", "$700$", "$730$"], correct: 0 },
+            { q: "The 4th term of an A.P is $13$ and the 10th term is $31$. Find the common difference.", options: ["$2$", "$3$", "$4$", "$5$"], correct: 1 },
+            { q: "Find the number of terms in the sequence $5, 9, 13, \\dots, 101$.", options: ["$24$", "$25$", "$26$", "$27$"], correct: 1 },
+            { q: "If $x+2, 2x+1$ and $4x-3$ are consecutive terms of an A.P, find $x$.", options: ["$2$", "$3$", "$4$", "$5$"], correct: 1 },
+            { q: "Find the sum of all even numbers between $1$ and $101$.", options: ["$2500$", "$2550$", "$2600$", "$2450$"], correct: 1 },
+            { q: "The $n^{th}$ term of a sequence is $U_n = 3n - 1$. Find $U_{15}$.", options: ["$42$", "$44$", "$45$", "$46$"], correct: 1 },
+            { q: "In an A.P, $a=10$ and $d=-2$. Find the 8th term.", options: ["$-4$", "$-2$", "$0$", "$4$"], correct: 0 },
+            { q: "Find the sum of the first $n$ terms of the sequence $1, 3, 5, 7, \\dots$", options: ["$n^2$", "$2n$", "$n(n+1)$", "$\\frac{n}{2}(n+1)$"], correct: 0 },
+            { q: "The sum of three numbers in an A.P is $15$ and their product is $80$. Find the numbers.", options: ["$2, 5, 8$", "$3, 5, 7$", "$4, 5, 6$", "$1, 5, 9$"], correct: 0 },
+
+            // --- GEOMETRIC PROGRESSIONS (GP) ---
+            { q: "Find the 6th term of the G.P: $2, 6, 18, \\dots$", options: ["$162$", "$486$", "$54$", "$1458$"], correct: 1 },
+            { q: "The common ratio of the G.P $1, \\frac{1}{2}, \\frac{1}{4}, \\dots$ is:", options: ["$2$", "$\\frac{1}{2}$", "$-\\frac{1}{2}$", "$-2$"], correct: 1 },
+            { q: "Find the sum of the first $5$ terms of the G.P: $3, 6, 12, \\dots$", options: ["$90$", "$93$", "$96$", "$87$"], correct: 1 },
+            { q: "Evaluate the sum to infinity of the G.P: $8, 4, 2, 1, \\dots$", options: ["$12$", "$14$", "$16$", "$20$"], correct: 2 },
+            { q: "If $k-1, k+2, 3k$ are three consecutive terms of a G.P, find the positive value of $k$.", options: ["$2$", "$3$", "$4$", "$5$"], correct: 2 },
+            { q: "The 3rd term of a G.P is $18$ and the 6th term is $486$. Find the first term.", options: ["$2$", "$3$", "$6$", "$9$"], correct: 0 },
+            { q: "Find the geometric mean of $4$ and $16$.", options: ["$8$", "$10$", "$12$", "$6$"], correct: 0 },
+            { q: "In a G.P, $a=5$ and $r=2$. Which term is $320$?", options: ["6th", "7th", "8th", "9th$"], correct: 1 },
+            { q: "Find the sum to infinity of $\\frac{1}{3} + \\frac{1}{9} + \\frac{1}{27} + \\dots$", options: ["$\\frac{1}{2}$", "$1$", "$\\frac{2}{3}$", "$\\frac{1}{4}$"], correct: 0 },
+            { q: "A sequence is defined by $U_n = 2^{n-1}$. What type of sequence is this?", options: ["Arithmetic", "Geometric", "Harmonic", "Fibonacci"], correct: 1 },
+
+            // --- MAPPING AND FUNCTIONS ---
+            { q: "If $f(x) = 2x^2 - 3x + 1$, evaluate $f(-2)$.", options: ["$3$", "$7$", "$11$", "$15$"], correct: 3 },
+            { q: "Find the range of the function $f: x \\to x+2$ for the domain $\\{1, 2, 3\\}$.", options: ["$\\{1, 2, 3\\}$", "$\\{2, 3, 4\\}$", "$\\{3, 4, 5\\}$", "$\\{4, 5, 6\\}$"], correct: 2 },
+            { q: "If $g(x) = \\frac{x+3}{x-2}$, for what value of $x$ is $g(x)$ undefined?", options: ["$-3$", "$0$", "$2$", "$3$"], correct: 2 },
+            { q: "A function $f$ is defined by $f(x) = 3x - 5$. Find $f^{-1}(x)$.", options: ["$\\frac{x-5}{3}$", "$\\frac{x+5}{3}$", "$5x-3$", "$3x+5$"], correct: 1 },
+            { q: "If $f(x) = 2x + 1$ and $g(x) = x^2$, find $fg(3)$.", options: ["$19$", "$49$", "$13$", "$37$"], correct: 0 },
+            { q: "Determine the type of mapping: $f(x) = x^2$ for $x \\in \\mathbb{R}$.", options: ["One-to-one", "Many-to-one", "One-to-many", "Constant"], correct: 1 },
+            { q: "If $f: x \\to 5x - 2$, find $x$ such that $f(x) = 13$.", options: ["$2$", "$3$", "$4$", "$5$"], correct: 1 },
+            { q: "The domain of a function refers to:", options: ["Possible input values", "Possible output values", "The codomain", "The mapping rule"], correct: 0 },
+            { q: "Find the inverse of $h(x) = \\frac{1}{x}$.", options: ["$x$", "$-x$", "$\\frac{1}{x}$", "$x^2$"], correct: 2 },
+            { q: "If $f(x) = ax + b$, $f(1)=3$ and $f(2)=5$, find $a$ and $b$.", options: ["$a=2, b=1$", "$a=1, b=2$", "$a=2, b=-1$", "$a=3, b=0$"], correct: 0 },
+
+            // --- COMPOSITE & MIXED ---
+            { q: "If $f(x) = x+2$ and $g(x) = x-2$, find $gf(x)$.", options: ["$x+4$", "$x-4$", "$x$", "$x^2-4$"], correct: 2 },
+            { q: "Evaluate $\\sum_{r=1}^{4} (2r + 1)$.", options: ["$20$", "$24$", "$25$", "$30$"], correct: 1 },
+            { q: "The $n^{th}$ term of a G.P is $U_n = a r^{n-1}$. If $a=3$ and $U_4 = 24$, find $r$.", options: ["$2$", "$3$", "$4$", "$8$"], correct: 0 },
+            { q: "A mapping is onto if:", options: ["Every element in codomain has a pre-image", "Every element in domain has one image", "The mapping is one-to-one", "The range is a subset of codomain"], correct: 0 },
+            { q: "If $h(x) = x^2 - 1$, find $h(h(1))$.", options: ["$-1$", "$0$", "$1$", "$2$"], correct: 0 },
+            { q: "Find the sum of the first $10$ terms of $10, 7, 4, \\dots$", options: ["$-35$", "$-45$", "$-55$", "$-65$"], correct: 0 },
+            { q: "If $f(x) = 3x - 1$, find $f^{-1}(2)$.", options: ["$1$", "$5$", "$\\frac{1}{3}$", "$7$"], correct: 0 },
+            { q: "Which term of the A.P $24, 21, 18, \\dots$ is the first negative term?", options: ["8th", "9th", "10th", "11th"], correct: 1 },
+            { q: "Find the common ratio of the sequence $0.3, 0.03, 0.003, \\dots$", options: ["$0.1$", "$0.01$", "$10$", "$0.3$"], correct: 0 },
+            { q: "If $f(x) = x^2$ and $g(x) = \\sqrt{x}$, find $f(g(x))$ for $x \\ge 0$.", options: ["$x^2$", "$x$", "$\\sqrt{x}$", "$1$"], correct: 1 }
+        ];
+
+        const container = document.getElementById('questions-container');
+
+        function renderQuestions() {
+            questions.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "question-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm";
+                div.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-4 flex items-start">
+                        <span class="bg-slate-100 text-slate-500 rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 text-sm">${index + 1}</span>
+                        <span class="mt-1">${item.q}</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        ${item.options.map((opt, i) => `
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
+                                <input type="radio" name="q${index}" value="${i}" required class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <span class="ml-3 text-slate-700">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            if (window.renderMathInElement) {
+                renderMathInElement(container, {
+                    delimiters: [
+                        { left: "$", right: "$", display: false },
+                        { left: "$$", right: "$$", display: true }
+                    ]
+                });
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', renderQuestions);
+
+        document.getElementById('quizForm').onsubmit = function (e) {
+            let score = 0;
+            questions.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && parseInt(selected.value) === item.correct) {
+                    score++;
+                }
+            });
+
+            const percent = ((score / questions.length) * 100).toFixed(1);
+            const scoreSummary = `${score}/${questions.length} (${percent}%)`;
+            document.getElementById('score_field').value = scoreSummary;
+
+            const name = document.getElementsByName('student_name')[0].value;
+            document.getElementById('email_subject').value = `Score: ${scoreSummary} | Sequences Quiz | ${name}`;
+
+            if (!confirm(`Click OK to submit to Mr. Nyantakyi Francis.`)) {
+                e.preventDefault();
+            }
+        };
+    </script>
+</body>
+
+</html>

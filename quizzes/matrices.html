@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Matrices | Nyantakyi Francis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- KaTeX for beautiful math formatting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+
+        .question-card {
+            transition: border-color 0.2s;
+        }
+
+        .question-card:focus-within {
+            border-color: #4f46e5;
+        }
+
+        .katex-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+
+<body class="pb-20">
+
+    <!-- Header -->
+    <header class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../index.html" class="text-indigo-600 font-bold flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+                Back to Portal
+            </a>
+            <div class="text-right">
+                <h1 class="font-bold text-slate-800">Mathematics</h1>
+                <p class="text-xs text-slate-500 uppercase tracking-widest">Module 4: Matrices</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-8">
+        <form id="quizForm" action="https://formspree.io/f/xvzbgroo" method="POST">
+
+            <!-- Student Info Section -->
+            <div class="bg-indigo-700 rounded-xl p-8 mb-8 text-white shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center underline underline-offset-8">Student Information</h2>
+                <div class="grid md:grid-cols-1 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-indigo-100 mb-2">Full Name</label>
+                        <input type="text" name="student_name" required placeholder="Enter your full name"
+                            class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Email Address</label>
+                            <input type="email" name="student_email" required placeholder="example@email.com"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Phone Number</label>
+                            <input type="tel" name="student_phone" required placeholder="e.g. +233 50 000 0000"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Questions Container -->
+            <div id="questions-container" class="space-y-6"></div>
+
+            <!-- Metadata for Formspree -->
+            <input type="hidden" name="quiz_topic" value="Matrices">
+            <input type="hidden" name="final_score" id="score_field">
+            <input type="hidden" name="_subject" id="email_subject" value="New Math Quiz Submission">
+
+            <div class="mt-12 text-center p-8 bg-white rounded-xl shadow-sm border border-slate-200">
+                <button type="submit" id="submitBtn"
+                    class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                    Finish & Submit Results
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        const questions = [
+            // --- BASIC OPERATIONS ---
+            { q: "What is the order of a matrix with $3$ rows and $2$ columns?", options: ["$2 \\times 3$", "$3 \\times 2$", "$3 \\times 3$", "$6$"], correct: 1 },
+            { q: "If $A = \\begin{pmatrix} 2 & 3 \\\\ 1 & 4 \\end{pmatrix}$, find $3A$.", options: ["$\\begin{pmatrix} 6 & 9 \\\\ 3 & 12 \\end{pmatrix}$", "$\\begin{pmatrix} 5 & 6 \\\\ 4 & 7 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 9 \\\\ 1 & 12 \\end{pmatrix}$", "$\\begin{pmatrix} 6 & 3 \\\\ 1 & 4 \\end{pmatrix}$"], correct: 0 },
+            { q: "Find $A + B$ if $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$ and $B = \\begin{pmatrix} 5 & 6 \\\\ 7 & 8 \\end{pmatrix}$.", options: ["$\\begin{pmatrix} 4 & 4 \\\\ 4 & 4 \\end{pmatrix}$", "$\\begin{pmatrix} 6 & 8 \\\\ 10 & 12 \\end{pmatrix}$", "$\\begin{pmatrix} 5 & 12 \\\\ 21 & 32 \\end{pmatrix}$", "$\\begin{pmatrix} 6 & 10 \\\\ 8 & 12 \\end{pmatrix}$"], correct: 1 },
+            { q: "Given $P = \\begin{pmatrix} 10 & 2 \\\\ 5 & 7 \\end{pmatrix}$ and $Q = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}$, find $P - Q$.", options: ["$\\begin{pmatrix} 6 & 1 \\\\ 3 & 4 \\end{pmatrix}$", "$\\begin{pmatrix} 14 & 3 \\\\ 7 & 10 \\end{pmatrix}$", "$\\begin{pmatrix} 6 & 3 \\\\ 3 & 4 \\end{pmatrix}$", "$\\begin{pmatrix} 6 & 1 \\\\ 7 & 4 \\end{pmatrix}$"], correct: 0 },
+            { q: "Two matrices can be added only if they have the same:", options: ["Determinant", "Order", "First row", "Number of elements"], correct: 1 },
+            { q: "If $k \\begin{pmatrix} 2 \\\\ -3 \\end{pmatrix} = \\begin{pmatrix} 10 \\\\ -15 \\end{pmatrix}$, find the value of $k$.", options: ["$2$", "$5$", "$-5$", "$10$"], correct: 1 },
+            { q: "Find the value of $x$ and $y$ if $\\begin{pmatrix} x+y \\\\ x-y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 1 \\end{pmatrix}$.", options: ["$x=3, y=2$", "$x=2, y=3$", "$x=4, y=1$", "$x=5, y=0$"], correct: 0 },
+            { q: "If $M = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$, the transpose $M^T$ is:", options: ["$\\begin{pmatrix} d & b \\\\ c & a \\end{pmatrix}$", "$\\begin{pmatrix} a & c \\\\ b & d \\end{pmatrix}$", "$\\begin{pmatrix} c & d \\\\ a & b \\end{pmatrix}$", "$\\begin{pmatrix} -a & -b \\\\ -c & -d \\end{pmatrix}$"], correct: 1 },
+            { q: "Evaluate $2 \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} - \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$.", options: ["$\\begin{pmatrix} 1 & -2 \\\\ -3 & -2 \\end{pmatrix}$", "$\\begin{pmatrix} 0 & -2 \\\\ -3 & -3 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 2 \\\\ 3 & 3 \\end{pmatrix}$", "$\\begin{pmatrix} -1 & -2 \\\\ -3 & -4 \\end{pmatrix}$"], correct: 0 },
+            { q: "Find the transpose of $\\begin{pmatrix} 1 & 2 & 3 \\end{pmatrix}$.", options: ["$\\begin{pmatrix} 3 & 2 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 2 & 3 \\end{pmatrix}$", "$\\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$"], correct: 1 },
+
+            // --- DETERMINANTS ---
+            { q: "Find the determinant of $\\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$.", options: ["$11$", "$1$", "$7$", "$-1$"], correct: 1 },
+            { q: "If $|A| = 0$, the matrix $A$ is said to be:", options: ["Identity", "Null", "Singular", "Non-singular"], correct: 2 },
+            { q: "Evaluate the determinant of $\\begin{pmatrix} 4 & -2 \\\\ 3 & 1 \\end{pmatrix}$.", options: ["$2$", "$10$", "$-2$", "$6$"], correct: 1 },
+            { q: "Find $x$ if $\\begin{vmatrix} x & 4 \\\\ 3 & 2 \\end{vmatrix} = 0$.", options: ["$2$", "$4$", "$6$", "$12$"], correct: 2 },
+            { q: "Find the determinant of the identity matrix $I = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$.", options: ["$0$", "$1$", "$2$", "$-1$"], correct: 1 },
+            { q: "Calculate the determinant of $\\begin{pmatrix} -3 & 4 \\\\ -2 & 5 \\end{pmatrix}$.", options: ["$-7$", "$7$", "$-23$", "$23$"], correct: 0 },
+            { q: "If $\\begin{vmatrix} 2x & 1 \\\\ 8 & x \\end{vmatrix} = 0$, find the positive value of $x$.", options: ["$2$", "$4$", "$8$", "$16$"], correct: 0 },
+            { q: "Find the determinant of $\\begin{pmatrix} a & 0 \\\\ 0 & b \\end{pmatrix}$.", options: ["$a+b$", "$ab$", "$0$", "$a-b$"], correct: 1 },
+            { q: "If the determinant of $\\begin{pmatrix} k & 2 \\\\ 3 & 4 \\end{pmatrix}$ is $10$, find $k$.", options: ["$2$", "$4$", "$10$", "$16$"], correct: 1 },
+            { q: "A $2 \\times 2$ matrix $M$ has a determinant of $-5$. What is the determinant of $2M$?", options: ["$-10$", "$-20$", "$-5$", "$-2.5$"], correct: 1 },
+
+            // --- INVERSE MATRICES ---
+            { q: "Find the adjoint of $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$.", options: ["$\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$", "$\\begin{pmatrix} d & c \\\\ b & a \\end{pmatrix}$", "$\\begin{pmatrix} a & -c \\\\ -b & d \\end{pmatrix}$", "$\\begin{pmatrix} d & -c \\\\ -b & a \\end{pmatrix}$"], correct: 0 },
+            { q: "Find the inverse of $\\begin{pmatrix} 3 & 5 \\\\ 1 & 2 \\end{pmatrix}$.", options: ["$\\begin{pmatrix} 2 & -5 \\\\ -1 & 3 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$", "$\\begin{pmatrix} -3 & 5 \\\\ 1 & -2 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & -1 \\\\ -5 & 3 \\end{pmatrix}$"], correct: 0 },
+            { q: "If $A A^{-1} = I$, what is $I$?", options: ["Initial Matrix", "Identity Matrix", "Inverse Matrix", "Inert Matrix"], correct: 1 },
+            { q: "Find the inverse of $\\begin{pmatrix} 1 & 2 \\\\ 3 & 7 \\end{pmatrix}$.", options: ["$\\begin{pmatrix} 7 & -2 \\\\ -3 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 7 & 2 \\\\ 3 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & -2 \\\\ -3 & 7 \\end{pmatrix}$", "$\\begin{pmatrix} 7 & -3 \\\\ -2 & 1 \\end{pmatrix}$"], correct: 0 },
+            { q: "Which of these matrices has no inverse?", options: ["$\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 4 \\\\ 1 & 2 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 5 & 6 \\\\ 7 & 8 \\end{pmatrix}$"], correct: 1 },
+            { q: "Find the inverse of $\\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}$.", options: ["$\\begin{pmatrix} 0.5 & 0 \\\\ 0 & 0.5 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} -2 & 0 \\\\ 0 & -2 \\end{pmatrix}$"], correct: 0 },
+            { q: "If $M = \\begin{pmatrix} 1 & 3 \\\\ 2 & 4 \\end{pmatrix}$, find $(M^T)^{-1}$.", options: ["$\\begin{pmatrix} -2 & 1 \\\\ 1.5 & -0.5 \\end{pmatrix}$", "$\\begin{pmatrix} -2 & 1.5 \\\\ 1 & -0.5 \\end{pmatrix}$", "$\\begin{pmatrix} 4 & -3 \\\\ -2 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} -2 & 1 \\\\ 1 & -0.5 \\end{pmatrix}$"], correct: 0 },
+            { q: "The inverse of a singular matrix:", options: ["Is the identity matrix", "Is the null matrix", "Does not exist", "Is its transpose"], correct: 2 },
+            { q: "Find the inverse of $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$.", options: ["$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$", "$\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$"], correct: 0 },
+            { q: "If $M = \\begin{pmatrix} 4 & 1 \\\\ 3 & 1 \\end{pmatrix}$, find the sum of the elements of $M^{-1}$.", options: ["$0$", "$1$", "$2$", "$-1$"], correct: 3 },
+
+            // --- MATRIX EQUATIONS & APPLICATIONS ---
+            { q: "Solve for $X$ in the equation $X + \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 7 \\end{pmatrix}$.", options: ["$\\begin{pmatrix} 4 \\\\ 5 \\end{pmatrix}$", "$\\begin{pmatrix} 6 \\\\ 9 \\end{pmatrix}$", "$\\begin{pmatrix} 4 \\\\ 9 \\end{pmatrix}$", "$\\begin{pmatrix} 5 \\\\ 5 \\end{pmatrix}$"], correct: 0 },
+            { q: "Using Cramer's Rule, if $D = 10$ and $D_x = 20$, find $x$.", options: ["$0.5$", "$2$", "$10$", "$30$"], correct: 1 },
+            { q: "Express $2x + 3y = 5$ and $x - y = 2$ in matrix form $AX=B$.", options: ["$\\begin{pmatrix} 2 & 3 \\\\ 1 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 3 \\\\ 1 & 1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 1 \\\\ 3 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$", "$\\begin{pmatrix} x \\\\ y \\end{pmatrix} \\begin{pmatrix} 2 & 3 \\\\ 1 & -1 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$"], correct: 0 },
+            { q: "In the equation $AX = B$, the solution is given by $X = $", options: ["$B A^{-1}$", "$A^{-1} B$", "$A B^{-1}$", "$B/A$"], correct: 1 },
+            { q: "Find $x$ and $y$ if $\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 4 \\\\ -3 \\end{pmatrix}$.", options: ["$x=4, y=3$", "$x=-3, y=4$", "$x=4, y=-3$", "$x=-4, y=3$"], correct: 2 },
+            { q: "Find the product $\\begin{pmatrix} 1 & 2 \\end{pmatrix} \\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$.", options: ["$\\begin{pmatrix} 3 & 8 \\end{pmatrix}$", "$\\begin{pmatrix} 11 \\end{pmatrix}$", "$11$", "$\\begin{pmatrix} 3 \\\\ 8 \\end{pmatrix}$"], correct: 2 },
+            { q: "If $\\begin{pmatrix} 2 & x \\\\ 1 & 3 \\end{pmatrix} \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 8 \\\\ 7 \\end{pmatrix}$, find $x$.", options: ["$2$", "$3$", "$4$", "$5$"], correct: 1 },
+            { q: "The product of a matrix and its inverse is always:", options: ["Null matrix", "Transpose matrix", "Identity matrix", "The matrix itself"], correct: 2 },
+            { q: "Calculate $\\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}^2$.", options: ["$\\begin{pmatrix} 1 & 4 \\\\ 0 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 4 \\\\ 0 & 2 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 4 \\\\ 0 & 2 \\end{pmatrix}$"], correct: 0 },
+            { q: "If $A$ is a $2 \\times 3$ matrix and $B$ is a $3 \\times 4$ matrix, the product $AB$ is of order:", options: ["$2 \\times 4$", "$3 \\times 3$", "$4 \\times 2$", "$2 \\times 3$"], correct: 0 }
+        ];
+
+        const container = document.getElementById('questions-container');
+
+        function renderQuestions() {
+            questions.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "question-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm";
+                div.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-4 flex items-start">
+                        <span class="bg-slate-100 text-slate-500 rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 text-sm">${index + 1}</span>
+                        <span class="mt-1">${item.q}</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        ${item.options.map((opt, i) => `
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
+                                <input type="radio" name="q${index}" value="${i}" required class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <span class="ml-3 text-slate-700">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            if (window.renderMathInElement) {
+                renderMathInElement(container, {
+                    delimiters: [
+                        { left: "$", right: "$", display: false },
+                        { left: "$$", right: "$$", display: true }
+                    ]
+                });
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', renderQuestions);
+
+        document.getElementById('quizForm').onsubmit = function (e) {
+            let score = 0;
+            questions.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && parseInt(selected.value) === item.correct) {
+                    score++;
+                }
+            });
+
+            const percent = ((score / questions.length) * 100).toFixed(1);
+            const scoreSummary = `${score}/${questions.length} (${percent}%)`;
+            document.getElementById('score_field').value = scoreSummary;
+
+            const name = document.getElementsByName('student_name')[0].value;
+            document.getElementById('email_subject').value = `Score: ${scoreSummary} | Matrices Quiz | ${name}`;
+
+            if (!confirm(`Click OK to submit to Mr. Nyantakyi Francis.`)) {
+                e.preventDefault();
+            }
+        };
+    </script>
+</body>
+
+</html>
