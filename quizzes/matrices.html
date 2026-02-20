@@ -90,12 +90,14 @@
             <input type="hidden" name="final_score" id="score_field">
             <input type="hidden" name="_subject" id="email_subject" value="New Math Quiz Submission">
 
-            <div class="mt-12 text-center p-8 bg-white rounded-xl shadow-sm border border-slate-200">
+ <div class="mt-12 text-center p-10 bg-white rounded-2xl shadow-xl border-t-4 border-indigo-600">
+                <p class="text-slate-500 mb-4 font-medium text-sm italic">"Mathematics is not about numbers, but about
+                    understanding."</p>
                 <button type="submit" id="submitBtn"
-                    class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                    class="bg-indigo-600 text-white px-12 py-4 rounded-xl font-black text-xl hover:bg-indigo-700 transition-all transform hover:scale-105 shadow-indigo-200 shadow-2xl">
                     Finish & Submit Results
                 </button>
-            </div>
+                </div>
         </form>
     </main>
 
@@ -201,7 +203,7 @@
             const name = document.getElementsByName('student_name')[0].value;
             document.getElementById('email_subject').value = `Score: ${scoreSummary} | Matrices Quiz | ${name}`;
 
-            if (!confirm(`Click OK to submit to Mr. Nyantakyi Francis.`)) {
+            if (!confirm(`Click OK to submit to Mr. Nyantakyi Francis. Your results would be sent to you via email or whatsapp`)) {
                 e.preventDefault();
             }
         };

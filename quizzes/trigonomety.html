@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Trigonometric Functions | Nyantakyi Francis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+
+        .question-card {
+            transition: border-color 0.2s;
+        }
+
+        .question-card:focus-within {
+            border-color: #4f46e5;
+        }
+
+        .katex-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+
+<body class="pb-20">
+
+    <header class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../index.html" class="text-indigo-600 font-bold flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+                Back to Portal
+            </a>
+            <div class="text-right">
+                <h1 class="font-bold text-slate-800">Elective Maths</h1>
+                <p class="text-xs text-slate-500 uppercase tracking-widest">Module 8: Trigonometry I</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-8">
+        <form id="quizForm" action="https://formspree.io/f/xvzbgroo" method="POST">
+
+            <div class="bg-indigo-700 rounded-xl p-8 mb-8 text-white shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center underline underline-offset-8">Student Information</h2>
+                <div class="grid md:grid-cols-1 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-indigo-100 mb-2">Full Name</label>
+                        <input type="text" name="student_name" required placeholder="Enter your full name"
+                            class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Email Address</label>
+                            <input type="email" name="student_email" required placeholder="example@email.com"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Phone Number</label>
+                            <input type="tel" name="student_phone" required placeholder="e.g. +233 50 000 0000"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="questions-container" class="space-y-6"></div>
+
+            <input type="hidden" name="quiz_topic" value="Trigonometric Functions">
+            <input type="hidden" name="final_score" id="score_field">
+            <input type="hidden" name="_subject" id="email_subject" value="New Math Quiz Submission">
+
+            <div class="mt-12 text-center p-8 bg-white rounded-xl shadow-sm border border-slate-200">
+                <button type="submit" id="submitBtn"
+                    class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                    Finish & Submit Results
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        const questions = [
+            // --- BASIC RATIOS & TRIANGLES (Q1-Q10) ---
+            { q: "In a right-angled triangle, if $\\sin \\theta = \\frac{5}{13}$, find the value of $\\cos \\theta$ where $\\theta$ is acute.", options: ["$\\frac{12}{13}$", "$\\frac{5}{12}$", "$\\frac{12}{5}$", "$\\frac{8}{13}$"], correct: 0 },
+            { q: "Given $\\tan A = \\frac{3}{4}$, calculate the value of $\\sin A + \\cos A$.", options: ["$\\frac{7}{5}$", "$\\frac{1}{5}$", "$1$", "$\\frac{12}{25}$"], correct: 0 },
+            { q: "If $\\cos \\theta = 0.6$, find $\\tan \\theta$.", options: ["$1.333$", "$0.75$", "$0.8$", "$0.4$"], correct: 1 },
+            { q: "In $\\triangle ABC$, $A=30^\\circ, B=90^\\circ$ and $AC=10$ cm. Find the length of $BC$.", options: ["$5$ cm", "$5\\sqrt{3}$ cm", "$10$ cm", "$20$ cm"], correct: 0 },
+            { q: "The reciprocal of $\\cos \\theta$ is defined as:", options: ["$\\sec \\theta$", "$\\csc \\theta$", "$\\cot \\theta$", "$\\sin \\theta$"], correct: 0 },
+            { q: "If $\\sec \\theta = \\sqrt{2}$, find the acute angle $\\theta$.", options: ["$45^\\circ$", "$30^\\circ$", "$60^\\circ$", "$90^\\circ$"], correct: 0 },
+            { q: "Simplify $\\frac{\\sin \\theta}{\\cos \\theta}$.", options: ["$\\tan \\theta$", "$\\cot \\theta$", "$\\sec \\theta$", "$1$"], correct: 0 },
+            { q: "In a right triangle, the side opposite the $30^\\circ$ angle is always:", options: ["Half the hypotenuse", "$\\sqrt{3}$ times the hypotenuse", "Equal to the adjacent side", "Twice the hypotenuse"], correct: 0 },
+            { q: "Find the value of $x$ in a triangle where $\\sin 45^\\circ = \\frac{x}{10\\sqrt{2}}$.", options: ["$10$", "$20$", "$5\\sqrt{2}$", "$5$"], correct: 0 },
+            { q: "If $\\cot \\theta = 1$, what is the value of $\\csc^2 \\theta$?", options: ["$2$", "$1$", "$0$", "$\\sqrt{2}$"], correct: 0 },
+
+            // --- SPECIAL ANGLES & UNIT CIRCLE (Q11-Q20) ---
+            { q: "What is the exact value of $\\cos 60^\\circ$?", options: ["$1/2$", "$\\sqrt{3}/2$", "$\\sqrt{2}/2$", "$1$"], correct: 0 },
+            { q: "Find the exact value of $\\tan 30^\\circ$.", options: ["$\\frac{1}{\\sqrt{3}}$", "$\\sqrt{3}$", "$1$", "$\\frac{\\sqrt{3}}{2}$"], correct: 0 },
+            { q: "The coordinates of a point on the unit circle are $(\\cos \\theta, \\sin \\theta)$. What is the coordinate at $270^\\circ$?", options: ["$(0, -1)$", "$(0, 1)$", "$(-1, 0)$", "$(1, 0)$"], correct: 0 },
+            { q: "In which quadrant is the sine function positive but the cosine function negative?", options: ["Quadrant II", "Quadrant I", "Quadrant III", "Quadrant IV"], correct: 0 },
+            { q: "Calculate $\\sin 150^\\circ$.", options: ["$1/2$", "$-1/2$", "$\\sqrt{3}/2$", "$-\\sqrt{3}/2$"], correct: 0 },
+            { q: "Find the value of $\\cos(-45^\\circ)$.", options: ["$\\frac{\\sqrt{2}}{2}$", "$-\\frac{\\sqrt{2}}{2}$", "$\\frac{1}{2}$", "$-1$"], correct: 0 },
+            { q: "A point on the unit circle has $x$-coordinate $-\\frac{\\sqrt{3}}{2}$ and lies in the third quadrant. Find its $y$-coordinate.", options: ["$-1/2$", "$1/2$", "$-\\sqrt{3}/2$", "$-1$"], correct: 0 },
+            { q: "What is the value of $\\tan 180^\\circ$?", options: ["$0$", "$1$", "Undefined", "$-1$"], correct: 0 },
+            { q: "Find the reference angle for $315^\\circ$.", options: ["$45^\\circ$", "$30^\\circ$", "$60^\\circ$", "$15^\\circ$"], correct: 0 },
+            { q: "Calculate $\\sec 300^\\circ$.", options: ["$2$", "$-2$", "$2/\\sqrt{3}$", "$\\sqrt{2}$"], correct: 0 },
+
+            // --- RADIANS & ARC LENGTH (Q21-Q30) ---
+            { q: "Convert $120^\\circ$ to radians.", options: ["$\\frac{2\\pi}{3}$", "$\\frac{\\pi}{3}$", "$\\frac{3\\pi}{4}$", "$\\pi$"], correct: 0 },
+            { q: "Convert $\\frac{5\\pi}{6}$ radians to degrees.", options: ["$150^\\circ$", "$120^\\circ$", "$210^\\circ$", "$300^\\circ$"], correct: 0 },
+            { q: "A circle has a radius of $6$ cm. Find the arc length subtended by an angle of $2$ radians.", options: ["$12$ cm", "$3$ cm", "$12\\pi$ cm", "$6$ cm"], correct: 0 },
+            { q: "The formula for the area of a sector is $A = \\frac{1}{2}r^2\\theta$. What must be the unit of $\\theta$?", options: ["Radians", "Degrees", "Gradians", "Ratio"], correct: 0 },
+            { q: "Find the radius of a circle if an arc of length $10\\pi$ cm subtends an angle of $\\pi/2$ at the center.", options: ["$20$ cm", "$5$ cm", "$10$ cm", "$40$ cm"], correct: 0 },
+            { q: "How many radians are in a full circle?", options: ["$2\\pi$", "$\\pi$", "$360$", "$4\\pi$"], correct: 0 },
+            { q: "Calculate the area of a sector with radius $4$ cm and angle $\\pi/4$.", options: ["$2\\pi$ $cm^2$", "$4\\pi$ $cm^2$", "$\\pi$ $cm^2$", "$8\\pi$ $cm^2$"], correct: 0 },
+            { q: "A pendulum of length $20$ cm swings through an arc of $5$ cm. Find the angle in radians.", options: ["$0.25$", "$4$", "$100$", "$0.5$"], correct: 0 },
+            { q: "An angle of $1$ radian is approximately:", options: ["$57.3^\\circ$", "$60^\\circ$", "$45^\\circ$", "$90^\\circ$"], correct: 0 },
+            { q: "Find the length of an arc that subtends $60^\\circ$ at the center of a circle with radius $9$ cm.", options: ["$3\\pi$ cm", "$6\\pi$ cm", "$9\\pi$ cm", "$\\pi$ cm"], correct: 0 },
+
+            // --- QUADRANTAL ANGLES & ADVANCED (Q31-Q40) ---
+            { q: "Which of the following is a quadrantal angle?", options: ["$180^\\circ$", "$45^\\circ$", "$120^\\circ$", "$210^\\circ$"], correct: 0 },
+            { q: "The value of $\\csc 90^\\circ$ is:", options: ["$1$", "$0$", "Undefined", "$-1$"], correct: 0 },
+            { q: "Find the value of $\\sin^2(\\pi/3) + \\cos^2(\\pi/3)$.", options: ["$1$", "$0.5$", "$0.75$", "$2$"], correct: 0 },
+            { q: "If $\\theta = 3\\pi/2$, find $\\cos \\theta$.", options: ["$0$", "$-1$", "$1$", "Undefined$"], correct: 0 },
+            { q: "At what quadrantal angle is $\\tan \\theta$ undefined?", options: ["$\\pi/2$", "$\\pi$", "$0$", "$2\\pi$"], correct: 0 },
+            { q: "Find the exact value of $\\sin(450^\\circ)$.", options: ["$1$", "$0$", "$-1$", "$0.5$"], correct: 0 },
+            { q: "A wheel of radius $0.5$m rotates through $10$ radians. How far has a point on the rim traveled?", options: ["$5$m", "$20$m", "$5\\pi$m", "$10$m"], correct: 0 },
+            { q: "Simplify $\\sec^2 \\theta - \\tan^2 \\theta$.", options: ["$1$", "$\\cos^2 \\theta$", "$\\sin^2 \\theta$", "$0$"], correct: 0 },
+            { q: "If $\\sin \\theta < 0$ and $\\tan \\theta > 0$, in which quadrant does $\\theta$ lie?", options: ["Quadrant III", "Quadrant I", "Quadrant II", "Quadrant IV"], correct: 0 },
+            { q: "Find the exact value of $\\cos(5\\pi/4)$.", options: ["$-\\frac{\\sqrt{2}}{2}$", "$\\frac{\\sqrt{2}}{2}$", "$-\\frac{1}{2}$", "$\\frac{\\sqrt{3}}{2}$"], correct: 0 }
+        ];
+
+        const container = document.getElementById('questions-container');
+
+        function renderQuestions() {
+            questions.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "question-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm";
+                div.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-4 flex items-start">
+                        <span class="bg-slate-100 text-slate-500 rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 text-sm">${index + 1}</span>
+                        <span class="mt-1">${item.q}</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        ${item.options.map((opt, i) => `
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
+                                <input type="radio" name="q${index}" value="${i}" required class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <span class="ml-3 text-slate-700">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            if (window.renderMathInElement) {
+                renderMathInElement(container, {
+                    delimiters: [
+                        { left: "$", right: "$", display: false },
+                        { left: "$$", right: "$$", display: true }
+                    ]
+                });
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', renderQuestions);
+
+        document.getElementById('quizForm').onsubmit = function (e) {
+            let score = 0;
+            questions.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && parseInt(selected.value) === item.correct) {
+                    score++;
+                }
+            });
+
+            const percent = ((score / questions.length) * 100).toFixed(1);
+            const scoreSummary = `${score}/${questions.length} (${percent}%)`;
+            document.getElementById('score_field').value = scoreSummary;
+
+            const name = document.getElementsByName('student_name')[0].value;
+            if (!confirm(`Click OK to submit to Mr. Nyantakyi Francis. Your results would be sent to you via email or whatsapp`)) {
+                e.preventDefault();
+            }
+        };
+    </script>
+</body>
+
+</html>

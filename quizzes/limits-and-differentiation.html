@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Limits & Differentiation | Nyantakyi Francis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+
+        .question-card {
+            transition: border-color 0.2s;
+        }
+
+        .question-card:focus-within {
+            border-color: #4f46e5;
+        }
+
+        .katex-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+
+<body class="pb-20">
+
+    <header class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../index.html" class="text-indigo-600 font-bold flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+                Back to Portal
+            </a>
+            <div class="text-right">
+                <h1 class="font-bold text-slate-800">Elective Mathematics</h1>
+                <p class="text-xs text-slate-500 uppercase tracking-widest">Module 9: Limits & Differentiation</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-8">
+        <form id="quizForm" action="https://formspree.io/f/xvzbgroo" method="POST">
+
+            <div class="bg-indigo-700 rounded-xl p-8 mb-8 text-white shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center underline underline-offset-8">Student Information</h2>
+                <div class="grid md:grid-cols-1 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-indigo-100 mb-2">Full Name</label>
+                        <input type="text" name="student_name" required placeholder="Enter your full name"
+                            class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Email Address</label>
+                            <input type="email" name="student_email" required placeholder="example@email.com"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Phone Number</label>
+                            <input type="tel" name="student_phone" required placeholder="e.g. +233 50 000 0000"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="questions-container" class="space-y-6"></div>
+
+            <input type="hidden" name="quiz_topic" value="Limits and Differentiation">
+            <input type="hidden" name="final_score" id="score_field">
+            <input type="hidden" name="_subject" id="email_subject" value="New Math Quiz Submission">
+
+            <div class="mt-12 text-center p-8 bg-white rounded-xl shadow-sm border border-slate-200">
+                <button type="submit" id="submitBtn"
+                    class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                    Finish & Submit Results
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        const questions = [
+            // --- LIMITS (Q1-Q10) ---
+            { q: "Evaluate $\\lim_{x \\to 3} (x^2 + 2x - 1)$. ", options: ["$14$", "$16$", "$12$", "$9$"], correct: 0 },
+            { q: "Find $\\lim_{x \\to 2} \\frac{x^2 - 4}{x - 2}$.", options: ["$4$", "$2$", "$0$", "Undefined"], correct: 0 },
+            { q: "What is the value of $\\lim_{x \\to 0} \\frac{\\sin x}{x}$?", options: ["$1$", "$0$", "$\\infty$", "Undefined"], correct: 0 },
+            { q: "Evaluate $\\lim_{x \\to \\infty} \\frac{3x^2 + 5x}{2x^2 - 1}$.", options: ["$3/2$", "$0$", "$\\infty$", "$5$"], correct: 0 },
+            { q: "A function $f(x)$ is continuous at $x=a$ if:", options: ["$\\lim_{x \\to a} f(x) = f(a)$", "$f(a)$ is defined", "$\\lim_{x \\to a} f(x)$ exists", "All of the above"], correct: 3 },
+            { q: "Evaluate the left-hand limit $\\lim_{x \\to 1^-} \\frac{|x-1|}{x-1}$.", options: ["$-1$", "$1$", "$0$", "Does not exist"], correct: 0 },
+            { q: "Find $\\lim_{x \\to 4} \\frac{\\sqrt{x}-2}{x-4}$.", options: ["$1/4$", "$1/2$", "$4$", "$0$"], correct: 0 },
+            { q: "If $\\lim_{x \\to a^+} f(x) \\neq \\lim_{x \\to a^-} f(x)$, then $f(x)$ has a:", options: ["Jump discontinuity", "Removable discontinuity", "Infinite discontinuity", "Continuous point"], correct: 0 },
+            { q: "Evaluate $\\lim_{x \\to 0} \\frac{1-\\cos x}{x}$.", options: ["$0$", "$1$", "$1/2$", "Undefined"], correct: 0 },
+            { q: "Evaluate $\\lim_{x \\to -3} \\frac{x^2-9}{x+3}$.", options: ["$-6$", "$6$", "$0$", "$-3$"], correct: 0 },
+
+            // --- FIRST PRINCIPLES & POWER RULE (Q11-Q20) ---
+            { q: "The derivative of $f(x)$ from first principles is defined as:", options: ["$\\lim_{h \\to 0} \\frac{f(x+h)-f(x)}{h}$", "$\\lim_{h \\to 0} \\frac{f(x)-f(h)}{h}$", "$\\frac{f(x+h)+f(x)}{h}$", "$\\lim_{h \\to \\infty} \\frac{f(x+h)-f(x)}{h}$"], correct: 0 },
+            { q: "Find $\\frac{dy}{dx}$ if $y = x^n$.", options: ["$nx^{n-1}$", "$x^{n-1}$", "$nx^n$", "$n^x$"], correct: 0 },
+            { q: "Differentiate $y = 5x^3 - 2x^2 + x - 7$ with respect to $x$.", options: ["$15x^2 - 4x + 1$", "$15x^2 - 4x$", "$5x^2 - 2x + 1$", "$15x^3 - 4x^2 + 1$"], correct: 0 },
+            { q: "If $f(x) = \\frac{1}{x}$, find $f'(x)$.", options: ["$-1/x^2$", "$1/x^2$", "$\\ln x$", "$-1/x$"], correct: 0 },
+            { q: "Find the derivative of $y = \\sqrt{x}$.", options: ["$\\frac{1}{2\\sqrt{x}}$", "$2\\sqrt{x}$", "$\\frac{1}{2}x^{3/2}$", "$\\frac{1}{\\sqrt{x}}$"], correct: 0 },
+            { q: "Differentiate $y = (2x+1)^2$ using the power rule.", options: ["$4(2x+1)$", "$2(2x+1)$", "$8x+4$", "Both A and C"], correct: 3 },
+            { q: "If $y = 10$, then $\\frac{dy}{dx}$ is:", options: ["$0$", "$1$", "$10$", "Undefined"], correct: 0 },
+            { q: "Using first principles, the derivative of $x^2$ is:", options: ["$2x$", "$x$", "$2$", "$x^2/2$"], correct: 0 },
+            { q: "Differentiate $y = ax^2 + bx + c$ with respect to $x$.", options: ["$2ax + b$", "$ax + b$", "$2ax$", "$2a + b$"], correct: 0 },
+            { q: "Find the gradient of the curve $y = x^3$ at the point $(2, 8)$.", options: ["$12$", "$6$", "$3$", "$8$"], correct: 0 },
+
+            // --- TANGENTS, NORMALS & RULES (Q21-Q30) ---
+            { q: "The gradient of the tangent to a curve $y=f(x)$ at $x=a$ is:", options: ["$f'(a)$", "$f(a)$", "$-1/f'(a)$", "$0$"], correct: 0 },
+            { q: "The gradient of the normal to a curve $y=f(x)$ at $x=a$ is:", options: ["$-1/f'(a)$", "$f'(a)$", "$1/f'(a)$", "$-f'(a)$"], correct: 0 },
+            { q: "Find the equation of the tangent to $y = x^2$ at the point $(1, 1)$.", options: ["$y = 2x - 1$", "$y = 2x + 1$", "$y = -2x + 3$", "$y = x$"], correct: 0 },
+            { q: "Find the equation of the normal to $y = x^2$ at the point $(1, 1)$.", options: ["$x + 2y - 3 = 0$", "$2x - y - 1 = 0$", "$x - 2y + 1 = 0$", "$2x + y - 3 = 0$"], correct: 0 },
+            { q: "State the Product Rule for $y = uv$.", options: ["$u\\frac{dv}{dx} + v\\frac{du}{dx}$", "$u\\frac{dv}{dx} - v\\frac{du}{dx}$", "$\\frac{du}{dx} \\cdot \\frac{dv}{dx}$", "$v\\frac{du}{dx} - u\\frac{dv}{dx}$"], correct: 0 },
+            { q: "State the Quotient Rule for $y = u/v$.", options: ["$\\frac{v\\frac{du}{dx} - u\\frac{dv}{dx}}{v^2}$", "$\\frac{u\\frac{dv}{dx} - v\\frac{du}{dx}}{v^2}$", "$\\frac{v\\frac{du}{dx} + u\\frac{dv}{dx}}{v^2}$", "$\\frac{du/dx}{dv/dx}$"], correct: 0 },
+            { q: "Find $\\frac{dy}{dx}$ if $y = (3x-2)^5$ using the Chain Rule.", options: ["$15(3x-2)^4$", "$5(3x-2)^4$", "$3(3x-2)^4$", "$15(3x-2)^5$"], correct: 0 },
+            { q: "Differentiate $y = \\sin x$.", options: ["$\\cos x$", "$-\\cos x$", "$\\sin x$", "$\\sec^2 x$"], correct: 0 },
+            { q: "Differentiate $y = \\cos x$.", options: ["$-\\sin x$", "$\\sin x$", "$\\cos x$", "$-\\cos x$"], correct: 0 },
+            { q: "Find the second derivative $\\frac{d^2y}{dx^2}$ of $y = x^4$.", options: ["$12x^2$", "$4x^3$", "$12x^3$", "$24x$"], correct: 0 },
+
+            // --- APPLICATIONS & RATES OF CHANGE (Q31-Q40) ---
+            { q: "If $s(t)$ represents displacement, then velocity $v(t)$ is:", options: ["$\\frac{ds}{dt}$", "$\\frac{d^2s}{dt^2}$", "$\\int s dt$", "$s \\times t$"], correct: 0 },
+            { q: "If $v(t)$ represents velocity, then acceleration $a(t)$ is:", options: ["$\\frac{dv}{dt}$", "$\\frac{d^2s}{dt^2}$", "Both A and B", "None"], correct: 2 },
+            { q: "A particle moves such that $s = t^3 - 6t^2 + 9t$. Find its velocity at $t=2$.", options: ["$-3$", "$9$", "$0$", "$3$"], correct: 0 },
+            { q: "At a stationary point (maximum or minimum), the gradient $\\frac{dy}{dx}$ is:", options: ["$0$", "$1$", "$\\infty$", "Undefined"], correct: 0 },
+            { q: "For a maximum point, the second derivative $\\frac{d^2y}{dx^2}$ must be:", options: ["Negative (< 0)", "Positive (> 0)", "Zero", "One"], correct: 0 },
+            { q: "The rate of change of the area $A$ of a circle with respect to its radius $r$ is:", options: ["$2\\pi r$", "$\\pi r^2$", "$\\pi r$", "$2\\pi$"], correct: 0 },
+            { q: "If $y$ increases as $x$ increases, then $\\frac{dy}{dx}$ is:", options: ["Positive", "Negative", "Zero", "Imaginary"], correct: 0 },
+            { q: "Find the rate of change of volume $V = x^3$ with respect to $x$ when $x=2$.", options: ["$12$", "$8$", "$6$", "$4$"], correct: 0 },
+            { q: "A function is discontinuous at $x=c$ if the denominator of the function at $c$ is:", options: ["Zero", "One", "Infinite", "Positive"], correct: 0 },
+            { q: "The derivative of a constant times a function, $\\frac{d}{dx}[cf(x)]$, is:", options: ["$c f'(x)$", "$0$", "$f'(x)$", "$c + f'(x)$"], correct: 0 }
+        ];
+
+        const container = document.getElementById('questions-container');
+
+        function renderQuestions() {
+            questions.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "question-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm";
+                div.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-4 flex items-start">
+                        <span class="bg-slate-100 text-slate-500 rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 text-sm">${index + 1}</span>
+                        <span class="mt-1">${item.q}</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        ${item.options.map((opt, i) => `
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
+                                <input type="radio" name="q${index}" value="${i}" required class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <span class="ml-3 text-slate-700">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            if (window.renderMathInElement) {
+                renderMathInElement(container, {
+                    delimiters: [
+                        { left: "$", right: "$", display: false },
+                        { left: "$$", right: "$$", display: true }
+                    ]
+                });
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', renderQuestions);
+
+        document.getElementById('quizForm').onsubmit = function (e) {
+            let score = 0;
+            questions.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && parseInt(selected.value) === item.correct) {
+                    score++;
+                }
+            });
+
+            const percent = ((score / questions.length) * 100).toFixed(1);
+            const scoreSummary = `${score}/${questions.length} (${percent}%)`;
+            document.getElementById('score_field').value = scoreSummary;
+
+            const name = document.getElementsByName('student_name')[0].value;
+            if (!confirm(`Click OK to submit to Mr. Nyantakyi Francis. Your results would be sent to you via email or whatsapp`)) {
+                e.preventDefault();
+            }
+        };
+    </script>
+</body>
+
+</html>

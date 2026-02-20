@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Coordinate Geometry II (Circles) | Nyantakyi Francis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+
+        .question-card {
+            transition: border-color 0.2s;
+        }
+
+        .question-card:focus-within {
+            border-color: #4f46e5;
+        }
+
+        .katex-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+
+<body class="pb-20">
+
+    <header class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../index.html" class="text-indigo-600 font-bold flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+                Back to Portal
+            </a>
+            <div class="text-right">
+                <h1 class="font-bold text-slate-800">Elective Mathematics</h1>
+                <p class="text-xs text-slate-500 uppercase tracking-widest">Module 7: Coordinate Geometry II (Circles)
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-8">
+        <form id="quizForm" action="https://formspree.io/f/xvzbgroo" method="POST">
+
+            <div class="bg-indigo-700 rounded-xl p-8 mb-8 text-white shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center underline underline-offset-8">Student Information</h2>
+                <div class="grid md:grid-cols-1 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-indigo-100 mb-2">Full Name</label>
+                        <input type="text" name="student_name" required placeholder="Enter your full name"
+                            class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Email Address</label>
+                            <input type="email" name="student_email" required placeholder="example@email.com"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Phone Number</label>
+                            <input type="tel" name="student_phone" required placeholder="e.g. +233 50 000 0000"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="questions-container" class="space-y-6"></div>
+
+            <input type="hidden" name="quiz_topic" value="Coordinate Geometry II (Circles)">
+            <input type="hidden" name="final_score" id="score_field">
+            <input type="hidden" name="_subject" id="email_subject" value="New Math Quiz Submission">
+
+            <div class="mt-12 text-center p-8 bg-white rounded-xl shadow-sm border border-slate-200">
+                <button type="submit" id="submitBtn"
+                    class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                    Finish & Submit Results
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        const questions = [
+            // --- BASICS & CENTER/RADIUS (Q1-Q8) ---
+            { q: "The standard equation of a circle with center $(h, k)$ and radius $r$ is:", options: ["$(x-h)^2 + (y-k)^2 = r^2$", "$(x+h)^2 + (y+k)^2 = r^2$", "$x^2 + y^2 + 2gx + 2fy + c = 0$", "$(x-h)^2 - (y-k)^2 = r^2$"], correct: 0 },
+            { q: "Find the center and radius of the circle $(x-2)^2 + (y+5)^2 = 16$.", options: ["$(2, -5), r=4$", "$(-2, 5), r=16$", "$(2, -5), r=16$", "$(-2, 5), r=4$"], correct: 0 },
+            { q: "Find the radius of the circle $x^2 + y^2 = 7$.", options: ["$7$", "$49$", "$\\sqrt{7}$", "$3.5$"], correct: 2 },
+            { q: "State the center of the circle $x^2 + y^2 + 4x - 6y - 12 = 0$.", options: ["$(2, -3)$", "$(-2, 3)$", "$(4, -6)$", "$(-4, 6)$"], correct: 1 },
+            { q: "Calculate the radius of the circle $x^2 + y^2 - 10x + 24y = 0$.", options: ["$13$", "$26$", "$169$", "$\\sqrt{13}$"], correct: 0 },
+            { q: "If the general equation of a circle is $x^2 + y^2 + 2gx + 2fy + c = 0$, the radius is given by:", options: ["$\\sqrt{g^2 + f^2 - c}$", "$\\sqrt{g^2 + f^2 + c}$", "$g^2 + f^2 - c$", "$\\sqrt{g^2 - f^2 + c}$"], correct: 0 },
+            { q: "The circle $x^2 + y^2 = 25$ passes through which of the following points?", options: ["$(3, 4)$", "$(5, 5)$", "$(2, 3)$", "$(0, 0)$"], correct: 0 },
+            { q: "Find the equation of a circle with center at the origin and passing through $(3, -4)$.", options: ["$x^2 + y^2 = 25$", "$x^2 + y^2 = 5$", "$x^2 + y^2 = 7$", "$x^2 + y^2 = 1$"], correct: 0 },
+
+            // --- FINDING EQUATIONS (Q9-Q16) ---
+            { q: "Find the equation of the circle with center $(-1, 3)$ and radius $2$.", options: ["$x^2 + y^2 + 2x - 6y + 6 = 0$", "$x^2 + y^2 - 2x + 6y + 6 = 0$", "$x^2 + y^2 + 2x - 6y - 6 = 0$", "$x^2 + y^2 - 2x - 6y + 6 = 0$"], correct: 0 },
+            { q: "A circle has its diameter endpoints at $A(1, 2)$ and $B(3, 4)$. Find its center.", options: ["$(2, 3)$", "$(4, 6)$", "$(1, 1)$", "$(2, 2)$"], correct: 0 },
+            { q: "Determine the radius of the circle in the previous question ($A(1, 2), B(3, 4)$).", options: ["$\\sqrt{2}$", "$2$", "$4$", "$\\sqrt{8}$"], correct: 0 },
+            { q: "Find the equation of a circle with center $(4, 5)$ that is tangent to the x-axis.", options: ["$(x-4)^2 + (y-5)^2 = 25$", "$(x-4)^2 + (y-5)^2 = 16$", "$(x-4)^2 + (y-5)^2 = 41$", "$x^2 + y^2 = 25$"], correct: 0 },
+            { q: "Find the equation of a circle with center $(4, 5)$ that is tangent to the y-axis.", options: ["$(x-4)^2 + (y-5)^2 = 16$", "$(x-4)^2 + (y-5)^2 = 25$", "$(x-4)^2 + (y-5)^2 = 9$", "$x^2 + y^2 = 16$"], correct: 0 },
+            { q: "What is the equation of the circle passing through the origin with center $(a, b)$?", options: ["$x^2 + y^2 - 2ax - 2by = 0$", "$x^2 + y^2 + 2ax + 2by = 0$", "$x^2 + y^2 = a^2 + b^2$", "$x^2 + y^2 - ax - by = 0$"], correct: 0 },
+            { q: "Find $k$ if $x^2 + y^2 - 4x + 6y + k = 0$ represents a point circle (radius = 0).", options: ["$13$", "$-13$", "$0$", "$5$"], correct: 0 },
+            { q: "The equation $x^2 + y^2 + 2x + 2y + 10 = 0$ represents:", options: ["An imaginary circle", "A point circle", "A real circle", "A straight line"], correct: 0 },
+
+            // --- TANGENTS & INTERSECTIONS (Q17-Q24) ---
+            { q: "Find the equation of the tangent to $x^2 + y^2 = 25$ at $(3, 4)$.", options: ["$3x + 4y = 25$", "$4x + 3y = 25$", "$3x - 4y = 25$", "$x + y = 7$"], correct: 0 },
+            { q: "A line $y = mx + c$ is tangent to $x^2 + y^2 = r^2$ if $c^2 = $", options: ["$r^2(1 + m^2)$", "$r^2(1 - m^2)$", "$r(1 + m)$", "$r^2/m^2$"], correct: 0 },
+            { q: "Find the length of the tangent from $(5, 7)$ to the circle $x^2 + y^2 = 25$.", options: ["$7$", "$49$", "$\\sqrt{49}$", "$\\sqrt{74}$"], correct: 0 },
+            { q: "Where does the circle $x^2 + y^2 - 6x - 8y = 0$ intersect the x-axis?", options: ["$(0,0)$ and $(6,0)$", "$(0,0)$ and $(0,8)$", "$(6,0)$ and $(0,8)$", "$(3,4)$"], correct: 0 },
+            { q: "Determine the points of intersection of $x^2 + y^2 = 10$ and $y = 3x$.", options: ["$(1, 3)$ and $(-1, -3)$", "$(1, -3)$ and $(-1, 3)$", "$(3, 1)$ and $(-3, -1)$", "$(0,0)$"], correct: 0 },
+            { q: "If a circle touches both axes, its center $(h, k)$ must satisfy:", options: ["$|h| = |k| = r$", "$h = k$", "$h + k = r$", "$h^2 + k^2 = r^2$"], correct: 0 },
+            { q: "The length of the chord intercepted by the circle $x^2 + y^2 = 25$ on the line $x = 3$ is:", options: ["$8$", "$4$", "$3$", "$10$"], correct: 0 },
+            { q: "Find the gradient of the normal to the circle $x^2 + y^2 = 25$ at $(3, 4)$.", options: ["$4/3$", "$-3/4$", "$3/4$", "$-4/3$"], correct: 0 },
+
+            // --- ADVANCED CIRCLE GEOMETRY (Q25-Q32) ---
+            { q: "Two circles $x^2 + y^2 + 2g_1x + 2f_1y + c_1 = 0$ and $x^2 + y^2 + 2g_2x + 2f_2y + c_2 = 0$ touch externally if the distance between centers $d$ is:", options: ["$r_1 + r_2$", "$|r_1 - r_2|$", "$0$", "$r_1^2 + r_2^2$"], correct: 0 },
+            { q: "The condition for two circles to be orthogonal is:", options: ["$2g_1g_2 + 2f_1f_2 = c_1 + c_2$", "$g_1g_2 + f_1f_2 = c_1 + c_2$", "$2g_1g_2 + 2f_1f_2 = 0$", "$c_1 = c_2$"], correct: 0 },
+            { q: "Find the equation of the radical axis of $x^2 + y^2 - 4x - 6y + 3 = 0$ and $x^2 + y^2 + 2x + 4y - 5 = 0$.", options: ["$6x + 10y - 8 = 0$", "$2x - 2y + 8 = 0$", "$x^2 + y^2 = 0$", "$3x + 5y - 4 = 0$"], correct: 0 },
+            { q: "If $(x_1, y_1)$ and $(x_2, y_2)$ are ends of a diameter, the equation is $(x-x_1)(x-x_2) + (y-y_1)(y-y_2) = 0$. This is known as:", options: ["Diameter form", "Standard form", "General form", "Tangent form"], correct: 0 },
+            { q: "Find the equation of a circle passing through $(0,0), (4,0),$ and $(0,6)$.", options: ["$x^2 + y^2 - 4x - 6y = 0$", "$x^2 + y^2 + 4x + 6y = 0$", "$x^2 + y^2 - 2x - 3y = 0$", "$x^2 + y^2 = 52$"], correct: 0 },
+            { q: "The center of the circle in the previous question is:", options: ["$(2, 3)$", "$(4, 6)$", "$(-2, -3)$", "$(0,0)$"], correct: 0 },
+            { q: "What is the power of the point $(1, 2)$ with respect to $x^2 + y^2 - 4 = 0$?", options: ["$1$", "$5$", "$-1$", "$4$"], correct: 0 },
+            { q: "If the power of a point is negative, the point lies:", options: ["Inside the circle", "Outside the circle", "On the circle", "At the center"], correct: 0 },
+
+            // --- APPLICATIONS & REVISION (Q33-Q40) ---
+            { q: "Which of the following describes the locus of a point that moves such that its distance from a fixed point is constant?", options: ["Circle", "Parabola", "Straight line", "Ellipse"], correct: 0 },
+            { q: "Find the value of $a$ if $x^2 + y^2 - 6x + ay + 15 = 0$ has radius $1$.", options: ["$\\pm 2$", "$4$", "$\\pm 4$", "No real value"], correct: 2 },
+            { q: "A circle has equation $x^2 + y^2 + kx + ky + k = 0$. For this to be a real circle, $k$ must satisfy:", options: ["$k < 0$ or $k > 4$", "$k > 0$", "$0 < k < 4$", "$k = 4$"], correct: 0 },
+            { q: "The equation of the circle concentric with $x^2 + y^2 - 2x - 4y = 0$ and passing through $(3, 5)$ is:", options: ["$(x-1)^2 + (y-2)^2 = 13$", "$(x+1)^2 + (y+2)^2 = 13$", "$x^2 + y^2 - 2x - 4y - 8 = 0$", "Both A and C"], correct: 3 },
+            { q: "The distance from the center of $x^2 + y^2 = 25$ to the line $3x + 4y = 10$ is:", options: ["$2$", "$5$", "$10$", "$1$"], correct: 0 },
+            { q: "Is the line in the previous question a tangent, secant, or outside the circle?", options: ["Secant", "Tangent", "Outside", "Diameter"], correct: 0 },
+            { q: "Find the equation of a circle with center $(3, -1)$ and radius $\\sqrt{10}$.", options: ["$x^2 + y^2 - 6x + 2y = 0$", "$x^2 + y^2 + 6x - 2y = 0$", "$x^2 + y^2 - 6x + 2y + 10 = 0$", "$x^2 + y^2 = 10$"], correct: 0 },
+            { q: "Every equation of the form $Ax^2 + Ay^2 + Dx + Ey + F = 0$ (where $A \\neq 0$) represents a circle if:", options: ["$D^2 + E^2 - 4AF > 0$", "$D^2 + E^2 - 4AF = 0$", "$D^2 + E^2 - 4AF < 0$", "Always true"], correct: 0 }
+        ];
+
+        const container = document.getElementById('questions-container');
+
+        function renderQuestions() {
+            questions.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "question-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm";
+                div.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-4 flex items-start">
+                        <span class="bg-slate-100 text-slate-500 rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 text-sm">${index + 1}</span>
+                        <span class="mt-1">${item.q}</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        ${item.options.map((opt, i) => `
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
+                                <input type="radio" name="q${index}" value="${i}" required class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <span class="ml-3 text-slate-700">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            if (window.renderMathInElement) {
+                renderMathInElement(container, {
+                    delimiters: [
+                        { left: "$", right: "$", display: false },
+                        { left: "$$", right: "$$", display: true }
+                    ]
+                });
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', renderQuestions);
+
+        document.getElementById('quizForm').onsubmit = function (e) {
+            let score = 0;
+            questions.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && parseInt(selected.value) === item.correct) {
+                    score++;
+                }
+            });
+
+            const percent = ((score / questions.length) * 100).toFixed(1);
+            const scoreSummary = `${score}/${questions.length} (${percent}%)`;
+            document.getElementById('score_field').value = scoreSummary;
+
+            const name = document.getElementsByName('student_name')[0].value;
+            document.getElementById('email_subject').value = `Circles Quiz Score: ${scoreSummary} | ${name}`;
+
+            if (!confirm(`Click OK to submit to Mr. Nyantakyi Francis. Your results would be sent to you via email or whatsapp`)) {
+                e.preventDefault();
+            }
+        };
+    </script>
+</body>
+
+</html>
