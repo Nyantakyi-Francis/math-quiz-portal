@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Counting & Probability | Nyantakyi Francis</title>
+    <title>Permutation, Combination & Probability | Nyantakyi Francis</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -57,7 +57,7 @@
             </a>
             <div class="text-right">
                 <h1 class="font-bold text-slate-800">Mathematics</h1>
-                <p class="text-xs text-slate-500 uppercase tracking-widest">Module 11: Advanced Counting & Probability</p>
+                <p class="text-xs text-slate-500 uppercase tracking-widest">Module 11: Permutation, Combination & Probability
             </div>
         </div>
     </header>
@@ -65,7 +65,6 @@
     <main class="max-w-4xl mx-auto px-4 mt-8">
         <form id="quizForm" action="https://formspree.io/f/xvzbgroo" method="POST">
 
-            <!-- Student Info Section -->
             <div class="bg-indigo-700 rounded-xl p-8 mb-8 text-white shadow-lg">
                 <h2 class="text-2xl font-bold mb-6 text-center underline underline-offset-8">Student Information</h2>
                 <div class="grid md:grid-cols-1 gap-6">
@@ -96,8 +95,8 @@
             <input type="hidden" name="_subject" id="email_subject" value="New Math Quiz Submission">
 
             <div class="mt-12 text-center p-10 bg-white rounded-2xl shadow-xl border-t-4 border-indigo-600">
-                <p class="text-slate-500 mb-4 font-medium text-sm italic">"Mathematics is not about numbers, but about
-                    understanding."</p>
+                <p class="text-slate-500 mb-4 font-medium text-sm italic">"Probability is the very guide of life, and
+                    combinatorial analysis is the map of all possible paths."</p>
                 <button type="submit" id="submitBtn"
                     class="bg-indigo-600 text-white px-12 py-4 rounded-xl font-black text-xl hover:bg-indigo-700 transition-all transform hover:scale-105 shadow-indigo-200 shadow-2xl">
                     Finish & Submit Results
@@ -109,50 +108,50 @@
     <script>
         const questions = [
             // --- ADVANCED PERMUTATIONS (1-10) ---
-            { q: "In how many ways can the letters of the word <b>'ALGEBRA'</b> be arranged if the two 'A's must not be together?", options: ["1800", "2520", "720", "2160"], correct: 0, tag: "Restricted Permutation" },
-            { q: "Five boys and three girls are to be seated in a row. Find the number of ways they can be seated if all the girls must sit together.", options: ["4320", "720", "120", "30240"], correct: 0, tag: "String Method" },
-            { q: "A round table seats 6 people. In how many ways can they be seated if two particular people refuse to sit next to each other?", options: ["72", "120", "24", "48"], correct: 0, tag: "Circular Logic" },
-            { q: "How many 4-digit even numbers can be formed from {0, 1, 2, 3, 4, 5} if repetition is not allowed?", options: ["156", "180", "300", "60"], correct: 0, tag: "Zero-Constraint" },
-            { q: "Find the number of ways to arrange the letters of <b>'MISSISSIPPI'</b>.", options: ["34650", "39916800", "11!", "13860"], correct: 0, tag: "Indistinguishable Objects" },
-            { q: "In how many ways can 7 different books be arranged on a shelf such that 3 particular books occupy the middle positions?", options: ["144", "5040", "720", "24"], correct: 0, tag: "Fixed Position" },
-            { q: "Find $n$ if $^nP_4 = 42 \\times ^nP_2$.", options: ["9", "7", "8", "10"], correct: 0, tag: "Algebraic Proof" },
-            { q: "How many signals can be made by hoisting 3 flags of different colors one above the other from 6 available flags?", options: ["120", "20", "720", "18"], correct: 0, tag: "Vertical Arrangement" },
-            { q: "Six people are to be seated in a van with 3 seats in front and 3 in the back. If the driver is already chosen from the 6, find the total ways.", options: ["120", "720", "24", "6"], correct: 0, tag: "Restricted Seat" },
-            { q: "How many 3-digit numbers greater than 500 can be formed from {2, 3, 5, 7, 8} without repetition?", options: ["36", "60", "24", "125"], correct: 0, tag: "Inequality Constraint" },
+            { q: "In how many ways can the letters of the word <b>'ALGEBRA'</b> be arranged if the two 'A's must not be together?", options: ["2520", "1800", "720", "2160"], correct: 1, tag: "Restricted Permutation" },
+            { q: "Five boys and three girls are to be seated in a row. Find the number of ways they can be seated if all the girls must sit together.", options: ["30240", "720", "4320", "120"], correct: 2, tag: "String Method" },
+            { q: "A round table seats 6 people. In how many ways can they be seated if two particular people refuse to sit next to each other?", options: ["120", "72", "48", "24"], correct: 1, tag: "Circular Logic" },
+            { q: "How many 4-digit even numbers can be formed from {0, 1, 2, 3, 4, 5} if repetition is not allowed?", options: ["300", "60", "180", "156"], correct: 3, tag: "Zero-Constraint" },
+            { q: "Find the number of ways to arrange the letters of <b>'MISSISSIPPI'</b>.", options: ["34650", "13860", "39916800", "11!"], correct: 0, tag: "Indistinguishable Objects" },
+            { q: "In how many ways can 7 different books be arranged on a shelf such that 3 particular books occupy the middle positions?", options: ["5040", "24", "144", "720"], correct: 2, tag: "Fixed Position" },
+            { q: "Find $n$ if $^nP_4 = 42 \\times ^nP_2$.", options: ["7", "10", "8", "9"], correct: 3, tag: "Algebraic Proof" },
+            { q: "How many signals can be made by hoisting 3 flags of different colors one above the other from 6 available flags?", options: ["20", "120", "720", "18"], correct: 1, tag: "Vertical Arrangement" },
+            { q: "Six people are to be seated in a van with 3 seats in front and 3 in the back. If the driver is already chosen from the 6, find the total ways.", options: ["720", "120", "6", "24"], correct: 1, tag: "Restricted Seat" },
+            { q: "How many 3-digit numbers greater than 500 can be formed from {2, 3, 5, 7, 8} without repetition?", options: ["125", "36", "60", "24"], correct: 1, tag: "Inequality Constraint" },
 
             // --- ADVANCED COMBINATIONS (11-20) ---
-            { q: "A committee of 5 is to be formed from 6 men and 4 women. In how many ways can this be done if there must be at least 3 women?", options: ["66", "210", "120", "45"], correct: 0, tag: "At-Least Logic" },
-            { q: "Find the number of diagonals in a regular decagon (10-sided polygon).", options: ["35", "45", "90", "20"], correct: 0, tag: "Geometric Combination" },
-            { q: "Solve for $n$ if $^nC_{n-2} = 15$.", options: ["6", "5", "4", "7"], correct: 0, tag: "Pascal's Identity" },
-            { q: "In how many ways can 12 people be divided into 3 groups of 4 people each?", options: ["5775", "34650", "495", "11880"], correct: 0, tag: "Group Division" },
-            { q: "A bag contains 5 white and 3 black balls. Find the ways to select 3 balls such that at most 1 is black.", options: ["40", "56", "30", "15"], correct: 0, tag: "At-Most Logic" },
-            { q: "How many ways can a student select 10 questions out of 13, if he must select at least 4 from the first 5 questions?", options: ["196", "286", "120", "80"], correct: 0, tag: "Forced Selection" },
-            { q: "If $^nC_r : ^nC_{r+1} : ^nC_{r+2} = 1 : 2 : 3$, find $n$.", options: ["14", "7", "10", "12"], correct: 0, tag: "Ratio Proof" },
-            { q: "How many triangles can be formed by joining 12 points in a plane, 5 of which are collinear?", options: ["210", "220", "110", "10"], correct: 0, tag: "Collinearity Constraint" },
-            { q: "Find the number of ways to distribute 10 identical pens among 3 students such that each gets at least one.", options: ["36", "66", "120", "45"], correct: 0, tag: "Stars and Bars" },
-            { q: "Find the coefficient of $x^3$ in the expansion of $(1+x)^{10}$.", options: ["120", "10", "45", "210"], correct: 0, tag: "Binomial Link" },
+            { q: "A committee of 5 is to be formed from 6 men and 4 women. In how many ways can this be done if there must be at least 3 women?", options: ["66", "210", "45", "120"], correct: 0, tag: "At-Least Logic" },
+            { q: "Find the number of diagonals in a regular decagon (10-sided polygon).", options: ["20", "45", "90", "35"], correct: 3, tag: "Geometric Combination" },
+            { q: "Solve for $n$ if $^nC_{n-2} = 15$.", options: ["5", "4", "6", "7"], correct: 2, tag: "Pascal's Identity" },
+            { q: "In how many ways can 12 people be divided into 3 groups of 4 people each?", options: ["34650", "495", "11880", "5775"], correct: 3, tag: "Group Division" },
+            { q: "A bag contains 5 white and 3 black balls. Find the ways to select 3 balls such that at most 1 is black.", options: ["56", "40", "15", "30"], correct: 1, tag: "At-Most Logic" },
+            { q: "How many ways can a student select 10 questions out of 13, if he must select at least 4 from the first 5 questions?", options: ["120", "286", "196", "80"], correct: 2, tag: "Forced Selection" },
+            { q: "If $^nC_r : ^nC_{r+1} : ^nC_{r+2} = 1 : 2 : 3$, find $n$.", options: ["10", "14", "12", "7"], correct: 1, tag: "Ratio Proof" },
+            { q: "How many triangles can be formed by joining 12 points in a plane, 5 of which are collinear?", options: ["10", "110", "210", "220"], correct: 2, tag: "Collinearity Constraint" },
+            { q: "Find the number of ways to distribute 10 identical pens among 3 students such that each gets at least one.", options: ["66", "120", "45", "36"], correct: 3, tag: "Stars and Bars" },
+            { q: "Find the coefficient of $x^3$ in the expansion of $(1+x)^{10}$.", options: ["45", "120", "210", "10"], correct: 1, tag: "Binomial Link" },
 
             // --- COMPLEX PROBABILITY (21-40) ---
-            { q: "A bag has 4 red and 6 blue balls. Two balls are drawn sequentially without replacement. Find the probability the second is red given the first was blue.", options: ["4/9", "4/10", "6/9", "1/2"], correct: 0, tag: "Conditional Prob" },
-            { q: "The probability that $A$ solves a problem is 1/2 and $B$ is 1/3. If both try, what is the probability the problem is solved?", options: ["2/3", "1/6", "5/6", "1/2"], correct: 0, tag: "At-Least One" },
-            { q: "Three dice are thrown. What is the probability that the sum of the faces is 10?", options: ["27/216", "25/216", "1/8", "30/216"], correct: 0, tag: "Summation Prob" },
-            { q: "A card is drawn from a deck. Find the probability it is either a Heart or a Queen.", options: ["16/52", "17/52", "13/52", "4/52"], correct: 0, tag: "Inclusion-Exclusion" },
-            { q: "Two independent events $A$ and $B$ have $P(A)=0.3$ and $P(B)=0.4$. Find $P(A \\cup B')$.", options: ["0.9", "0.7", "0.12", "0.6"], correct: 0, tag: "Complementary Logic" },
-            { q: "A leap year is selected at random. What is the probability that it contains 53 Sundays?", options: ["2/7", "1/7", "1/366", "53/366"], correct: 0, tag: "Chronological Prob" },
-            { q: "Three points are chosen on a circle. What is the probability they lie on a semicircle?", options: ["3/4", "1/2", "1/4", "1"], correct: 0, tag: "Geometric Prob" },
-            { q: "In a class, 60% pass Math, 50% pass English, and 30% pass both. Find the probability a student passed Math given they failed English.", options: ["3/5", "1/2", "2/5", "3/10"], correct: 0, tag: "Bayes Intro" },
-            { q: "A box contains 2 gold and 3 silver coins. Another box has 3 gold and 1 silver. A box is picked and a coin drawn. Find the probability it is gold.", options: ["23/40", "13/20", "5/9", "1/2"], correct: 0, tag: "Total Probability" },
+            { q: "A bag has 4 red and 6 blue balls. Two balls are drawn sequentially without replacement. Find the probability the second is red given the first was blue.", options: ["4/10", "6/9", "4/9", "1/2"], correct: 2, tag: "Conditional Prob" },
+            { q: "The probability that $A$ solves a problem is 1/2 and $B$ is 1/3. If both try, what is the probability the problem is solved?", options: ["2/3", "1/6", "1/2", "5/6"], correct: 0, tag: "At-Least One" },
+            { q: "Three dice are thrown. What is the probability that the sum of the faces is 10?", options: ["25/216", "27/216", "30/216", "1/8"], correct: 1, tag: "Summation Prob" },
+            { q: "A card is drawn from a deck. Find the probability it is either a Heart or a Queen.", options: ["17/52", "13/52", "16/52", "4/52"], correct: 2, tag: "Inclusion-Exclusion" },
+            { q: "Two independent events $A$ and $B$ have $P(A)=0.3$ and $P(B)=0.4$. Find $P(A \\cup B')$.", options: ["0.12", "0.6", "0.7", "0.9"], correct: 1, tag: "Complementary Logic" },
+            { q: "A leap year is selected at random. What is the probability that it contains 53 Sundays?", options: ["1/7", "2/7", "53/366", "1/366"], correct: 1, tag: "Chronological Prob" },
+            { q: "Three points are chosen on a circle. What is the probability they lie on a semicircle?", options: ["1/2", "3/4", "1", "1/4"], correct: 1, tag: "Geometric Prob" },
+            { q: "In a class, 60% pass Math, 50% pass English, and 30% pass both. Find the probability a student passed Math given they failed English.", options: ["3/10", "3/5", "1/2", "2/5"], correct: 1, tag: "Bayes Intro" },
+            { q: "A box contains 2 gold and 3 silver coins. Another box has 3 gold and 1 silver. A box is picked and a coin drawn. Find the probability it is gold.", options: ["5/9", "13/20", "23/40", "1/2"], correct: 2, tag: "Total Probability" },
             { q: "If $P(A) = 0.8$ and $P(B) = 0.5$, what is the minimum possible value of $P(A \\cap B)$?", options: ["0.3", "0.5", "0.4", "0"], correct: 0, tag: "Set Limits" },
-            { q: "Five people (A, B, C, D, E) stand in a line. What is the probability that A and B are next to each other?", options: ["2/5", "1/5", "1/2", "2/3"], correct: 0, tag: "Arrangement Prob" },
-            { q: "The odds in favor of an event are 3:5. Find the probability the event occurs.", options: ["3/8", "5/8", "3/5", "5/3"], correct: 0, tag: "Odds vs Prob" },
+            { q: "Five people (A, B, C, D, E) stand in a line. What is the probability that A and B are next to each other?", options: ["1/5", "2/3", "2/5", "1/2"], correct: 2, tag: "Arrangement Prob" },
+            { q: "The odds in favor of an event are 3:5. Find the probability the event occurs.", options: ["3/5", "3/8", "5/8", "5/3"], correct: 1, tag: "Odds vs Prob" },
             { q: "Find $P(A|B)$ if $A \\subset B$.", options: ["P(A)/P(B)", "1", "0", "P(B)/P(A)"], correct: 0, tag: "Set Inclusion" },
-            { q: "What is the probability that a randomly chosen factor of 24 is even?", options: ["3/4", "1/2", "5/8", "1/4"], correct: 0, tag: "Number Theory Prob" },
-            { q: "A coin is tossed until a head appears. Find the probability that it takes exactly 4 tosses.", options: ["1/16", "1/8", "1/4", "1/2"], correct: 0, tag: "Geometric Series Prob" },
-            { q: "If $E$ and $F$ are independent, then $P(E \\cap F) = 0.12$ and $P(E \\cup F) = 0.58$. Find $P(E)$ if $P(E) > P(F)$.", options: ["0.4", "0.3", "0.2", "0.46"], correct: 0, tag: "Quadratics in Prob" },
-            { q: "Four letters are placed in four addressed envelopes at random. Probability that none is in the correct envelope?", options: ["9/24", "1/24", "1/4", "3/8"], correct: 0, tag: "Derangements" },
-            { q: "Find the probability that the birthdays of 3 people fall on different days of the week.", options: ["30/49", "1/7", "210/343", "6/7"], correct: 0, tag: "Birthday Problem" },
-            { q: "A point is chosen inside a square. What is the probability it is closer to the center than to any vertex?", options: ["1/2", "1/4", "1/3", "2/3"], correct: 0, tag: "Area-Based Prob" },
-            { q: "If $P(A|B) = P(A)$, then $A$ and $B$ are:", options: ["Independent", "Mutually Exclusive", "Dependent", "Exhaustive"], correct: 0, tag: "Fundamental Definition" }
+            { q: "What is the probability that a randomly chosen factor of 24 is even?", options: ["1/4", "1/2", "3/4", "5/8"], correct: 2, tag: "Number Theory Prob" },
+            { q: "A coin is tossed until a head appears. Find the probability that it takes exactly 4 tosses.", options: ["1/4", "1/16", "1/8", "1/2"], correct: 1, tag: "Geometric Series Prob" },
+            { q: "If $E$ and $F$ are independent, then $P(E \\cap F) = 0.12$ and $P(E \\cup F) = 0.58$. Find $P(E)$ if $P(E) > P(F)$.", options: ["0.2", "0.4", "0.3", "0.46"], correct: 1, tag: "Quadratics in Prob" },
+            { q: "Four letters are placed in four addressed envelopes at random. Probability that none is in the correct envelope?", options: ["1/24", "9/24", "3/8", "1/4"], correct: 1, tag: "Derangements" },
+            { q: "Find the probability that the birthdays of 3 people fall on different days of the week.", options: ["1/7", "30/49", "6/7", "210/343"], correct: 1, tag: "Birthday Problem" },
+            { q: "A point is chosen inside a square. What is the probability it is closer to the center than to any vertex?", options: ["1/4", "1/3", "1/2", "2/3"], correct: 2, tag: "Area-Based Prob" },
+            { q: "If $P(A|B) = P(A)$, then $A$ and $B$ are:", options: ["Mutually Exclusive", "Dependent", "Exhaustive", "Independent"], correct: 3, tag: "Fundamental Definition" }
         ];
 
         function renderQuestions() {

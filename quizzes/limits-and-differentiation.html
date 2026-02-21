@@ -20,11 +20,12 @@
         }
 
         .question-card {
-            transition: border-color 0.2s;
+            transition: all 0.2s ease;
         }
 
         .question-card:focus-within {
             border-color: #4f46e5;
+            transform: translateY(-2px);
         }
 
         .katex-display {
@@ -83,9 +84,11 @@
 
             <input type="hidden" name="quiz_topic" value="Limits and Differentiation">
             <input type="hidden" name="final_score" id="score_field">
-            <input type="hidden" name="_subject" id="email_subject" value="New Math Quiz Submission">
+            <input type="hidden" name="_subject" id="email_subject" value="New Calculus Quiz Submission">
 
-            <div class="mt-12 text-center p-8 bg-white rounded-xl shadow-sm border border-slate-200">
+            <div class="mt-12 text-center p-10 bg-white rounded-xl shadow-sm border border-slate-200">
+                <p class="text-slate-500 italic mb-6">"Calculus is the language of change, and change is the only
+                    constant in the universe."</p>
                 <button type="submit" id="submitBtn"
                     class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
                     Finish & Submit Results
@@ -97,52 +100,52 @@
     <script>
         const questions = [
             // --- LIMITS (Q1-Q10) ---
-            { q: "Evaluate $\\lim_{x \\to 3} (x^2 + 2x - 1)$. ", options: ["$14$", "$16$", "$12$", "$9$"], correct: 0 },
-            { q: "Find $\\lim_{x \\to 2} \\frac{x^2 - 4}{x - 2}$.", options: ["$4$", "$2$", "$0$", "Undefined"], correct: 0 },
-            { q: "What is the value of $\\lim_{x \\to 0} \\frac{\\sin x}{x}$?", options: ["$1$", "$0$", "$\\infty$", "Undefined"], correct: 0 },
-            { q: "Evaluate $\\lim_{x \\to \\infty} \\frac{3x^2 + 5x}{2x^2 - 1}$.", options: ["$3/2$", "$0$", "$\\infty$", "$5$"], correct: 0 },
-            { q: "A function $f(x)$ is continuous at $x=a$ if:", options: ["$\\lim_{x \\to a} f(x) = f(a)$", "$f(a)$ is defined", "$\\lim_{x \\to a} f(x)$ exists", "All of the above"], correct: 3 },
-            { q: "Evaluate the left-hand limit $\\lim_{x \\to 1^-} \\frac{|x-1|}{x-1}$.", options: ["$-1$", "$1$", "$0$", "Does not exist"], correct: 0 },
-            { q: "Find $\\lim_{x \\to 4} \\frac{\\sqrt{x}-2}{x-4}$.", options: ["$1/4$", "$1/2$", "$4$", "$0$"], correct: 0 },
-            { q: "If $\\lim_{x \\to a^+} f(x) \\neq \\lim_{x \\to a^-} f(x)$, then $f(x)$ has a:", options: ["Jump discontinuity", "Removable discontinuity", "Infinite discontinuity", "Continuous point"], correct: 0 },
-            { q: "Evaluate $\\lim_{x \\to 0} \\frac{1-\\cos x}{x}$.", options: ["$0$", "$1$", "$1/2$", "Undefined"], correct: 0 },
-            { q: "Evaluate $\\lim_{x \\to -3} \\frac{x^2-9}{x+3}$.", options: ["$-6$", "$6$", "$0$", "$-3$"], correct: 0 },
+            { q: "Evaluate $\\lim_{x \\to 3} (x^2 + 2x - 1)$. ", options: ["$12$", "$16$", "$14$", "$9$"], correct: 2 },
+            { q: "Find $\\lim_{x \\to 2} \\frac{x^2 - 4}{x - 2}$.", options: ["$2$", "$4$", "$0$", "Undefined"], correct: 1 },
+            { q: "What is the value of $\\lim_{x \\to 0} \\frac{\\sin x}{x}$?", options: ["$0$", "$\\infty$", "Undefined", "$1$"], correct: 3 },
+            { q: "Evaluate $\\lim_{x \\to \\infty} \\frac{3x^2 + 5x}{2x^2 - 1}$.", options: ["$3/2$", "$\\infty$", "$0$", "$5$"], correct: 0 },
+            { q: "A function $f(x)$ is continuous at $x=a$ if:", options: ["$f(a)$ is defined", "$\\lim_{x \\to a} f(x)$ exists", "$\\lim_{x \\to a} f(x) = f(a)$", "All of the above"], correct: 3 },
+            { q: "Evaluate the left-hand limit $\\lim_{x \\to 1^-} \\frac{|x-1|}{x-1}$.", options: ["$1$", "$-1$", "$0$", "Does not exist"], correct: 1 },
+            { q: "Find $\\lim_{x \\to 4} \\frac{\\sqrt{x}-2}{x-4}$.", options: ["$1/2$", "$0$", "$1/4$", "$4$"], correct: 2 },
+            { q: "If $\\lim_{x \\to a^+} f(x) \\neq \\lim_{x \\to a^-} f(x)$, then $f(x)$ has a:", options: ["Removable discontinuity", "Jump discontinuity", "Infinite discontinuity", "Continuous point"], correct: 1 },
+            { q: "Evaluate $\\lim_{x \\to 0} \\frac{1-\\cos x}{x}$.", options: ["$0$", "$1/2$", "$1$", "Undefined"], correct: 0 },
+            { q: "Evaluate $\\lim_{x \\to -3} \\frac{x^2-9}{x+3}$.", options: ["$6$", "$0$", "$-3$", "$-6$"], correct: 3 },
 
             // --- FIRST PRINCIPLES & POWER RULE (Q11-Q20) ---
-            { q: "The derivative of $f(x)$ from first principles is defined as:", options: ["$\\lim_{h \\to 0} \\frac{f(x+h)-f(x)}{h}$", "$\\lim_{h \\to 0} \\frac{f(x)-f(h)}{h}$", "$\\frac{f(x+h)+f(x)}{h}$", "$\\lim_{h \\to \\infty} \\frac{f(x+h)-f(x)}{h}$"], correct: 0 },
-            { q: "Find $\\frac{dy}{dx}$ if $y = x^n$.", options: ["$nx^{n-1}$", "$x^{n-1}$", "$nx^n$", "$n^x$"], correct: 0 },
-            { q: "Differentiate $y = 5x^3 - 2x^2 + x - 7$ with respect to $x$.", options: ["$15x^2 - 4x + 1$", "$15x^2 - 4x$", "$5x^2 - 2x + 1$", "$15x^3 - 4x^2 + 1$"], correct: 0 },
-            { q: "If $f(x) = \\frac{1}{x}$, find $f'(x)$.", options: ["$-1/x^2$", "$1/x^2$", "$\\ln x$", "$-1/x$"], correct: 0 },
-            { q: "Find the derivative of $y = \\sqrt{x}$.", options: ["$\\frac{1}{2\\sqrt{x}}$", "$2\\sqrt{x}$", "$\\frac{1}{2}x^{3/2}$", "$\\frac{1}{\\sqrt{x}}$"], correct: 0 },
-            { q: "Differentiate $y = (2x+1)^2$ using the power rule.", options: ["$4(2x+1)$", "$2(2x+1)$", "$8x+4$", "Both A and C"], correct: 3 },
-            { q: "If $y = 10$, then $\\frac{dy}{dx}$ is:", options: ["$0$", "$1$", "$10$", "Undefined"], correct: 0 },
-            { q: "Using first principles, the derivative of $x^2$ is:", options: ["$2x$", "$x$", "$2$", "$x^2/2$"], correct: 0 },
-            { q: "Differentiate $y = ax^2 + bx + c$ with respect to $x$.", options: ["$2ax + b$", "$ax + b$", "$2ax$", "$2a + b$"], correct: 0 },
-            { q: "Find the gradient of the curve $y = x^3$ at the point $(2, 8)$.", options: ["$12$", "$6$", "$3$", "$8$"], correct: 0 },
+            { q: "The derivative of $f(x)$ from first principles is defined as:", options: ["$\\lim_{h \\to 0} \\frac{f(x)-f(h)}{h}$", "$\\lim_{h \\to 0} \\frac{f(x+h)-f(x)}{h}$", "$\\frac{f(x+h)+f(x)}{h}$", "$\\lim_{h \\to \\infty} \\frac{f(x+h)-f(x)}{h}$"], correct: 1 },
+            { q: "Find $\\frac{dy}{dx}$ if $y = x^n$.", options: ["$x^{n-1}$", "$nx^n$", "$nx^{n-1}$", "$n^x$"], correct: 2 },
+            { q: "Differentiate $y = 5x^3 - 2x^2 + x - 7$ with respect to $x$.", options: ["$15x^2 - 4x + 1$", "$5x^2 - 2x + 1$", "$15x^2 - 4x$", "$15x^3 - 4x^2 + 1$"], correct: 0 },
+            { q: "If $f(x) = \\frac{1}{x}$, find $f'(x)$.", options: ["$1/x^2$", "$\\ln x$", "$-1/x$", "$-1/x^2$"], correct: 3 },
+            { q: "Find the derivative of $y = \\sqrt{x}$.", options: ["$2\\sqrt{x}$", "$\\frac{1}{2\\sqrt{x}}$", "$\\frac{1}{2}x^{3/2}$", "$\\frac{1}{\\sqrt{x}}$"], correct: 1 },
+            { q: "Differentiate $y = (2x+1)^2$ using the power rule.", options: ["$4(2x+1)$", "$8x+4$", "$2(2x+1)$", "Both A and B"], correct: 3 },
+            { q: "If $y = 10$, then $\\frac{dy}{dx}$ is:", options: ["$1$", "$10$", "Undefined", "$0$"], correct: 3 },
+            { q: "Using first principles, the derivative of $x^2$ is:", options: ["$2x$", "$2$", "$x$", "$x^2/2$"], correct: 0 },
+            { q: "Differentiate $y = ax^2 + bx + c$ with respect to $x$.", options: ["$ax + b$", "$2ax + b$", "$2ax$", "$2a + b$"], correct: 1 },
+            { q: "Find the gradient of the curve $y = x^3$ at the point $(2, 8)$.", options: ["$6$", "$12$", "$3$", "$8$"], correct: 1 },
 
             // --- TANGENTS, NORMALS & RULES (Q21-Q30) ---
             { q: "The gradient of the tangent to a curve $y=f(x)$ at $x=a$ is:", options: ["$f'(a)$", "$f(a)$", "$-1/f'(a)$", "$0$"], correct: 0 },
-            { q: "The gradient of the normal to a curve $y=f(x)$ at $x=a$ is:", options: ["$-1/f'(a)$", "$f'(a)$", "$1/f'(a)$", "$-f'(a)$"], correct: 0 },
-            { q: "Find the equation of the tangent to $y = x^2$ at the point $(1, 1)$.", options: ["$y = 2x - 1$", "$y = 2x + 1$", "$y = -2x + 3$", "$y = x$"], correct: 0 },
-            { q: "Find the equation of the normal to $y = x^2$ at the point $(1, 1)$.", options: ["$x + 2y - 3 = 0$", "$2x - y - 1 = 0$", "$x - 2y + 1 = 0$", "$2x + y - 3 = 0$"], correct: 0 },
-            { q: "State the Product Rule for $y = uv$.", options: ["$u\\frac{dv}{dx} + v\\frac{du}{dx}$", "$u\\frac{dv}{dx} - v\\frac{du}{dx}$", "$\\frac{du}{dx} \\cdot \\frac{dv}{dx}$", "$v\\frac{du}{dx} - u\\frac{dv}{dx}$"], correct: 0 },
-            { q: "State the Quotient Rule for $y = u/v$.", options: ["$\\frac{v\\frac{du}{dx} - u\\frac{dv}{dx}}{v^2}$", "$\\frac{u\\frac{dv}{dx} - v\\frac{du}{dx}}{v^2}$", "$\\frac{v\\frac{du}{dx} + u\\frac{dv}{dx}}{v^2}$", "$\\frac{du/dx}{dv/dx}$"], correct: 0 },
-            { q: "Find $\\frac{dy}{dx}$ if $y = (3x-2)^5$ using the Chain Rule.", options: ["$15(3x-2)^4$", "$5(3x-2)^4$", "$3(3x-2)^4$", "$15(3x-2)^5$"], correct: 0 },
-            { q: "Differentiate $y = \\sin x$.", options: ["$\\cos x$", "$-\\cos x$", "$\\sin x$", "$\\sec^2 x$"], correct: 0 },
+            { q: "The gradient of the normal to a curve $y=f(x)$ at $x=a$ is:", options: ["$f'(a)$", "$1/f'(a)$", "$-1/f'(a)$", "$-f'(a)$"], correct: 2 },
+            { q: "Find the equation of the tangent to $y = x^2$ at the point $(1, 1)$.", options: ["$y = 2x + 1$", "$y = 2x - 1$", "$y = -2x + 3$", "$y = x$"], correct: 1 },
+            { q: "Find the equation of the normal to $y = x^2$ at the point $(1, 1)$.", options: ["$2x - y - 1 = 0$", "$x - 2y + 1 = 0$", "$2x + y - 3 = 0$", "$x + 2y - 3 = 0$"], correct: 3 },
+            { q: "State the Product Rule for $y = uv$.", options: ["$u\\frac{dv}{dx} + v\\frac{du}{dx}$", "$\\frac{du}{dx} \\cdot \\frac{dv}{dx}$", "$u\\frac{dv}{dx} - v\\frac{du}{dx}$", "$v\\frac{du}{dx} - u\\frac{dv}{dx}$"], correct: 0 },
+            { q: "State the Quotient Rule for $y = u/v$.", options: ["$\\frac{u\\frac{dv}{dx} - v\\frac{du}{dx}}{v^2}$", "$\\frac{v\\frac{du}{dx} - u\\frac{dv}{dx}}{v^2}$", "$\\frac{v\\frac{du}{dx} + u\\frac{dv}{dx}}{v^2}$", "$\\frac{du/dx}{dv/dx}$"], correct: 1 },
+            { q: "Find $\\frac{dy}{dx}$ if $y = (3x-2)^5$ using the Chain Rule.", options: ["$5(3x-2)^4$", "$3(3x-2)^4$", "$15(3x-2)^4$", "$15(3x-2)^5$"], correct: 2 },
+            { q: "Differentiate $y = \\sin x$.", options: ["$-\\cos x$", "$\\sin x$", "$\\cos x$", "$\\sec^2 x$"], correct: 2 },
             { q: "Differentiate $y = \\cos x$.", options: ["$-\\sin x$", "$\\sin x$", "$\\cos x$", "$-\\cos x$"], correct: 0 },
-            { q: "Find the second derivative $\\frac{d^2y}{dx^2}$ of $y = x^4$.", options: ["$12x^2$", "$4x^3$", "$12x^3$", "$24x$"], correct: 0 },
+            { q: "Find the second derivative $\\frac{d^2y}{dx^2}$ of $y = x^4$.", options: ["$4x^3$", "$12x^3$", "$24x$", "$12x^2$"], correct: 3 },
 
             // --- APPLICATIONS & RATES OF CHANGE (Q31-Q40) ---
-            { q: "If $s(t)$ represents displacement, then velocity $v(t)$ is:", options: ["$\\frac{ds}{dt}$", "$\\frac{d^2s}{dt^2}$", "$\\int s dt$", "$s \\times t$"], correct: 0 },
+            { q: "If $s(t)$ represents displacement, then velocity $v(t)$ is:", options: ["$\\frac{d^2s}{dt^2}$", "$\\frac{ds}{dt}$", "$\\int s dt$", "$s \\times t$"], correct: 1 },
             { q: "If $v(t)$ represents velocity, then acceleration $a(t)$ is:", options: ["$\\frac{dv}{dt}$", "$\\frac{d^2s}{dt^2}$", "Both A and B", "None"], correct: 2 },
-            { q: "A particle moves such that $s = t^3 - 6t^2 + 9t$. Find its velocity at $t=2$.", options: ["$-3$", "$9$", "$0$", "$3$"], correct: 0 },
-            { q: "At a stationary point (maximum or minimum), the gradient $\\frac{dy}{dx}$ is:", options: ["$0$", "$1$", "$\\infty$", "Undefined"], correct: 0 },
-            { q: "For a maximum point, the second derivative $\\frac{d^2y}{dx^2}$ must be:", options: ["Negative (< 0)", "Positive (> 0)", "Zero", "One"], correct: 0 },
-            { q: "The rate of change of the area $A$ of a circle with respect to its radius $r$ is:", options: ["$2\\pi r$", "$\\pi r^2$", "$\\pi r$", "$2\\pi$"], correct: 0 },
-            { q: "If $y$ increases as $x$ increases, then $\\frac{dy}{dx}$ is:", options: ["Positive", "Negative", "Zero", "Imaginary"], correct: 0 },
-            { q: "Find the rate of change of volume $V = x^3$ with respect to $x$ when $x=2$.", options: ["$12$", "$8$", "$6$", "$4$"], correct: 0 },
+            { q: "A particle moves such that $s = t^3 - 6t^2 + 9t$. Find its velocity at $t=2$.", options: ["$0$", "$9$", "$-3$", "$3$"], correct: 2 },
+            { q: "At a stationary point (maximum or minimum), the gradient $\\frac{dy}{dx}$ is:", options: ["$1$", "$\\infty$", "$0$", "Undefined"], correct: 2 },
+            { q: "For a maximum point, the second derivative $\\frac{d^2y}{dx^2}$ must be:", options: ["Positive (> 0)", "Negative (< 0)", "Zero", "One"], correct: 1 },
+            { q: "The rate of change of the area $A$ of a circle with respect to its radius $r$ is:", options: ["$\\pi r^2$", "$2\\pi r$", "$\\pi r$", "$2\\pi$"], correct: 1 },
+            { q: "If $y$ increases as $x$ increases, then $\\frac{dy}{dx}$ is:", options: ["Negative", "Zero", "Imaginary", "Positive"], correct: 3 },
+            { q: "Find the rate of change of volume $V = x^3$ with respect to $x$ when $x=2$.", options: ["$8$", "$12$", "$6$", "$4$"], correct: 1 },
             { q: "A function is discontinuous at $x=c$ if the denominator of the function at $c$ is:", options: ["Zero", "One", "Infinite", "Positive"], correct: 0 },
-            { q: "The derivative of a constant times a function, $\\frac{d}{dx}[cf(x)]$, is:", options: ["$c f'(x)$", "$0$", "$f'(x)$", "$c + f'(x)$"], correct: 0 }
+            { q: "The derivative of a constant times a function, $\\frac{d}{dx}[cf(x)]$, is:", options: ["$0$", "$c f'(x)$", "$f'(x)$", "$c + f'(x)$"], correct: 1 }
         ];
 
         const container = document.getElementById('questions-container');
@@ -153,7 +156,7 @@
                 div.className = "question-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm";
                 div.innerHTML = `
                     <div class="font-bold text-slate-800 mb-4 flex items-start">
-                        <span class="bg-slate-100 text-slate-500 rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 text-sm">${index + 1}</span>
+                        <span class="bg-slate-100 text-slate-500 rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 text-sm font-bold">${index + 1}</span>
                         <span class="mt-1">${item.q}</span>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -194,7 +197,9 @@
             document.getElementById('score_field').value = scoreSummary;
 
             const name = document.getElementsByName('student_name')[0].value;
-            if (!confirm(`Click OK to submit to Mr. Nyantakyi Francis. Your results would be sent to you via email or whatsapp`)) {
+            document.getElementById('email_subject').value = `Calculus Quiz Score: ${scoreSummary} | ${name}`;
+
+            if (!confirm(`Confirm submission to Mr. Nyantakyi Francis? Your score: ${scoreSummary}`)) {
                 e.preventDefault();
             }
         };

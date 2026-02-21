@@ -95,73 +95,76 @@
     </main>
 
     <script>
-        const questions = [
-            // --- POSITION VECTORS & COMPONENTS (Q1-Q8) ---
-            { q: "Given points $A(2, -3)$ and $B(-4, 5)$, find the unit vector in the direction of $\\vec{AB}$.", options: ["$\\frac{1}{10}(-6i + 8j)$", "$\\frac{1}{10}(6i - 8j)$", "$\\frac{1}{\\sqrt{10}}(-3i + 4j)$", "$-0.6i + 0.8j$"], correct: 3 },
-            { q: "If $\\vec{p} = 3i + (k-1)j$ and $|\\vec{p}| = 5$, find the possible values of $k$.", options: ["$5, -3$", "$4, -4$", "$5, 4$", "$3, -3$"], correct: 0 },
-            { q: "The position vectors of $P$ and $Q$ are $2i + 3j$ and $5i - j$ respectively. Find $|\\vec{PQ}|$.", options: ["$5$", "$7$", "$\\sqrt{13}$", "$\\sqrt{37}$"], correct: 0 },
-            { q: "Find the coordinates of $R$ such that $\\vec{OR} = 3\\vec{a} - 2\\vec{b}$ where $\\vec{a} = \\binom{1}{2}$ and $\\vec{b} = \\binom{-2}{3}$.", options: ["$(7, 0)$", "$(7, 12)$", "$(-1, 0)$", "$(5, 0)$"], correct: 0 },
-            { q: "If $\\vec{v} = \\binom{m}{12}$ is a unit vector, find $m^2$.", options: ["$143/144$", "$-143$", "$1$", "No real value"], correct: 3 },
-            { q: "Express $210^\\circ$ as a unit vector in terms of $i$ and $j$.", options: ["$-\\frac{\\sqrt{3}}{2}i - \\frac{1}{2}j$", "$\\frac{\\sqrt{3}}{2}i - \\frac{1}{2}j$", "$-\\frac{1}{2}i - \\frac{\\sqrt{3}}{2}j$", "$\\frac{1}{2}i + \\frac{\\sqrt{3}}{2}j$"], correct: 0 },
-            { q: "If $\\vec{OA} = \\mathbf{a}$ and $\\vec{OB} = \\mathbf{b}$, find the position vector of point $M$ which divides $AB$ in the ratio $3:2$.", options: ["$\\frac{2\\mathbf{a} + 3\\mathbf{b}}{5}$", "$\\frac{3\\mathbf{a} + 2\\mathbf{b}}{5}$", "$\\frac{2\\mathbf{a} - 3\\mathbf{b}}{1}$", "$\\frac{3\\mathbf{b} - 2\\mathbf{a}}{5}$"], correct: 0 },
-            { q: "Find the value of $x$ such that $\\binom{x}{6}$ is parallel to $\\binom{2}{-3}$.", options: ["$-4$", "$4$", "$-9$", "$9$"], correct: 0 },
-
-            // --- VECTOR GEOMETRY & RATIO THEOREM (Q9-Q16) ---
-            { q: "In $\\triangle ABC$, $\\vec{AB} = \\mathbf{u}$ and $\\vec{AC} = \\mathbf{v}$. If $D$ is the midpoint of $BC$, find $\\vec{AD}$.", options: ["$\\frac{1}{2}(\\mathbf{u} + \\mathbf{v})$", "$\\mathbf{v} - \\mathbf{u}$", "$\\frac{1}{2}(\\mathbf{v} - \\mathbf{u})$", "$\\mathbf{u} + \\mathbf{v}$"], correct: 0 },
-            { q: "Points $L(2, 3)$, $M(4, 7)$ and $N(x, y)$ are collinear. If $\\vec{LM} = \\frac{1}{2}\\vec{MN}$, find $N$.", options: ["$(8, 15)$", "$(6, 11)$", "$(10, 19)$", "$(5, 9)$"], correct: 0 },
-            { q: "If $\\vec{p} = \\binom{2}{1}$, $\\vec{q} = \\binom{3}{-4}$ and $\\vec{r} = \\binom{11}{-6}$, find scalars $h$ and $k$ such that $h\\vec{p} + k\\vec{q} = \\vec{r}$.", options: ["$h=2, k=3$", "$h=4, k=1$", "$h=1, k=3$", "$h=4, k=-1$"], correct: 1 },
-            { q: "In a parallelogram $OABC$, $\\vec{OA} = \\mathbf{a}$ and $\\vec{OC} = \\mathbf{c}$. $E$ is the midpoint of $AB$. Express $\\vec{OE}$ in terms of $\\mathbf{a}$ and $\\mathbf{c}$.", options: ["$\\mathbf{a} + \\frac{1}{2}\\mathbf{c}$", "$\\mathbf{c} + \\frac{1}{2}\\mathbf{a}$", "$\\frac{1}{2}(\\mathbf{a} + \\mathbf{c})$", "$\\mathbf{a} - \\frac{1}{2}\\mathbf{c}$"], correct: 0 },
-            { q: "If the resultant of $\\binom{a}{3}$ and $\\binom{4}{b}$ is $\\binom{2}{-1}$, find $(a, b)$.", options: ["$(-2, -4)$", "$(2, 4)$", "$(6, 2)$", "$(-2, 4)$"], correct: 0 },
-            { q: "A point $C$ divides $\\vec{AB}$ externally in the ratio $5:2$. If $\\vec{OA}=\\mathbf{a}$ and $\\vec{OB}=\\mathbf{b}$, then $\\vec{OC}$ is:", options: ["$\\frac{5\\mathbf{b} - 2\\mathbf{a}}{3}$", "$\\frac{2\\mathbf{a} - 5\\mathbf{b}}{3}$", "$\\frac{5\\mathbf{a} - 2\\mathbf{b}}{3}$", "$\\frac{5\\mathbf{b} + 2\\mathbf{a}}{3}$"], correct: 0 },
-            { q: "If $|\\vec{a}| = 13$, $|\\vec{b}| = 5$ and the vectors are perpendicular, find $|\\vec{a} - \\vec{b}|$.", options: ["$\\sqrt{194}$", "$8$", "$18$", "$\\sqrt{144}$"], correct: 0 },
-            { q: "Find the direction cosine of the vector $3i - 4j$ with respect to the y-axis.", options: ["$-4/5$", "$3/5$", "$4/5$", "$-3/5$"], correct: 0 },
-
-            // --- SCALAR PRODUCTS & ANGLES (Q17-Q24) ---
-            { q: "Calculate the dot product of $\\vec{u} = 2i + 5j$ and $\\vec{v} = 3i - 2j$.", options: ["$-4$", "$16$", "$11$", "$1$"], correct: 0 },
-            { q: "If $\\vec{a} \\cdot \\vec{b} = 0$, the angle between the vectors is:", options: ["$90^\\circ$", "$0^\\circ$", "$180^\\circ$", "$45^\\circ$"], correct: 0 },
-            { q: "Find the angle between $\\vec{a} = \\binom{1}{1}$ and $\\vec{b} = \\binom{0}{1}$.", options: ["$45^\\circ$", "$90^\\circ$", "$30^\\circ$", "$60^\\circ$"], correct: 0 },
-            { q: "Given $|\\mathbf{a}|=3$, $|\\mathbf{b}|=4$ and the angle between them is $60^\\circ$, find $\\mathbf{a} \\cdot \\mathbf{b}$.", options: ["$6$", "$12$", "$6\\sqrt{3}$", "$0$"], correct: 0 },
-            { q: "Find the value of $p$ if $pi + 2j$ is perpendicular to $4i - 3j$.", options: ["$1.5$", "$-1.5$", "$0.66$", "$-0.66$"], correct: 0 },
-            { q: "Calculate $(\\vec{a} + \\vec{b}) \\cdot (\\vec{a} - \\vec{b})$ if $|\\vec{a}|=5$ and $|\\vec{b}|=3$.", options: ["$16$", "$34$", "$8$", "$0$"], correct: 0 },
-            { q: "If $\\cos \\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$, find $\\theta$ for $\\mathbf{a}=i+j$ and $\\mathbf{b}=i-j$.", options: ["$90^\\circ$", "$0^\\circ$", "$45^\\circ$", "$180^\\circ$"], correct: 0 },
-            { q: "If $|\\vec{a}+\\vec{b}| = |\\vec{a}-\\vec{b}|$, then $\\vec{a}$ and $\\vec{b}$ are:", options: ["Perpendicular", "Parallel", "Equal", "Unit vectors"], correct: 0 },
-
-            // --- RESULTANTS & FORCES (Q25-Q32) ---
-            { q: "Three forces $\\mathbf{F_1} = \\binom{2}{3}$, $\\mathbf{F_2} = \\binom{-1}{4}$ and $\\mathbf{F_3} = \\binom{x}{y}$ are in equilibrium. Find $(x, y)$.", options: ["$(-1, -7)$", "$(1, 7)$", "$(1, -7)$", "$(-1, 7)$"], correct: 0 },
-            { q: "Find the magnitude of the resultant of $7i - 2j$ and $-3i + 5j$.", options: ["$5$", "$25$", "$\\sqrt{65}$", "$\\sqrt{13}$"], correct: 0 },
-            { q: "A force $P$ of magnitude $10N$ acts on a bearing of $060^\\circ$. Express $P$ in component form.", options: ["$5\\sqrt{3}i + 5j$", "$5i + 5\\sqrt{3}j$", "$10i + 10j$", "$5i - 5j$"], correct: 0 },
-            { q: "Find the work done by a force $\\vec{F} = \\binom{3}{4}$ in moving an object from $(1, 2)$ to $(5, 5)$.", options: ["$24$ units", "$25$ units", "$12$ units", "$15$ units$"], correct: 0 },
-            { q: "The resultant of two equal forces $F$ acting at $120^\\circ$ to each other is:", options: ["$F$", "$2F$", "$F\\sqrt{3}$", "$0$"], correct: 0 },
-            { q: "Two forces of $3N$ and $4N$ act at right angles. The direction of the resultant relative to the $3N$ force is:", options: ["$\\tan^{-1}(4/3)$", "$\\tan^{-1}(3/4)$", "$45^\\circ$", "$90^\\circ$"], correct: 0 },
-            { q: "A particle is acted upon by forces $2i+3j$, $i-4j$, and $-3i+j$. The particle is:", options: ["At equilibrium", "Moving North", "Moving South", "Accelerating"], correct: 0 },
-            { q: "Find the projection of $\\vec{a}$ onto $\\vec{b}$ using the formula:", options: ["$\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|}$", "$\\vec{a} \\cdot \\vec{b}$", "$\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{a}|}$", "$\\vec{a} + \\vec{b}$"], correct: 0 },
-
-            // --- ADVANCED PROOFS & BEARINGS (Q33-Q40) ---
-            { q: "If $\\vec{a}$ and $\\vec{b}$ are unit vectors and the angle between them is $60^\\circ$, find $|\\vec{a} + \\vec{b}|$.", options: ["$\\sqrt{3}$", "$2$", "$1$", "$\\sqrt{2}$"], correct: 0 },
-            { q: "In $\\triangle ABC$, $\\vec{AB} + \\vec{BC} + \\vec{CA}$ is equal to:", options: ["$\\mathbf{0}$", "$2\\vec{AC}$", "$2\\vec{AB}$", "$\\vec{ABC}$"], correct: 0 },
-            { q: "Find the bearing of the vector $-i - j$.", options: ["$225^\\circ$", "$135^\\circ$", "$045^\\circ$", "$315^\\circ$"], correct: 0 },
-            { q: "A plane flies at $200$ km/h on a bearing of $300^\\circ$. Find the westerly component of its velocity.", options: ["$100\\sqrt{3}$ km/h", "$100$ km/h", "$200$ km/h", "$173$ km/h"], correct: 0 },
-            { q: "If $\\mathbf{r} = (t^2)i + (2t-1)j$, find the velocity vector at $t=2$.", options: ["$4i + 2j$", "$4i + 3j$", "$2i + 2j$", "$i + j$"], correct: 0 },
-            { q: "Two vectors are collinear if the area of the triangle formed by them is:", options: ["Zero", "One", "Positive", "Undefined"], correct: 0 },
-            { q: "If $P$ is $(2, 5)$ and the vector $\\vec{PQ} = \\binom{-3}{4}$, find the coordinates of $Q$.", options: ["$(-1, 9)$", "$(5, 1)$", "$(1, -9)$", "$(-5, -1)$"], correct: 0 },
-            { q: "Simplify $3(2i - j) - 2(i + 4j) + 5j$.", options: ["$4i - 6j$", "$4i + 10j$", "$8i - 3j$", "$4i - j$"], correct: 0 }
+        const questionsData = [
+            { q: "Given points $A(2, -3)$ and $B(-4, 5)$, find the unit vector in the direction of $\\vec{AB}$.", options: ["$-0.6i + 0.8j$", "$\\frac{1}{10}(-6i + 8j)$", "$\\frac{1}{10}(6i - 8j)$", "$\\frac{1}{\\sqrt{10}}(-3i + 4j)$"], correct: "$-0.6i + 0.8j$" },
+            { q: "If $\\vec{p} = 3i + (k-1)j$ and $|\\vec{p}| = 5$, find the possible values of $k$.", options: ["$5, -3$", "$4, -4$", "$5, 4$", "$3, -3$"], correct: "$5, -3$" },
+            { q: "The position vectors of $P$ and $Q$ are $2i + 3j$ and $5i - j$ respectively. Find $|\\vec{PQ}|$.", options: ["$5$", "$7$", "$\\sqrt{13}$", "$\\sqrt{37}$"], correct: "$5$" },
+            { q: "Find the coordinates of $R$ such that $\\vec{OR} = 3\\vec{a} - 2\\vec{b}$ where $\\vec{a} = \\binom{1}{2}$ and $\\vec{b} = \\binom{-2}{3}$.", options: ["$(7, 0)$", "$(7, 12)$", "$(-1, 0)$", "$(5, 0)$"], correct: "$(7, 0)$" },
+            { q: "If $\\vec{v} = \\binom{m}{12}$ is a unit vector, find $m^2$.", options: ["No real value", "$143/144$", "$-143$", "$1$"], correct: "No real value" },
+            { q: "Express $210^\\circ$ as a unit vector in terms of $i$ and $j$.", options: ["$-\\frac{\\sqrt{3}}{2}i - \\frac{1}{2}j$", "$\\frac{\\sqrt{3}}{2}i - \\frac{1}{2}j$", "$-\\frac{1}{2}i - \\frac{\\sqrt{3}}{2}j$", "$\\frac{1}{2}i + \\frac{\\sqrt{3}}{2}j$"], correct: "$-\\frac{\\sqrt{3}}{2}i - \\frac{1}{2}j$" },
+            { q: "If $\\vec{OA} = \\mathbf{a}$ and $\\vec{OB} = \\mathbf{b}$, find the position vector of point $M$ which divides $AB$ in the ratio $3:2$.", options: ["$\\frac{2\\mathbf{a} + 3\\mathbf{b}}{5}$", "$\\frac{3\\mathbf{a} + 2\\mathbf{b}}{5}$", "$\\frac{2\\mathbf{a} - 3\\mathbf{b}}{1}$", "$\\frac{3\\mathbf{b} - 2\\mathbf{a}}{5}$"], correct: "$\\frac{2\\mathbf{a} + 3\\mathbf{b}}{5}$" },
+            { q: "Find the value of $x$ such that $\\binom{x}{6}$ is parallel to $\\binom{2}{-3}$.", options: ["$-4$", "$4$", "$-9$", "$9$"], correct: "$-4$" },
+            { q: "In $\\triangle ABC$, $\\vec{AB} = \\mathbf{u}$ and $\\vec{AC} = \\mathbf{v}$. If $D$ is the midpoint of $BC$, find $\\vec{AD}$.", options: ["$\\frac{1}{2}(\\mathbf{u} + \\mathbf{v})$", "$\\mathbf{v} - \\mathbf{u}$", "$\\frac{1}{2}(\\mathbf{v} - \\mathbf{u})$", "$\\mathbf{u} + \\mathbf{v}$"], correct: "$\\frac{1}{2}(\\mathbf{u} + \\mathbf{v})$" },
+            { q: "Points $L(2, 3)$, $M(4, 7)$ and $N(x, y)$ are collinear. If $\\vec{LM} = \\frac{1}{2}\\vec{MN}$, find $N$.", options: ["$(8, 15)$", "$(6, 11)$", "$(10, 19)$", "$(5, 9)$"], correct: "$(8, 15)$" },
+            { q: "If $\\vec{p} = \\binom{2}{1}$, $\\vec{q} = \\binom{3}{-4}$ and $\\vec{r} = \\binom{11}{-6}$, find scalars $h$ and $k$ such that $h\\vec{p} + k\\vec{q} = \\vec{r}$.", options: ["$h=4, k=1$", "$h=2, k=3$", "$h=1, k=3$", "$h=4, k=-1$"], correct: "$h=4, k=1$" },
+            { q: "In a parallelogram $OABC$, $\\vec{OA} = \\mathbf{a}$ and $\\vec{OC} = \\mathbf{c}$. $E$ is the midpoint of $AB$. Express $\\vec{OE}$ in terms of $\\mathbf{a}$ and $\\mathbf{c}$.", options: ["$\\mathbf{a} + \\frac{1}{2}\\mathbf{c}$", "$\\mathbf{c} + \\frac{1}{2}\\mathbf{a}$", "$\\frac{1}{2}(\\mathbf{a} + \\mathbf{c})$", "$\\mathbf{a} - \\frac{1}{2}\\mathbf{c}$"], correct: "$\\mathbf{a} + \\frac{1}{2}\\mathbf{c}$" },
+            { q: "If the resultant of $\\binom{a}{3}$ and $\\binom{4}{b}$ is $\\binom{2}{-1}$, find $(a, b)$.", options: ["$(-2, -4)$", "$(2, 4)$", "$(6, 2)$", "$(-2, 4)$"], correct: "$(-2, -4)$" },
+            { q: "A point $C$ divides $\\vec{AB}$ externally in the ratio $5:2$. If $\\vec{OA}=\\mathbf{a}$ and $\\vec{OB}=\\mathbf{b}$, then $\\vec{OC}$ is:", options: ["$\\frac{5\\mathbf{b} - 2\\mathbf{a}}{3}$", "$\\frac{2\\mathbf{a} - 5\\mathbf{b}}{3}$", "$\\frac{5\\mathbf{a} - 2\\mathbf{b}}{3}$", "$\\frac{5\\mathbf{b} + 2\\mathbf{a}}{3}$"], correct: "$\\frac{5\\mathbf{b} - 2\\mathbf{a}}{3}$" },
+            { q: "If $|\\vec{a}| = 13$, $|\\vec{b}| = 5$ and the vectors are perpendicular, find $|\\vec{a} - \\vec{b}|$.", options: ["$\\sqrt{194}$", "$8$", "$18$", "$\\sqrt{144}$"], correct: "$\\sqrt{194}$" },
+            { q: "Find the direction cosine of the vector $3i - 4j$ with respect to the y-axis.", options: ["$-4/5$", "$3/5$", "$4/5$", "$-3/5$"], correct: "$-4/5$" },
+            { q: "Calculate the dot product of $\\vec{u} = 2i + 5j$ and $\\vec{v} = 3i - 2j$.", options: ["$-4$", "$16$", "$11$", "$1$"], correct: "$-4$" },
+            { q: "If $\\vec{a} \\cdot \\vec{b} = 0$, the angle between the vectors is:", options: ["$90^\\circ$", "$0^\\circ$", "$180^\\circ$", "$45^\\circ$"], correct: "$90^\\circ$" },
+            { q: "Find the angle between $\\vec{a} = \\binom{1}{1}$ and $\\vec{b} = \\binom{0}{1}$.", options: ["$45^\\circ$", "$90^\\circ$", "$30^\\circ$", "$60^\\circ$"], correct: "$45^\\circ$" },
+            { q: "Given $|\\mathbf{a}|=3$, $|\\mathbf{b}|=4$ and the angle between them is $60^\\circ$, find $\\mathbf{a} \\cdot \\mathbf{b}$.", options: ["$6$", "$12$", "$6\\sqrt{3}$", "$0$"], correct: "$6$" },
+            { q: "Find the value of $p$ if $pi + 2j$ is perpendicular to $4i - 3j$.", options: ["$1.5$", "$-1.5$", "$0.66$", "$-0.66$"], correct: "$1.5$" },
+            { q: "Calculate $(\\vec{a} + \\vec{b}) \\cdot (\\vec{a} - \\vec{b})$ if $|\\vec{a}|=5$ and $|\\vec{b}|=3$.", options: ["$16$", "$34$", "$8$", "$0$"], correct: "$16$" },
+            { q: "If $\\cos \\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$, find $\\theta$ for $\\mathbf{a}=i+j$ and $\\mathbf{b}=i-j$.", options: ["$90^\\circ$", "$0^\\circ$", "$45^\\circ$", "$180^\\circ$"], correct: "$90^\\circ$" },
+            { q: "If $|\\vec{a}+\\vec{b}| = |\\vec{a}-\\vec{b}|$, then $\\vec{a}$ and $\\vec{b}$ are:", options: ["Perpendicular", "Parallel", "Equal", "Unit vectors"], correct: "Perpendicular" },
+            { q: "Three forces $\\mathbf{F_1} = \\binom{2}{3}$, $\\mathbf{F_2} = \\binom{-1}{4}$ and $\\mathbf{F_3} = \\binom{x}{y}$ are in equilibrium. Find $(x, y)$.", options: ["$(-1, -7)$", "$(1, 7)$", "$(1, -7)$", "$(-1, 7)$"], correct: "$(-1, -7)$" },
+            { q: "Find the magnitude of the resultant of $7i - 2j$ and $-3i + 5j$.", options: ["$5$", "$25$", "$\\sqrt{65}$", "$\\sqrt{13}$"], correct: "$5$" },
+            { q: "A force $P$ of magnitude $10N$ acts on a bearing of $060^\\circ$. Express $P$ in component form.", options: ["$5\\sqrt{3}i + 5j$", "$5i + 5\\sqrt{3}j$", "$10i + 10j$", "$5i - 5j$"], correct: "$5\\sqrt{3}i + 5j$" },
+            { q: "Find the work done by a force $\\vec{F} = \\binom{3}{4}$ in moving an object from $(1, 2)$ to $(5, 5)$.", options: ["$24$ units", "$25$ units", "$12$ units", "$15$ units"], correct: "$24$ units" },
+            { q: "The resultant of two equal forces $F$ acting at $120^\\circ$ to each other is:", options: ["$F$", "$2F$", "$F\\sqrt{3}$", "$0$"], correct: "$F$" },
+            { q: "Two forces of $3N$ and $4N$ act at right angles. The direction of the resultant relative to the $3N$ force is:", options: ["$\\tan^{-1}(4/3)$", "$\\tan^{-1}(3/4)$", "$45^\\circ$", "$90^\\circ$"], correct: "$\\tan^{-1}(4/3)$" },
+            { q: "A particle is acted upon by forces $2i+3j$, $i-4j$, and $-3i+j$. The particle is:", options: ["At equilibrium", "Moving North", "Moving South", "Accelerating"], correct: "At equilibrium" },
+            { q: "Find the projection of $\\vec{a}$ onto $\\vec{b}$ using the formula:", options: ["$\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|}$", "$\\vec{a} \\cdot \\vec{b}$", "$\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{a}|}$", "$\\vec{a} + \\vec{b}$"], correct: "$\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|}$" },
+            { q: "If $\\vec{a}$ and $\\vec{b}$ are unit vectors and the angle between them is $60^\\circ$, find $|\\vec{a} + \\vec{b}|$.", options: ["$\\sqrt{3}$", "$2$", "$1$", "$\\sqrt{2}$"], correct: "$\\sqrt{3}$" },
+            { q: "In $\\triangle ABC$, $\\vec{AB} + \\vec{BC} + \\vec{CA}$ is equal to:", options: ["$\\mathbf{0}$", "$2\\vec{AC}$", "$2\\vec{AB}$", "$\\vec{ABC}$"], correct: "$\\mathbf{0}$" },
+            { q: "Find the bearing of the vector $-i - j$.", options: ["$225^\\circ$", "$135^\\circ$", "$045^\\circ$", "$315^\\circ$"], correct: "$225^\\circ$" },
+            { q: "A plane flies at $200$ km/h on a bearing of $300^\\circ$. Find the westerly component of its velocity.", options: ["$100\\sqrt{3}$ km/h", "$100$ km/h", "$200$ km/h", "$173$ km/h"], correct: "$100\\sqrt{3}$ km/h" },
+            { q: "If $\\mathbf{r} = (t^2)i + (2t-1)j$, find the velocity vector at $t=2$.", options: ["$4i + 2j$", "$4i + 3j$", "$2i + 2j$", "$i + j$"], correct: "$4i + 2j$" },
+            { q: "Two vectors are collinear if the area of the triangle formed by them is:", options: ["Zero", "One", "Positive", "Undefined"], correct: "Zero" },
+            { q: "If $P$ is $(2, 5)$ and the vector $\\vec{PQ} = \\binom{-3}{4}$, find the coordinates of $Q$.", options: ["$(-1, 9)$", "$(5, 1)$", "$(1, -9)$", "$(-5, -1)$"], correct: "$(-1, 9)$" },
+            { q: "Simplify $3(2i - j) - 2(i + 4j) + 5j$.", options: ["$4i - 6j$", "$4i + 10j$", "$8i - 3j$", "$4i - j$"], correct: "$4i - 6j$" }
         ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
 
         const container = document.getElementById('questions-container');
 
         function renderQuestions() {
-            questions.forEach((item, index) => {
+            questionsData.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.className = "question-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm";
+
+                // Shuffle options for each question
+                let shuffledOptions = [...item.options];
+                shuffleArray(shuffledOptions);
+
                 div.innerHTML = `
                     <div class="font-bold text-slate-800 mb-4 flex items-start">
                         <span class="bg-slate-100 text-slate-500 rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 text-sm">${index + 1}</span>
                         <span class="mt-1">${item.q}</span>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        ${item.options.map((opt, i) => `
+                        ${shuffledOptions.map((opt, i) => `
                             <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
-                                <input type="radio" name="q${index}" value="${i}" required class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <input type="radio" name="q${index}" value="${opt.replace(/"/g, '&quot;')}" required class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
                                 <span class="ml-3 text-slate-700">${opt}</span>
                             </label>
                         `).join('')}
@@ -184,21 +187,21 @@
 
         document.getElementById('quizForm').onsubmit = function (e) {
             let score = 0;
-            questions.forEach((item, index) => {
+            questionsData.forEach((item, index) => {
                 const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                if (selected && parseInt(selected.value) === item.correct) {
+                if (selected && selected.value === item.correct) {
                     score++;
                 }
             });
 
-            const percent = ((score / questions.length) * 100).toFixed(1);
-            const scoreSummary = `${score}/${questions.length} (${percent}%)`;
+            const percent = ((score / questionsData.length) * 100).toFixed(1);
+            const scoreSummary = `${score}/${questionsData.length} (${percent}%)`;
             document.getElementById('score_field').value = scoreSummary;
 
             const name = document.getElementsByName('student_name')[0].value;
-            document.getElementById('email_subject').value = `Advanced Score: ${scoreSummary} | ${name}`;
+            document.getElementById('email_subject').value = `Advanced Vectors Score: ${scoreSummary} | ${name}`;
 
-            if (!confirm(`Click OK to submit to Mr. Nyantakyi Francis. Your results would be sent to you via email or whatsapp`)) {
+            if (!confirm(`Your Score: ${scoreSummary}\nClick OK to submit to Mr. Nyantakyi Francis.`)) {
                 e.preventDefault();
             }
         };
