@@ -10,6 +10,7 @@ The Math Quiz Portal provides a structured environment for students to master co
 
 * **Examination Standards:** Questions modeled after WASSCE elective math requirements.
 * **Instant Feedback:** Real-time scoring and corrections within each module.
+* **Progress Tracking:** Recent quiz attempts saved locally for continued learning.
 * **Accessibility:** A fully responsive design optimized for mobile phones, tablets, and desktops.
 
 ---
@@ -27,18 +28,53 @@ The Math Quiz Portal provides a structured environment for students to master co
 
 ---
 
-## 📂 Project Structure
+## ✨ Key Features
+
+* **11 Interactive Modules** covering all major Elective Mathematics topics
+* **440+ Practice Questions** with randomized answer options
+* **Search Functionality** to quickly find specific topics
+* **Progress Tracking** with localStorage for recent quiz attempts
+* **Responsive Design** optimized for all device sizes
+* **Math Rendering** with KaTeX for beautiful mathematical expressions
+* **Modular Architecture** for easy maintenance and expansion
+
+---
 
 ```text
 /
 ├── index.html                   # Main portal landing page
 ├── README.md                    # Project documentation
+├── style.css                    # Shared stylesheets
+├── dp.PNG                       # Profile image
+├── js/                          # JavaScript utilities
+│   ├── config.js                # Centralized configuration
+│   └── quiz-engine.js           # Quiz rendering and scoring logic
+├── shared/                      # Shared components and utilities
+│   └── script.js                # Common JavaScript functions
+├── data/                        # Quiz question data
+│   ├── binary-sets-binomial.json
+│   ├── combinations-probability.json
+│   ├── coordinate-geometry.json
+│   ├── limits-differentiation.json
+│   ├── matrices.json
+│   ├── sequences-functions.json
+│   ├── statistics.json
+│   ├── straight-lines.json
+│   ├── surds-indices-logs.json
+│   ├── trigonometry.json
+│   └── vectors.json
 └── quizzes/                     # Individual quiz modules
     ├── binary-sets-binomial.html
-    ├── surds-indices-logs.html
+    ├── combinations-permutations-and-probability.html
+    ├── coordinate-geometry-ii-circles.html
+    ├── limits-and-differentiation.html
+    ├── matrices.html
     ├── sequences-functions.html
-    └── matrices.html
-
+    ├── statistics.html
+    ├── straight-lines.html
+    ├── surds-indices-logs.html
+    ├── trigonometry.html
+    └── vectors.html
 ```
 
 ---
@@ -71,16 +107,16 @@ The portal is modular and can be expanded easily:
 
 ---
 TO DO
-1. Create a shared style.css file
+1. ✅ Create a shared style.css file
 This will keep your design consistent across index.html and all quiz pages instead of repeating styling in many files.
 
-2. Create a shared script.js file
+2. ✅ Create a shared script.js file
 This will allow you to centralize common JavaScript features like navigation, scoring, timers, and saved progress.
 
-3. Add a data/ folder for quiz questions
+3. ✅ Add a data/ folder for quiz questions
 Moving quiz questions into separate JavaScript or JSON-like files will make the project easier to manage and update than keeping everything inside each HTML file.
 
-4. Redesign index.html into a dashboard homepage
+4. 🔄 Redesign index.html into a dashboard homepage
 Your homepage should feel like a real learning platform by showing progress, quick actions, and featured modules before the topic list.
 
 5. Add a “Take Random Mock Exam” feature
@@ -92,28 +128,28 @@ Students should see their score, percentage, corrections, and feedback immediate
 7. Add a “Review Mistakes” feature
 This will turn the app from a simple testing website into a learning tool by allowing students to revisit questions they got wrong.
 
-8. Use localStorage to save progress
+8. ✅ Use localStorage to save progress
 Saving scores, completed quizzes, and last-attempted topics will make the site feel smarter and more professional.
 
 9. Add performance analytics on the homepage
 Showing best topic, weakest topic, total attempts, and average score will make the project much stronger for your portfolio.
 
-10. Add a reusable navigation/header component pattern
+10. ✅ Add a reusable navigation/header component pattern
 Keeping the same header, footer, and buttons across pages will improve user experience and make the site look more polished.
 
-11. Improve the module cards on index.html
+11. ✅ Improve the module cards on index.html
 Each topic card should show the number of questions, difficulty, and progress so users can choose what to study faster.
 
 12. Add a dedicated assets/ folder
 This will help organize images like dp.PNG, icons, and future screenshots instead of leaving them in the root folder.
 
-13. Rename files for consistency
+13. ✅ Rename files for consistency
 Using a cleaner naming pattern for all quiz files will make the project easier to maintain and more professional to present.
 
-14. Add a footer with project information
+14. 🔄 Add a footer with project information
 A footer can show your name, portfolio link, GitHub link, and project purpose, which strengthens it as a portfolio item.
 
-15. Improve the README.md
+15. ✅ Improve the README.md
 A strong README will explain what the project does, its features, tech stack, screenshots, and future improvements for recruiters or collaborators.
 
 16. Add mobile responsiveness improvements
@@ -128,7 +164,7 @@ A timer will simulate real exam conditions and make the platform more engaging a
 19. Add a progress bar inside quizzes
 Showing question progress like “Question 4 of 20” will improve user experience and reduce confusion.
 
-20. Create a separate folder for reusable utilities
+20. ✅ Create a separate folder for reusable utilities
 This will make future upgrades easier by separating helper logic such as scoring, shuffle functions, and storage functions from page-specific code.
 ---
 
