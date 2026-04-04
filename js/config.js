@@ -108,7 +108,7 @@ const CONFIG = {
         {
             id: 'trigonometry',
             title: 'Trigonometry',
-            link: 'quizzes/trigonomety.html',
+            link: 'quizzes/trigonometry.html',
             color: 'indigo',
             moduleNum: 6,
             questions: 40,
