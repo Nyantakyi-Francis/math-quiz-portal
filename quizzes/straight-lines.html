@@ -87,122 +87,35 @@
     </main>
 
     <script>
-        const questions = [
-            // --- MIDPOINTS (Q1-Q8) ---
-            { q: "Find the midpoint of the line joining $A(2, 5)$ and $B(4, 9)$.", options: ["$(3, 7)$", "$(6, 14)$", "$(3, 4)$", "$(1, 2)$"], correct: 0 },
-            { q: "Given $R(1, 17)$ and $P(0, 4)$, determine the midpoint of $RP$.", options: ["$(0.5, 10.5)$", "$(1, 21)$", "$(0.5, 6.5)$", "$(1, 13)$"], correct: 0 },
-            { q: "The midpoint of $PQ$ is $(5, 2)$. If $P$ is $(1, 4)$, find $Q$.", options: ["$(3, 3)$", "$(9, 0)$", "$(6, 6)$", "$(4, -2)$"], correct: 1 },
-            { q: "Find the midpoint of a line segment with endpoints $(-3, 4)$ and $(7, -8)$.", options: ["$(2, -2)$", "$(5, -6)$", "$(4, -4)$", "$(2, 2)$"], correct: 0 },
-            { q: "If $(2, 3)$ is the midpoint of $(x, 5)$ and $(4, y)$, find $x$ and $y$.", options: ["$x=0, y=1$", "$x=1, y=0$", "$x=2, y=1$", "$x=0, y=2$"], correct: 0 },
-            { q: "The generalization of the midpoint $M$ for $(x_1, y_1)$ and $(x_2, y_2)$ is:", options: ["$(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})$", "$(\\frac{x_1-x_2}{2}, \\frac{y_1-y_2}{2})$", "$(x_1+x_2, y_1+y_2)$", "$(\\sqrt{x}, \\sqrt{y})$"], correct: 0 },
-            { q: "Find the midpoint of the line segment joining $(-a, b)$ and $(a, -b)$.", options: ["$(0, 0)$", "$(a, b)$", "$(2a, 2b)$", "$(a/2, b/2)$"], correct: 0 },
-            { q: "Find the midpoint of the line joining $(0, 0)$ and $(\\cos \\theta, \\sin \\theta)$.", options: ["$(\\frac{\\cos \\theta}{2}, \\frac{\\sin \\theta}{2})$", "$(1, 1)$", "$(0.5, 0.5)$", "$(\\cos 2\\theta, \\sin 2\\theta)$"], correct: 0 },
-
-            // --- RATIO DIVISION (Q9-Q16) ---
-            { q: "Find $P$ dividing $A(1, 2)$ and $B(6, 7)$ internally in ratio $2:3$.", options: ["$(3, 4)$", "$(4, 5)$", "$(2, 3)$", "$(3, 5)$"], correct: 0 },
-            { q: "The formula for internal division of $(x_1, y_1)$ and $(x_2, y_2)$ in ratio $m:n$ is:", options: ["$(\\frac{mx_2+nx_1}{m+n}, \\frac{my_2+ny_1}{m+n})$", "$(\\frac{mx_2-nx_1}{m-n}, \\frac{my_2-ny_1}{m-n})$", "$(\\frac{nx_2+mx_1}{m+n}, \\frac{ny_2+my_1}{m+n})$", "$(\\frac{mx_1+nx_2}{m+n}, \\frac{my_1+ny_2}{m+n})$"], correct: 0 },
-            { q: "Find $P$ dividing $A(-1, 3)$ and $B(4, 8)$ internally in ratio $4:1$.", options: ["$(3, 7)$", "$(2, 6)$", "$(3, 8)$", "$(4, 7)$"], correct: 0 },
-            { q: "Find $P$ dividing $A(2, 3)$ and $B(5, 9)$ externally in ratio $2:1$.", options: ["$(8, 15)$", "$(7, 12)$", "$(6, 11)$", "$(4, 6)$"], correct: 0 },
-            { q: "External division uses which sign in the denominator of the ratio formula?", options: ["Minus $(-)$", "Plus $(+)$", "Multiplication $(\\times)$", "Division $(\\div)$"], correct: 0 },
-            { q: "If $P$ divides $AB$ in ratio $1:1$ internally, $P$ is the:", options: ["Midpoint", "Origin", "Centroid", "Intercept"], correct: 0 },
-            { q: "Find the ratio in which the point $(2, 3)$ divides the line joining $(1, 1)$ and $(4, 7)$.", options: ["$1:2$ internally", "$2:1$ internally", "$1:3$ internally", "$3:1$ internally"], correct: 0 },
-            { q: "Find $P$ dividing $(0, 0)$ and $(10, 10)$ internally in ratio $3:2$.", options: ["$(6, 6)$", "$(4, 4)$", "$(5, 5)$", "$(7, 7)$"], correct: 0 },
-
-            // --- GRADIENTS & EQUATIONS (Q17-Q24) ---
-            { q: "Find the gradient of the line passing through $(2, 3)$ and $(5, -3)$.", options: ["$-2$", "$2$", "$-0.5$", "$0.5$"], correct: 0 },
-            { q: "The equation $y - y_1 = m(x - x_1)$ is known as the:", options: ["Point-gradient form", "Slope-intercept form", "Two-point form", "Intercept form"], correct: 0 },
-            { q: "Find the equation of a line with gradient $-2$ passing through $(3, -5)$.", options: ["$y = -2x + 1$", "$y = -2x - 11$", "$y = 2x - 1$", "$y = -2x + 11$"], correct: 0 },
-            { q: "What is the gradient of a line parallel to the x-axis?", options: ["$0$", "$1$", "Undefined", "$-1$"], correct: 0 },
-            { q: "What is the gradient of a line perpendicular to the x-axis?", options: ["Undefined", "$0$", "$1$", "Infinity"], correct: 0 },
-            { q: "Find the equation of the line passing through $(2, 4)$ and $(3, 7)$.", options: ["$y = 3x - 2$", "$y = 3x + 2$", "$y = x + 5$", "$y = 2x + 1$"], correct: 0 },
-            { q: "Find the intercept form of $2x + 3y = 6$.", options: ["$\\frac{x}{3} + \\frac{y}{2} = 1$", "$\\frac{x}{2} + \\frac{y}{3} = 1$", "$y = -\\frac{2}{3}x + 2$", "$\\frac{x}{6} + \\frac{y}{6} = 1$"], correct: 0 },
-            { q: "Find the gradient of $4x - 5y + 10 = 0$.", options: ["$4/5$", "$-4/5$", "$5/4$", "$-5/4$"], correct: 0 },
-
-            // --- PARALLEL & PERPENDICULAR (Q25-Q32) ---
-            { q: "If $m_1$ and $m_2$ are gradients of parallel lines, then:", options: ["$m_1 = m_2$", "$m_1 m_2 = -1$", "$m_1 + m_2 = 0$", "$m_1 m_2 = 1$"], correct: 0 },
-            { q: "If $m_1$ and $m_2$ are gradients of perpendicular lines, then:", options: ["$m_1 m_2 = -1$", "$m_1 = m_2$", "$m_1 + m_2 = 1$", "$m_1/m_2 = -1$"], correct: 0 },
-            { q: "Find equation of line through $(4, -1)$ parallel to $y = -2x + 7$.", options: ["$y = -2x + 7$", "$y = -2x - 9$", "$y = -2x + 9$", "$y = 0.5x + 1$"], correct: 0 },
-            { q: "Find equation of line through $(1, 2)$ perpendicular to $y = 3x - 1$.", options: ["$x + 3y - 7 = 0$", "$3x - y - 1 = 0$", "$x - 3y + 5 = 0$", "$y = -3x + 5$"], correct: 0 },
-            { q: "Find the perpendicular bisector of $A(1, 2)$ and $B(5, 8)$.", options: ["$y = -\\frac{2}{3}x + 7$", "$y = \\frac{3}{2}x + 5$", "$2x + 3y = 10$", "$y = -0.5x + 3$"], correct: 0 },
-            { q: "If two lines $ax+by+c=0$ and $dx+ey+f=0$ are parallel, then:", options: ["$ae = bd$", "$ad = be$", "$a/b = f/e$", "$c = f$"], correct: 0 },
-            { q: "Find the equation of the perpendicular bisector of $(0,0)$ and $(4,0)$.", options: ["$x = 2$", "$y = 2$", "$x + y = 2$", "$y = 0$"], correct: 0 },
-            { q: "Find the line parallel to $x=5$ passing through $(2,3)$.", options: ["$x = 2$", "$y = 3$", "$x = 5$", "$x+y=5$"], correct: 0 },
-
-            // --- DISTANCE & ANGLES (Q33-Q40) ---
-            { q: "Find perpendicular distance from $(2, 3)$ to $3x + 4y - 8 = 0$.", options: ["$2$ units", "$1$ unit", "$10$ units", "$5$ units"], correct: 0 },
-            { q: "Formula for perpendicular distance from $(x_0, y_0)$ to $ax+by+c=0$ is:", options: ["$\\frac{|ax_0+by_0+c|}{\\sqrt{a^2+b^2}}$", "$\\frac{ax_0+by_0+c}{a+b}$", "$\\sqrt{(x_1-x_0)^2 + (y_1-y_0)^2}$", "$\\frac{|ax_0-by_0|}{\\sqrt{a^2-b^2}}$"], correct: 0 },
-            { q: "Find distance from origin to $5x - 12y + 26 = 0$.", options: ["$2$", "$13$", "$26$", "$1$"], correct: 0 },
-            { q: "The angle $\\theta$ between lines with gradients $m_1, m_2$ is found using:", options: ["$\\tan \\theta = |\\frac{m_1-m_2}{1+m_1m_2}|$", "$\\sin \\theta = m_1 - m_2$", "$\\cos \\theta = m_1m_2$", "$\\tan \\theta = m_1 + m_2$"], correct: 0 },
-            { q: "Find acute angle between $y = x$ and $y = 0$ (x-axis).", options: ["$45^\\circ$", "$30^\\circ$", "$60^\\circ$", "$90^\\circ$"], correct: 0 },
-            { q: "If $\\tan \\theta$ is undefined, the angle between the lines is:", options: ["$90^\\circ$", "$0^\\circ$", "$180^\\circ$", "$45^\\circ$"], correct: 0 },
-            { q: "Find distance between parallel lines $3x-4y+5=0$ and $3x-4y-10=0$.", options: ["$3$", "$5$", "$15$", "$1$"], correct: 0 },
-            { q: "Find distance from $(1, 1)$ to the line $x + y = 0$.", options: ["$\\sqrt{2}$", "$1$", "$2$", "$0$"], correct: 0 }
-        ];
-
-        const container = document.getElementById('questions-container');
-
-        function renderQuestions() {
-            questions.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = "question-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm";
-                div.innerHTML = `
-                    <div class="font-bold text-slate-800 mb-4 flex items-start">
-                        <span class="bg-slate-100 text-slate-500 rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 text-sm font-bold">${index + 1}</span>
-                        <span class="mt-1">${item.q}</span>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        ${item.options.map((opt, i) => `
-                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 transition-colors">
-                                <input type="radio" name="q${index}" value="${i}" required class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
-                                <span class="ml-3 text-slate-700">${opt}</span>
-                            </label>
-                        `).join('')}
+        // Load quiz from JSON and initialize
+        async function loadAndStartQuiz() {
+            try {
+                const quizEngine = await QuizEngine.loadFromJSON('straight-lines');
+                
+                // Initialize form action and quiz_topic from config
+                const quizForm = document.getElementById('quizForm');
+                const module = CONFIG.getModuleById('straight-lines');
+                
+                if (quizForm && module) {
+                    quizForm.action = CONFIG.form.formspreeEndpoint;
+                    document.getElementById('quiz_topic').value = module.formTopic;
+                }
+                
+                // Initialize and render quiz
+                quizEngine.init();
+            } catch (error) {
+                console.error('Error loading quiz:', error);
+                document.getElementById('questions-container').innerHTML = `
+                    <div class="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-lg">
+                        <p class="font-semibold">Error Loading Quiz</p>
+                        <p class="text-sm mt-1">${error.message}</p>
                     </div>
                 `;
-                container.appendChild(div);
-            });
-
-            if (window.renderMathInElement) {
-                renderMathInElement(container, {
-                    delimiters: [{ left: "$", right: "$", display: false }, { left: "$$", right: "$$", display: true }]
-                });
             }
         }
 
-        window.addEventListener('DOMContentLoaded', renderQuestions);
-
-        document.getElementById('quizForm').onsubmit = function (e) {
-            let score = 0;
-            questions.forEach((item, index) => {
-                const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                if (selected && parseInt(selected.value) === item.correct) {
-                    score++;
-                }
-            });
-
-            const percent = ((score / questions.length) * 100).toFixed(1);
-            const scoreSummary = `${score}/${questions.length} (${percent}%)`;
-            document.getElementById('score_field').value = scoreSummary;
-            document.getElementById('email_subject').value = `Score: ${scoreSummary} | Straight Lines Quiz | ${document.getElementsByName('student_name')[0].value}`;
-
-            if (!confirm(`Submit results to Mr. Nyantakyi Francis? Final Score: ${scoreSummary}`)) {
-                e.preventDefault();
-            }
-        };
-    </script>
-
-    <!-- Initialize form with config -->
-    <script>
-        // Initialize form action and hidden fields from config
-        document.addEventListener('DOMContentLoaded', function() {
-            const quizForm = document.getElementById('quizForm');
-            const module = CONFIG.getModuleById('straight-lines');
-            
-            if (quizForm && module) {
-                quizForm.action = CONFIG.form.formspreeEndpoint;
-                document.getElementById('quiz_topic').value = module.formTopic;
-            }
-        });
+        // Start the quiz when page loads
+        document.addEventListener('DOMContentLoaded', loadAndStartQuiz);
     </script>
 </body>
 

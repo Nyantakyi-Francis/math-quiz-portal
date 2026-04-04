@@ -5,11 +5,46 @@
 
 class QuizEngine {
     constructor(questions, quizTitle, quizLink) {
-        this.questions = questions;
+        this.originalQuestions = questions;
+        this.questions = this.prepareQuestions(questions);
         this.quizTitle = quizTitle;
         this.quizLink = quizLink;
         this.container = document.getElementById('questions-container');
         this.form = document.getElementById('quizForm');
+    }
+
+    /**
+     * Prepare questions by shuffling answer options
+     * Tracks the correct answer index after shuffling
+     */
+    prepareQuestions(questions) {
+        return questions.map((item, idx) => {
+            const originalCorrectOption = item.options[item.correct];
+            
+            // Create array of options with their original indices
+            const optionsWithIndices = item.options.map((opt, i) => ({
+                text: opt,
+                originalIndex: i
+            }));
+            
+            // Shuffle array using Fisher-Yates algorithm
+            for (let i = optionsWithIndices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [optionsWithIndices[i], optionsWithIndices[j]] = [optionsWithIndices[j], optionsWithIndices[i]];
+            }
+            
+            // Find new correct index after shuffling
+            const newCorrectIndex = optionsWithIndices.findIndex(
+                opt => opt.text === originalCorrectOption
+            );
+            
+            return {
+                ...item,
+                options: optionsWithIndices.map(opt => opt.text),
+                correct: newCorrectIndex,
+                _originalCorrectIndex: item.correct // Store for debugging if needed
+            };
+        });
     }
 
     renderQuestions() {
@@ -112,6 +147,41 @@ class QuizEngine {
         return CONFIG.form.submissionConfirmationTemplate
             .replace('{score}', scoreSummary)
             .replace('{instructorName}', CONFIG.app.instructor);
+    }
+
+    /**
+     * Static factory method to load quiz from JSON file and initialize QuizEngine
+     * @param {string} moduleId - The module ID matching config
+     * @returns {Promise<QuizEngine>} Initialized QuizEngine instance
+     */
+    static async loadFromJSON(moduleId) {
+        try {
+            const module = CONFIG.getModuleById(moduleId);
+            if (!module) {
+                throw new Error(`Module with ID "${moduleId}" not found in CONFIG`);
+            }
+            
+            const jsonPath = `../data/${moduleId}.json`;
+            const response = await fetch(jsonPath);
+            
+            if (!response.ok) {
+                throw new Error(`Failed to fetch ${jsonPath}: ${response.statusText}`);
+            }
+            
+            const quizData = await response.json();
+            
+            // Create and return QuizEngine instance
+            const engine = new QuizEngine(
+                quizData.questions,
+                quizData.title || module.title,
+                module.link
+            );
+            
+            return engine;
+        } catch (error) {
+            console.error('Error loading quiz:', error);
+            throw error;
+        }
     }
 
     /**
