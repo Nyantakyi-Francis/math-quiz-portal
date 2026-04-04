@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WASSCE Advanced Statistics | Nyantakyi Francis</title>
+    <title>Quiz: Statistics | Nyantakyi Francis</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -13,54 +13,12 @@
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body);"></script>
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9;
-        }
-
-        .question-card {
-            border: 1px solid #e2e8f0;
-        }
-
-        .table-container {
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            border-radius: 8px;
-            border: 1px solid #cbd5e1;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #fff;
-            font-size: 0.9rem;
-        }
-
-        th,
-        td {
-            border: 1px solid #cbd5e1;
-            padding: 10px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #f8fafc;
-            color: #1e293b;
-        }
-
-        .instruction-box {
-            border-left: 4px solid #4f46e5;
-            background: #eef2ff;
-            padding: 1rem;
-            margin-bottom: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body class="pb-20">
 
-    <header class="bg-white border-b sticky top-0 z-50 shadow-sm">
+    <header class="bg-white border-b sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
             <a href="../index.html" class="text-indigo-600 font-bold flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -71,8 +29,8 @@
                 Back to Portal
             </a>
             <div class="text-right">
-                <h1 class="font-bold text-slate-800">Elective Maths</h1>
-                <p class="text-xs text-slate-500 uppercase tracking-widest">Section 9: Statistics (Advanced)</p>
+                <h1 class="font-bold text-slate-800">Elective Mathematics</h1>
+                <p class="text-xs text-slate-500 uppercase tracking-widest">Module: Statistics</p>
             </div>
         </div>
     </header>
@@ -80,136 +38,113 @@
     <main class="max-w-4xl mx-auto px-4 mt-8">
         <form id="quizForm" action="https://formspree.io/f/xvzbgroo" method="POST">
 
-            <div class="bg-indigo-700 rounded-xl p-8 mb-8 text-white shadow-xl">
-                <h2 class="text-2xl font-bold mb-6 text-center underline underline-offset-8">Student Registration</h2>
-                <div class="grid gap-6">
-                    <input type="text" name="student_name" required placeholder="Full Name"
-                        class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+            <div class="bg-indigo-700 rounded-xl p-8 mb-8 text-white shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center underline underline-offset-8">Student Information</h2>
+                <div class="grid md:grid-cols-1 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-indigo-100 mb-2">Full Name</label>
+                        <input type="text" name="student_name" required placeholder="Enter your full name"
+                            class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                    </div>
                     <div class="grid md:grid-cols-2 gap-6">
-                        <input type="email" name="student_email" required placeholder="Email Address"
-                            class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
-                        <input type="tel" name="student_phone" required placeholder="Phone Number"
-                            class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Email Address</label>
+                            <input type="email" name="student_email" required placeholder="example@email.com"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-indigo-100 mb-2">Phone Number</label>
+                            <input type="tel" name="student_phone" required placeholder="e.g. +233 50 000 0000"
+                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div id="questions-container" class="space-y-10"></div>
+            <div id="questions-container" class="space-y-6"></div>
 
-            <input type="hidden" name="quiz_topic" value="WASSCE Statistics Advanced">
+            <input type="hidden" name="quiz_topic" value="Statistics">
             <input type="hidden" name="final_score" id="score_field">
+            <input type="hidden" name="_subject" id="email_subject" value="New Statistics Quiz Submission">
 
-            <div class="mt-12 text-center p-10 bg-white rounded-2xl shadow-lg border border-slate-200">
-                <button type="submit"
-                    class="bg-indigo-600 text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-indigo-700 transition-all hover:scale-105 shadow-xl shadow-indigo-200">
-                    Finish & Submit Examination
+            <div class="mt-12 text-center p-10 bg-white rounded-2xl shadow-xl border-t-4 border-indigo-600">
+                <p class="text-slate-500 mb-4 font-medium text-sm italic">"Statistics is the grammar of science." – Karl
+                    Pearson</p>
+                <button type="submit" id="submitBtn"
+                    class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                    Finish & Submit Results
                 </button>
             </div>
         </form>
     </main>
 
     <script>
-        const questionsData = [
-            // SCALES & METHODOLOGY
-            { q: "A surveyor records the 'Time of Day' (e.g., 14:00 GMT). This data belongs to which measurement scale?", options: ["Interval", "Nominal", "Ratio", "Ordinal"], correct: "Interval" },
-            { q: "A study analyzes 'Efficiency Ranks' of machines (1st, 2nd, 3rd). Identify the scale and the most appropriate measure of central tendency.", options: ["Ordinal; Median", "Ordinal; Mean", "Nominal; Mode", "Ratio; Mean"], correct: "Ordinal; Median" },
-            { q: "Which data representation is mathematically most suitable for justifying the continuity of a variable across intervals?", options: ["Histogram", "Bar Chart", "Frequency Polygon", "Pictogram"], correct: "Histogram" },
+        const questions = [
+            // Case Study 1 - Frequency Distribution
+            { q: "Calculate the value of $m$.", options: ["7", "9", "5", "10"], correct: 1 },
+            { q: "What is the mode of the distribution?", options: ["12", "8", "7", "10"], correct: 0 },
+            { q: "Calculate the mean score of the class.", options: ["7.00", "7.45", "8.10", "6.95"], correct: 1 },
+            { q: "Find the median mark.", options: ["7", "8", "7.5", "6.5"], correct: 2 },
+            { q: "Determine the range of the scores.", options: ["10", "5", "6", "15"], correct: 0 },
+            { q: "If a student is picked at random, what is the probability they scored less than 7?", options: ["18/40", "11/40", "4/40", "7/40"], correct: 0 },
 
-            // DATA TABLE 1 (Q4-Q8)
-            {
-                instruction: "Use the table below of student marks to answer the next five questions.",
-                table: `<table><tr><th>Marks (%)</th><td>10-19</td><td>20-29</td><td>30-39</td><td>40-49</td><td>50-59</td><td>60-69</td></tr><tr><th>Frequency</th><td>2</td><td>5</td><td>8</td><td>15</td><td>7</td><td>3</td></tr></table>`,
-                q: "Calculate the estimated mean mark of the distribution.", options: ["$41.75$", "$40.50$", "$42.25$", "$39.50$"], correct: "$41.75$"
-            },
-            { q: "Estimate the median of the grouped data from the marks table.", options: ["$42.83$", "$41.50$", "$40.17$", "$44.50$"], correct: "$42.83$" },
-            { q: "Find the variance of the distribution in the marks table correct to 2 decimal places.", options: ["$154.69$", "$12.44$", "$165.20$", "$142.11$"], correct: "$154.69$" },
-            { q: "Determine the lower quartile ($Q_1$) for this distribution.", options: ["$32.625$", "$30.50$", "$29.50$", "$34.125$"], correct: "$32.625$" },
-            { q: "If a student must score at least 50% to pass, what is the probability that a student chosen at random failed?", options: ["$0.75$", "$0.25$", "$0.30$", "$0.65$"], correct: "$0.75$" },
+            // Case Study 2 - Grouped Data
+            { q: "State the modal class.", options: ["20 - 24", "15 - 19", "25 - 29", "18"], correct: 0 },
+            { q: "Calculate the class width.", options: ["5", "4", "4.5", "10"], correct: 0 },
+            { q: "Calculate the estimated mean time.", options: ["21.5 min", "20.9 min", "19.8 min", "22.3 min"], correct: 1 },
+            { q: "Find the upper class boundary of the 15 - 19 class.", options: ["19.5", "20.0", "19.0", "14.5"], correct: 0 },
+            { q: "Which class contains the 25th percentile ($P_{25}$)?", options: ["20 - 24", "15 - 19", "10 - 14", "25 - 29"], correct: 0 },
+            { q: "The frequency density for the class 20 - 24 is:", options: ["4.5", "3.6", "18", "0.9"], correct: 2 },
 
-            // REPRESENTATION & JUSTIFICATION
-            { q: "To compare the variability of two distributions with different units, which statistic is most justified?", options: ["Coefficient of Variation", "Standard Deviation", "Range", "Variance"], correct: "Coefficient of Variation" },
-            { q: "Why is a Bar Chart preferred over a Histogram for 'Eye Color' data?", options: ["Data is qualitative/discrete", "Data is continuous", "Frequencies are too high", "Bar Charts show area"], correct: "Data is qualitative/discrete" },
-            { q: "In a cumulative frequency curve (Ogive), the value on the x-axis corresponding to a cumulative frequency of $0.75N$ is the:", options: ["Upper Quartile", "Lower Quartile", "Interquartile Range", "Mode"], correct: "Upper Quartile" },
+            // Case Study 3 - Cumulative Frequency
+            { q: "Find the median position.", options: ["100th", "50th", "25th", "70th"], correct: 1 },
+            { q: "In which interval does the median lie?", options: ["40.5 - 60.5", "20.5 - 40.5", "60.5 - 80.5", "80.5 - 100.5"], correct: 0 },
+            { q: "Calculate the number of observations between 40.5 and 80.5.", options: ["70", "55", "35", "90"], correct: 3 },
+            { q: "What is the frequency of the class 40.5 - 60.5?", options: ["70", "35", "105", "10"], correct: 1 },
+            { q: "Estimate the value of the 90th percentile.", options: ["100.5", "80.5", "60.5", "90"], correct: 0 },
 
-            // DATA TABLE 2 (Q12-Q15)
-            {
-                instruction: "The table shows the distribution of heights ($h$) of seedlings.",
-                table: `<table><tr><th>Height (cm)</th><td>2.0 ≤ h < 2.5</td><td>2.5 ≤ h < 3.0</td><td>3.0 ≤ h < 3.5</td><td>3.5 ≤ h < 4.0</td></tr><tr><th>Freq</th><td>10</td><td>22</td><td>k</td><td>18</td></tr></table>`,
-                q: "If the mean height is $3.125$ cm, calculate the value of $k$.", options: ["$30$", "$25$", "$20$", "$35$"], correct: "$30$"
-            },
-            { q: "Using $k$ from the previous question, calculate the Standard Deviation.", options: ["$0.56$", "$0.31$", "$1.21$", "$0.88$"], correct: "$0.56$" },
-            { q: "What is the modal height class for the seedlings?", options: ["$3.0 ≤ h < 3.5$", "$2.5 ≤ h < 3.0$", "$3.5 ≤ h < 4.0$", "$2.25$"], correct: "$3.0 ≤ h < 3.5$" },
-            { q: "Identify the justification for using the mean in this seedling study.", options: ["It uses every data point", "It is unaffected by outliers", "It is easiest to read from a graph", "It represents the most frequent height"], correct: "It uses every data point" },
-
-            // TECHNOLOGY & EXCEL
-            { q: "In Excel, you have frequencies in B2:B6 and class marks in C2:C6. Which formula calculates the total sum of $fx$?", options: ["=SUMPRODUCT(B2:B6, C2:C6)", "=SUM(B2:B6)*SUM(C2:C6)", "=AVERAGE(B2:C6)", "=FXSUM(B2:C6)"], correct: "=SUMPRODUCT(B2:B6, C2:C6)" },
-            { q: "Which tool is best for automating the creation of a Frequency Distribution Table from 1,000 raw data points?", options: ["Excel Pivot Table", "Manual Tallying", "Excel Sort Function", "Scientific Calculator"], correct: "Excel Pivot Table" },
-            { q: "In Excel, the function '=QUARTILE.INC(A1:A50, 2)' is equivalent to which measure?", options: ["Median", "Mean", "Mode", "Range"], correct: "Median" },
-
-            // ADVANCED MEASURES
-            { q: "Find the mean deviation of the set $\{10, 12, 18, 20\}$.", options: ["$4$", "$0$", "$5$", "$15$"], correct: "$4$" },
-            { q: "If $\\sum f = 100$, $\\sum fx = 2500$ and $\\sum fx^2 = 650000$, calculate the variance.", options: ["$250$", "$6500$", "$25$", "$625$"], correct: "$250$" },
-            { q: "A set of data has mean 50 and S.D. 10. If 5 is added to every score, the new mean and S.D. are:", options: ["$55, 10$", "$55, 15$", "$50, 10$", "$50, 15$"], correct: "$55, 10$" },
-            { q: "If every value in a set is doubled, the variance becomes:", options: ["$4 \\times$ larger", "$2 \\times$ larger", "Unchanged", "$\sqrt{2} \\times$ larger"], correct: "$4 \\times$ larger" },
-
-            // INTERPRETATION
-            { q: "The interquartile range of a distribution is 0. What does this imply?", options: ["The middle 50% of data are identical", "The data has no outliers", "The mean is 0", "All data points are 0"], correct: "The middle 50% of data are identical" },
-            { q: "Which representation is most justified for showing the trend of temperature over a 24-hour period?", options: ["Line Graph", "Histogram", "Pie Chart", "Box Plot"], correct: "Line Graph" },
-            { q: "In a box plot, the 'whiskers' typically represent:", options: ["Minimum and Maximum values", "Interquartile Range", "Standard Deviation", "The Mean"], correct: "Minimum and Maximum values" },
-
-            // DATA TABLE 3 (Q26-Q30)
-            {
-                instruction: "The weights (kg) of 40 students are: 45, 52, 48... (Summary provided below).",
-                table: `<table><tr><th>Weight ($w$)</th><td>40-44</td><td>45-49</td><td>50-54</td><td>55-59</td></tr><tr><th>Frequency</th><td>6</td><td>14</td><td>12</td><td>8</td></tr></table>`,
-                q: "What is the class width of the distribution?", options: ["$5$", "$4$", "$4.5$", "$10$"], correct: "$5$"
-            },
-            { q: "Calculate the upper class boundary of the third class.", options: ["$54.5$", "$54.0$", "$55.0$", "$49.5$"], correct: "$54.5$" },
-            { q: "Find the modal weight using the formula $L + [d_1/(d_1+d_2)]c$.", options: ["$49.5$", "$48.5$", "$50.5$", "$47.5$"], correct: "$49.5$" },
-            { q: "Calculate the probability that a student weighs more than 49.5kg.", options: ["$0.5$", "$0.35$", "$0.65$", "$0.8$"], correct: "$0.5$" },
-            { q: "Which graph would best justify the 'skewness' of this weight data?", options: ["Frequency Polygon", "Pie Chart", "Bar Chart", "Stem and Leaf"], correct: "Frequency Polygon" },
-
-            // FINAL STRETCH
-            { q: "The mean of 5 numbers is 7. If three of the numbers are 5, 8, and 10, find the mean of the other two.", options: ["$6$", "$12$", "$7$", "$5$"], correct: "$6$" },
-            { q: "Identify the discrete variable from the list:", options: ["Number of students", "Height of trees", "Weight of salt", "Time taken to run"], correct: "Number of students" },
-            { q: "For a perfectly symmetrical distribution, which statement is true?", options: ["Mean = Median = Mode", "Mean > Median", "Mode > Mean", "Variance = 0"], correct: "Mean = Median = Mode" },
-            { q: "Calculate the range of $15, -3, 22, 10, 5$.", options: ["$25$", "$19$", "$22$", "$7$"], correct: "$25$" },
-            { q: "In an Ogive, the y-axis represents:", options: ["Cumulative Frequency", "Frequency density", "Class marks", "Relative frequency"], correct: "Cumulative Frequency" },
-            { q: "The sum of the deviations of a set of values from their mean is always:", options: ["$0$", "$1$", "Positive", "The Variance"], correct: "$0$" },
-            { q: "Find the geometric mean of 2, 4, 8.", options: ["$4$", "$4.67$", "$8$", "$14$"], correct: "$4$" },
-            { q: "Which measure is most suitable for finding the average size of shoes sold in a shop?", options: ["Mode", "Mean", "Median", "Mid-range"], correct: "Mode" },
-            { q: "Find the 50th percentile of any distribution.", options: ["Median", "Mean", "Upper Quartile", "Mode"], correct: "Median" },
-            { q: "A distribution has a variance of 0.25. Find the standard deviation.", options: ["$0.5$", "$0.0625$", "$5$", "$0.125$"], correct: "$0.5$" }
+            // General Statistics Questions
+            { q: "Which scale of measurement allows for a 'true zero' point?", options: ["Interval", "Ratio", "Nominal", "Ordinal"], correct: 1 },
+            { q: "The sum of the squares of deviations is minimized when taken about the:", options: ["Median", "Mean", "Mode", "Variance"], correct: 1 },
+            { q: "The standard deviation of $k, k, k, k$ is:", options: ["$k$", "0", "1", "$k^2$"], correct: 1 },
+            { q: "If the mean of $x, x+2, x+4$ is 10, find $x$.", options: ["10", "8", "6", "12"], correct: 1 },
+            { q: "Find the variance of the first 3 natural numbers (1, 2, 3).", options: ["1", "2/3", "2", "4/3"], correct: 0 },
+            { q: "The coefficient of variation is calculated as:", options: ["(Mean / SD) * 100", "(SD / Mean) * 100", "SD²", "Range / 2"], correct: 1 },
+            { q: "A distribution with two modes is called:", options: ["Skewed", "Bimodal", "Normal", "Discrete"], correct: 1 },
+            { q: "What happens to the Standard Deviation if 5 is added to every score?", options: ["Increases by 5", "Remains unchanged", "Increases by 25", "Multiplies by 5"], correct: 1 },
+            { q: "The middle value of the lower half of a data set is the:", options: ["Median", "First Quartile", "Third Quartile", "Mode"], correct: 1 },
+            { q: "In a pie chart, a frequency of 15 out of 60 total corresponds to:", options: ["90 degrees", "15 degrees", "60 degrees", "45 degrees"], correct: 0 },
+            { q: "The area of a bar in a histogram is proportional to the:", options: ["Class Width", "Frequency", "Midpoint", "Cumulative Frequency"], correct: 1 },
+            { q: "Mean deviation is always:", options: ["Negative", "Non-negative", "Zero", "One"], correct: 1 },
+            { q: "If Mean > Median > Mode, the distribution is:", options: ["Negatively skewed", "Positively skewed", "Symmetric", "Uniform"], correct: 1 },
+            { q: "Find the harmonic mean of 2 and 4.", options: ["3.00", "2.67", "2.00", "3.50"], correct: 1 },
+            { q: "Which graph is used to find the Mode of grouped data?", options: ["Ogive", "Histogram", "Pie Chart", "Scatter Plot"], correct: 1 },
+            { q: "Calculate the geometric mean of 4 and 9.", options: ["6", "6.5", "36", "13"], correct: 0 },
+            { q: "The interquartile range covers what percentage of the data?", options: ["25%", "50%", "75%", "100%"], correct: 1 },
+            { q: "A sample of 5 numbers has a mean of 7. If a 6th number 'x' makes the new mean 8, find x.", options: ["15", "13", "8", "1"], correct: 1 },
+            { q: "Identify the qualitative variable:", options: ["Height", "Religion", "Age", "Income"], correct: 1 },
+            { q: "The sum of absolute deviations from the median is:", options: ["Maximum", "Minimum", "Zero", "One"], correct: 1 },
+            { q: "Which measure is best for 'Open-ended' classes?", options: ["Mean", "Median", "Standard Deviation", "Range"], correct: 1 },
+            { q: "If $\\sum f = 20$ and $\\sum fx = 100$, the mean is:", options: ["2000", "5", "0.2", "80"], correct: 1 },
+            { q: "The square root of variance is:", options: ["Mean Deviation", "Standard Deviation", "Range", "Quartile"], correct: 1 }
         ];
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
 
         const container = document.getElementById('questions-container');
 
         function renderQuestions() {
-            questionsData.forEach((item, index) => {
+            questions.forEach((item, index) => {
                 const div = document.createElement('div');
-                div.className = "question-card bg-white p-8 rounded-2xl shadow-sm border border-slate-200";
-
-                let shuffledOptions = [...item.options];
-                shuffleArray(shuffledOptions);
-
+                div.className = "question-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm mb-4";
                 div.innerHTML = `
-                    ${item.instruction ? `<div class="instruction-box font-semibold text-indigo-800 mb-2">${item.instruction}</div>` : ''}
-                    ${item.table ? `<div class="table-container">${item.table}</div>` : ''}
-                    <div class="font-bold text-slate-800 mb-6 flex items-start text-lg">
-                        <span class="bg-indigo-600 text-white rounded-lg w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0 shadow-md">${index + 1}</span>
+                    <div class="font-bold text-slate-800 mb-4 flex items-start">
+                        <span class="bg-indigo-600 text-white rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 text-xs shadow-md">${index + 1}</span>
                         <span class="mt-1">${item.q}</span>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        ${shuffledOptions.map((opt) => `
-                            <label class="flex items-center p-4 border-2 border-slate-100 rounded-xl cursor-pointer hover:border-indigo-300 hover:bg-indigo-50 transition-all">
-                                <input type="radio" name="q${index}" value="${opt.replace(/"/g, '&quot;')}" required class="h-5 w-5 text-indigo-600">
-                                <span class="ml-4 text-slate-700 font-medium">${opt}</span>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        ${item.options.map((opt, i) => `
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-indigo-50 hover:border-indigo-100 transition-colors">
+                                <input type="radio" name="q${index}" value="${i}" required class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <span class="ml-3 text-slate-700">${opt}</span>
                             </label>
                         `).join('')}
                     </div>
@@ -231,21 +166,21 @@
 
         document.getElementById('quizForm').onsubmit = function (e) {
             let score = 0;
-            questionsData.forEach((item, index) => {
+            questions.forEach((item, index) => {
                 const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                if (selected && selected.value === item.correct) {
+                if (selected && parseInt(selected.value) === item.correct) {
                     score++;
                 }
             });
 
-            const percent = ((score / questionsData.length) * 100).toFixed(1);
-            const scoreSummary = `${score}/${questionsData.length} (${percent}%)`;
+            const percent = ((score / questions.length) * 100).toFixed(1);
+            const scoreSummary = `${score}/${questions.length} (${percent}%)`;
             document.getElementById('score_field').value = scoreSummary;
 
             const name = document.getElementsByName('student_name')[0].value;
-            const quote = "Statistical thinking will one day be as necessary for efficient citizenship as the ability to read and write. — H.G. Wells";
+            document.getElementById('email_subject').value = `Statistics Quiz Score: ${scoreSummary} | ${name}`;
 
-            if (!confirm(`Results for ${name}:\nScore: ${scoreSummary}\n\n"${quote}"\n\nClick OK to finalize submission.`)) {
+            if (!confirm(`Click OK to submit to Mr. Nyantakyi Francis. Your results would be sent to you via email or whatsapp`)) {
                 e.preventDefault();
             }
         };
