@@ -13,7 +13,11 @@
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body);"></script>
 
-<link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css">
+    <!-- Configuration and utilities must be loaded before quiz-engine -->
+    <script src="../js/config.js"></script>
+    <script src="../shared/script.js"></script>
+    <script src="../js/quiz-engine.js"></script>
 </head>
 
 <body class="pb-20">
@@ -37,7 +41,7 @@
     </header>
 
     <main class="max-w-4xl mx-auto px-4 mt-8">
-        <form id="quizForm" action="https://formspree.io/f/xvzbgroo" method="POST">
+        <form id="quizForm" method="POST">
 
             <div class="bg-indigo-700 rounded-xl p-8 mb-8 text-white shadow-lg">
                 <h2 class="text-2xl font-bold mb-6 text-center underline underline-offset-8">Student Information</h2>
@@ -64,7 +68,7 @@
 
             <div id="questions-container" class="space-y-6"></div>
 
-            <input type="hidden" name="quiz_topic" value="Coordinate Geometry II (Circles)">
+            <input type="hidden" name="quiz_topic" id="quiz_topic" value="">
             <input type="hidden" name="final_score" id="score_field">
             <input type="hidden" name="_subject" id="email_subject" value="New Math Quiz Submission">
 
@@ -187,6 +191,20 @@
                 e.preventDefault();
             }
         };
+    </script>
+
+    <!-- Initialize form with config -->
+    <script>
+        // Initialize form action and hidden fields from config
+        document.addEventListener('DOMContentLoaded', function() {
+            const quizForm = document.getElementById('quizForm');
+            const module = CONFIG.getModuleById('coordinate-geometry');
+            
+            if (quizForm && module) {
+                quizForm.action = CONFIG.form.formspreeEndpoint;
+                document.getElementById('quiz_topic').value = module.formTopic;
+            }
+        });
     </script>
 </body>
 

@@ -10,6 +10,9 @@
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Load configuration before any scripts that depend on it -->
+    <script src="js/config.js"></script>
+    <script src="shared/script.js"></script>
 </head>
 
 <body class="min-h-screen bg-slate-50">
@@ -121,101 +124,19 @@
     </footer>
 
     <script>
-        const currentYear = new Date().getFullYear();
-        document.getElementById('nav-year').textContent = currentYear;
-        document.getElementById('footer-year').textContent = currentYear;
-
-        // Module Data - Easy to update
-        const modules = [
-            {
-                title: "Binary Operations, Sets & Binomial",
-                link: "quizzes/binary-sets-binomial.html",
-                color: "blue",
-                moduleNum: 1,
-                questions: 40,
-                difficulty: "Intermediate"
-            },
-            {
-                title: "Surds, Indices & Logarithm",
-                link: "quizzes/surds-indices-logs.html",
-                color: "purple",
-                moduleNum: 2,
-                questions: 40,
-                difficulty: "Intermediate"
-            },
-            {
-                title: "Sequences & Functions",
-                link: "quizzes/sequences-functions.html",
-                color: "rose",
-                moduleNum: 3,
-                questions: 40,
-                difficulty: "Beginner"
-            },
-            {
-                title: "Matrices",
-                link: "quizzes/matrices.html",
-                color: "amber",
-                moduleNum: 4,
-                questions: 40,
-                difficulty: "Intermediate"
-            },
-            {
-                title: "Straight Lines",
-                link: "quizzes/straight-lines.html",
-                color: "emerald",
-                moduleNum: 5,
-                questions: 40,
-                difficulty: "Beginner"
-            },
-            {
-                title: "Coordinate Geometry II (Circles)",
-                link: "quizzes/coordinate-geometry-ii-circles.html",
-                color: "cyan",
-                moduleNum: 6,
-                questions: 40,
-                difficulty: "Advanced"
-            },
-            {
-                title: "Vectors",
-                link: "quizzes/vectors.html",
-                color: "orange",
-                moduleNum: 7,
-                questions: 40,
-                difficulty: "Intermediate"
-            },
-            {
-                title: "Trigonometry & Applications",
-                link: "quizzes/trigonomety.html",
-                color: "indigo",
-                moduleNum: 8,
-                questions: 40,
-                difficulty: "Advanced"
-            },
-            {
-                title: "Limits & Differentiation",
-                link: "quizzes/limits-and-differentiation.html",
-                color: "pink",
-                moduleNum: 9,
-                questions: 40,
-                difficulty: "Advanced"
-            },
-            {
-                title: "Statistics",
-                link: "quizzes/statistics.html",
-                color: "teal",
-                moduleNum: 10,
-                questions: 40,
-                difficulty: "Intermediate"
-            },
-            {
-                title: "Combinations, Permutations & Probability",
-                link: "quizzes/combinations-permutations-and-probability.html",
-                color: "violet",
-                moduleNum: 11,
-                questions: 40,
-                difficulty: "Intermediate"
+        // Initialize year display (calls displayCurrentYear from shared/script.js)
+        // This will populate #nav-year and #footer-year automatically
+        
+        // Use CONFIG.modules instead of hardcoded modules
+        const modules = CONFIG.modules;
+        
+        // Display "11 Modules • 440 Questions" using CONFIG data
+        document.addEventListener('DOMContentLoaded', function() {
+            const stats = document.querySelector('.flex.items-center.bg-white');
+            if (stats) {
+                stats.textContent = `11 Modules • ${CONFIG.getTotalQuestions()} Questions`;
             }
-        ];
+        });
 
         // Render all modules
         function renderModules(filteredModules = modules) {
@@ -269,7 +190,7 @@
 
         // Recently Attempted Section
         function loadRecentAttempts() {
-            const recent = JSON.parse(localStorage.getItem('recentQuizzes') || '[]');
+            const recent = getRecentQuizzes(); // Using function from shared/script.js
             const container = document.getElementById('recent-modules');
             const section = document.getElementById('recent-section');
 
@@ -282,10 +203,10 @@
             container.innerHTML = '';
 
             recent.forEach(item => {
-                const mod = modules.find(m => m.link === item.quizLink) || { title: item.title, color: 'slate' };
+                const mod = modules.find(m => m.link === item.link) || { title: item.title, color: 'slate' };
 
                 const div = document.createElement('a');
-                div.href = item.quizLink;
+                div.href = item.link;
                 div.className = `bg-white rounded-2xl p-6 border border-slate-200 flex flex-col hover:border-indigo-300 transition-all`;
                 div.innerHTML = `
                     <div class="flex justify-between">
@@ -297,22 +218,6 @@
                 container.appendChild(div);
             });
         }
-
-        // This function will be called from quiz pages after submission
-        window.saveRecentQuiz = function (quizTitle, quizLink, score) {
-            let recent = JSON.parse(localStorage.getItem('recentQuizzes') || '[]');
-
-            recent.unshift({
-                title: quizTitle,
-                quizLink: quizLink,
-                score: score,
-                timestamp: Date.now()
-            });
-
-            // Keep only last 6 attempts
-            recent = recent.slice(0, 6);
-            localStorage.setItem('recentQuizzes', JSON.stringify(recent));
-        };
 
         // Initialize
         window.onload = () => {

@@ -14,6 +14,10 @@
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 
     <link rel="stylesheet" href="../style.css">
+    <!-- Configuration and utilities must be loaded before quiz-engine -->
+    <script src="../js/config.js"></script>
+    <script src="../shared/script.js"></script>
+    <script src="../js/quiz-engine.js"></script>
 </head>
 
 <body class="pb-20 bg-slate-50">
@@ -36,7 +40,7 @@
     </header>
 
     <main class="max-w-4xl mx-auto px-4 mt-8">
-        <form id="quizForm" action="https://formspree.io/f/xvzbgroo" method="POST">
+        <form id="quizForm" method="POST">
 
             <!-- Student Information -->
             <div class="bg-indigo-700 rounded-2xl p-8 mb-8 text-white shadow-lg">
@@ -64,7 +68,7 @@
 
             <div id="questions-container" class="space-y-6"></div>
 
-            <input type="hidden" name="quiz_topic" value="Statistics">
+            <input type="hidden" name="quiz_topic" id="quiz_topic" value="">
             <input type="hidden" name="final_score" id="score_field">
             <input type="hidden" name="_subject" id="email_subject" value="Statistics Quiz Submission">
 
@@ -104,6 +108,17 @@
 
         // Start the quiz when page loads
         document.addEventListener('DOMContentLoaded', loadAndStartQuiz);
+        
+        // Initialize form with config
+        document.addEventListener('DOMContentLoaded', function() {
+            const quizForm = document.getElementById('quizForm');
+            const module = CONFIG.getModuleById('statistics');
+            
+            if (quizForm && module) {
+                quizForm.action = CONFIG.form.formspreeEndpoint;
+                document.getElementById('quiz_topic').value = module.formTopic;
+            }
+        });        
     </script>
 </body>
 

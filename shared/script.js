@@ -1,73 +1,77 @@
-// Centralized JavaScript Utilities
+/**
+ * Centralized JavaScript Utilities using CONFIG object
+ */
 
-// Function to display the current year in the footer
+/**
+ * Display the current year in footer/nav elements
+ * Reads from #year, #nav-year, and #footer-year elements
+ */
 function displayCurrentYear() {
     const year = new Date().getFullYear();
-    document.getElementById('year').textContent = year;
-}
-
-// Function to initialize the quiz
-function initQuiz(questions) {
-    // Logic to initialize quiz with questions
-}
-
-// Function to track progress of the quiz
-function trackProgress(currentQuestion, totalQuestions) {
-    const progress = (currentQuestion / totalQuestions) * 100;
-    document.getElementById('progress').style.width = progress + '%';
-}
-
-// Function to manage localStorage
-function manageLocalStorage(key, value) {
-    if (value) {
-        localStorage.setItem(key, JSON.stringify(value));
-    } else {
-        return JSON.parse(localStorage.getItem(key));
+    
+    const yearElement = document.getElementById('year') || document.getElementById('nav-year');
+    if (yearElement) {
+        yearElement.textContent = year;
+    }
+    
+    const footerYear = document.getElementById('footer-year');
+    if (footerYear) {
+        footerYear.textContent = year;
     }
 }
 
-// Timer functionality
-let timer;
-function startTimer(duration, display) {
-    let time = duration;
-    timer = setInterval(function () {
-        const minutes = parseInt(time / 60, 10);
-        const seconds = parseInt(time % 60, 10);
-
-        display.textContent = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-
-        if (--time < 0) {
-            clearInterval(timer);
-            // Handle timer end
-        }
-    }, 1000);
+/**
+ * Initialize year display on page load
+ */
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', displayCurrentYear);
+} else {
+    displayCurrentYear();
 }
 
-// Scoring function
-function calculateScore(correctAnswers, totalQuestions) {
-    return (correctAnswers / totalQuestions) * 100;
+/**
+ * Save a completed quiz to recent quizzes localStorage
+ * Uses CONFIG.storage.recentQuizzesKey and maxRecentQuizzes
+ * 
+ * @param {string} title - Quiz title
+ * @param {string} link - Quiz URL
+ * @param {string} score - Score summary (e.g., "10/40 (25%)")
+ */
+function saveRecentQuiz(title, link, score) {
+    try {
+        const storageKey = CONFIG.storage.recentQuizzesKey;
+        const maxRecent = CONFIG.storage.maxRecentQuizzes;
+        
+        let recent = JSON.parse(localStorage.getItem(storageKey)) || [];
+        
+        // Add new quiz attempt at the beginning
+        recent.unshift({
+            title: title,
+            link: link,
+            score: score,
+            timestamp: new Date().toISOString()
+        });
+        
+        // Keep only the configured number of recent quizzes
+        recent = recent.slice(0, maxRecent);
+        
+        localStorage.setItem(storageKey, JSON.stringify(recent));
+    } catch (error) {
+        console.error('Error saving to recent quizzes:', error);
+    }
 }
 
-// Form validation
-function validateForm(form) {
-    // Logic to validate form
-    // Return true if valid, false otherwise
-}
-
-// Function to show modals
-function showModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.style.display = 'block';
-}
-
-// Function to show notifications
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.textContent = message;
-    document.body.appendChild(notification);
-
-    // Remove notification after 3 seconds
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
+/**
+ * Retrieve recent quizzes from localStorage
+ * 
+ * @returns {Array} Array of recent quiz objects
+ */
+function getRecentQuizzes() {
+    try {
+        const storageKey = CONFIG.storage.recentQuizzesKey;
+        return JSON.parse(localStorage.getItem(storageKey)) || [];
+    } catch (error) {
+        console.error('Error retrieving recent quizzes:', error);
+        return [];
+    }
 }

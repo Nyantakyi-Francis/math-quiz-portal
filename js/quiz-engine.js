@@ -1,4 +1,7 @@
-// js/quiz-engine.js - Fixed KaTeX rendering for dynamic content
+/**
+ * Quiz Engine - Renders questions, handles scoring, and form submission
+ * Uses CONFIG object for centralized settings
+ */
 
 class QuizEngine {
     constructor(questions, quizTitle, quizLink) {
@@ -38,37 +41,31 @@ class QuizEngine {
             this.container.appendChild(div);
         });
 
-        // Improved KaTeX rendering with multiple attempts and delay
+        // Render KaTeX using config settings
         this.renderKaTeX();
     }
 
+    /**
+     * Render KaTeX math expressions using configuration
+     */
     renderKaTeX() {
-        if (typeof renderMathInElement !== 'function') {
-            console.warn("KaTeX auto-render not loaded");
+        if (!CONFIG.katex.enabled || typeof renderMathInElement !== 'function') {
+            console.warn("KaTeX rendering is disabled or library not loaded");
             return;
         }
 
         const renderOptions = {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false }
-            ],
-            throwOnError: false,
-            errorColor: "#cc0000"
+            delimiters: CONFIG.katex.delimiters,
+            throwOnError: CONFIG.katex.throwOnError,
+            errorColor: CONFIG.katex.errorColor
         };
 
-        // First attempt
-        renderMathInElement(this.container, renderOptions);
-
-        // Second attempt after a short delay (helps with complex content)
-        setTimeout(() => {
-            renderMathInElement(this.container, renderOptions);
-        }, 150);
-
-        // Final safety attempt
-        setTimeout(() => {
-            renderMathInElement(this.container, renderOptions);
-        }, 500);
+        // Render multiple times with configured delays for complex content
+        CONFIG.katex.renderAttempts.forEach(attempt => {
+            setTimeout(() => {
+                renderMathInElement(this.container, renderOptions);
+            }, attempt.delay);
+        });
     }
 
     calculateScore() {
@@ -89,12 +86,37 @@ class QuizEngine {
         };
     }
 
+    /**
+     * Save quiz attempt to localStorage for "Recently Attempted" feature
+     */
     saveToRecent(scoreSummary) {
         if (typeof window.saveRecentQuiz === 'function') {
             window.saveRecentQuiz(this.quizTitle, this.quizLink, scoreSummary);
         }
     }
 
+    /**
+     * Build email subject using config template
+     */
+    buildEmailSubject(studentName, scoreSummary) {
+        return CONFIG.form.submissionSubjectTemplate
+            .replace('{quizTitle}', this.quizTitle)
+            .replace('{score}', scoreSummary)
+            .replace('{studentName}', studentName || 'Student');
+    }
+
+    /**
+     * Build confirmation message using config template
+     */
+    buildConfirmationMessage(scoreSummary) {
+        return CONFIG.form.submissionConfirmationTemplate
+            .replace('{score}', scoreSummary)
+            .replace('{instructorName}', CONFIG.app.instructor);
+    }
+
+    /**
+     * Initialize quiz: render questions and setup form submission
+     */
     init() {
         this.renderQuestions();
 
@@ -102,14 +124,18 @@ class QuizEngine {
             e.preventDefault();
             const result = this.calculateScore();
             const scoreSummary = result.summary;
+            const studentNameInput = document.getElementsByName('student_name')[0];
+            const studentName = studentNameInput ? studentNameInput.value : 'Student';
 
+            // Set hidden form fields
             document.getElementById('score_field').value = scoreSummary;
-            document.getElementById('email_subject').value = 
-                `${this.quizTitle} Quiz Score: ${scoreSummary} | ${document.getElementsByName('student_name')[0].value || 'Student'}`;
+            document.getElementById('email_subject').value = this.buildEmailSubject(studentName, scoreSummary);
 
+            // Save to recent quizzes
             this.saveToRecent(scoreSummary);
 
-            if (confirm(`Your score is ${scoreSummary}\n\nClick OK to submit to Mr. Nyantakyi Francis.`)) {
+            // Show confirmation dialog
+            if (confirm(this.buildConfirmationMessage(scoreSummary))) {
                 this.form.submit();
             }
         };
