@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz: Statistics | Nyantakyi Francis</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body);"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="pb-20">
+<body class="pb-20 bg-slate-50">
 
     <header class="bg-white border-b sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -30,7 +30,7 @@
             </a>
             <div class="text-right">
                 <h1 class="font-bold text-slate-800">Elective Mathematics</h1>
-                <p class="text-xs text-slate-500 uppercase tracking-widest">Module: Statistics</p>
+                <p class="text-xs text-slate-500 uppercase tracking-widest">Statistics</p>
             </div>
         </div>
     </header>
@@ -38,24 +38,25 @@
     <main class="max-w-4xl mx-auto px-4 mt-8">
         <form id="quizForm" action="https://formspree.io/f/xvzbgroo" method="POST">
 
-            <div class="bg-indigo-700 rounded-xl p-8 mb-8 text-white shadow-lg">
+            <!-- Student Information -->
+            <div class="bg-indigo-700 rounded-2xl p-8 mb-8 text-white shadow-lg">
                 <h2 class="text-2xl font-bold mb-6 text-center underline underline-offset-8">Student Information</h2>
-                <div class="grid md:grid-cols-1 gap-6">
+                <div class="grid gap-6">
                     <div>
                         <label class="block text-sm font-medium text-indigo-100 mb-2">Full Name</label>
                         <input type="text" name="student_name" required placeholder="Enter your full name"
-                            class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                            class="w-full px-4 py-3 rounded-xl bg-indigo-800 border border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
                     </div>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-indigo-100 mb-2">Email Address</label>
                             <input type="email" name="student_email" required placeholder="example@email.com"
-                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                                class="w-full px-4 py-3 rounded-xl bg-indigo-800 border border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-indigo-100 mb-2">Phone Number</label>
                             <input type="tel" name="student_phone" required placeholder="e.g. +233 50 000 0000"
-                                class="w-full px-4 py-3 rounded-lg bg-indigo-800 border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
+                                class="w-full px-4 py-3 rounded-xl bg-indigo-800 border border-indigo-600 text-white placeholder-indigo-300 focus:outline-none focus:ring-2 focus:ring-white">
                         </div>
                     </div>
                 </div>
@@ -65,125 +66,44 @@
 
             <input type="hidden" name="quiz_topic" value="Statistics">
             <input type="hidden" name="final_score" id="score_field">
-            <input type="hidden" name="_subject" id="email_subject" value="New Statistics Quiz Submission">
+            <input type="hidden" name="_subject" id="email_subject" value="Statistics Quiz Submission">
 
-            <div class="mt-12 text-center p-10 bg-white rounded-2xl shadow-xl border-t-4 border-indigo-600">
+            <div class="mt-12 text-center p-10 bg-white rounded-3xl shadow-xl border-t-4 border-indigo-600">
                 <p class="text-slate-500 mb-4 font-medium text-sm italic">"Statistics is the grammar of science." – Karl
                     Pearson</p>
                 <button type="submit" id="submitBtn"
-                    class="bg-indigo-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                    class="bg-indigo-600 text-white px-12 py-4 rounded-2xl font-bold text-lg hover:bg-indigo-700 transition-colors shadow-lg">
                     Finish & Submit Results
                 </button>
             </div>
         </form>
     </main>
 
+    <!-- Load Quiz Engine -->
+    <script src="../js/quiz-engine.js"></script>
+
     <script>
-        const questions = [
-            // Case Study 1 - Frequency Distribution
-            { q: "Calculate the value of $m$.", options: ["7", "9", "5", "10"], correct: 1 },
-            { q: "What is the mode of the distribution?", options: ["12", "8", "7", "10"], correct: 0 },
-            { q: "Calculate the mean score of the class.", options: ["7.00", "7.45", "8.10", "6.95"], correct: 1 },
-            { q: "Find the median mark.", options: ["7", "8", "7.5", "6.5"], correct: 2 },
-            { q: "Determine the range of the scores.", options: ["10", "5", "6", "15"], correct: 0 },
-            { q: "If a student is picked at random, what is the probability they scored less than 7?", options: ["18/40", "11/40", "4/40", "7/40"], correct: 0 },
+        // Load questions from JSON and start quiz
+        async function loadAndStartQuiz() {
+            try {
+                const response = await fetch('../data/statistics.json');
+                const quizData = await response.json();
 
-            // Case Study 2 - Grouped Data
-            { q: "State the modal class.", options: ["20 - 24", "15 - 19", "25 - 29", "18"], correct: 0 },
-            { q: "Calculate the class width.", options: ["5", "4", "4.5", "10"], correct: 0 },
-            { q: "Calculate the estimated mean time.", options: ["21.5 min", "20.9 min", "19.8 min", "22.3 min"], correct: 1 },
-            { q: "Find the upper class boundary of the 15 - 19 class.", options: ["19.5", "20.0", "19.0", "14.5"], correct: 0 },
-            { q: "Which class contains the 25th percentile ($P_{25}$)?", options: ["20 - 24", "15 - 19", "10 - 14", "25 - 29"], correct: 0 },
-            { q: "The frequency density for the class 20 - 24 is:", options: ["4.5", "3.6", "18", "0.9"], correct: 2 },
+                const quiz = new QuizEngine(
+                    quizData.questions,           // Pass only the questions array
+                    quizData.title,               // Quiz title
+                    "quizzes/statistics.html"     // Current page path (for recent attempts)
+                );
 
-            // Case Study 3 - Cumulative Frequency
-            { q: "Find the median position.", options: ["100th", "50th", "25th", "70th"], correct: 1 },
-            { q: "In which interval does the median lie?", options: ["40.5 - 60.5", "20.5 - 40.5", "60.5 - 80.5", "80.5 - 100.5"], correct: 0 },
-            { q: "Calculate the number of observations between 40.5 and 80.5.", options: ["70", "55", "35", "90"], correct: 3 },
-            { q: "What is the frequency of the class 40.5 - 60.5?", options: ["70", "35", "105", "10"], correct: 1 },
-            { q: "Estimate the value of the 90th percentile.", options: ["100.5", "80.5", "60.5", "90"], correct: 0 },
-
-            // General Statistics Questions
-            { q: "Which scale of measurement allows for a 'true zero' point?", options: ["Interval", "Ratio", "Nominal", "Ordinal"], correct: 1 },
-            { q: "The sum of the squares of deviations is minimized when taken about the:", options: ["Median", "Mean", "Mode", "Variance"], correct: 1 },
-            { q: "The standard deviation of $k, k, k, k$ is:", options: ["$k$", "0", "1", "$k^2$"], correct: 1 },
-            { q: "If the mean of $x, x+2, x+4$ is 10, find $x$.", options: ["10", "8", "6", "12"], correct: 1 },
-            { q: "Find the variance of the first 3 natural numbers (1, 2, 3).", options: ["1", "2/3", "2", "4/3"], correct: 0 },
-            { q: "The coefficient of variation is calculated as:", options: ["(Mean / SD) * 100", "(SD / Mean) * 100", "SD²", "Range / 2"], correct: 1 },
-            { q: "A distribution with two modes is called:", options: ["Skewed", "Bimodal", "Normal", "Discrete"], correct: 1 },
-            { q: "What happens to the Standard Deviation if 5 is added to every score?", options: ["Increases by 5", "Remains unchanged", "Increases by 25", "Multiplies by 5"], correct: 1 },
-            { q: "The middle value of the lower half of a data set is the:", options: ["Median", "First Quartile", "Third Quartile", "Mode"], correct: 1 },
-            { q: "In a pie chart, a frequency of 15 out of 60 total corresponds to:", options: ["90 degrees", "15 degrees", "60 degrees", "45 degrees"], correct: 0 },
-            { q: "The area of a bar in a histogram is proportional to the:", options: ["Class Width", "Frequency", "Midpoint", "Cumulative Frequency"], correct: 1 },
-            { q: "Mean deviation is always:", options: ["Negative", "Non-negative", "Zero", "One"], correct: 1 },
-            { q: "If Mean > Median > Mode, the distribution is:", options: ["Negatively skewed", "Positively skewed", "Symmetric", "Uniform"], correct: 1 },
-            { q: "Find the harmonic mean of 2 and 4.", options: ["3.00", "2.67", "2.00", "3.50"], correct: 1 },
-            { q: "Which graph is used to find the Mode of grouped data?", options: ["Ogive", "Histogram", "Pie Chart", "Scatter Plot"], correct: 1 },
-            { q: "Calculate the geometric mean of 4 and 9.", options: ["6", "6.5", "36", "13"], correct: 0 },
-            { q: "The interquartile range covers what percentage of the data?", options: ["25%", "50%", "75%", "100%"], correct: 1 },
-            { q: "A sample of 5 numbers has a mean of 7. If a 6th number 'x' makes the new mean 8, find x.", options: ["15", "13", "8", "1"], correct: 1 },
-            { q: "Identify the qualitative variable:", options: ["Height", "Religion", "Age", "Income"], correct: 1 },
-            { q: "The sum of absolute deviations from the median is:", options: ["Maximum", "Minimum", "Zero", "One"], correct: 1 },
-            { q: "Which measure is best for 'Open-ended' classes?", options: ["Mean", "Median", "Standard Deviation", "Range"], correct: 1 },
-            { q: "If $\\sum f = 20$ and $\\sum fx = 100$, the mean is:", options: ["2000", "5", "0.2", "80"], correct: 1 },
-            { q: "The square root of variance is:", options: ["Mean Deviation", "Standard Deviation", "Range", "Quartile"], correct: 1 }
-        ];
-
-        const container = document.getElementById('questions-container');
-
-        function renderQuestions() {
-            questions.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = "question-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm mb-4";
-                div.innerHTML = `
-                    <div class="font-bold text-slate-800 mb-4 flex items-start">
-                        <span class="bg-indigo-600 text-white rounded-lg w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 text-xs shadow-md">${index + 1}</span>
-                        <span class="mt-1">${item.q}</span>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        ${item.options.map((opt, i) => `
-                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-indigo-50 hover:border-indigo-100 transition-colors">
-                                <input type="radio" name="q${index}" value="${i}" required class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
-                                <span class="ml-3 text-slate-700">${opt}</span>
-                            </label>
-                        `).join('')}
-                    </div>
-                `;
-                container.appendChild(div);
-            });
-
-            if (window.renderMathInElement) {
-                renderMathInElement(container, {
-                    delimiters: [
-                        { left: "$", right: "$", display: false },
-                        { left: "$$", right: "$$", display: true }
-                    ]
-                });
+                quiz.init();
+            } catch (error) {
+                console.error("Failed to load questions:", error);
+                alert("Error loading quiz questions. Please check if data/statistics.json exists.");
             }
         }
 
-        window.addEventListener('DOMContentLoaded', renderQuestions);
-
-        document.getElementById('quizForm').onsubmit = function (e) {
-            let score = 0;
-            questions.forEach((item, index) => {
-                const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                if (selected && parseInt(selected.value) === item.correct) {
-                    score++;
-                }
-            });
-
-            const percent = ((score / questions.length) * 100).toFixed(1);
-            const scoreSummary = `${score}/${questions.length} (${percent}%)`;
-            document.getElementById('score_field').value = scoreSummary;
-
-            const name = document.getElementsByName('student_name')[0].value;
-            document.getElementById('email_subject').value = `Statistics Quiz Score: ${scoreSummary} | ${name}`;
-
-            if (!confirm(`Click OK to submit to Mr. Nyantakyi Francis. Your results would be sent to you via email or whatsapp`)) {
-                e.preventDefault();
-            }
-        };
+        // Start the quiz when page loads
+        document.addEventListener('DOMContentLoaded', loadAndStartQuiz);
     </script>
 </body>
 

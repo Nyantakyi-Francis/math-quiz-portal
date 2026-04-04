@@ -1,0 +1,206 @@
+{
+  "title": "Statistics",
+  "module": 10,
+  "questions": [
+    {
+      "q": "The table shows the scores of 40 students in a Mathematics test: <br>Score | 5 | 6 | 7 | 8 | 9 | 10<br>Frequency | 4 | 7 | 12 | 9 | 5 | 3<br>Calculate the value of $m$ if the modal score is 7.",
+      "options": ["7", "9", "12", "5"],
+      "correct": 0
+    },
+    {
+      "q": "Using the distribution above, calculate the mean score.",
+      "options": ["7.45", "7.25", "7.60", "6.95"],
+      "correct": 0
+    },
+    {
+      "q": "Find the median mark from the distribution of 40 students.",
+      "options": ["7", "7.5", "8", "6.5"],
+      "correct": 1
+    },
+    {
+      "q": "Determine the range of the scores in the distribution.",
+      "options": ["5", "10", "6", "15"],
+      "correct": 0
+    },
+    {
+      "q": "If a student is picked at random from the 40 students, what is the probability that the student scored less than 7?",
+      "options": ["11/40", "18/40", "23/40", "7/40"],
+      "correct": 0
+    },
+    {
+      "q": "The table below shows the time (in minutes) taken by 50 students to complete a task:<br>Class Interval | 15-19 | 20-24 | 25-29 | 30-34<br>Frequency | 8 | 18 | 15 | 9<br>State the modal class.",
+      "options": ["20 - 24", "25 - 29", "15 - 19", "30 - 34"],
+      "correct": 0
+    },
+    {
+      "q": "Calculate the class width for the grouped data above.",
+      "options": ["5", "4", "4.5", "10"],
+      "correct": 0
+    },
+    {
+      "q": "Estimate the mean time taken by the students using the grouped data.",
+      "options": ["24.8 min", "23.9 min", "25.4 min", "22.5 min"],
+      "correct": 0
+    },
+    {
+      "q": "Find the upper class boundary of the class 20 - 24.",
+      "options": ["24.5", "25", "24", "19.5"],
+      "correct": 0
+    },
+    {
+      "q": "The frequency density for the class 20 - 24 is:",
+      "options": ["3.6", "4.5", "18", "0.9"],
+      "correct": 0
+    },
+    {
+      "q": "Using the cumulative frequency table for 100 students, the median lies in which class interval?",
+      "options": ["40.5 - 60.5", "60.5 - 80.5", "20.5 - 40.5", "80.5 - 100.5"],
+      "correct": 0
+    },
+    {
+      "q": "Find the median position for a distribution with 100 observations.",
+      "options": ["50th", "100th", "25th", "70th"],
+      "correct": 0
+    },
+    {
+      "q": "Estimate the number of students who scored between 40.5 and 80.5 marks.",
+      "options": ["70", "55", "35", "90"],
+      "correct": 0
+    },
+    {
+      "q": "Estimate the value of the 90th percentile from the cumulative frequency curve.",
+      "options": ["85", "92", "78", "100"],
+      "correct": 0
+    },
+    {
+      "q": "The sum of the squares of deviations from the mean is minimized when calculated about the:",
+      "options": ["Mean", "Median", "Mode", "Variance"],
+      "correct": 0
+    },
+    {
+      "q": "The standard deviation of the data set $k, k, k, k$ is:",
+      "options": ["0", "$k$", "1", "$k^2$"],
+      "correct": 0
+    },
+    {
+      "q": "If the mean of $x, x+2, x+4$ is 10, find the value of $x$.",
+      "options": ["8", "10", "6", "12"],
+      "correct": 0
+    },
+    {
+      "q": "Find the variance of the first three natural numbers 1, 2, 3.",
+      "options": ["2/3", "1", "2", "4/3"],
+      "correct": 0
+    },
+    {
+      "q": "The coefficient of variation is given by the formula:",
+      "options": ["(SD / Mean) × 100", "(Mean / SD) × 100", "SD²", "Range / 2"],
+      "correct": 0
+    },
+    {
+      "q": "A distribution with two modes is described as:",
+      "options": ["Bimodal", "Skewed", "Normal", "Discrete"],
+      "correct": 0
+    },
+    {
+      "q": "What happens to the standard deviation when 5 is added to every score in a data set?",
+      "options": ["Remains unchanged", "Increases by 5", "Increases by 25", "Multiplies by 5"],
+      "correct": 0
+    },
+    {
+      "q": "The middle value of the lower half of an ordered data set is called the:",
+      "options": ["First Quartile", "Median", "Third Quartile", "Mode"],
+      "correct": 0
+    },
+    {
+      "q": "In a pie chart, a frequency of 15 out of a total frequency of 60 corresponds to an angle of:",
+      "options": ["90°", "15°", "60°", "45°"],
+      "correct": 0
+    },
+    {
+      "q": "The area of each bar in a histogram is proportional to the:",
+      "options": ["Frequency", "Class width", "Midpoint", "Cumulative frequency"],
+      "correct": 0
+    },
+    {
+      "q": "Mean deviation is always:",
+      "options": ["Non-negative", "Zero", "Negative", "One"],
+      "correct": 0
+    },
+    {
+      "q": "If Mean > Median > Mode, the distribution is:",
+      "options": ["Positively skewed", "Negatively skewed", "Symmetric", "Uniform"],
+      "correct": 0
+    },
+    {
+      "q": "Calculate the harmonic mean of 2 and 4.",
+      "options": ["2.67", "3.00", "2.00", "3.50"],
+      "correct": 0
+    },
+    {
+      "q": "Which graph is most suitable for finding the mode of grouped data?",
+      "options": ["Histogram", "Ogive", "Pie Chart", "Scatter Plot"],
+      "correct": 0
+    },
+    {
+      "q": "Calculate the geometric mean of 4 and 9.",
+      "options": ["6", "6.5", "36", "13"],
+      "correct": 0
+    },
+    {
+      "q": "The interquartile range covers what percentage of the data?",
+      "options": ["50%", "25%", "75%", "100%"],
+      "correct": 0
+    },
+    {
+      "q": "A sample of 5 numbers has a mean of 7. If a 6th number $x$ is added and the new mean becomes 8, find $x$.",
+      "options": ["13", "15", "8", "1"],
+      "correct": 0
+    },
+    {
+      "q": "Which of the following is a qualitative variable?",
+      "options": ["Religion", "Height", "Age", "Income"],
+      "correct": 0
+    },
+    {
+      "q": "The sum of absolute deviations from the median is:",
+      "options": ["Minimum", "Maximum", "Zero", "One"],
+      "correct": 0
+    },
+    {
+      "q": "Which measure of central tendency is most suitable for data with open-ended classes?",
+      "options": ["Median", "Mean", "Mode", "Range"],
+      "correct": 0
+    },
+    {
+      "q": "If $\\sum f = 20$ and $\\sum fx = 100$, the arithmetic mean is:",
+      "options": ["5", "2000", "0.2", "80"],
+      "correct": 0
+    },
+    {
+      "q": "The square root of the variance is known as the:",
+      "options": ["Standard Deviation", "Mean Deviation", "Range", "Quartile Deviation"],
+      "correct": 0
+    },
+    {
+      "q": "The table shows marks of students: 40-49 (8), 50-59 (15), 60-69 (22), 70-79 (10), 80-89 (5). Estimate the median mark.",
+      "options": ["62", "65", "58", "71"],
+      "correct": 0
+    },
+    {
+      "q": "From the grouped frequency distribution above, calculate the estimated mean.",
+      "options": ["63.5", "61.8", "65.2", "60.4"],
+      "correct": 0
+    },
+    {
+      "q": "In the distribution of 60 students, the 25th percentile ($P_{25}$) lies in which class?",
+      "options": ["50-59", "40-49", "60-69", "70-79"],
+      "correct": 0
+    },
+    {
+      "q": "The condition for a distribution to be positively skewed is:",
+      "options": ["Mean > Median > Mode", "Mean < Median < Mode", "Mean = Median = Mode", "Mode > Median > Mean"],
+      "correct": 0
+    }
+  ]
+}

@@ -1,8 +1,0 @@
-1. work on year 2
-2. update the landing page
-3. integrate it into your website
-4. change Advanced counting to  actual name
-5. vary the corect answers accross all
-6. anti cheat shuffle
-
-    
