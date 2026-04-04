@@ -11,7 +11,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
 
     <link rel="stylesheet" href="../style.css">
     <!-- Configuration and utilities must be loaded before quiz-engine -->
@@ -66,6 +67,8 @@
                 </div>
             </div>
 
+            </div>
+
             <div id="questions-container" class="space-y-6"></div>
 
             <input type="hidden" name="quiz_topic" id="quiz_topic" value="">
@@ -87,6 +90,97 @@
     <script src="../js/quiz-engine.js"></script>
 
     <script>
+        // Table HTML templates
+        const tables = {
+            table1: `
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-indigo-500 mb-6">
+                    <h3 class="font-bold text-lg mb-4 text-indigo-700">Table 1: Scores of 40 Students in Mathematics Test</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-slate-300">
+                            <thead>
+                                <tr class="bg-indigo-100">
+                                    <th class="border border-slate-300 px-4 py-2 text-left">Score</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">5</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">6</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">7</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">8</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">9</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">10</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-slate-300 px-4 py-2 font-semibold">Frequency</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">4</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">7</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">12</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">9</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">5</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `,
+            table2: `
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-lg mb-4 text-blue-700">Table 2: Time Taken by 50 Students to Complete a Task</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-slate-300">
+                            <thead>
+                                <tr class="bg-blue-100">
+                                    <th class="border border-slate-300 px-4 py-2 text-left">Class Interval (min)</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">15-19</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">20-24</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">25-29</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">30-34</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-slate-300 px-4 py-2 font-semibold">Frequency</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">8</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">18</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">15</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">9</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `,
+            table3: `
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-lg mb-4 text-green-700">Table 3: Marks Distribution of Students</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-slate-300">
+                            <thead>
+                                <tr class="bg-green-100">
+                                    <th class="border border-slate-300 px-4 py-2 text-left">Marks (Class)</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">40-49</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">50-59</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">60-69</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">70-79</th>
+                                    <th class="border border-slate-300 px-4 py-2 text-center">80-89</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-slate-300 px-4 py-2 font-semibold">Frequency</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">8</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">15</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">22</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">10</td>
+                                    <td class="border border-slate-300 px-4 py-2 text-center">5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `
+        };
+
         // Load questions from JSON and start quiz
         async function loadAndStartQuiz() {
             try {
@@ -100,6 +194,33 @@
                 );
 
                 quiz.init();
+
+                // Insert tables at appropriate positions
+                setTimeout(() => {
+                    const container = document.getElementById('questions-container');
+                    const questionCards = container.querySelectorAll('.question-card');
+                    
+                    // Insert Table 1 before question 1 (index 0)
+                    if (questionCards[0]) {
+                        questionCards[0].insertAdjacentHTML('beforebegin', tables.table1);
+                    }
+                    
+                    // Insert Table 2 before question 6 (index 5)
+                    if (questionCards[5]) {
+                        questionCards[5].insertAdjacentHTML('beforebegin', tables.table2);
+                    }
+                    
+                    // Insert Table 3 before question 28 (index 27)
+                    if (questionCards[27]) {
+                        questionCards[27].insertAdjacentHTML('beforebegin', tables.table3);
+                    }
+
+                    // Re-render math after tables are inserted
+                    if (window.renderMathInElement) {
+                        renderMathInElement(document.body);
+                    }
+                }, 100);
+
             } catch (error) {
                 console.error("Failed to load questions:", error);
                 alert("Error loading quiz questions. Please check if data/statistics.json exists.");

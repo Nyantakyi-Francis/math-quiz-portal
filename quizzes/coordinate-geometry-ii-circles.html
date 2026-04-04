@@ -113,14 +113,14 @@
 
         // Start the quiz when page loads
         document.addEventListener('DOMContentLoaded', loadAndStartQuiz);
-    </script>
+    
             const module = CONFIG.getModuleById('coordinate-geometry');
             
             if (quizForm && module) {
                 quizForm.action = CONFIG.form.formspreeEndpoint;
                 document.getElementById('quiz_topic').value = module.formTopic;
             }
-        });
+        ;
     </script>
 </body>
 

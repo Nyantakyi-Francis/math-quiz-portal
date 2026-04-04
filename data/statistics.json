@@ -3,52 +3,52 @@
   "module": 10,
   "questions": [
     {
-      "q": "The table shows the scores of 40 students in a Mathematics test: <br>Score | 5 | 6 | 7 | 8 | 9 | 10<br>Frequency | 4 | 7 | 12 | 9 | 5 | 3<br>Calculate the value of $m$ if the modal score is 7.",
+      "q": "Using <strong>Table 1</strong>, calculate the value of $m$ if the modal score is 7.",
       "options": ["7", "9", "12", "5"],
       "correct": 0
     },
     {
-      "q": "Using the distribution above, calculate the mean score.",
+      "q": "Using <strong>Table 1</strong>, calculate the mean score.",
       "options": ["7.45", "7.25", "7.60", "6.95"],
       "correct": 0
     },
     {
-      "q": "Find the median mark from the distribution of 40 students.",
+      "q": "Using <strong>Table 1</strong>, find the median mark from the distribution of 40 students.",
       "options": ["7", "7.5", "8", "6.5"],
       "correct": 1
     },
     {
-      "q": "Determine the range of the scores in the distribution.",
+      "q": "Using <strong>Table 1</strong>, determine the range of the scores in the distribution.",
       "options": ["5", "10", "6", "15"],
       "correct": 0
     },
     {
-      "q": "If a student is picked at random from the 40 students, what is the probability that the student scored less than 7?",
+      "q": "Using <strong>Table 1</strong>, if a student is picked at random from the 40 students, what is the probability that the student scored less than 7?",
       "options": ["11/40", "18/40", "23/40", "7/40"],
       "correct": 0
     },
     {
-      "q": "The table below shows the time (in minutes) taken by 50 students to complete a task:<br>Class Interval | 15-19 | 20-24 | 25-29 | 30-34<br>Frequency | 8 | 18 | 15 | 9<br>State the modal class.",
+      "q": "Using <strong>Table 2</strong>, state the modal class.",
       "options": ["20 - 24", "25 - 29", "15 - 19", "30 - 34"],
       "correct": 0
     },
     {
-      "q": "Calculate the class width for the grouped data above.",
+      "q": "Using <strong>Table 2</strong>, calculate the class width for the grouped data.",
       "options": ["5", "4", "4.5", "10"],
       "correct": 0
     },
     {
-      "q": "Estimate the mean time taken by the students using the grouped data.",
+      "q": "Using <strong>Table 2</strong>, estimate the mean time taken by the students using the grouped data.",
       "options": ["24.8 min", "23.9 min", "25.4 min", "22.5 min"],
       "correct": 0
     },
     {
-      "q": "Find the upper class boundary of the class 20 - 24.",
+      "q": "Using <strong>Table 2</strong>, find the upper class boundary of the class 20 - 24.",
       "options": ["24.5", "25", "24", "19.5"],
       "correct": 0
     },
     {
-      "q": "The frequency density for the class 20 - 24 is:",
+      "q": "Using <strong>Table 2</strong>, calculate the frequency density for the class 20 - 24.",
       "options": ["3.6", "4.5", "18", "0.9"],
       "correct": 0
     },
@@ -183,17 +183,17 @@
       "correct": 0
     },
     {
-      "q": "The table shows marks of students: 40-49 (8), 50-59 (15), 60-69 (22), 70-79 (10), 80-89 (5). Estimate the median mark.",
+      "q": "Using <strong>Table 3</strong>, estimate the median mark.",
       "options": ["62", "65", "58", "71"],
       "correct": 0
     },
     {
-      "q": "From the grouped frequency distribution above, calculate the estimated mean.",
+      "q": "Using <strong>Table 3</strong>, calculate the estimated mean.",
       "options": ["63.5", "61.8", "65.2", "60.4"],
       "correct": 0
     },
     {
-      "q": "In the distribution of 60 students, the 25th percentile ($P_{25}$) lies in which class?",
+      "q": "Using <strong>Table 3</strong>, the 25th percentile ($P_{25}$) lies in which class?",
       "options": ["50-59", "40-49", "60-69", "70-79"],
       "correct": 0
     },
