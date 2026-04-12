@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,22 +13,26 @@
     <script src="js/config.js"></script>
     <script src="shared/script.js"></script>
 </head>
-
 <body class="min-h-screen bg-slate-50">
 
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
+    <nav class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
                 <div class="flex items-center gap-2">
                     <div
-                        class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
-                        <span class="text-white font-bold text-xl">NF</span>
+                        class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 shadow-lg shadow-indigo-200">
+                        <span class="text-xl font-bold text-white">NF</span>
                     </div>
-                    <span class="font-bold text-slate-800 text-lg hidden sm:block">Nyantakyi Francis</span>
+                    <span class="hidden text-lg font-bold text-slate-800 sm:block">Nyantakyi Francis</span>
                 </div>
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <a href="#about-instructor"
+                        class="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 transition hover:bg-indigo-100">
+                        <i class="fas fa-user-graduate text-xs"></i>
+                        <span>About Instructor</span>
+                    </a>
                     <span
-                        class="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1 rounded-full uppercase tracking-tighter">
+                        class="hidden rounded-full bg-slate-100 px-3 py-1 text-sm font-medium uppercase tracking-tighter text-slate-500 sm:inline-flex">
                         <span id="nav-year"></span>
                     </span>
                 </div>
@@ -37,7 +40,7 @@
         </div>
     </nav>
 
-    <div class="relative overflow-hidden bg-indigo-900 pt-16 pb-32">
+    <div class="relative overflow-hidden bg-indigo-900 pb-32 pt-16">
         <div class="absolute inset-0 opacity-10">
             <svg class="h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
                 <path d="M0 0 L100 0 L100 100 L0 100 Z" fill="url(#grid)" />
@@ -49,96 +52,100 @@
             </svg>
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
+        <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-3xl text-center">
+                <h1 class="mb-6 text-4xl font-extrabold tracking-tight text-white md:text-6xl">
                     Master Elective <span class="text-indigo-400">Mathematics</span>
                 </h1>
-                <p class="text-lg text-indigo-100 mb-10 leading-relaxed">
+                <p class="mb-10 text-lg leading-relaxed text-indigo-100">
                     A comprehensive testing suite curated by <strong>Nyantakyi Francis</strong> for students preparing
                     for mathematical excellence.
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <div
-                        class="flex items-center bg-white/10 px-4 py-2 rounded-full border border-white/20 text-indigo-100 text-sm">
-                        <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-                        11 Modules • 440 Questions
+                    <div id="hero-stats"
+                        class="flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-indigo-100">
+                        <span class="mr-2 h-2 w-2 animate-pulse rounded-full bg-green-400"></span>
+                        11 Modules &bull; 440 Questions
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-20">
+    <main class="-mt-16 mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
 
         <!-- Search Bar -->
         <div class="mb-10">
-            <div class="relative max-w-md mx-auto">
+            <div class="relative mx-auto max-w-md">
                 <input type="text" id="searchInput" placeholder="Search modules..."
-                    class="w-full pl-12 pr-6 py-4 bg-white border border-slate-300 rounded-3xl focus:outline-none focus:border-indigo-500 shadow-sm text-lg"
+                    class="w-full rounded-3xl border border-slate-300 bg-white py-4 pl-12 pr-6 text-lg shadow-sm focus:border-indigo-500 focus:outline-none"
                     onkeyup="filterModules()">
-                <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 text-xl"></i>
+                <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-xl text-slate-400"></i>
             </div>
         </div>
 
         <!-- Recently Attempted -->
-        <div id="recent-section" class="hidden mb-12">
-            <h2 class="text-xl font-semibold text-slate-700 mb-4 flex items-center gap-2">
+        <div id="recent-section" class="mb-12 hidden">
+            <h2 class="mb-4 flex items-center gap-2 text-xl font-semibold text-slate-700">
                 <i class="fas fa-history"></i> Recently Attempted
             </h2>
-            <div id="recent-modules" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div id="recent-modules" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
         </div>
 
         <!-- All Modules -->
-        <h2 class="text-2xl font-bold text-slate-800 mb-6">All Modules</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="modules-grid">
+        <h2 class="mb-6 text-2xl font-bold text-slate-800">All Modules</h2>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" id="modules-grid">
             <!-- Populated by JavaScript -->
         </div>
 
         <!-- About Instructor -->
-        <section
-            class="mt-20 bg-white rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-10">
-            <div
-                class="w-32 h-32 bg-indigo-100 rounded-full flex-shrink-0 overflow-hidden flex items-center justify-center">
-                <img src="dp.PNG" alt="Nyantakyi Francis" class="w-full h-full object-cover">
-            </div>
-            <div>
-                <h4 class="text-2xl font-bold text-slate-800 mb-2">About Your Instructor</h4>
-                <p class="text-slate-600 leading-relaxed mb-6">
-                    Nyantakyi Francis is dedicated to providing rigorous digital resources for Elective Mathematics.
-                    This platform offers structured practice to ensure examination success.
-                </p>
-                <a href="https://nyantakyi-francis.github.io/portfolio/index.html" target="_blank"
-                    class="bg-slate-800 text-white px-6 py-2 rounded-full text-sm font-semibold inline-block hover:bg-slate-900 transition">
-                    Contact Instructor
-                </a>
+        <section id="about-instructor"
+            class="relative mt-20 overflow-hidden rounded-3xl border border-indigo-100 bg-gradient-to-br from-white via-indigo-50 to-slate-100 p-8 shadow-lg shadow-indigo-100/70 md:p-12">
+            <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-indigo-200/40 blur-3xl"></div>
+            <div class="relative flex flex-col items-center gap-10 md:flex-row">
+                <div
+                    class="h-32 w-32 flex-shrink-0 overflow-hidden rounded-full bg-indigo-100 shadow-md ring-4 ring-white">
+                    <img src="dp.PNG" alt="Nyantakyi Francis" class="h-full w-full object-cover">
+                </div>
+                <div>
+                    <span
+                        class="mb-4 inline-flex rounded-full bg-white px-4 py-1 text-xs font-bold uppercase tracking-[0.2em] text-indigo-700 shadow-sm">
+                        Meet Your Instructor
+                    </span>
+                    <h4 class="mb-2 text-2xl font-bold text-slate-800">About Your Instructor</h4>
+                    <p class="mb-6 max-w-2xl leading-relaxed text-slate-600">
+                        Nyantakyi Francis is dedicated to providing rigorous digital resources for Elective Mathematics.
+                        This platform offers structured practice, guided revision, and exam-focused preparation to help
+                        students build confidence before test day.
+                    </p>
+                    <a href="https://nyantakyi-francis.github.io/portfolio/index.html" target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 rounded-full bg-slate-800 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-900">
+                        <span>Contact Instructor</span>
+                        <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-sm">© <span id="footer-year"></span> Math Quiz Portal. All Rights Reserved.</p>
-            <p class="text-xs mt-2 italic">Curated by Nyantakyi Francis</p>
+    <footer class="bg-slate-900 py-12 text-slate-400">
+        <div class="mx-auto max-w-7xl px-4 text-center">
+            <p class="text-sm">&copy; <span id="footer-year"></span> Math Quiz Portal. All Rights Reserved.</p>
+            <p class="mt-2 text-xs italic">Curated by Nyantakyi Francis</p>
         </div>
     </footer>
 
     <script>
-        // Initialize year display (calls displayCurrentYear from shared/script.js)
-        // This will populate #nav-year and #footer-year automatically
-        
-        // Use CONFIG.modules instead of hardcoded modules
         const modules = CONFIG.modules;
-        
-        // Display "11 Modules • 440 Questions" using CONFIG data
-        document.addEventListener('DOMContentLoaded', function() {
-            const stats = document.querySelector('.flex.items-center.bg-white');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const stats = document.getElementById('hero-stats');
             if (stats) {
-                stats.textContent = `11 Modules • ${CONFIG.getTotalQuestions()} Questions`;
+                stats.innerHTML = `<span class="mr-2 h-2 w-2 animate-pulse rounded-full bg-green-400"></span>${CONFIG.getTotalModules()} Modules &bull; ${CONFIG.getTotalQuestions()} Questions`;
             }
         });
 
-        // Render all modules
         function renderModules(filteredModules = modules) {
             const grid = document.getElementById('modules-grid');
             grid.innerHTML = '';
@@ -146,38 +153,38 @@
             filteredModules.forEach(mod => {
                 const card = document.createElement('a');
                 card.href = mod.link;
-                card.className = `course-card glass-card rounded-2xl p-6 border border-slate-200 flex flex-col h-full group hover:shadow-xl transition-all`;
+                card.className = 'course-card glass-card group flex h-full flex-col rounded-2xl border border-slate-200 p-6 transition-all hover:shadow-xl';
 
                 card.innerHTML = `
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-bold text-${mod.color}-600 bg-${mod.color}-50 px-3 py-1 rounded-full">
+                    <div class="mb-4 flex items-start justify-between">
+                        <span class="rounded-full bg-${mod.color}-50 px-3 py-1 text-xs font-bold text-${mod.color}-600">
                             MODULE ${mod.moduleNum}
                         </span>
-                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-slate-100 text-slate-600">
+                        <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
                             ${mod.difficulty}
                         </span>
                     </div>
-                    
-                    <h3 class="text-xl font-bold text-slate-800 mb-3 leading-tight">${mod.title}</h3>
-                    
-                    <p class="text-slate-500 text-sm mb-6 flex-grow">
-                        40 Questions • Practice for WASSCE / BECE
+
+                    <h3 class="mb-3 text-xl font-bold leading-tight text-slate-800">${mod.title}</h3>
+
+                    <p class="mb-6 flex-grow text-sm text-slate-500">
+                        ${mod.questions} Questions &bull; Practice for WASSCE / BECE
                     </p>
-                    
-                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
-                        <span class="text-emerald-600 text-sm font-medium flex items-center gap-1">
+
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-4">
+                        <span class="flex items-center gap-1 text-sm font-medium text-emerald-600">
                             <i class="fas fa-check-circle"></i> Ready
                         </span>
-                        <span class="text-indigo-600 font-semibold text-sm group-hover:translate-x-1 transition-transform">
-                            Start Quiz →
+                        <span class="text-sm font-semibold text-indigo-600 transition-transform group-hover:translate-x-1">
+                            Start Quiz &rarr;
                         </span>
                     </div>
                 `;
+
                 grid.appendChild(card);
             });
         }
 
-        // Search functionality
         function filterModules() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
 
@@ -188,9 +195,8 @@
             renderModules(filtered);
         }
 
-        // Recently Attempted Section
         function loadRecentAttempts() {
-            const recent = getRecentQuizzes(); // Using function from shared/script.js
+            const recent = getRecentQuizzes();
             const container = document.getElementById('recent-modules');
             const section = document.getElementById('recent-section');
 
@@ -207,24 +213,23 @@
 
                 const div = document.createElement('a');
                 div.href = item.link;
-                div.className = `bg-white rounded-2xl p-6 border border-slate-200 flex flex-col hover:border-indigo-300 transition-all`;
+                div.className = 'flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:border-indigo-300';
                 div.innerHTML = `
                     <div class="flex justify-between">
                         <span class="text-xs font-medium text-${mod.color}-600">${item.title}</span>
                         <span class="text-xs text-slate-500">${item.score}</span>
                     </div>
-                    <p class="text-slate-400 text-xs mt-4">Attempted: ${new Date(item.timestamp).toLocaleDateString()}</p>
+                    <p class="mt-4 text-xs text-slate-400">Attempted: ${new Date(item.timestamp).toLocaleDateString()}</p>
                 `;
+
                 container.appendChild(div);
             });
         }
 
-        // Initialize
-        window.onload = () => {
+        window.addEventListener('load', () => {
             renderModules();
             loadRecentAttempts();
-        };
+        });
     </script>
 </body>
-
 </html>
