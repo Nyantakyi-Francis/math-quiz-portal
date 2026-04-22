@@ -1,175 +1,116 @@
-# Math Quiz Portal | Elective Mathematics Prep
+# Math Quiz Portal
 
-A premium, interactive web platform designed for students preparing for the **Elective Mathematics** component of the WASSCE examinations. Curated and maintained by **Nyantakyi Francis**, this portal serves as a centralized hub for rigorous mathematical testing and student outreach.
+The project is now being migrated from a static quiz site into a modular learner platform built for:
 
----
+- `Next.js` on Vercel
+- `Supabase Auth`
+- `Supabase Postgres`
+- protected learner dashboards
+- admin performance monitoring
+- in-app messaging
 
-## 🚀 General Information
+## What is already scaffolded
 
-The Math Quiz Portal provides a structured environment for students to master complex mathematical concepts through high-fidelity, real-time quizzes. The platform is built with a focus on:
+- Public landing page at `/`
+- Auth pages at `/login` and `/signup`
+- Protected routes at `/dashboard`, `/messages`, `/modules/[slug]`, and `/admin`
+- Supabase SSR helpers and auth middleware
+- Initial Postgres schema in [supabase/schema.sql](./supabase/schema.sql)
+- Initial module seed in [supabase/seed.sql](./supabase/seed.sql)
+- Legacy quiz metadata mapped into [lib/data/modules.ts](./lib/data/modules.ts)
 
-- **Examination Standards:** Questions modeled after WASSCE elective math requirements.
-- **Instant Feedback:** Real-time scoring and corrections within each module.
-- **Progress Tracking:** Recent quiz attempts saved locally for continued learning.
-- **Accessibility:** A fully responsive design optimized for mobile phones, tablets, and desktops.
+## Current migration principle
 
----
+The existing static quiz files are still in the repo as source material, but the new app layer is where protected access, scoring, messaging, and admin workflows will live. That keeps the migration incremental instead of forcing a risky rewrite.
 
-## 🛠️ Technical Stack
+## Local setup
 
-| Component            | Technology                       |
-| -------------------- | -------------------------------- |
-| **Frontend**         | HTML5, Tailwind CSS              |
-| **Typography**       | Plus Jakarta Sans (Google Fonts) |
-| **Icons**            | SVG-based iconography            |
-| **Logic**            | Vanilla JavaScript               |
-| **Math Rendering**   | LaTeX-style syntax               |
-| **Contact Handling** | Formspree                        |
+1. Install dependencies:
 
----
-
-## ✨ Key Features
-
-- **11 Interactive Modules** covering all major Elective Mathematics topics
-- **440+ Practice Questions** with randomized answer options
-- **Search Functionality** to quickly find specific topics
-- **Progress Tracking** with localStorage for recent quiz attempts
-- **Responsive Design** optimized for all device sizes
-- **Math Rendering** with KaTeX for beautiful mathematical expressions
-- **Modular Architecture** for easy maintenance and expansion
-
----
-
-```text
-/
-├── index.html                   # Main portal landing page
-├── README.md                    # Project documentation
-├── style.css                    # Shared stylesheets
-├── dp.PNG                       # Profile image
-├── js/                          # JavaScript utilities
-│   ├── config.js                # Centralized configuration
-│   └── quiz-engine.js           # Quiz rendering and scoring logic
-├── shared/                      # Shared components and utilities
-│   └── script.js                # Common JavaScript functions
-├── data/                        # Quiz question data
-│   ├── binary-sets-binomial.json
-│   ├── combinations-probability.json
-│   ├── coordinate-geometry.json
-│   ├── limits-differentiation.json
-│   ├── matrices.json
-│   ├── sequences-functions.json
-│   ├── statistics.json
-│   ├── straight-lines.json
-│   ├── surds-indices-logs.json
-│   ├── trigonometry.json
-│   └── vectors.json
-└── quizzes/                     # Individual quiz modules
-    ├── binary-sets-binomial.html
-    ├── combinations-permutations-and-probability.html
-    ├── coordinate-geometry-ii-circles.html
-    ├── limits-and-differentiation.html
-    ├── matrices.html
-    ├── sequences-functions.html
-    ├── statistics.html
-    ├── straight-lines.html
-    ├── surds-indices-logs.html
-    ├── trigonometry.html
-    └── vectors.html
+```bash
+npm install
 ```
 
----
+2. Create `.env.local` from `.env.example` and add:
 
-## 🔧 Maintenance & Future Updates
+```bash
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
 
-### Adding New Quiz Modules
+3. In Supabase SQL Editor, run:
 
-The portal is modular and can be expanded easily:
+- [supabase/schema.sql](./supabase/schema.sql)
+- [supabase/seed.sql](./supabase/seed.sql)
 
-1. **Create File:** Add a new quiz file in the `/quizzes` folder (e.g., `trigonometry.html`).
-2. **Add Card:** Open `index.html` and duplicate an existing "Module Block" (`<a>` tag).
-3. **Update Info:** Change the `href` to point to your new file; update the module number, title, and description.
-4. **Counters:** Update the "Modules Online" text in the **Hero section** of `index.html` to reflect the total count.
+4. Start the app:
 
-### Design Customization
+```bash
+npm run dev
+```
 
-- **Branding:** The primary theme uses the Tailwind `indigo` palette. To change it, search and replace `indigo` with another Tailwind color (e.g., `blue`, `emerald`, or `rose`).
-- **Dynamic Dates:** The navigation bar and footer copyright years update automatically via JavaScript. No manual editing is required for year-to-year rollovers.
+## Suggested next phase
 
----
+1. Import one module from `data/*.json` into `modules`, `questions`, `question_options`, and `question_answer_keys`.
+2. Use the protected quiz runner at `/modules/[slug]`.
+3. Submit attempts into `attempts` and `attempt_answers`.
+4. Auto-create score messages in the learner inbox.
+5. Expand the admin page into real learner analytics and broadcast messaging.
 
-## 📋 Deployment Checklist
+## Importing a legacy module
 
-- [ ] Verify that all quiz file paths in `index.html` match the physical files in `/quizzes`.
-- [ ] Ensure all math formulas are wrapped in LaTeX delimiters ( or
+The first end-to-end migration path is now wired up for protected quiz delivery.
 
-) for proper rendering.
+Run:
 
-- [ ] Test the **"Contact Instructor"** modal to ensure the form submits to your linked ID.
+```bash
+npm run import:module -- binary-sets-binomial
+```
 
----
+To import every module from the `data/` folder in one go:
 
-TO DO
+```bash
+npm run import:all-modules
+```
 
-1. ✅ Create a shared style.css file
-   This will keep your design consistent across index.html and all quiz pages instead of repeating styling in many files.
+If you need to rebuild an already imported module:
 
-2. ✅ Create a shared script.js file
-   This will allow you to centralize common JavaScript features like navigation, scoring, timers, and saved progress.
+```bash
+npm run import:module -- binary-sets-binomial --replace
+```
 
-3. ✅ Add a data/ folder for quiz questions
-   Moving quiz questions into separate JavaScript or JSON-like files will make the project easier to manage and update than keeping everything inside each HTML file.
+What that script does:
 
-4. 🔄 Redesign index.html into a dashboard homepage
-   Your homepage should feel like a real learning platform by showing progress, quick actions, and featured modules before the topic list.
+- reads `data/<module-slug>.json`
+- inserts `questions`
+- inserts `question_options`
+- inserts `question_answer_keys`
+- updates `modules.question_count`
 
-5. Add a “Take Random Mock Exam” feature
-   This will make the site feel more advanced by generating a full mixed-topic test instead of only topic-by-topic quizzes.
+After import, open:
 
-6. Add a results page or results section to every quiz file
-   Students should see their score, percentage, corrections, and feedback immediately after completing a quiz.
+- `/modules/binary-sets-binomial`
 
-7. Add a “Review Mistakes” feature
-   This will turn the app from a simple testing website into a learning tool by allowing students to revisit questions they got wrong.
+Submitting the quiz now:
 
-8. ✅ Use localStorage to save progress
-   Saving scores, completed quizzes, and last-attempted topics will make the site feel smarter and more professional.
+- creates an `attempt`
+- stores `attempt_answers`
+- sends a score message into the learner inbox
+- updates dashboard/admin data sources
 
-9. Add performance analytics on the homepage
-   Showing best topic, weakest topic, total attempts, and average score will make the project much stronger for your portfolio.
+## Admin messaging
 
-10. ✅ Add a reusable navigation/header component pattern
-    Keeping the same header, footer, and buttons across pages will improve user experience and make the site look more polished.
+Once your account is marked as `admin` in the `profiles` table, the `/admin` page can:
 
-11. ✅ Improve the module cards on index.html
-    Each topic card should show the number of questions, difficulty, and progress so users can choose what to study faster.
+- view recent learners
+- review recent performance
+- send a direct message to one learner
+- broadcast an announcement to all learners
+- see recently sent messages and recipient counts
 
-12. Add a dedicated assets/ folder
-    This will help organize images like dp.PNG, icons, and future screenshots instead of leaving them in the root folder.
+## Notes
 
-13. ✅ Rename files for consistency
-    Using a cleaner naming pattern for all quiz files will make the project easier to maintain and more professional to present.
-
-14. 🔄 Add a footer with project information
-    A footer can show your name, portfolio link, GitHub link, and project purpose, which strengthens it as a portfolio item.
-
-15. ✅ Improve the README.md
-    A strong README will explain what the project does, its features, tech stack, screenshots, and future improvements for recruiters or collaborators.
-
-16. Add mobile responsiveness improvements
-    The site should be easier to use on phones since many students will likely access it on mobile devices.
-
-17. Add question explanations or hints
-    This will make the platform more educational by helping students understand why an answer is correct.
-
-18. Add a timer option for quizzes
-    A timer will simulate real exam conditions and make the platform more engaging and realistic.
-
-19. Add a progress bar inside quizzes
-    Showing question progress like “Question 4 of 20” will improve user experience and reduce confusion.
-
-20. ✅ Create a separate folder for reusable utilities
-    This will make future upgrades easier by separating helper logic such as scoring, shuffle functions, and storage functions from page-specific code.
-
----
-
-**Maintained by Nyantakyi Francis** _Empowering students through digital mathematical excellence._
+- `pgAdmin` is optional and can still be used to inspect your Postgres database, but Supabase is now the actual hosted Postgres backend for the app.
+- The schema intentionally keeps answer keys separate from visible question options so learners cannot read correct answers directly from the client-side data model.

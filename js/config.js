@@ -81,7 +81,7 @@ const CONFIG = {
             link: 'quizzes/sequences-functions.html',
             color: 'rose',
             moduleNum: 3,
-            questions: 40,
+            questions: 30,
             difficulty: 'Intermediate',
             formTopic: 'Sequences and Functions'
         },
