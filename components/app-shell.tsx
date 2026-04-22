@@ -19,7 +19,7 @@ export function AppShell({
 }: AppShellProps) {
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-40 border-b border-white/45 bg-white/50 shadow-[0_24px_60px_-42px_rgba(17,24,39,0.42)] backdrop-blur-2xl">
+      <header className="chrome-header sticky top-0 z-40 border-b border-white/45 bg-white/50 shadow-[0_24px_60px_-42px_rgba(17,24,39,0.42)] backdrop-blur-2xl">
         <div className="shell flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
             <div className="logo-mark">NF</div>

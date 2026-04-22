@@ -11,7 +11,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-white/45 bg-white/50 backdrop-blur-2xl">
+      <header className="chrome-header border-b border-white/45 bg-white/50 backdrop-blur-2xl">
         <div className="shell flex h-18 items-center justify-between py-4">
           <div className="flex items-center gap-3">
             <div className="logo-mark">NF</div>
