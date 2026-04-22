@@ -23,6 +23,7 @@ export default async function MessagesPage({ searchParams }: MessagesPageProps) 
       role={snapshot.role}
       title="Message Center"
       userEmail={snapshot.userEmail}
+      userPhone={snapshot.userPhone}
     >
       <div className="space-y-8">
         {snapshot.warning ? (
@@ -114,7 +115,9 @@ export default async function MessagesPage({ searchParams }: MessagesPageProps) 
                     <p className="mt-4 text-sm text-slate-600">
                       Delivering to{" "}
                       {snapshot.adminContacts
-                        .map((admin) => admin.fullName ?? admin.email)
+                        .map((admin) =>
+                          [admin.fullName ?? admin.email, admin.phone].filter(Boolean).join(" - ")
+                        )
                         .join(", ")}
                       .
                     </p>

@@ -21,6 +21,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
       role={snapshot.authorized ? "admin" : "learner"}
       title="Admin Console"
       userEmail={snapshot.userEmail}
+      userPhone={snapshot.userPhone}
     >
       <div className="space-y-8">
         {snapshot.warning ? (
@@ -146,6 +147,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
                           {learner.fullName ?? "Unnamed learner"}
                         </p>
                         <p className="text-slate-500">{learner.email}</p>
+                        {learner.phone ? <p className="text-slate-500">{learner.phone}</p> : null}
                         <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-400">
                           {learner.role} • joined {new Date(learner.joinedAt).toLocaleDateString()}
                         </p>

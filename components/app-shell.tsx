@@ -5,6 +5,7 @@ type AppShellProps = {
   title: string;
   description: string;
   userEmail: string | null;
+  userPhone?: string | null;
   role?: string;
 };
 
@@ -13,6 +14,7 @@ export function AppShell({
   title,
   description,
   userEmail,
+  userPhone = null,
   role = "learner"
 }: AppShellProps) {
   return (
@@ -43,8 +45,9 @@ export function AppShell({
               Admin
             </Link>
             <div className="soft-well rounded-full px-4 py-2 text-slate-700">
-              {userEmail ?? "Signed in"}
-              <span className="ml-2 text-xs uppercase tracking-[0.16em] text-slate-500">
+              <p>{userEmail ?? "Signed in"}</p>
+              {userPhone ? <p className="mt-1 text-xs text-slate-500">{userPhone}</p> : null}
+              <span className="mt-1 inline-block text-xs uppercase tracking-[0.16em] text-slate-500">
                 {role}
               </span>
             </div>

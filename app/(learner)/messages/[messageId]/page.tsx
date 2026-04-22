@@ -26,6 +26,7 @@ export default async function MessageDetailPage({ params }: MessageDetailPagePro
       role={snapshot.role}
       title={snapshot.message?.subject ?? "Message"}
       userEmail={snapshot.userEmail}
+      userPhone={snapshot.userPhone}
     >
       <div className="space-y-8">
         {snapshot.warning ? (
@@ -40,6 +41,9 @@ export default async function MessageDetailPage({ params }: MessageDetailPagePro
                 <p className="mt-2 text-xl font-bold text-slate-950">{snapshot.message.senderLabel}</p>
                 {snapshot.message.senderEmail ? (
                   <p className="mt-1 text-sm text-slate-500">{snapshot.message.senderEmail}</p>
+                ) : null}
+                {snapshot.message.senderPhone ? (
+                  <p className="mt-1 text-sm text-slate-500">{snapshot.message.senderPhone}</p>
                 ) : null}
               </div>
 

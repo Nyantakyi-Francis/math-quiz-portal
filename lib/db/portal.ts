@@ -17,6 +17,7 @@ type InboxMessage = {
   senderId: string | null;
   senderLabel: string;
   senderEmail: string | null;
+  senderPhone: string | null;
   subject: string;
   body: string;
   preview: string;
@@ -29,12 +30,14 @@ type AdminContact = {
   id: string;
   email: string;
   fullName: string | null;
+  phone: string | null;
 };
 
 type LearnerRow = {
   id: string;
   email: string;
   fullName: string | null;
+  phone: string | null;
   role: string;
   joinedAt: string;
 };
@@ -124,7 +127,17 @@ function getDefaultSenderLabel(messageType: string) {
     return "System";
   }
 
+  if (messageType === "admin") {
+    return "Admin";
+  }
+
   return "Admin team";
+}
+
+function isUuid(value: string) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+    value
+  );
 }
 
 async function getProfileSummary(
@@ -135,11 +148,15 @@ async function getProfileSummary(
   let role = "learner";
   let profileName =
     typeof user.user_metadata.full_name === "string" ? user.user_metadata.full_name : null;
+  let phone =
+    typeof user.user_metadata.phone === "string" && user.user_metadata.phone.trim()
+      ? user.user_metadata.phone.trim()
+      : null;
 
   try {
     const { data, error } = await supabase
       .from("profiles")
-      .select("full_name, role")
+      .select("full_name, role, phone")
       .eq("id", user.id)
       .maybeSingle();
 
@@ -148,6 +165,7 @@ async function getProfileSummary(
     } else if (data) {
       profileName = data.full_name;
       role = data.role ?? "learner";
+      phone = data.phone ?? phone;
     }
   } catch (error) {
     warning = mapSetupWarning(error instanceof Error ? error.message : "Unable to load profile.");
@@ -156,7 +174,8 @@ async function getProfileSummary(
   return {
     warning,
     role,
-    profileName
+    profileName,
+    phone
   };
 }
 
@@ -218,25 +237,38 @@ async function getInboxMessages(
       };
     }
 
-    const rawMessages = (data ?? []).map((entry: any) => ({
-      id: entry.messages?.id ?? entry.id,
-      senderId: entry.messages?.sender_id ?? null,
-      subject: entry.messages?.subject ?? "Message",
-      body: entry.messages?.body ?? "",
-      type: entry.messages?.message_type ?? "system",
-      createdAt: entry.messages?.created_at ?? new Date().toISOString(),
-      readAt: entry.read_at
-    }));
+    const rawMessages = (data ?? [])
+      .map((entry: any) => {
+        const messageRow = Array.isArray(entry.messages) ? entry.messages[0] : entry.messages;
+
+        if (!messageRow?.id) {
+          return null;
+        }
+
+        return {
+          id: messageRow.id,
+          senderId: messageRow.sender_id ?? null,
+          subject: messageRow.subject ?? "Message",
+          body: messageRow.body ?? "",
+          type: messageRow.message_type ?? "system",
+          createdAt: messageRow.created_at ?? new Date().toISOString(),
+          readAt: entry.read_at
+        };
+      })
+      .filter((message): message is NonNullable<typeof message> => Boolean(message));
 
     const senderIds = rawMessages
       .map((message) => message.senderId)
       .filter((senderId): senderId is string => Boolean(senderId));
-    const senderLookup = new Map<string, { fullName: string | null; email: string | null }>();
+    const senderLookup = new Map<
+      string,
+      { fullName: string | null; email: string | null; phone: string | null }
+    >();
 
-    if (role === "admin" && senderIds.length) {
+    if (senderIds.length) {
       const { data: senders, error: sendersError } = await supabase
         .from("profiles")
-        .select("id, full_name, email")
+        .select("id, full_name, email, phone")
         .in("id", Array.from(new Set(senderIds)));
 
       if (sendersError) {
@@ -245,7 +277,8 @@ async function getInboxMessages(
         (senders ?? []).forEach((sender: any) => {
           senderLookup.set(sender.id, {
             fullName: sender.full_name,
-            email: sender.email ?? null
+            email: sender.email ?? null,
+            phone: sender.phone ?? null
           });
         });
       }
@@ -261,8 +294,12 @@ async function getInboxMessages(
 
         return {
           ...message,
-          senderLabel,
-          senderEmail: role === "admin" ? sender?.email ?? null : null,
+          senderLabel:
+            message.type === "admin"
+              ? sender?.fullName ?? sender?.email ?? "Admin"
+              : senderLabel,
+          senderEmail: sender?.email ?? null,
+          senderPhone: sender?.phone ?? null,
           preview: buildMessagePreview(message.body)
         };
       }),
@@ -289,7 +326,7 @@ async function getAdminContacts() {
   try {
     const { data, error } = await admin
       .from("profiles")
-      .select("id, full_name, email")
+      .select("id, full_name, email, phone")
       .eq("role", "admin")
       .order("created_at", { ascending: true });
 
@@ -304,7 +341,8 @@ async function getAdminContacts() {
       adminContacts: (data ?? []).map((profile: any) => ({
         id: profile.id,
         email: profile.email ?? "No email",
-        fullName: profile.full_name
+        fullName: profile.full_name,
+        phone: profile.phone ?? null
       })),
       warning: null as SetupWarning
     };
@@ -328,6 +366,10 @@ async function ensureProfile(
         full_name:
           typeof user.user_metadata.full_name === "string"
             ? user.user_metadata.full_name
+            : null,
+        phone:
+          typeof user.user_metadata.phone === "string" && user.user_metadata.phone.trim()
+            ? user.user_metadata.phone.trim()
             : null
       },
       {
@@ -347,6 +389,7 @@ export async function getDashboardSnapshot() {
       isConfigured: getSupabaseEnv().isConfigured,
       userEmail: null,
       profileName: null,
+      userPhone: null,
       role: "learner",
       totals: {
         attemptedModules: 0,
@@ -413,6 +456,7 @@ export async function getDashboardSnapshot() {
     isConfigured: true,
     userEmail: session.user.email ?? null,
     profileName,
+    userPhone: profileSummary.phone,
     role,
     totals: {
       attemptedModules,
@@ -433,6 +477,7 @@ export async function getMessagesSnapshot() {
       isConfigured: getSupabaseEnv().isConfigured,
       userEmail: null,
       profileName: null,
+      userPhone: null,
       role: "learner",
       totals: {
         attemptedModules: 0,
@@ -462,6 +507,7 @@ export async function getMessagesSnapshot() {
     isConfigured: true,
     userEmail: session.user.email ?? null,
     profileName: profileSummary.profileName,
+    userPhone: profileSummary.phone,
     role: profileSummary.role,
     totals: {
       attemptedModules: 0,
@@ -484,6 +530,7 @@ export async function getMessageDetailSnapshot(messageId: string) {
       isConfigured: getSupabaseEnv().isConfigured,
       userEmail: null,
       profileName: null,
+      userPhone: null,
       role: "learner",
       message: null as InboxMessage | null,
       warning:
@@ -495,6 +542,18 @@ export async function getMessageDetailSnapshot(messageId: string) {
 
   const profileSummary = await getProfileSummary(session.supabase, session.user);
   let warning: SetupWarning = profileSummary.warning;
+
+  if (!isUuid(messageId)) {
+    return {
+      isConfigured: true,
+      userEmail: session.user.email ?? null,
+      profileName: profileSummary.profileName,
+      userPhone: profileSummary.phone,
+      role: profileSummary.role,
+      message: null as InboxMessage | null,
+      warning: "That message link is invalid."
+    };
+  }
 
   try {
     const { data, error } = await session.supabase
@@ -509,6 +568,7 @@ export async function getMessageDetailSnapshot(messageId: string) {
         isConfigured: true,
         userEmail: session.user.email ?? null,
         profileName: profileSummary.profileName,
+        userPhone: profileSummary.phone,
         role: profileSummary.role,
         message: null as InboxMessage | null,
         warning: mapSetupWarning(error.message)
@@ -522,6 +582,7 @@ export async function getMessageDetailSnapshot(messageId: string) {
         isConfigured: true,
         userEmail: session.user.email ?? null,
         profileName: profileSummary.profileName,
+        userPhone: profileSummary.phone,
         role: profileSummary.role,
         message: null as InboxMessage | null,
         warning
@@ -551,19 +612,24 @@ export async function getMessageDetailSnapshot(messageId: string) {
 
     let senderLabel = getDefaultSenderLabel(messageRow.message_type ?? "system");
     let senderEmail: string | null = null;
+    let senderPhone: string | null = null;
 
-    if (profileSummary.role === "admin" && messageRow.sender_id) {
+    if (messageRow.sender_id) {
       const { data: sender, error: senderError } = await session.supabase
         .from("profiles")
-        .select("full_name, email")
+        .select("full_name, email, phone")
         .eq("id", messageRow.sender_id)
         .maybeSingle();
 
       if (senderError) {
         warning ??= mapSetupWarning(senderError.message);
       } else if (sender) {
-        senderLabel = sender.full_name ?? sender.email ?? senderLabel;
+        senderLabel =
+          messageRow.message_type === "admin"
+            ? sender.full_name ?? sender.email ?? "Admin"
+            : sender.full_name ?? sender.email ?? senderLabel;
         senderEmail = sender.email ?? null;
+        senderPhone = sender.phone ?? null;
       }
     }
 
@@ -571,12 +637,14 @@ export async function getMessageDetailSnapshot(messageId: string) {
       isConfigured: true,
       userEmail: session.user.email ?? null,
       profileName: profileSummary.profileName,
+      userPhone: profileSummary.phone,
       role: profileSummary.role,
       message: {
         id: messageRow.id,
         senderId: messageRow.sender_id ?? null,
         senderLabel,
         senderEmail,
+        senderPhone,
         subject: messageRow.subject ?? "Message",
         body: messageRow.body ?? "",
         preview: buildMessagePreview(messageRow.body ?? ""),
@@ -591,6 +659,7 @@ export async function getMessageDetailSnapshot(messageId: string) {
       isConfigured: true,
       userEmail: session.user.email ?? null,
       profileName: profileSummary.profileName,
+      userPhone: profileSummary.phone,
       role: profileSummary.role,
       message: null as InboxMessage | null,
       warning: mapSetupWarning(error instanceof Error ? error.message : "Unable to load message.")
@@ -605,6 +674,7 @@ export async function getAdminSnapshot() {
     return {
       isConfigured: getSupabaseEnv().isConfigured,
       userEmail: null,
+      userPhone: null,
       authorized: false,
       warning:
         "Connect Supabase and apply the schema before the admin dashboard can load." as SetupWarning,
@@ -615,8 +685,9 @@ export async function getAdminSnapshot() {
   }
 
   await ensureProfile(session.supabase, session.user);
+  const profileSummary = await getProfileSummary(session.supabase, session.user);
 
-  let warning: SetupWarning = null;
+  let warning: SetupWarning = profileSummary.warning;
   let authorized = false;
   let learners: LearnerRow[] = [];
   let attempts: AttemptRow[] = [];
@@ -642,6 +713,7 @@ export async function getAdminSnapshot() {
     return {
       isConfigured: true,
       userEmail: session.user.email ?? null,
+      userPhone: profileSummary.phone,
       authorized: false,
       warning:
         warning ??
@@ -655,7 +727,7 @@ export async function getAdminSnapshot() {
   try {
     const { data, error } = await session.supabase
       .from("profiles")
-      .select("id, email, full_name, role, created_at")
+      .select("id, email, full_name, phone, role, created_at")
       .order("created_at", { ascending: false })
       .limit(25);
 
@@ -666,6 +738,7 @@ export async function getAdminSnapshot() {
         id: profile.id,
         email: profile.email ?? "No email",
         fullName: profile.full_name,
+        phone: profile.phone ?? null,
         role: profile.role ?? "learner",
         joinedAt: profile.created_at
       }));
@@ -744,6 +817,7 @@ export async function getAdminSnapshot() {
   return {
     isConfigured: true,
     userEmail: session.user.email ?? null,
+    userPhone: profileSummary.phone,
     authorized,
     warning,
     learners,

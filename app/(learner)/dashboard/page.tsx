@@ -15,6 +15,7 @@ export default async function DashboardPage() {
       role={snapshot.role}
       title={`Welcome${snapshot.profileName ? `, ${snapshot.profileName}` : ""}`}
       userEmail={snapshot.userEmail}
+      userPhone={snapshot.userPhone}
     >
       <div className="space-y-8">
         {snapshot.warning ? (
