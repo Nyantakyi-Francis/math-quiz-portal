@@ -34,11 +34,13 @@ npm install
 2. Create `.env.local` from `.env.example` and add:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+SITE_URL=http://localhost:3000
 NEXT_PUBLIC_SUPABASE_URL=your-project-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ```
+
+If you already have `NEXT_PUBLIC_SITE_URL` in your local env, that still works. `SITE_URL` is the preferred server-side setting.
 
 3. In Supabase SQL Editor, run:
 
@@ -50,6 +52,29 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ```bash
 npm run dev
 ```
+
+## Vercel deployment
+
+Add these environment variables in your Vercel project settings:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
+
+Optional:
+
+```bash
+SITE_URL=https://your-production-domain.com
+```
+
+Notes:
+
+- If `SITE_URL` is not set in Vercel, the app will use the current request origin or `VERCEL_URL`.
+- Do not set `SITE_URL` or `NEXT_PUBLIC_SITE_URL` to `http://localhost:3000` in Vercel.
+- In Supabase Auth settings, add `http://localhost:3000/auth/callback`.
+- In Supabase Auth settings, add `https://your-domain.com/auth/callback`.
 
 ## Suggested next phase
 

@@ -23,7 +23,7 @@ export async function POST(request: Request) {
       data: {
         full_name: fullName
       },
-      emailRedirectTo: `${getSiteUrl()}/auth/callback?next=${encodeURIComponent(next)}`
+      emailRedirectTo: `${getSiteUrl(request)}/auth/callback?next=${encodeURIComponent(next)}`
     }
   });
 
