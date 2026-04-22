@@ -1,29 +1,122 @@
 # Math Quiz Portal
 
-The project is now being migrated from a static quiz site into a modular learner platform built for:
+Math Quiz Portal is an Elective Mathematics learning platform being migrated from a static quiz site into a protected, data-backed web application.
 
-- `Next.js` on Vercel
+The project keeps the existing quiz content as source material while moving learner access, scoring, progress tracking, messaging, and admin visibility into a modern `Next.js` + `Supabase` stack that can run locally and deploy cleanly on Vercel.
+
+## Vision
+
+The goal is to turn a collection of standalone quiz pages into a full learner platform where:
+
+- students create accounts and access protected quiz modules
+- quiz submissions are scored on the server
+- score history is stored per learner
+- messages and feedback live inside the app
+- admins can monitor learner activity and send announcements from one place
+
+This migration is intentionally incremental. The legacy quiz files still exist in the repo, but the protected app layer is now the long-term home of the platform.
+
+## Current platform status
+
+The repo already includes the core foundation for the new portal:
+
+- public landing page and public module catalog
+- Supabase-powered sign up, login, and sign out flows
+- protected learner dashboard at `/dashboard`
+- protected module catalog at `/modules`
+- protected module pages at `/modules/[slug]`
+- server-side quiz scoring and attempt persistence for imported modules
+- learner inbox at `/messages`
+- admin console at `/admin`
+- direct admin messages and broadcast announcements
+- Supabase schema, seed data, and row-level security policies
+- import scripts for migrating legacy JSON quiz data into Postgres
+
+The current content foundation includes:
+
+- `11` module shells
+- `430` legacy questions available as source material in `data/`
+- matching legacy HTML quiz pages preserved in `quizzes/`
+
+## Feature status
+
+- [x] Public landing page and marketing shell
+- [x] Learner authentication with Supabase Auth
+- [x] Protected learner dashboard with progress summary
+- [x] Protected module routes wired for database-backed quiz delivery
+- [x] Server-side scoring with saved attempts and attempt answers
+- [x] Learner inbox for score notifications and admin messages
+- [x] Admin console for learner monitoring and messaging
+- [x] Legacy quiz import pipeline from JSON into Postgres
+- [ ] Complete migration of every legacy module into live protected delivery
+- [ ] Richer learner analytics and weak-topic insights
+- [ ] Timed assessment and exam-style practice modes
+- [ ] Content authoring and publishing workflows for admins
+- [ ] More advanced messaging, intervention, and reporting tools
+
+## Current routes
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Public landing page and module overview |
+| `/signup` | Learner account creation |
+| `/login` | Learner sign in |
+| `/dashboard` | Learner overview with attempts, average score, and unread messages |
+| `/modules` | Protected catalog of available modules |
+| `/modules/[slug]` | Protected quiz page with live quiz delivery and submission |
+| `/messages` | Learner inbox for score notices and admin communication |
+| `/admin` | Admin view for learners, attempts, and message workflows |
+
+## How the app works
+
+At a high level, the new flow is:
+
+1. A learner signs up or logs in through Supabase Auth.
+2. The learner opens a protected module page.
+3. Questions and options are loaded from Postgres, while answer keys remain server-side.
+4. Submitting a quiz writes an `attempt`, stores `attempt_answers`, calculates a score, and creates a learner message.
+5. The learner dashboard and inbox reflect that new activity automatically.
+
+This gives the platform a safer and more useful model than the legacy static quiz pages, because grading and answer keys stay off the client.
+
+## Tech stack
+
+- `Next.js 16` with App Router
+- `React 19`
+- `TypeScript`
+- `Tailwind CSS 4`
 - `Supabase Auth`
 - `Supabase Postgres`
-- protected learner dashboards
-- admin performance monitoring
-- in-app messaging
+- `@supabase/ssr` for authenticated server rendering
+- `Vercel` for deployment
 
-## What is already scaffolded
+## Project structure
 
-- Public landing page at `/`
-- Auth pages at `/login` and `/signup`
-- Protected routes at `/dashboard`, `/messages`, `/modules/[slug]`, and `/admin`
-- Supabase SSR helpers and auth middleware
-- Initial Postgres schema in [supabase/schema.sql](./supabase/schema.sql)
-- Initial module seed in [supabase/seed.sql](./supabase/seed.sql)
-- Legacy quiz metadata mapped into [lib/data/modules.ts](./lib/data/modules.ts)
+- [app](./app): routes, layouts, route handlers, and page-level UI
+- [components](./components): reusable UI such as the dashboard shell, module catalogs, and quiz runner
+- [lib](./lib): app data, Supabase helpers, portal snapshots, and quiz utilities
+- [supabase](./supabase): SQL schema and seed scripts
+- [scripts](./scripts): migration/import scripts for legacy quiz data
+- [data](./data): JSON quiz source files used for migration
+- [quizzes](./quizzes): preserved legacy HTML quiz pages
 
-## Current migration principle
+## Database model
 
-The existing static quiz files are still in the repo as source material, but the new app layer is where protected access, scoring, messaging, and admin workflows will live. That keeps the migration incremental instead of forcing a risky rewrite.
+The protected platform centers around these main tables:
 
-## Local setup
+- `profiles`
+- `modules`
+- `questions`
+- `question_options`
+- `question_answer_keys`
+- `attempts`
+- `attempt_answers`
+- `messages`
+- `message_recipients`
+
+The schema is designed so visible options can be delivered to learners without exposing the correct answers directly on the client.
+
+## Local development
 
 1. Install dependencies:
 
@@ -31,7 +124,7 @@ The existing static quiz files are still in the repo as source material, but the
 npm install
 ```
 
-2. Create `.env.local` from `.env.example` and add:
+2. Create `.env.local` from `.env.example` and add your Supabase credentials:
 
 ```bash
 SITE_URL=http://localhost:3000
@@ -40,9 +133,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ```
 
-If you already have `NEXT_PUBLIC_SITE_URL` in your local env, that still works. `SITE_URL` is the preferred server-side setting.
+If you already use `NEXT_PUBLIC_SITE_URL`, the app still supports it as a fallback. `SITE_URL` is the preferred server-side setting.
 
-3. In Supabase SQL Editor, run:
+3. In the Supabase SQL Editor, run:
 
 - [supabase/schema.sql](./supabase/schema.sql)
 - [supabase/seed.sql](./supabase/seed.sql)
@@ -52,6 +145,14 @@ If you already have `NEXT_PUBLIC_SITE_URL` in your local env, that still works. 
 ```bash
 npm run dev
 ```
+
+5. Import at least one legacy module so a protected quiz has live question data:
+
+```bash
+npm run import:module -- binary-sets-binomial
+```
+
+6. Open `http://localhost:3000`.
 
 ## Vercel deployment
 
@@ -69,73 +170,76 @@ Optional:
 SITE_URL=https://your-production-domain.com
 ```
 
-Notes:
+Deployment notes:
 
-- If `SITE_URL` is not set in Vercel, the app will use the current request origin or `VERCEL_URL`.
+- If `SITE_URL` is not set in Vercel, the app can infer the active deployment origin from the request or `VERCEL_URL`.
 - Do not set `SITE_URL` or `NEXT_PUBLIC_SITE_URL` to `http://localhost:3000` in Vercel.
 - In Supabase Auth settings, add `http://localhost:3000/auth/callback`.
 - In Supabase Auth settings, add `https://your-domain.com/auth/callback`.
 
-## Suggested next phase
+## Importing legacy modules
 
-1. Import one module from `data/*.json` into `modules`, `questions`, `question_options`, and `question_answer_keys`.
-2. Use the protected quiz runner at `/modules/[slug]`.
-3. Submit attempts into `attempts` and `attempt_answers`.
-4. Auto-create score messages in the learner inbox.
-5. Expand the admin page into real learner analytics and broadcast messaging.
-
-## Importing a legacy module
-
-The first end-to-end migration path is now wired up for protected quiz delivery.
-
-Run:
+Import one module:
 
 ```bash
 npm run import:module -- binary-sets-binomial
 ```
 
-To import every module from the `data/` folder in one go:
+Import every module in `data/`:
 
 ```bash
 npm run import:all-modules
 ```
 
-If you need to rebuild an already imported module:
+Rebuild an already imported module:
 
 ```bash
 npm run import:module -- binary-sets-binomial --replace
 ```
 
-What that script does:
+The import script:
 
 - reads `data/<module-slug>.json`
-- inserts `questions`
-- inserts `question_options`
-- inserts `question_answer_keys`
-- updates `modules.question_count`
+- updates module metadata and question count
+- inserts rows into `questions`
+- inserts rows into `question_options`
+- inserts the correct answer into `question_answer_keys`
 
-After import, open:
+Once imported, the protected route for that module becomes a live quiz page backed by Postgres instead of a placeholder shell.
 
-- `/modules/binary-sets-binomial`
+## Admin setup
 
-Submitting the quiz now:
+After creating your first account, promote it manually in Supabase if you want to use the admin console.
 
-- creates an `attempt`
-- stores `attempt_answers`
-- sends a score message into the learner inbox
-- updates dashboard/admin data sources
+Set your row in `profiles` so that:
 
-## Admin messaging
+```text
+role = admin
+```
 
-Once your account is marked as `admin` in the `profiles` table, the `/admin` page can:
+That unlocks the learner monitoring and messaging workflows at `/admin`.
 
-- view recent learners
-- review recent performance
-- send a direct message to one learner
-- broadcast an announcement to all learners
-- see recently sent messages and recipient counts
+## Roadmap
 
-## Notes
+The following features are intended additions for future phases of the project:
 
-- `pgAdmin` is optional and can still be used to inspect your Postgres database, but Supabase is now the actual hosted Postgres backend for the app.
-- The schema intentionally keeps answer keys separate from visible question options so learners cannot read correct answers directly from the client-side data model.
+- complete migration of all legacy quiz banks into protected database-backed modules
+- module completion indicators, best-score tracking, and stronger learner progress history
+- topic-level performance summaries and weak-area detection across attempts
+- richer learner feedback after submission, including targeted remediation guidance
+- timed practice sessions and exam simulation modes
+- stronger admin analytics with filtering by learner, module, and performance trend
+- tools for creating, editing, publishing, and managing modules without direct SQL edits
+- smarter message workflows such as templates, score-based nudges, and follow-up interventions
+- improved import validation for new question banks and future content expansion
+- downloadable or shareable reporting views for learners and admins
+
+## Why this repo still contains legacy files
+
+The legacy HTML quizzes in [quizzes](./quizzes) and JSON files in [data](./data) are still valuable during migration:
+
+- they preserve the original question bank
+- they provide a source of truth for staged imports
+- they make it possible to migrate module by module instead of rewriting the entire platform at once
+
+This keeps the transition practical and lowers the risk of breaking the existing learning content while the protected app continues to grow.

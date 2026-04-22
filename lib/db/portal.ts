@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { getSupabaseEnv } from "@/lib/supabase/env";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { modules } from "@/lib/data/modules";
 
@@ -13,11 +14,21 @@ type DashboardAttempt = {
 
 type InboxMessage = {
   id: string;
+  senderId: string | null;
+  senderLabel: string;
+  senderEmail: string | null;
   subject: string;
   body: string;
+  preview: string;
   type: string;
   createdAt: string;
   readAt: string | null;
+};
+
+type AdminContact = {
+  id: string;
+  email: string;
+  fullName: string | null;
 };
 
 type LearnerRow = {
@@ -46,6 +57,9 @@ type SentMessageRow = {
 };
 
 type SetupWarning = string | null;
+
+const inboxMessageSelect =
+  "read_at, messages(id, sender_id, subject, body, message_type, created_at)";
 
 function mapSetupWarning(message: string) {
   if (
@@ -95,6 +109,213 @@ export async function requireUser() {
   return session;
 }
 
+function buildMessagePreview(body: string) {
+  const compactBody = body.replace(/\s+/g, " ").trim();
+
+  if (compactBody.length <= 160) {
+    return compactBody;
+  }
+
+  return `${compactBody.slice(0, 157).trimEnd()}...`;
+}
+
+function getDefaultSenderLabel(messageType: string) {
+  if (messageType === "score" || messageType === "system") {
+    return "System";
+  }
+
+  return "Admin team";
+}
+
+async function getProfileSummary(
+  supabase: NonNullable<Awaited<ReturnType<typeof createSupabaseServerClient>>>,
+  user: NonNullable<Awaited<ReturnType<typeof getCurrentSession>>["user"]>
+) {
+  let warning: SetupWarning = null;
+  let role = "learner";
+  let profileName =
+    typeof user.user_metadata.full_name === "string" ? user.user_metadata.full_name : null;
+
+  try {
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("full_name, role")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (error) {
+      warning = mapSetupWarning(error.message);
+    } else if (data) {
+      profileName = data.full_name;
+      role = data.role ?? "learner";
+    }
+  } catch (error) {
+    warning = mapSetupWarning(error instanceof Error ? error.message : "Unable to load profile.");
+  }
+
+  return {
+    warning,
+    role,
+    profileName
+  };
+}
+
+async function getUnreadMessagesCount(
+  supabase: NonNullable<Awaited<ReturnType<typeof createSupabaseServerClient>>>,
+  userId: string
+) {
+  try {
+    const { count, error } = await supabase
+      .from("message_recipients")
+      .select("id", { count: "exact", head: true })
+      .eq("recipient_id", userId)
+      .is("read_at", null);
+
+    if (error) {
+      return {
+        unreadMessages: 0,
+        warning: mapSetupWarning(error.message)
+      };
+    }
+
+    return {
+      unreadMessages: count ?? 0,
+      warning: null as SetupWarning
+    };
+  } catch (error) {
+    return {
+      unreadMessages: 0,
+      warning: mapSetupWarning(error instanceof Error ? error.message : "Unable to load inbox.")
+    };
+  }
+}
+
+async function getInboxMessages(
+  supabase: NonNullable<Awaited<ReturnType<typeof createSupabaseServerClient>>>,
+  userId: string,
+  role: string,
+  limit?: number
+) {
+  let warning: SetupWarning = null;
+
+  try {
+    let query = supabase
+      .from("message_recipients")
+      .select(inboxMessageSelect)
+      .eq("recipient_id", userId)
+      .order("created_at", { foreignTable: "messages", ascending: false });
+
+    if (typeof limit === "number") {
+      query = query.limit(limit);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      return {
+        messages: [] as InboxMessage[],
+        warning: mapSetupWarning(error.message)
+      };
+    }
+
+    const rawMessages = (data ?? []).map((entry: any) => ({
+      id: entry.messages?.id ?? entry.id,
+      senderId: entry.messages?.sender_id ?? null,
+      subject: entry.messages?.subject ?? "Message",
+      body: entry.messages?.body ?? "",
+      type: entry.messages?.message_type ?? "system",
+      createdAt: entry.messages?.created_at ?? new Date().toISOString(),
+      readAt: entry.read_at
+    }));
+
+    const senderIds = rawMessages
+      .map((message) => message.senderId)
+      .filter((senderId): senderId is string => Boolean(senderId));
+    const senderLookup = new Map<string, { fullName: string | null; email: string | null }>();
+
+    if (role === "admin" && senderIds.length) {
+      const { data: senders, error: sendersError } = await supabase
+        .from("profiles")
+        .select("id, full_name, email")
+        .in("id", Array.from(new Set(senderIds)));
+
+      if (sendersError) {
+        warning ??= mapSetupWarning(sendersError.message);
+      } else {
+        (senders ?? []).forEach((sender: any) => {
+          senderLookup.set(sender.id, {
+            fullName: sender.full_name,
+            email: sender.email ?? null
+          });
+        });
+      }
+    }
+
+    return {
+      messages: rawMessages.map((message) => {
+        const sender = message.senderId ? senderLookup.get(message.senderId) : null;
+        const senderLabel =
+          role === "admin"
+            ? sender?.fullName ?? sender?.email ?? getDefaultSenderLabel(message.type)
+            : getDefaultSenderLabel(message.type);
+
+        return {
+          ...message,
+          senderLabel,
+          senderEmail: role === "admin" ? sender?.email ?? null : null,
+          preview: buildMessagePreview(message.body)
+        };
+      }),
+      warning
+    };
+  } catch (error) {
+    return {
+      messages: [] as InboxMessage[],
+      warning: mapSetupWarning(error instanceof Error ? error.message : "Unable to load inbox.")
+    };
+  }
+}
+
+async function getAdminContacts() {
+  const admin = createSupabaseAdminClient();
+
+  if (!admin) {
+    return {
+      adminContacts: [] as AdminContact[],
+      warning: "Supabase is not configured yet." as SetupWarning
+    };
+  }
+
+  try {
+    const { data, error } = await admin
+      .from("profiles")
+      .select("id, full_name, email")
+      .eq("role", "admin")
+      .order("created_at", { ascending: true });
+
+    if (error) {
+      return {
+        adminContacts: [] as AdminContact[],
+        warning: mapSetupWarning(error.message)
+      };
+    }
+
+    return {
+      adminContacts: (data ?? []).map((profile: any) => ({
+        id: profile.id,
+        email: profile.email ?? "No email",
+        fullName: profile.full_name
+      })),
+      warning: null as SetupWarning
+    };
+  } catch (error) {
+    return {
+      adminContacts: [] as AdminContact[],
+      warning: mapSetupWarning(error instanceof Error ? error.message : "Unable to load admins.")
+    };
+  }
+}
+
 async function ensureProfile(
   supabase: NonNullable<Awaited<ReturnType<typeof createSupabaseServerClient>>>,
   user: NonNullable<Awaited<ReturnType<typeof getCurrentSession>>["user"]>
@@ -141,31 +362,11 @@ export async function getDashboardSnapshot() {
 
   await ensureProfile(session.supabase, session.user);
 
-  let warning: SetupWarning = null;
-  let role = "learner";
-  let profileName =
-    typeof session.user.user_metadata.full_name === "string"
-      ? session.user.user_metadata.full_name
-      : null;
+  const profileSummary = await getProfileSummary(session.supabase, session.user);
+  let warning: SetupWarning = profileSummary.warning;
+  const role = profileSummary.role;
+  const profileName = profileSummary.profileName;
   let attempts: DashboardAttempt[] = [];
-  let messages: InboxMessage[] = [];
-
-  try {
-    const { data, error } = await session.supabase
-      .from("profiles")
-      .select("full_name, role")
-      .eq("id", session.user.id)
-      .maybeSingle();
-
-    if (error) {
-      warning = mapSetupWarning(error.message);
-    } else if (data) {
-      profileName = data.full_name;
-      role = data.role ?? "learner";
-    }
-  } catch (error) {
-    warning = mapSetupWarning(error instanceof Error ? error.message : "Unable to load profile.");
-  }
 
   try {
     const { data, error } = await session.supabase
@@ -190,29 +391,9 @@ export async function getDashboardSnapshot() {
     warning ??= mapSetupWarning(error instanceof Error ? error.message : "Unable to load attempts.");
   }
 
-  try {
-    const { data, error } = await session.supabase
-      .from("message_recipients")
-      .select("id, read_at, messages(id, subject, body, message_type, created_at)")
-      .eq("recipient_id", session.user.id)
-      .order("created_at", { foreignTable: "messages", ascending: false })
-      .limit(6);
-
-    if (error) {
-      warning ??= mapSetupWarning(error.message);
-    } else if (data) {
-      messages = data.map((entry: any) => ({
-        id: entry.messages?.id ?? entry.id,
-        subject: entry.messages?.subject ?? "Message",
-        body: entry.messages?.body ?? "",
-        type: entry.messages?.message_type ?? "system",
-        createdAt: entry.messages?.created_at ?? new Date().toISOString(),
-        readAt: entry.read_at
-      }));
-    }
-  } catch (error) {
-    warning ??= mapSetupWarning(error instanceof Error ? error.message : "Unable to load inbox.");
-  }
+  const inboxResult = await getInboxMessages(session.supabase, session.user.id, role, 6);
+  const unreadResult = await getUnreadMessagesCount(session.supabase, session.user.id);
+  const messages = inboxResult.messages;
 
   const attemptedModules = new Set(
     attempts.map((attempt) => attempt.moduleSlug).filter(Boolean)
@@ -225,7 +406,8 @@ export async function getDashboardSnapshot() {
         ).toFixed(1)
       )
     : 0;
-  const unreadMessages = messages.filter((message) => !message.readAt).length;
+  const unreadMessages = unreadResult.unreadMessages;
+  warning ??= inboxResult.warning ?? unreadResult.warning;
 
   return {
     isConfigured: true,
@@ -244,12 +426,176 @@ export async function getDashboardSnapshot() {
 }
 
 export async function getMessagesSnapshot() {
-  const dashboard = await getDashboardSnapshot();
+  const session = await requireUser();
+
+  if (!session.supabase || !session.user) {
+    return {
+      isConfigured: getSupabaseEnv().isConfigured,
+      userEmail: null,
+      profileName: null,
+      role: "learner",
+      totals: {
+        attemptedModules: 0,
+        averageScore: 0,
+        unreadMessages: 0
+      },
+      attempts: [] as DashboardAttempt[],
+      messages: [] as InboxMessage[],
+      adminContacts: [] as AdminContact[],
+      allModules: modules,
+      warning:
+        "Connect Supabase and apply the SQL schema before protected learner data can load." as SetupWarning
+    };
+  }
+
+  await ensureProfile(session.supabase, session.user);
+
+  const profileSummary = await getProfileSummary(session.supabase, session.user);
+  const inboxResult = await getInboxMessages(session.supabase, session.user.id, profileSummary.role);
+  const unreadResult = await getUnreadMessagesCount(session.supabase, session.user.id);
+  const adminContactsResult =
+    profileSummary.role === "admin"
+      ? { adminContacts: [] as AdminContact[], warning: null as SetupWarning }
+      : await getAdminContacts();
 
   return {
-    ...dashboard,
-    allModules: modules
+    isConfigured: true,
+    userEmail: session.user.email ?? null,
+    profileName: profileSummary.profileName,
+    role: profileSummary.role,
+    totals: {
+      attemptedModules: 0,
+      averageScore: 0,
+      unreadMessages: unreadResult.unreadMessages
+    },
+    attempts: [] as DashboardAttempt[],
+    messages: inboxResult.messages,
+    adminContacts: adminContactsResult.adminContacts,
+    allModules: modules,
+    warning: profileSummary.warning ?? inboxResult.warning ?? unreadResult.warning ?? adminContactsResult.warning
   };
+}
+
+export async function getMessageDetailSnapshot(messageId: string) {
+  const session = await requireUser();
+
+  if (!session.supabase || !session.user) {
+    return {
+      isConfigured: getSupabaseEnv().isConfigured,
+      userEmail: null,
+      profileName: null,
+      role: "learner",
+      message: null as InboxMessage | null,
+      warning:
+        "Connect Supabase and apply the SQL schema before protected learner data can load." as SetupWarning
+    };
+  }
+
+  await ensureProfile(session.supabase, session.user);
+
+  const profileSummary = await getProfileSummary(session.supabase, session.user);
+  let warning: SetupWarning = profileSummary.warning;
+
+  try {
+    const { data, error } = await session.supabase
+      .from("message_recipients")
+      .select(inboxMessageSelect)
+      .eq("recipient_id", session.user.id)
+      .eq("message_id", messageId)
+      .maybeSingle();
+
+    if (error) {
+      return {
+        isConfigured: true,
+        userEmail: session.user.email ?? null,
+        profileName: profileSummary.profileName,
+        role: profileSummary.role,
+        message: null as InboxMessage | null,
+        warning: mapSetupWarning(error.message)
+      };
+    }
+
+    const messageRow = Array.isArray(data?.messages) ? data.messages[0] : data?.messages;
+
+    if (!messageRow) {
+      return {
+        isConfigured: true,
+        userEmail: session.user.email ?? null,
+        profileName: profileSummary.profileName,
+        role: profileSummary.role,
+        message: null as InboxMessage | null,
+        warning
+      };
+    }
+
+    const createdAt = messageRow.created_at ?? new Date().toISOString();
+    let readAt = data?.read_at ?? null;
+
+    if (!readAt) {
+      const nextReadAt = new Date().toISOString();
+      const { error: readError } = await session.supabase
+        .from("message_recipients")
+        .update({
+          read_at: nextReadAt
+        })
+        .eq("recipient_id", session.user.id)
+        .eq("message_id", messageId)
+        .is("read_at", null);
+
+      if (readError) {
+        warning ??= mapSetupWarning(readError.message);
+      } else {
+        readAt = nextReadAt;
+      }
+    }
+
+    let senderLabel = getDefaultSenderLabel(messageRow.message_type ?? "system");
+    let senderEmail: string | null = null;
+
+    if (profileSummary.role === "admin" && messageRow.sender_id) {
+      const { data: sender, error: senderError } = await session.supabase
+        .from("profiles")
+        .select("full_name, email")
+        .eq("id", messageRow.sender_id)
+        .maybeSingle();
+
+      if (senderError) {
+        warning ??= mapSetupWarning(senderError.message);
+      } else if (sender) {
+        senderLabel = sender.full_name ?? sender.email ?? senderLabel;
+        senderEmail = sender.email ?? null;
+      }
+    }
+
+    return {
+      isConfigured: true,
+      userEmail: session.user.email ?? null,
+      profileName: profileSummary.profileName,
+      role: profileSummary.role,
+      message: {
+        id: messageRow.id,
+        senderId: messageRow.sender_id ?? null,
+        senderLabel,
+        senderEmail,
+        subject: messageRow.subject ?? "Message",
+        body: messageRow.body ?? "",
+        preview: buildMessagePreview(messageRow.body ?? ""),
+        type: messageRow.message_type ?? "system",
+        createdAt,
+        readAt
+      },
+      warning
+    };
+  } catch (error) {
+    return {
+      isConfigured: true,
+      userEmail: session.user.email ?? null,
+      profileName: profileSummary.profileName,
+      role: profileSummary.role,
+      message: null as InboxMessage | null,
+      warning: mapSetupWarning(error instanceof Error ? error.message : "Unable to load message.")
+    };
+  }
 }
 
 export async function getAdminSnapshot() {
