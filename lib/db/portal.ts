@@ -24,7 +24,13 @@ type InboxMessage = {
   type: string;
   createdAt: string;
   readAt: string | null;
+  direction: "incoming" | "outgoing";
 };
+
+type RawInboxMessage = Omit<
+  InboxMessage,
+  "senderLabel" | "senderEmail" | "senderPhone" | "preview"
+>;
 
 type AdminContact = {
   id: string;
@@ -213,7 +219,9 @@ async function getInboxMessages(
   supabase: NonNullable<Awaited<ReturnType<typeof createSupabaseServerClient>>>,
   userId: string,
   role: string,
-  limit?: number
+  limit?: number,
+  includeSent = false,
+  ascending = false
 ) {
   let warning: SetupWarning = null;
 
@@ -222,7 +230,7 @@ async function getInboxMessages(
       .from("message_recipients")
       .select(inboxMessageSelect)
       .eq("recipient_id", userId)
-      .order("created_at", { foreignTable: "messages", ascending: false });
+      .order("created_at", { foreignTable: "messages", ascending });
 
     if (typeof limit === "number") {
       query = query.limit(limit);
@@ -237,8 +245,8 @@ async function getInboxMessages(
       };
     }
 
-    const rawMessages = (data ?? [])
-      .map((entry: any) => {
+    const rawMessages: RawInboxMessage[] = (data ?? [])
+      .map<RawInboxMessage | null>((entry: any) => {
         const messageRow = Array.isArray(entry.messages) ? entry.messages[0] : entry.messages;
 
         if (!messageRow?.id) {
@@ -252,12 +260,48 @@ async function getInboxMessages(
           body: messageRow.body ?? "",
           type: messageRow.message_type ?? "system",
           createdAt: messageRow.created_at ?? new Date().toISOString(),
-          readAt: entry.read_at
+          readAt: entry.read_at,
+          direction: "incoming" as const
         };
       })
-      .filter((message): message is NonNullable<typeof message> => Boolean(message));
+      .filter((message): message is RawInboxMessage => Boolean(message));
 
-    const senderIds = rawMessages
+    let sentMessages: RawInboxMessage[] = [];
+
+    if (includeSent) {
+      const { data: sentRows, error: sentError } = await supabase
+        .from("messages")
+        .select("id, sender_id, subject, body, message_type, created_at")
+        .eq("sender_id", userId)
+        .order("created_at", { ascending });
+
+      if (sentError) {
+        warning ??= mapSetupWarning(sentError.message);
+      } else {
+        sentMessages = (sentRows ?? []).map((messageRow: any) => ({
+          id: messageRow.id,
+          senderId: messageRow.sender_id ?? null,
+          subject: messageRow.subject ?? "Message",
+          body: messageRow.body ?? "",
+          type: messageRow.message_type ?? "admin",
+          createdAt: messageRow.created_at ?? new Date().toISOString(),
+          readAt: null,
+          direction: "outgoing" as const
+        }));
+      }
+    }
+
+    const allMessages = [...rawMessages, ...sentMessages]
+      .filter(
+        (message, index, messages) =>
+          messages.findIndex((candidate) => candidate.id === message.id) === index
+      )
+      .sort((a, b) => {
+        const direction = ascending ? 1 : -1;
+        return direction * (Date.parse(a.createdAt) - Date.parse(b.createdAt));
+      });
+
+    const senderIds = allMessages
       .map((message) => message.senderId)
       .filter((senderId): senderId is string => Boolean(senderId));
     const senderLookup = new Map<
@@ -285,7 +329,7 @@ async function getInboxMessages(
     }
 
     return {
-      messages: rawMessages.map((message) => {
+      messages: allMessages.map((message) => {
         const sender = message.senderId ? senderLookup.get(message.senderId) : null;
         const senderLabel =
           role === "admin"
@@ -295,7 +339,9 @@ async function getInboxMessages(
         return {
           ...message,
           senderLabel:
-            message.type === "admin"
+            message.direction === "outgoing"
+              ? "You"
+              : message.type === "admin"
               ? sender?.fullName ?? sender?.email ?? "Admin"
               : senderLabel,
           senderEmail: sender?.email ?? null,
@@ -496,7 +542,14 @@ export async function getMessagesSnapshot() {
   await ensureProfile(session.supabase, session.user);
 
   const profileSummary = await getProfileSummary(session.supabase, session.user);
-  const inboxResult = await getInboxMessages(session.supabase, session.user.id, profileSummary.role);
+  const inboxResult = await getInboxMessages(
+    session.supabase,
+    session.user.id,
+    profileSummary.role,
+    undefined,
+    true,
+    true
+  );
   const unreadResult = await getUnreadMessagesCount(session.supabase, session.user.id);
   const adminContactsResult =
     profileSummary.role === "admin"

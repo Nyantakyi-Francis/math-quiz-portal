@@ -309,11 +309,21 @@ with check (
 );
 
 drop policy if exists "Messages are readable by admins or senders" on public.messages;
-create policy "Messages are readable by admins or senders"
+drop policy if exists "Messages are readable by admins senders or recipients" on public.messages;
+create policy "Messages are readable by admins senders or recipients"
 on public.messages
 for select
 to authenticated
-using (public.is_admin(auth.uid()) or sender_id = auth.uid());
+using (
+  public.is_admin(auth.uid())
+  or sender_id = auth.uid()
+  or exists (
+    select 1
+    from public.message_recipients
+    where public.message_recipients.message_id = public.messages.id
+      and public.message_recipients.recipient_id = auth.uid()
+  )
+);
 
 drop policy if exists "Messages are writable by admins" on public.messages;
 create policy "Messages are writable by admins"
