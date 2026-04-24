@@ -22,6 +22,8 @@
   --theme-toggle-bg: rgba(255, 255, 255, 0.78);
   --theme-toggle-border: rgba(255, 255, 255, 0.74);
   --theme-toggle-shadow: rgba(68, 94, 132, 0.24);
+  --text-on-dark: #f8fbff;
+  --text-on-brand: #ffffff;
 }
 
 html[data-theme="night"] {
@@ -193,9 +195,11 @@ html[data-theme="night"] .panel-soft {
 }
 
 .button-primary {
-  @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white transition focus:outline-none focus:ring-4;
+  @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-4;
   background:
     linear-gradient(135deg, var(--brand-deep), var(--brand) 60%, #5c86d9);
+  color: var(--text-on-brand);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
   box-shadow:
     14px 14px 28px -18px rgba(22, 52, 103, 0.55),
     -10px -10px 20px -16px rgba(255, 255, 255, 0.7),
@@ -371,6 +375,7 @@ html[data-theme="night"] .neo-stat {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background:
     linear-gradient(160deg, rgba(12, 24, 46, 0.94), rgba(19, 42, 82, 0.92) 60%, rgba(54, 70, 108, 0.9));
+  color: var(--text-on-dark);
   box-shadow:
     26px 26px 50px -34px rgba(8, 15, 31, 0.72),
     inset 1px 1px 0 rgba(255, 255, 255, 0.08);
@@ -447,7 +452,8 @@ html[data-theme="night"] .skeleton {
 .theme-toggle-button {
   background:
     linear-gradient(135deg, var(--brand-deep), var(--brand) 60%, #5c86d9);
-  color: white;
+  color: var(--text-on-brand);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
 }
 
 .theme-toggle-auto {
@@ -486,7 +492,11 @@ html[data-theme="night"] .text-slate-500 {
 html[data-theme="night"] .text-slate-400,
 html[data-theme="night"] .text-slate-300,
 html[data-theme="night"] .text-slate-200 {
-  color: #8fa4c6 !important;
+  color: #a9bddb !important;
+}
+
+html[data-theme="night"] .text-slate-100 {
+  color: #d8e6fb !important;
 }
 
 html[data-theme="night"] .text-blue-700 {
