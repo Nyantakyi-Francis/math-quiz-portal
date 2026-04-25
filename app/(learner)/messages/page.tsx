@@ -1,6 +1,7 @@
+import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { SetupBanner } from "@/components/setup-banner";
-import { getMessagesSnapshot } from "@/lib/db/portal";
+import { getCurrentSession, getMessagesSnapshot } from "@/lib/db/portal";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,20 @@ type MessagesPageProps = {
 
 export default async function MessagesPage({ searchParams }: MessagesPageProps) {
   const params = await searchParams;
+  const session = await getCurrentSession();
+
+  if (session.supabase && session.user) {
+    const { data: profile } = await session.supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", session.user.id)
+      .maybeSingle();
+
+    if (profile?.role === "admin") {
+      redirect("/admin/messages");
+    }
+  }
+
   const snapshot = await getMessagesSnapshot();
 
   return (

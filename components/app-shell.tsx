@@ -17,6 +17,8 @@ export function AppShell({
   userPhone = null,
   role = "learner"
 }: AppShellProps) {
+  const messagesHref = role === "admin" ? "/admin/messages" : "/messages";
+
   return (
     <div className="min-h-screen">
       <header className="chrome-header sticky top-0 z-40 border-b border-white/45 bg-white/50 shadow-[0_24px_60px_-42px_rgba(17,24,39,0.42)] backdrop-blur-2xl">
@@ -38,7 +40,7 @@ export function AppShell({
             <Link className="button-secondary" href="/modules">
               Modules
             </Link>
-            <Link className="button-secondary" href="/messages">
+            <Link className="button-secondary" href={messagesHref}>
               Messages
             </Link>
             <Link className="button-secondary" href="/admin">

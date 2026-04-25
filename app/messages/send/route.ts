@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { notifyMessageRecipientsByEmail } from "@/lib/email/notifications";
 
 function redirectWithStatus(requestUrl: string, params: Record<string, string>) {
   const url = new URL("/messages", requestUrl);
@@ -50,6 +51,12 @@ export async function POST(request: Request) {
     });
   }
 
+  const { data: senderProfile } = await supabase
+    .from("profiles")
+    .select("full_name, email")
+    .eq("id", user.id)
+    .maybeSingle();
+
   const formData = await request.formData();
   const subject = String(formData.get("subject") ?? "").trim();
   const body = String(formData.get("body") ?? "").trim();
@@ -62,7 +69,7 @@ export async function POST(request: Request) {
 
   const { data: admins, error: adminsError } = await admin
     .from("profiles")
-    .select("id")
+    .select("id, email, full_name")
     .eq("role", "admin");
 
   if (adminsError) {
@@ -72,6 +79,12 @@ export async function POST(request: Request) {
   }
 
   const recipientIds = (admins ?? []).map((entry) => entry.id);
+  const recipientsForEmail = (admins ?? [])
+    .map((entry: any) => ({
+      email: String(entry.email ?? "").trim(),
+      name: entry.full_name ?? null
+    }))
+    .filter((recipient) => Boolean(recipient.email));
 
   if (!recipientIds.length) {
     return redirectWithStatus(request.url, {
@@ -108,6 +121,15 @@ export async function POST(request: Request) {
       error: recipientsError.message
     });
   }
+
+  await notifyMessageRecipientsByEmail({
+    request,
+    recipients: recipientsForEmail,
+    senderLabel: senderProfile?.full_name ?? user.email ?? "Learner",
+    subject,
+    body,
+    linkPath: `/admin/messages?learner=${user.id}`
+  });
 
   return redirectWithStatus(request.url, {
     sent: String(recipientIds.length)

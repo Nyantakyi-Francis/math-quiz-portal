@@ -65,6 +65,16 @@ type SentMessageRow = {
   recipientCount: number;
 };
 
+type AdminLearnerThreadSummary = {
+  id: string;
+  email: string;
+  fullName: string | null;
+  phone: string | null;
+  unreadCount: number;
+  lastMessageAt: string | null;
+  lastMessagePreview: string | null;
+};
+
 type SetupWarning = string | null;
 
 const inboxMessageSelect =
@@ -718,6 +728,366 @@ export async function getMessageDetailSnapshot(messageId: string) {
       warning: mapSetupWarning(error instanceof Error ? error.message : "Unable to load message.")
     };
   }
+}
+
+export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
+  const session = await requireUser();
+
+  if (!session.supabase || !session.user) {
+    return {
+      isConfigured: getSupabaseEnv().isConfigured,
+      userEmail: null,
+      userPhone: null,
+      authorized: false,
+      warning:
+        "Connect Supabase and apply the schema before the admin message center can load." as SetupWarning,
+      learners: [] as AdminLearnerThreadSummary[],
+      selectedLearner: null as LearnerRow | null,
+      messages: [] as InboxMessage[]
+    };
+  }
+
+  const adminUserId = session.user.id;
+
+  await ensureProfile(session.supabase, session.user);
+  const profileSummary = await getProfileSummary(session.supabase, session.user);
+
+  let warning: SetupWarning = profileSummary.warning;
+  let authorized = false;
+
+  try {
+    const { data: profile, error: profileError } = await session.supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", session.user.id)
+      .maybeSingle();
+
+    if (profileError) {
+      warning = mapSetupWarning(profileError.message);
+    } else {
+      authorized = profile?.role === "admin";
+    }
+  } catch (error) {
+    warning = mapSetupWarning(error instanceof Error ? error.message : "Unable to load role.");
+  }
+
+  if (!authorized) {
+    return {
+      isConfigured: true,
+      userEmail: session.user.email ?? null,
+      userPhone: profileSummary.phone,
+      authorized: false,
+      warning:
+        warning ??
+        "Your account is not marked as an admin yet. Update your profile role in Supabase after applying the schema.",
+      learners: [] as AdminLearnerThreadSummary[],
+      selectedLearner: null as LearnerRow | null,
+      messages: [] as InboxMessage[]
+    };
+  }
+
+  let learners: LearnerRow[] = [];
+  const learnerLookup = new Map<string, LearnerRow>();
+
+  try {
+    const { data, error } = await session.supabase
+      .from("profiles")
+      .select("id, email, full_name, phone, role, created_at")
+      .eq("role", "learner")
+      .order("created_at", { ascending: false })
+      .limit(80);
+
+    if (error) {
+      warning ??= mapSetupWarning(error.message);
+    } else if (data) {
+      learners = data.map((profile: any) => ({
+        id: profile.id,
+        email: profile.email ?? "No email",
+        fullName: profile.full_name,
+        phone: profile.phone ?? null,
+        role: profile.role ?? "learner",
+        joinedAt: profile.created_at
+      }));
+
+      learners.forEach((learner) => learnerLookup.set(learner.id, learner));
+    }
+  } catch (error) {
+    warning ??= mapSetupWarning(error instanceof Error ? error.message : "Unable to load learners.");
+  }
+
+  const learnerIds = learners.map((learner) => learner.id);
+
+  const unreadCountByLearner = new Map<string, number>();
+  const lastIncomingByLearner = new Map<string, { createdAt: string; preview: string }>();
+  const lastOutgoingByLearner = new Map<string, { createdAt: string; preview: string }>();
+
+  if (learnerIds.length) {
+    try {
+      const { data: unreadRows, error: unreadError } = await session.supabase
+        .from("message_recipients")
+        .select("id, messages(sender_id, message_type)")
+        .eq("recipient_id", session.user.id)
+        .is("read_at", null)
+        .eq("messages.message_type", "admin");
+
+      if (unreadError) {
+        warning ??= mapSetupWarning(unreadError.message);
+      } else {
+        (unreadRows ?? []).forEach((row: any) => {
+          const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
+          const senderId = messageRow?.sender_id ?? null;
+
+          if (!senderId || !learnerLookup.has(senderId)) {
+            return;
+          }
+
+          unreadCountByLearner.set(senderId, (unreadCountByLearner.get(senderId) ?? 0) + 1);
+        });
+      }
+    } catch (error) {
+      warning ??= mapSetupWarning(
+        error instanceof Error ? error.message : "Unable to load unread messages."
+      );
+    }
+
+    try {
+      const { data: incomingRows, error: incomingError } = await session.supabase
+        .from("message_recipients")
+        .select(inboxMessageSelect)
+        .eq("recipient_id", session.user.id)
+        .eq("messages.message_type", "admin")
+        .order("created_at", { foreignTable: "messages", ascending: false })
+        .limit(240);
+
+      if (incomingError) {
+        warning ??= mapSetupWarning(incomingError.message);
+      } else {
+        (incomingRows ?? []).forEach((row: any) => {
+          const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
+          const senderId = messageRow?.sender_id ?? null;
+
+          if (!senderId || !learnerLookup.has(senderId) || lastIncomingByLearner.has(senderId)) {
+            return;
+          }
+
+          lastIncomingByLearner.set(senderId, {
+            createdAt: messageRow.created_at ?? new Date().toISOString(),
+            preview: buildMessagePreview(messageRow.body ?? "")
+          });
+        });
+      }
+    } catch (error) {
+      warning ??= mapSetupWarning(
+        error instanceof Error ? error.message : "Unable to load latest incoming messages."
+      );
+    }
+
+    try {
+      const { data: outgoingRows, error: outgoingError } = await session.supabase
+        .from("message_recipients")
+        .select("recipient_id, messages(sender_id, body, message_type, created_at)")
+        .in("recipient_id", learnerIds)
+        .eq("messages.message_type", "admin")
+        .order("created_at", { foreignTable: "messages", ascending: false })
+        .limit(240);
+
+      if (outgoingError) {
+        warning ??= mapSetupWarning(outgoingError.message);
+      } else {
+        (outgoingRows ?? []).forEach((row: any) => {
+          if (!row?.recipient_id || lastOutgoingByLearner.has(row.recipient_id)) {
+            return;
+          }
+
+          const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
+
+          if (!messageRow) {
+            return;
+          }
+
+          lastOutgoingByLearner.set(row.recipient_id, {
+            createdAt: messageRow.created_at ?? new Date().toISOString(),
+            preview: buildMessagePreview(messageRow.body ?? "")
+          });
+        });
+      }
+    } catch (error) {
+      warning ??= mapSetupWarning(
+        error instanceof Error ? error.message : "Unable to load latest outgoing messages."
+      );
+    }
+  }
+
+  const threadSummaries: AdminLearnerThreadSummary[] = learners
+    .map((learner) => {
+    const incoming = lastIncomingByLearner.get(learner.id) ?? null;
+    const outgoing = lastOutgoingByLearner.get(learner.id) ?? null;
+
+    let lastMessageAt: string | null = null;
+    let lastMessagePreview: string | null = null;
+
+    if (incoming && outgoing) {
+      const incomingTime = new Date(incoming.createdAt).getTime();
+      const outgoingTime = new Date(outgoing.createdAt).getTime();
+
+      if (outgoingTime >= incomingTime) {
+        lastMessageAt = outgoing.createdAt;
+        lastMessagePreview = outgoing.preview;
+      } else {
+        lastMessageAt = incoming.createdAt;
+        lastMessagePreview = incoming.preview;
+      }
+    } else if (incoming) {
+      lastMessageAt = incoming.createdAt;
+      lastMessagePreview = incoming.preview;
+    } else if (outgoing) {
+      lastMessageAt = outgoing.createdAt;
+      lastMessagePreview = outgoing.preview;
+    }
+
+    return {
+      id: learner.id,
+      email: learner.email,
+      fullName: learner.fullName,
+      phone: learner.phone,
+      unreadCount: unreadCountByLearner.get(learner.id) ?? 0,
+      lastMessageAt,
+      lastMessagePreview
+    };
+  })
+    .sort((a, b) => {
+      const aTime = a.lastMessageAt ? new Date(a.lastMessageAt).getTime() : -1;
+      const bTime = b.lastMessageAt ? new Date(b.lastMessageAt).getTime() : -1;
+      return bTime - aTime;
+    });
+
+  let selectedLearner: LearnerRow | null = null;
+  let messages: InboxMessage[] = [];
+
+  if (selectedLearnerId && isUuid(selectedLearnerId)) {
+    selectedLearner = learnerLookup.get(selectedLearnerId) ?? null;
+
+    if (!selectedLearner) {
+      warning ??= "That learner chat could not be found.";
+    }
+  } else if (selectedLearnerId) {
+    warning ??= "That learner link is invalid.";
+  }
+
+  if (selectedLearner) {
+    try {
+      const [incomingResult, outgoingResult] = await Promise.all([
+        session.supabase
+          .from("message_recipients")
+          .select(inboxMessageSelect)
+          .eq("recipient_id", adminUserId)
+          .eq("messages.sender_id", selectedLearner.id)
+          .eq("messages.message_type", "admin")
+          .order("created_at", { foreignTable: "messages", ascending: true })
+          .limit(240),
+        session.supabase
+          .from("message_recipients")
+          .select(inboxMessageSelect)
+          .eq("recipient_id", selectedLearner.id)
+          .eq("messages.message_type", "admin")
+          .order("created_at", { foreignTable: "messages", ascending: true })
+          .limit(240)
+      ]);
+
+      if (incomingResult.error) {
+        warning ??= mapSetupWarning(incomingResult.error.message);
+      }
+
+      if (outgoingResult.error) {
+        warning ??= mapSetupWarning(outgoingResult.error.message);
+      }
+
+      const rawRows = [
+        ...(incomingResult.data ?? []).map((row: any) => ({
+          readAt: row.read_at ?? null,
+          message: Array.isArray(row.messages) ? row.messages[0] : row.messages
+        })),
+        ...(outgoingResult.data ?? []).map((row: any) => ({
+          readAt: row.read_at ?? null,
+          message: Array.isArray(row.messages) ? row.messages[0] : row.messages
+        }))
+      ].filter((entry) => Boolean(entry.message));
+
+      const senderIds = new Set<string>();
+      rawRows.forEach((entry) => {
+        const senderId = entry.message?.sender_id ?? null;
+        if (senderId) {
+          senderIds.add(senderId);
+        }
+      });
+
+      const senderLookup = new Map<string, { fullName: string | null; email: string | null }>();
+
+      if (senderIds.size) {
+        const { data: senders, error: sendersError } = await session.supabase
+          .from("profiles")
+          .select("id, full_name, email")
+          .in("id", Array.from(senderIds));
+
+        if (sendersError) {
+          warning ??= mapSetupWarning(sendersError.message);
+        } else {
+          (senders ?? []).forEach((sender: any) => {
+            senderLookup.set(sender.id, {
+              fullName: sender.full_name ?? null,
+              email: sender.email ?? null
+            });
+          });
+        }
+      }
+
+      messages = rawRows
+        .map((entry) => {
+          const messageRow = entry.message;
+          const createdAt = messageRow.created_at ?? new Date().toISOString();
+          const senderId = messageRow.sender_id ?? null;
+          const isFromLearner = senderId === selectedLearner?.id;
+          const sender = senderId ? senderLookup.get(senderId) : null;
+
+          const senderLabel = isFromLearner
+            ? selectedLearner.fullName ?? selectedLearner.email ?? "Learner"
+            : senderId === adminUserId
+              ? "You"
+              : sender?.fullName ?? sender?.email ?? "Admin";
+
+          return {
+            id: messageRow.id,
+            senderId,
+            senderLabel,
+            senderEmail: null,
+            senderPhone: null,
+            subject: messageRow.subject ?? "Message",
+            body: messageRow.body ?? "",
+            preview: buildMessagePreview(messageRow.body ?? ""),
+            type: messageRow.message_type ?? "admin",
+            createdAt,
+            readAt: entry.readAt ?? null,
+            direction: isFromLearner ? "incoming" : "outgoing"
+          } satisfies InboxMessage;
+        })
+        .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+    } catch (error) {
+      warning ??= mapSetupWarning(
+        error instanceof Error ? error.message : "Unable to load learner chat."
+      );
+    }
+  }
+
+  return {
+    isConfigured: true,
+    userEmail: session.user.email ?? null,
+    userPhone: profileSummary.phone,
+    authorized,
+    warning,
+    learners: threadSummaries,
+    selectedLearner,
+    messages
+  };
 }
 
 export async function getAdminSnapshot() {

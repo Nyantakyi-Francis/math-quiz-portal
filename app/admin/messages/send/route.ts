@@ -1,9 +1,32 @@
 import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { notifyMessageRecipientsByEmail } from "@/lib/email/notifications";
 
-function redirectWithStatus(requestUrl: string, params: Record<string, string>) {
-  const url = new URL("/admin", requestUrl);
+function getReturnTo(requestUrl: string, value: string | null) {
+  if (!value) {
+    return null;
+  }
+
+  try {
+    const url = new URL(value, requestUrl);
+
+    if (url.origin !== new URL(requestUrl).origin) {
+      return null;
+    }
+
+    if (!url.pathname.startsWith("/admin/messages")) {
+      return null;
+    }
+
+    return url;
+  } catch {
+    return null;
+  }
+}
+
+function redirectWithStatus(requestUrl: string, params: Record<string, string>, returnTo?: URL | null) {
+  const url = returnTo ?? new URL("/admin", requestUrl);
 
   Object.entries(params).forEach(([key, value]) => {
     url.searchParams.set(key, value);
@@ -47,34 +70,40 @@ export async function POST(request: Request) {
   const formData = await request.formData();
   const audience = String(formData.get("audience") ?? "all");
   const recipientId = String(formData.get("recipient_id") ?? "").trim();
-  const subject = String(formData.get("subject") ?? "").trim();
+  const subjectInput = String(formData.get("subject") ?? "").trim();
   const body = String(formData.get("body") ?? "").trim();
   const messageType = String(formData.get("message_type") ?? "announcement").trim();
+  const returnTo = getReturnTo(request.url, formData.get("return_to")?.toString() ?? null);
+
+  const subject =
+    subjectInput ||
+    (audience === "single" && returnTo ? "Chat message" : "");
 
   if (!subject || !body) {
     return redirectWithStatus(request.url, {
       error: "Subject and message body are required."
-    });
+    }, returnTo);
   }
 
   if (!["admin", "announcement"].includes(messageType)) {
     return redirectWithStatus(request.url, {
       error: "Invalid message type selected."
-    });
+    }, returnTo);
   }
 
   let recipientIds: string[] = [];
+  let recipientsForEmail: { email: string; name?: string | null }[] = [];
 
   if (audience === "single") {
     if (!recipientId) {
       return redirectWithStatus(request.url, {
         error: "Choose a learner before sending a direct message."
-      });
+      }, returnTo);
     }
 
     const { data: learner, error: learnerError } = await admin
       .from("profiles")
-      .select("id")
+      .select("id, email, full_name")
       .eq("id", recipientId)
       .eq("role", "learner")
       .maybeSingle();
@@ -82,29 +111,38 @@ export async function POST(request: Request) {
     if (learnerError || !learner) {
       return redirectWithStatus(request.url, {
         error: "That learner could not be found."
-      });
+      }, returnTo);
     }
 
     recipientIds = [learner.id];
+    if (learner.email) {
+      recipientsForEmail = [{ email: learner.email, name: learner.full_name ?? null }];
+    }
   } else {
     const { data: learners, error: learnersError } = await admin
       .from("profiles")
-      .select("id")
+      .select("id, email, full_name")
       .eq("role", "learner");
 
     if (learnersError) {
       return redirectWithStatus(request.url, {
         error: learnersError.message
-      });
+      }, returnTo);
     }
 
     recipientIds = (learners ?? []).map((learner) => learner.id);
+    recipientsForEmail = (learners ?? [])
+      .map((learner: any) => ({
+        email: String(learner.email ?? "").trim(),
+        name: learner.full_name ?? null
+      }))
+      .filter((recipient) => Boolean(recipient.email));
   }
 
   if (!recipientIds.length) {
     return redirectWithStatus(request.url, {
       error: "No learners are available for that message."
-    });
+    }, returnTo);
   }
 
   const { data: message, error: messageError } = await admin
@@ -121,7 +159,7 @@ export async function POST(request: Request) {
   if (messageError || !message) {
     return redirectWithStatus(request.url, {
       error: messageError?.message ?? "Unable to create the message."
-    });
+    }, returnTo);
   }
 
   const recipientRows = recipientIds.map((id) => ({
@@ -134,10 +172,20 @@ export async function POST(request: Request) {
   if (recipientError) {
     return redirectWithStatus(request.url, {
       error: recipientError.message
-    });
+    }, returnTo);
   }
+
+  // Optional email notifications (guarded by env vars and recipient cap).
+  await notifyMessageRecipientsByEmail({
+    request,
+    recipients: recipientsForEmail,
+    senderLabel: user.email ?? "Admin",
+    subject,
+    body,
+    linkPath: "/messages"
+  });
 
   return redirectWithStatus(request.url, {
     sent: String(recipientIds.length)
-  });
+  }, returnTo);
 }

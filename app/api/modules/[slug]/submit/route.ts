@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { buildScoreMessageBody, buildScoreMessageSubject } from "@/lib/quiz/messages";
+import { notifyMessageRecipientsByEmail } from "@/lib/email/notifications";
 import type { QuizSubmissionAnswer, QuizSubmissionResult } from "@/lib/quiz/types";
 
 type SubmitRouteContext = {
@@ -248,6 +249,17 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
       message_id: messageRow.id,
       recipient_id: user.id
     });
+
+    if (user.email) {
+      await notifyMessageRecipientsByEmail({
+        request,
+        recipients: [{ email: user.email }],
+        senderLabel: "System",
+        subject: messageSubject,
+        body: messageBody,
+        linkPath: "/messages"
+      });
+    }
   }
 
   const result: QuizSubmissionResult = {
