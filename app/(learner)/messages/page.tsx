@@ -68,18 +68,18 @@ export default async function MessagesPage({ searchParams }: MessagesPageProps) 
                       key={message.id}
                     >
                       <div
-                        className={`max-w-[min(44rem,88%)] rounded-[1.4rem] border px-4 py-3 shadow-sm ${
+                        className={`message-bubble max-w-[min(44rem,88%)] rounded-[1.4rem] border px-4 py-3 shadow-sm ${
                           isOutgoing
                             ? "border-blue-200 bg-blue-600 text-white"
                             : message.readAt
-                              ? "border-slate-200 bg-white/85 text-slate-700"
-                              : "border-amber-200 bg-amber-50/90 text-slate-800"
+                              ? "message-bubble-incoming-read"
+                              : "message-bubble-incoming-unread"
                         }`}
                       >
                         <div className="flex flex-wrap items-center gap-2">
                           <span
                             className={`text-xs font-bold uppercase tracking-[0.16em] ${
-                              isOutgoing ? "text-blue-100" : "text-slate-400"
+                              isOutgoing ? "text-blue-50" : "text-slate-600"
                             }`}
                           >
                             {message.senderLabel}
@@ -88,23 +88,19 @@ export default async function MessagesPage({ searchParams }: MessagesPageProps) 
                             className={`rounded-full px-2 py-0.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] ${
                               isOutgoing
                                 ? "bg-white/15 text-blue-50"
-                                : "bg-slate-100 text-slate-500"
+                                : "message-pill"
                             }`}
                           >
                             {message.type}
                           </span>
                         </div>
-                        <p
-                          className={`mt-2 text-sm font-semibold ${
-                            isOutgoing ? "text-white" : "text-slate-950"
-                          }`}
-                        >
+                        <p className={`mt-2 text-sm font-semibold ${isOutgoing ? "text-white" : ""}`}>
                           {message.subject}
                         </p>
                         <p className="mt-2 whitespace-pre-wrap text-sm leading-6">{message.body}</p>
                         <p
                           className={`mt-3 text-right text-[0.72rem] ${
-                            isOutgoing ? "text-blue-100" : "text-slate-400"
+                            isOutgoing ? "text-blue-50" : "text-slate-500"
                           }`}
                         >
                           {new Date(message.createdAt).toLocaleString()}

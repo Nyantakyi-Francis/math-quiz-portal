@@ -24,7 +24,7 @@ export function AppShell({
           <div className="flex items-center gap-4">
             <div className="logo-mark">NF</div>
             <div>
-              <Link className="text-lg font-black tracking-tight text-slate-900" href="/">
+              <Link className="focus-outline text-lg font-black tracking-tight text-slate-900" href="/">
                 Math Quiz Portal
               </Link>
               <p className="mt-1 text-sm text-slate-500">{description}</p>

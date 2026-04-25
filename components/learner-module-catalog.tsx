@@ -33,17 +33,44 @@ export function LearnerModuleCatalog({ modules }: LearnerModuleCatalogProps) {
           </p>
         </div>
         <label className="relative block min-w-[280px]">
-          <span className="sr-only"></span>
+          <span className="sr-only">Search modules</span>
           <input
-            className="field pl-11"
+            className="field field-has-leading"
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search..."
             type="search"
             value={query}
           />
-          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-            Search
-          </span>
+          {query ? null : (
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="18"
+                viewBox="0 0 24 24"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 4a7 7 0 1 1 0 14 7 7 0 0 1 0-14Z"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M20 20l-3.5-3.5"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+              </svg>
+            </span>
+          )}
         </label>
       </div>
 

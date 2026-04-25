@@ -148,7 +148,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
                         </p>
                         <p className="text-slate-500">{learner.email}</p>
                         {learner.phone ? <p className="text-slate-500">{learner.phone}</p> : null}
-                        <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-400">
+                        <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">
                           {learner.role} • joined {new Date(learner.joinedAt).toLocaleDateString()}
                         </p>
                       </div>
@@ -173,7 +173,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
                             <p className="text-xl font-black text-blue-700">
                               {attempt.scorePercent.toFixed(1)}%
                             </p>
-                            <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+                            <p className="text-xs uppercase tracking-[0.16em] text-slate-500">
                               {new Date(attempt.createdAt).toLocaleDateString()}
                             </p>
                           </div>
@@ -194,14 +194,14 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
                         >
                           <div className="flex items-center justify-between gap-3">
                             <p className="font-semibold text-slate-900">{message.subject}</p>
-                            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
+                            <span className="message-pill rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em]">
                               {message.type}
                             </span>
                           </div>
                           <p className="mt-2 text-slate-500">
                             {message.recipientCount} recipient{message.recipientCount === 1 ? "" : "s"}
                           </p>
-                          <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-400">
+                          <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">
                             {new Date(message.createdAt).toLocaleString()}
                           </p>
                         </div>

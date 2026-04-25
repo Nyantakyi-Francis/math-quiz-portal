@@ -48,14 +48,14 @@ export default async function MessageDetailPage({ params }: MessageDetailPagePro
               </div>
 
               <div className="text-right">
-                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
+                <span className="message-pill rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em]">
                   {snapshot.message.type}
                 </span>
                 <p className="mt-3 text-sm text-slate-500">
                   Sent {new Date(snapshot.message.createdAt).toLocaleString()}
                 </p>
                 {snapshot.message.readAt ? (
-                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-400">
+                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">
                     Opened {new Date(snapshot.message.readAt).toLocaleString()}
                   </p>
                 ) : null}

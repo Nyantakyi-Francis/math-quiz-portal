@@ -8,7 +8,7 @@ function LoadingBlock({ className }: LoadingBlockProps) {
 
 function LoadingHeader() {
   return (
-    <header className="border-b border-slate-200/80 bg-white/85 backdrop-blur">
+    <header className="chrome-header border-b backdrop-blur-2xl">
       <div className="shell flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between">
         <div className="space-y-2">
           <LoadingBlock className="h-7 w-48 rounded-full" />
@@ -94,7 +94,7 @@ export function AuthPageLoading() {
 export function HomePageLoading() {
   return (
     <div className="min-h-screen">
-      <header className="border-b border-slate-200/80 bg-white/85 backdrop-blur">
+      <header className="chrome-header border-b backdrop-blur-2xl">
         <div className="shell flex h-18 items-center justify-between py-4">
           <div className="flex items-center gap-3">
             <LoadingBlock className="h-11 w-11 rounded-2xl" />

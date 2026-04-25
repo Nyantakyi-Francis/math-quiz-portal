@@ -71,11 +71,11 @@ export function ThemeToggle() {
   return (
     <div className="theme-toggle-wrap">
       <div className="theme-toggle-panel">
-        <button className="theme-toggle-button" onClick={toggleTheme} type="button">
+        <button className="focus-outline theme-toggle-button" onClick={toggleTheme} type="button">
           {resolvedTheme === "day" ? "Night mode" : "Day mode"}
         </button>
         <button
-          className={`theme-toggle-auto ${preference === "auto" ? "theme-toggle-auto-active" : ""}`}
+          className={`focus-outline theme-toggle-auto ${preference === "auto" ? "theme-toggle-auto-active" : ""}`}
           onClick={() => setPreference("auto")}
           type="button"
         >

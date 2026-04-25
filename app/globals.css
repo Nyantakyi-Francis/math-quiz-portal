@@ -15,6 +15,7 @@
   --accent: #b88b39;
   --accent-soft: #f5ead1;
   --ring: rgba(47, 99, 191, 0.18);
+  --focus-ring: rgba(47, 99, 191, 0.55);
   --shadow-cool: rgba(68, 94, 132, 0.18);
   --shadow-warm: rgba(255, 255, 255, 0.88);
   --header-border: rgba(255, 255, 255, 0.45);
@@ -40,6 +41,7 @@ html[data-theme="night"] {
   --accent: #f0bf67;
   --accent-soft: rgba(240, 191, 103, 0.14);
   --ring: rgba(127, 172, 255, 0.24);
+  --focus-ring: rgba(127, 172, 255, 0.62);
   --shadow-cool: rgba(0, 0, 0, 0.42);
   --shadow-warm: rgba(77, 113, 177, 0.08);
   --header-border: rgba(135, 163, 213, 0.18);
@@ -128,6 +130,12 @@ html[data-theme="night"] body::before {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.focus-outline:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 4px;
+  border-radius: 0.85rem;
 }
 
 ::selection {
@@ -258,6 +266,10 @@ html[data-theme="night"] .button-secondary:hover {
     8px 8px 20px -20px rgba(79, 102, 137, 0.34);
 }
 
+.field-has-leading {
+  padding-left: 2.75rem;
+}
+
 html[data-theme="night"] .field {
   color: var(--ink);
   border-color: rgba(135, 163, 213, 0.18);
@@ -270,6 +282,55 @@ html[data-theme="night"] .field {
 
 .field:focus {
   border-color: rgba(47, 99, 191, 0.34);
+}
+
+.field::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+html[data-theme="night"] .field::placeholder {
+  color: #b7c7df;
+}
+
+.message-bubble {
+  border-width: 1px;
+}
+
+.message-bubble-incoming-read {
+  border-color: rgba(226, 232, 240, 0.9);
+  background: rgba(255, 255, 255, 0.85);
+  color: #334155;
+}
+
+.message-bubble-incoming-unread {
+  border-color: rgba(253, 230, 138, 0.95);
+  background: rgba(255, 251, 235, 0.9);
+  color: #1f2937;
+}
+
+html[data-theme="night"] .message-bubble-incoming-read {
+  border-color: rgba(135, 163, 213, 0.18);
+  background: rgba(7, 14, 26, 0.78);
+  color: var(--ink);
+}
+
+html[data-theme="night"] .message-bubble-incoming-unread {
+  border-color: rgba(240, 191, 103, 0.28);
+  background: rgba(240, 191, 103, 0.12);
+  color: var(--ink);
+}
+
+.message-pill {
+  border: 1px solid rgba(19, 35, 63, 0.1);
+  background: rgba(19, 35, 63, 0.05);
+  color: #475569;
+}
+
+html[data-theme="night"] .message-pill {
+  border-color: rgba(202, 221, 255, 0.14);
+  background: rgba(202, 221, 255, 0.08);
+  color: #d8e6fb;
 }
 
 .eyebrow {
