@@ -42,7 +42,7 @@ export default function HomePage() {
 
           <div className="relative grid gap-10 lg:grid-cols-[1.4fr_0.8fr] lg:items-center">
             <div>
-              <span className="eyebrow">Migration-safe foundation</span>
+              <span className="eyebrow"></span>
               <h1 className="mt-5 max-w-3xl text-4xl font-black tracking-tight text-slate-950 sm:text-6xl">
                 Master Elective Mathematics with protected accounts, progress, and messaging.
               </h1>
@@ -120,67 +120,7 @@ export default function HomePage() {
         <ModuleCatalog modules={modules} />
       </section>
 
-      <section className="shell pb-20">
-        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="glass-card rounded-[2rem] p-8">
-            <span className="eyebrow">What changes next</span>
-            <div className="mt-5 grid gap-4 text-sm leading-7 text-slate-600">
-              <p>
-                Protected module pages will replace the current public quiz files so questions and
-                answers are delivered through the app, not static files.
-              </p>
-              <p>
-                Quiz attempts will write to Postgres, making learner score history, averages, and
-                weak-topic tracking available on the dashboard and admin pages.
-              </p>
-              <p>
-                The message center will carry score notices, feedback, and direct admin
-                announcements inside the platform.
-              </p>
-            </div>
-          </div>
 
-          <div className="glass-card rounded-[2rem] p-8">
-            <span className="eyebrow">Protected routes</span>
-            <ul className="mt-5 space-y-3 text-sm text-slate-600">
-              <li>
-                <span className="soft-well inline-flex rounded-full px-3 py-1 font-mono text-xs text-slate-700">
-                  /login
-                </span>{" "}
-                and{" "}
-                <span className="soft-well inline-flex rounded-full px-3 py-1 font-mono text-xs text-slate-700">
-                  /signup
-                </span>{" "}
-                for accounts
-              </li>
-              <li>
-                <span className="soft-well inline-flex rounded-full px-3 py-1 font-mono text-xs text-slate-700">
-                  /dashboard
-                </span>{" "}
-                for progress snapshots
-              </li>
-              <li>
-                <span className="soft-well inline-flex rounded-full px-3 py-1 font-mono text-xs text-slate-700">
-                  /modules/[slug]
-                </span>{" "}
-                for gated quiz delivery
-              </li>
-              <li>
-                <span className="soft-well inline-flex rounded-full px-3 py-1 font-mono text-xs text-slate-700">
-                  /messages
-                </span>{" "}
-                for score notifications and broadcasts
-              </li>
-              <li>
-                <span className="soft-well inline-flex rounded-full px-3 py-1 font-mono text-xs text-slate-700">
-                  /admin
-                </span>{" "}
-                for learner performance monitoring
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
 
       <SiteFooter />
     </div>
