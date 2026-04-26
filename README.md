@@ -98,7 +98,7 @@ This gives the platform a safer and more useful model than the legacy static qui
 - [supabase](./supabase): SQL schema and seed scripts
 - [scripts](./scripts): migration/import scripts for legacy quiz data
 - [data](./data): JSON quiz source files used for migration
-- [quizzes](./quizzes): preserved legacy HTML quiz pages
+- [legacy](./legacy): preserved static HTML/CSS/JS quiz site used as migration reference
 
 ## Database model
 
@@ -236,7 +236,7 @@ The following features are intended additions for future phases of the project:
 
 ## Why this repo still contains legacy files
 
-The legacy HTML quizzes in [quizzes](./quizzes) and JSON files in [data](./data) are still valuable during migration:
+The legacy static site in [legacy](./legacy) and JSON files in [data](./data) are still valuable during migration:
 
 - they preserve the original question bank
 - they provide a source of truth for staged imports

@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { isUuid } from "@/lib/http/validation";
+
+type MessageRecipientIdRow = {
+  id: string;
+};
 
 function wantsHtml(request: Request) {
   const accept = request.headers.get("accept") ?? "";
@@ -59,13 +64,13 @@ export async function POST(request: Request) {
     learnerId = String((await request.formData()).get("learner_id") ?? "").trim();
   }
 
-  if (!learnerId) {
+  if (!learnerId || !isUuid(learnerId)) {
     if (!wantsHtml(request)) {
-      return NextResponse.json({ ok: false, error: "Missing learner_id." }, { status: 400 });
+      return NextResponse.json({ ok: false, error: "Invalid learner_id." }, { status: 400 });
     }
 
     const url = new URL("/admin/messages", request.url);
-    url.searchParams.set("error", "Missing learner to mark as read.");
+    url.searchParams.set("error", "Choose a valid learner to mark as read.");
     return NextResponse.redirect(url);
   }
 
@@ -87,7 +92,7 @@ export async function POST(request: Request) {
     return NextResponse.redirect(url);
   }
 
-  const ids = (unreadRows ?? []).map((row: any) => row.id).filter(Boolean);
+  const ids = ((unreadRows ?? []) as MessageRecipientIdRow[]).map((row) => row.id).filter(Boolean);
 
   if (ids.length) {
     const { error: updateError } = await supabase

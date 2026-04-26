@@ -47,7 +47,7 @@ export default async function AdminMessagesPage({ searchParams }: AdminMessagesP
               <div className="border-b border-slate-200/70 px-5 py-4 sm:px-6">
                 <p className="text-lg font-bold text-slate-950">Learners</p>
                 <p className="mt-1 text-sm text-slate-500">
-                  Select a learner to open the chat thread (WhatsApp-style).
+                  Select a learner to open the chat thread.
                 </p>
               </div>
 

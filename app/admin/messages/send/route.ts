@@ -2,6 +2,13 @@ import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { notifyMessageRecipientsByEmail } from "@/lib/email/notifications";
+import { isUuid, requiredTextField } from "@/lib/http/validation";
+
+type LearnerRecipientRow = {
+  id: string;
+  email: string | null;
+  full_name: string | null;
+};
 
 function getReturnTo(requestUrl: string, value: string | null) {
   if (!value) {
@@ -70,8 +77,10 @@ export async function POST(request: Request) {
   const formData = await request.formData();
   const audience = String(formData.get("audience") ?? "all");
   const recipientId = String(formData.get("recipient_id") ?? "").trim();
-  const subjectInput = String(formData.get("subject") ?? "").trim();
-  const body = String(formData.get("body") ?? "").trim();
+  const subjectInput = String(formData.get("subject") ?? "").trim().slice(0, 160);
+  const bodyResult = requiredTextField(formData, "body", "Message body", {
+    maxLength: 4000
+  });
   const messageType = String(formData.get("message_type") ?? "announcement").trim();
   const returnTo = getReturnTo(request.url, formData.get("return_to")?.toString() ?? null);
 
@@ -79,11 +88,19 @@ export async function POST(request: Request) {
     subjectInput ||
     (audience === "single" && returnTo ? "Chat message" : "");
 
-  if (!subject || !body) {
+  if (!subject) {
     return redirectWithStatus(request.url, {
-      error: "Subject and message body are required."
+      error: "Subject is required."
     }, returnTo);
   }
+
+  if (!bodyResult.ok) {
+    return redirectWithStatus(request.url, {
+      error: bodyResult.error
+    }, returnTo);
+  }
+
+  const body = bodyResult.value;
 
   if (!["admin", "announcement"].includes(messageType)) {
     return redirectWithStatus(request.url, {
@@ -95,9 +112,9 @@ export async function POST(request: Request) {
   let recipientsForEmail: { email: string; name?: string | null }[] = [];
 
   if (audience === "single") {
-    if (!recipientId) {
+    if (!recipientId || !isUuid(recipientId)) {
       return redirectWithStatus(request.url, {
-        error: "Choose a learner before sending a direct message."
+        error: "Choose a valid learner before sending a direct message."
       }, returnTo);
     }
 
@@ -130,9 +147,10 @@ export async function POST(request: Request) {
       }, returnTo);
     }
 
-    recipientIds = (learners ?? []).map((learner) => learner.id);
-    recipientsForEmail = (learners ?? [])
-      .map((learner: any) => ({
+    const learnerRows = (learners ?? []) as LearnerRecipientRow[];
+    recipientIds = learnerRows.map((learner) => learner.id);
+    recipientsForEmail = learnerRows
+      .map((learner) => ({
         email: String(learner.email ?? "").trim(),
         name: learner.full_name ?? null
       }))

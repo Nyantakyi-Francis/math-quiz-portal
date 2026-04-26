@@ -23,7 +23,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
   }
 
   const snapshot = await getModulePageSnapshot(slug);
-  const module = snapshot.module;
+  const quizModule = snapshot.module;
 
   return (
     <AppShell
@@ -72,7 +72,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
             <p className="text-lg font-bold text-slate-950">Module status</p>
             <div className="academic-rule mt-4" />
             <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
-              {module?.questions.length ? (
+              {quizModule?.questions.length ? (
                 <>
                   <p>This module has been imported into Postgres and is ready for protected use.</p>
                   <p>
@@ -110,11 +110,11 @@ export default async function ModulePage({ params }: ModulePageProps) {
           </div>
         </section>
 
-        {module?.questions.length ? (
+        {quizModule?.questions.length ? (
           <QuizRunner
-            moduleSlug={module.slug}
-            moduleTitle={module.title}
-            questions={module.questions}
+            moduleSlug={quizModule.slug}
+            moduleTitle={quizModule.title}
+            questions={quizModule.questions}
           />
         ) : null}
       </div>

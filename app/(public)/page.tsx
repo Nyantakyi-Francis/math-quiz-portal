@@ -36,8 +36,6 @@ export default function HomePage() {
 
       <section className="shell py-12 sm:py-16">
         <div className="panel-soft relative overflow-hidden px-6 py-8 sm:px-10 sm:py-12">
-          <div className="absolute right-[-80px] top-[-120px] h-72 w-72 rounded-full bg-blue-200/45 blur-3xl" />
-          <div className="absolute bottom-[-100px] left-[-40px] h-60 w-60 rounded-full bg-amber-200/35 blur-3xl" />
           <div className="absolute inset-y-0 right-[34%] w-px bg-linear-to-b from-transparent via-slate-300/35 to-transparent" />
 
           <div className="relative grid gap-10 lg:grid-cols-[1.4fr_0.8fr] lg:items-center">

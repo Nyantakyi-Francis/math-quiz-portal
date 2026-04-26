@@ -2,6 +2,13 @@ import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { notifyMessageRecipientsByEmail } from "@/lib/email/notifications";
+import { requiredTextField } from "@/lib/http/validation";
+
+type AdminRecipientRow = {
+  id: string;
+  email: string | null;
+  full_name: string | null;
+};
 
 function redirectWithStatus(requestUrl: string, params: Record<string, string>) {
   const url = new URL("/messages", requestUrl);
@@ -58,14 +65,27 @@ export async function POST(request: Request) {
     .maybeSingle();
 
   const formData = await request.formData();
-  const subject = String(formData.get("subject") ?? "").trim();
-  const body = String(formData.get("body") ?? "").trim();
+  const subjectResult = requiredTextField(formData, "subject", "Subject", {
+    maxLength: 160
+  });
+  const bodyResult = requiredTextField(formData, "body", "Message body", {
+    maxLength: 4000
+  });
 
-  if (!subject || !body) {
+  if (!subjectResult.ok) {
     return redirectWithStatus(request.url, {
-      error: "Subject and message body are required."
+      error: subjectResult.error
     });
   }
+
+  if (!bodyResult.ok) {
+    return redirectWithStatus(request.url, {
+      error: bodyResult.error
+    });
+  }
+
+  const subject = subjectResult.value;
+  const body = bodyResult.value;
 
   const { data: admins, error: adminsError } = await admin
     .from("profiles")
@@ -78,9 +98,10 @@ export async function POST(request: Request) {
     });
   }
 
-  const recipientIds = (admins ?? []).map((entry) => entry.id);
-  const recipientsForEmail = (admins ?? [])
-    .map((entry: any) => ({
+  const adminRows = (admins ?? []) as AdminRecipientRow[];
+  const recipientIds = adminRows.map((entry) => entry.id);
+  const recipientsForEmail = adminRows
+    .map((entry) => ({
       email: String(entry.email ?? "").trim(),
       name: entry.full_name ?? null
     }))

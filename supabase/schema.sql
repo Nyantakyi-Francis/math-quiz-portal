@@ -135,6 +135,30 @@ create trigger profiles_set_updated_at
 before update on public.profiles
 for each row execute procedure public.update_timestamp();
 
+create or replace function public.prevent_non_admin_role_change()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if old.role is distinct from new.role
+    and auth.uid() is not null
+    and not public.is_admin(auth.uid())
+  then
+    raise exception 'ROLE_CHANGE_REQUIRES_ADMIN';
+  end if;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists profiles_prevent_non_admin_role_change on public.profiles;
+
+create trigger profiles_prevent_non_admin_role_change
+before update on public.profiles
+for each row execute procedure public.prevent_non_admin_role_change();
+
 create or replace function public.is_admin(check_user_id uuid)
 returns boolean
 language sql
@@ -149,6 +173,143 @@ as $$
       and role = 'admin'
   );
 $$;
+
+create or replace function public.submit_quiz_attempt(
+  p_learner_id uuid,
+  p_module_slug text,
+  p_answers jsonb
+)
+returns table (
+  attempt_id uuid,
+  score_raw integer,
+  score_total integer,
+  score_percent numeric,
+  breakdown jsonb,
+  module_title text
+)
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_module_id uuid;
+  v_module_title text;
+  v_attempt_id uuid;
+  v_score_raw integer;
+  v_score_total integer;
+  v_score_percent numeric;
+begin
+  select modules.id, modules.title
+  into v_module_id, v_module_title
+  from public.modules
+  where modules.slug = p_module_slug;
+
+  if v_module_id is null then
+    raise exception 'MODULE_NOT_FOUND';
+  end if;
+
+  select count(*)
+  into v_score_total
+  from public.questions
+  where questions.module_id = v_module_id;
+
+  if v_score_total = 0 then
+    raise exception 'QUESTION_BANK_EMPTY';
+  end if;
+
+  insert into public.attempts (
+    learner_id,
+    module_id,
+    score_raw,
+    score_total,
+    score_percent,
+    completed_at
+  )
+  values (
+    p_learner_id,
+    v_module_id,
+    0,
+    v_score_total,
+    0,
+    timezone('utc', now())
+  )
+  returning id into v_attempt_id;
+
+  with submitted_answers as (
+    select distinct on (answer ->> 'questionId')
+      answer ->> 'questionId' as question_id,
+      answer ->> 'selectedOptionId' as selected_option_id
+    from jsonb_array_elements(coalesce(p_answers, '[]'::jsonb)) as answer
+    where answer ? 'questionId'
+    order by answer ->> 'questionId'
+  )
+  insert into public.attempt_answers (
+    attempt_id,
+    question_id,
+    selected_option_id,
+    is_correct
+  )
+  select
+    v_attempt_id,
+    questions.id,
+    valid_options.id,
+    valid_options.id is not null
+      and valid_options.id = question_answer_keys.correct_option_id
+  from public.questions
+  left join submitted_answers
+    on submitted_answers.question_id = questions.id::text
+  left join public.question_options as valid_options
+    on valid_options.id::text = submitted_answers.selected_option_id
+    and valid_options.question_id = questions.id
+  left join public.question_answer_keys
+    on question_answer_keys.question_id = questions.id
+  where questions.module_id = v_module_id
+  order by questions.order_index;
+
+  select count(*)
+  into v_score_raw
+  from public.attempt_answers
+  where attempt_answers.attempt_id = v_attempt_id
+    and attempt_answers.is_correct;
+
+  v_score_percent := round((v_score_raw::numeric / v_score_total::numeric) * 100, 1);
+
+  update public.attempts
+  set
+    score_raw = v_score_raw,
+    score_total = v_score_total,
+    score_percent = v_score_percent
+  where attempts.id = v_attempt_id;
+
+  return query
+  select
+    v_attempt_id,
+    v_score_raw,
+    v_score_total,
+    v_score_percent,
+    coalesce(
+      jsonb_agg(
+        jsonb_build_object(
+          'questionId', questions.id,
+          'isCorrect', attempt_answers.is_correct
+        )
+        order by questions.order_index
+      ),
+      '[]'::jsonb
+    ),
+    v_module_title
+  from public.questions
+  join public.attempt_answers
+    on attempt_answers.question_id = questions.id
+    and attempt_answers.attempt_id = v_attempt_id
+  where questions.module_id = v_module_id;
+end;
+$$;
+
+revoke all on function public.submit_quiz_attempt(uuid, text, jsonb) from public;
+revoke all on function public.submit_quiz_attempt(uuid, text, jsonb) from anon;
+revoke all on function public.submit_quiz_attempt(uuid, text, jsonb) from authenticated;
+grant execute on function public.submit_quiz_attempt(uuid, text, jsonb) to service_role;
 
 alter table public.profiles enable row level security;
 alter table public.modules enable row level security;

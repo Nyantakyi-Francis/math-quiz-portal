@@ -23,24 +23,25 @@ function applyTheme(preference: ThemePreference) {
   return resolvedTheme;
 }
 
+function getStoredPreference(): ThemePreference {
+  if (typeof window === "undefined") {
+    return "auto";
+  }
+
+  const savedPreference = window.localStorage.getItem(storageKey);
+
+  return savedPreference === "day" || savedPreference === "night" || savedPreference === "auto"
+    ? savedPreference
+    : "auto";
+}
+
 export function ThemeToggle() {
-  const [preference, setPreference] = useState<ThemePreference>("auto");
-  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>("day");
+  const [preference, setPreference] = useState<ThemePreference>(getStoredPreference);
+  const [autoTheme, setAutoTheme] = useState<ResolvedTheme>(() => getTimeTheme());
+  const resolvedTheme = preference === "auto" ? autoTheme : preference;
 
   useEffect(() => {
-    const savedPreference = window.localStorage.getItem(storageKey);
-    const nextPreference: ThemePreference =
-      savedPreference === "day" || savedPreference === "night" || savedPreference === "auto"
-        ? savedPreference
-        : "auto";
-
-    setPreference(nextPreference);
-    setResolvedTheme(applyTheme(nextPreference));
-  }, []);
-
-  useEffect(() => {
-    const nextResolvedTheme = applyTheme(preference);
-    setResolvedTheme(nextResolvedTheme);
+    applyTheme(preference);
 
     if (preference === "auto") {
       window.localStorage.removeItem(storageKey);
@@ -55,7 +56,8 @@ export function ThemeToggle() {
     }
 
     const intervalId = window.setInterval(() => {
-      setResolvedTheme(applyTheme("auto"));
+      applyTheme("auto");
+      setAutoTheme(getTimeTheme());
     }, 60_000);
 
     return () => window.clearInterval(intervalId);

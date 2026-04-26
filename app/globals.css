@@ -159,7 +159,7 @@ textarea {
 }
 
 .panel {
-  @apply rounded-[2rem];
+  @apply rounded-lg;
   border: 1px solid var(--glass-border);
   background:
     linear-gradient(160deg, rgba(255, 255, 255, 0.88), rgba(244, 248, 255, 0.72));
@@ -182,7 +182,7 @@ html[data-theme="night"] .panel {
 }
 
 .panel-soft {
-  @apply rounded-[2rem];
+  @apply rounded-lg;
   border: 1px solid rgba(255, 255, 255, 0.66);
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(234, 242, 255, 0.76) 52%, rgba(246, 239, 223, 0.78));
@@ -203,7 +203,7 @@ html[data-theme="night"] .panel-soft {
 }
 
 .button-primary {
-  @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-4;
+  @apply inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-4;
   background:
     linear-gradient(135deg, var(--brand-deep), var(--brand) 60%, #5c86d9);
   color: var(--text-on-brand);
@@ -223,7 +223,7 @@ html[data-theme="night"] .panel-soft {
 }
 
 .button-secondary {
-  @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-4 focus:ring-blue-100;
+  @apply inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-4 focus:ring-blue-100;
   border: 1px solid rgba(255, 255, 255, 0.68);
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(239, 244, 252, 0.7));
@@ -256,7 +256,7 @@ html[data-theme="night"] .button-secondary:hover {
 }
 
 .field {
-  @apply w-full rounded-[1.25rem] px-4 py-3 text-sm text-slate-900 outline-none transition focus:ring-4 focus:ring-blue-100;
+  @apply w-full rounded-lg px-4 py-3 text-sm text-slate-900 outline-none transition focus:ring-4 focus:ring-blue-100;
   border: 1px solid rgba(255, 255, 255, 0.76);
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(236, 242, 251, 0.92));
@@ -392,6 +392,7 @@ html[data-theme="night"] .soft-well {
 }
 
 .glass-card {
+  border-radius: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.72);
   background:
     linear-gradient(160deg, rgba(255, 255, 255, 0.82), rgba(239, 244, 252, 0.66) 52%, rgba(248, 242, 228, 0.58));

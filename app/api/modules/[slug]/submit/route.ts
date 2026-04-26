@@ -2,8 +2,10 @@ import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { buildScoreMessageBody, buildScoreMessageSubject } from "@/lib/quiz/messages";
+import { readJsonBody } from "@/lib/http/validation";
 import { notifyMessageRecipientsByEmail } from "@/lib/email/notifications";
-import type { QuizSubmissionAnswer, QuizSubmissionResult } from "@/lib/quiz/types";
+import { validateQuizSubmissionBody } from "@/lib/quiz/validation";
+import type { QuizSubmissionResult } from "@/lib/quiz/types";
 
 type SubmitRouteContext = {
   params: Promise<{
@@ -11,8 +13,16 @@ type SubmitRouteContext = {
   }>;
 };
 
-type SubmissionBody = {
-  answers?: QuizSubmissionAnswer[];
+type SubmitAttemptRpcRow = {
+  attempt_id: string;
+  score_raw: number;
+  score_total: number;
+  score_percent: number | string;
+  breakdown: Array<{
+    questionId: string;
+    isCorrect: boolean;
+  }>;
+  module_title: string;
 };
 
 export async function POST(request: Request, { params }: SubmitRouteContext) {
@@ -51,72 +61,14 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
     );
   }
 
-  const body = (await request.json()) as SubmissionBody;
-  const answers = Array.isArray(body.answers) ? body.answers : [];
+  const body = await readJsonBody(request, validateQuizSubmissionBody);
 
-  if (!answers.length) {
+  if (!body.ok) {
     return NextResponse.json(
       {
-        error: "No quiz answers were submitted."
+        error: body.error
       },
       { status: 400 }
-    );
-  }
-
-  const { data: moduleRow, error: moduleError } = await admin
-    .from("modules")
-    .select("id, slug, title")
-    .eq("slug", slug)
-    .maybeSingle();
-
-  if (moduleError || !moduleRow) {
-    return NextResponse.json(
-      {
-        error: moduleError?.message ?? "This module was not found in the database."
-      },
-      { status: 404 }
-    );
-  }
-
-  const { data: questionRows, error: questionError } = await admin
-    .from("questions")
-    .select("id")
-    .eq("module_id", moduleRow.id)
-    .order("order_index", { ascending: true });
-
-  if (questionError || !questionRows?.length) {
-    return NextResponse.json(
-      {
-        error:
-          questionError?.message ??
-          "This module exists, but its question bank has not been imported yet."
-      },
-      { status: 400 }
-    );
-  }
-
-  const questionIds = questionRows.map((question) => question.id);
-
-  const [optionsResponse, answerKeysResponse] = await Promise.all([
-    admin
-      .from("question_options")
-      .select("id, question_id")
-      .in("question_id", questionIds),
-    admin
-      .from("question_answer_keys")
-      .select("question_id, correct_option_id")
-      .in("question_id", questionIds)
-  ]);
-
-  if (optionsResponse.error || answerKeysResponse.error) {
-    return NextResponse.json(
-      {
-        error:
-          optionsResponse.error?.message ??
-          answerKeysResponse.error?.message ??
-          "Unable to score this attempt."
-      },
-      { status: 500 }
     );
   }
 
@@ -132,102 +84,46 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
     }
   );
 
-  const validOptionIdsByQuestion = new Map<string, Set<string>>();
-  const correctOptionByQuestion = new Map<string, string>();
-
-  optionsResponse.data?.forEach((option) => {
-    const current = validOptionIdsByQuestion.get(option.question_id) ?? new Set<string>();
-    current.add(option.id);
-    validOptionIdsByQuestion.set(option.question_id, current);
-  });
-
-  answerKeysResponse.data?.forEach((entry) => {
-    correctOptionByQuestion.set(entry.question_id, entry.correct_option_id);
-  });
-
-  const answerMap = new Map<string, string | null>();
-
-  answers.forEach((answer) => {
-    if (questionIds.includes(answer.questionId)) {
-      answerMap.set(answer.questionId, answer.selectedOptionId ?? null);
-    }
-  });
-
-  let scoreRaw = 0;
-
-  const breakdown = questionIds.map((questionId) => {
-    const selectedOptionId = answerMap.get(questionId) ?? null;
-    const validOptionIds = validOptionIdsByQuestion.get(questionId) ?? new Set<string>();
-    const normalizedSelection =
-      selectedOptionId && validOptionIds.has(selectedOptionId) ? selectedOptionId : null;
-    const isCorrect =
-      normalizedSelection !== null &&
-      normalizedSelection === correctOptionByQuestion.get(questionId);
-
-    if (isCorrect) {
-      scoreRaw += 1;
-    }
-
-    return {
-      questionId,
-      selectedOptionId: normalizedSelection,
-      isCorrect
-    };
-  });
-
-  const scoreTotal = questionIds.length;
-  const scorePercent = scoreTotal
-    ? Number(((scoreRaw / scoreTotal) * 100).toFixed(1))
-    : 0;
-
-  const { data: attemptRow, error: attemptError } = await admin
-    .from("attempts")
-    .insert({
-      learner_id: user.id,
-      module_id: moduleRow.id,
-      score_raw: scoreRaw,
-      score_total: scoreTotal,
-      score_percent: scorePercent,
-      completed_at: new Date().toISOString()
+  const { data: attemptResult, error: attemptError } = await admin
+    .rpc("submit_quiz_attempt", {
+      p_learner_id: user.id,
+      p_module_slug: slug,
+      p_answers: body.value.answers
     })
-    .select("id")
     .single();
 
-  if (attemptError || !attemptRow) {
+  if (attemptError || !attemptResult) {
+    const message = attemptError?.message ?? "Unable to save this attempt.";
+    const status =
+      message.includes("MODULE_NOT_FOUND") ? 404 : message.includes("QUESTION_BANK_EMPTY") ? 400 : 500;
+
     return NextResponse.json(
       {
-        error: attemptError?.message ?? "Unable to save this attempt."
+        error:
+          message.includes("MODULE_NOT_FOUND")
+            ? "This module was not found in the database."
+            : message.includes("QUESTION_BANK_EMPTY")
+              ? "This module exists, but its question bank has not been imported yet."
+              : message
       },
-      { status: 500 }
+      { status }
     );
   }
 
-  const attemptAnswerRows = breakdown.map((entry) => ({
-    attempt_id: attemptRow.id,
-    question_id: entry.questionId,
-    selected_option_id: entry.selectedOptionId,
-    is_correct: entry.isCorrect
-  }));
-
-  const { error: attemptAnswersError } = await admin.from("attempt_answers").insert(attemptAnswerRows);
-
-  if (attemptAnswersError) {
-    return NextResponse.json(
-      {
-        error: attemptAnswersError.message
-      },
-      { status: 500 }
-    );
-  }
+  const scoredAttempt = attemptResult as SubmitAttemptRpcRow;
+  const scoreRaw = Number(scoredAttempt.score_raw);
+  const scoreTotal = Number(scoredAttempt.score_total);
+  const scorePercent = Number(scoredAttempt.score_percent);
+  const moduleTitle = scoredAttempt.module_title;
 
   const learnerName =
     typeof user.user_metadata.full_name === "string" && user.user_metadata.full_name.trim()
       ? user.user_metadata.full_name.trim()
       : "Learner";
-  const messageSubject = buildScoreMessageSubject(moduleRow.title, scorePercent);
+  const messageSubject = buildScoreMessageSubject(moduleTitle, scorePercent);
   const messageBody = buildScoreMessageBody({
     learnerName,
-    moduleTitle: moduleRow.title,
+    moduleTitle,
     scoreRaw,
     scoreTotal,
     scorePercent
@@ -263,13 +159,13 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
   }
 
   const result: QuizSubmissionResult = {
-    attemptId: attemptRow.id,
+    attemptId: scoredAttempt.attempt_id,
     scoreRaw,
     scoreTotal,
     scorePercent,
     incorrectCount: scoreTotal - scoreRaw,
     messageSubject,
-    breakdown: breakdown.map((entry) => ({
+    breakdown: scoredAttempt.breakdown.map((entry) => ({
       questionId: entry.questionId,
       isCorrect: entry.isCorrect
     }))
