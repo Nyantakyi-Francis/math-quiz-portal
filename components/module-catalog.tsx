@@ -97,7 +97,7 @@ export function ModuleCatalog({ modules }: ModuleCatalogProps) {
 
             <div className="soft-well mt-5 flex items-center justify-between rounded-[1.35rem] px-4 py-3 text-sm text-slate-500">
               <span>{module.questionCount} questions</span>
-              <span>Protected access</span>
+              
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">

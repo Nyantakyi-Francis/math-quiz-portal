@@ -42,13 +42,12 @@ export default function HomePage() {
             <div>
               <span className="eyebrow"></span>
               <h1 className="mt-5 max-w-3xl text-4xl font-black tracking-tight text-slate-950 sm:text-6xl">
-                Master Elective Mathematics with protected accounts, progress, and messaging.
+                Master Elective Mathematics with Sir Francis.
               </h1>
               <div className="academic-rule mt-6" />
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                We are upgrading the portal into a learner platform: accounts, login-gated quizzes,
-                tracked scores, personal inboxes, and an admin performance view powered by Supabase
-                Postgres and Vercel.
+                Math Quiz Portal now includes a learner platform with accounts, login-gated quizzes,
+                tracked scores, personal inboxes, and an admin performance view.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">

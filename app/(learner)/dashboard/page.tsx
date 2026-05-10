@@ -49,8 +49,7 @@ export default async function DashboardPage() {
               <div>
                 <p className="text-lg font-bold text-slate-950">Recent attempts</p>
                 <p className="mt-1 text-sm text-slate-500">
-                  These cards will populate automatically once quiz submissions are written to
-                  Postgres.
+                  Resent attempts will populate automatically once quizes are submitted.
                 </p>
               </div>
               <Link className="button-secondary" href="/messages">
