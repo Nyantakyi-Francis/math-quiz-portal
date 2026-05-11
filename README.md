@@ -38,7 +38,7 @@ The app is written with Node.js, Next.js (App Router) and Supabase. Learners sig
 
 This project includes a short demo video showing the app running (starting the server, navigating the pages, and a quick code walkthrough):
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/Ix951WLkg9c)
 
 # Web Pages
 
