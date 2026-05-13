@@ -22,6 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/*
+          Set the theme before React renders to avoid a flash of incorrect styles.
+          - Preference is stored in localStorage (key: "math-quiz-portal-theme")
+          - If not set, we default to a simple time-of-day heuristic (day/night)
+          - We also sync `color-scheme` so built-in form controls match
+        */}
         <script
           dangerouslySetInnerHTML={{
             __html: `

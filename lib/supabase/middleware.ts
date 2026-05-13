@@ -19,6 +19,8 @@ export async function updateSession(request: NextRequest) {
         return request.cookies.getAll();
       },
       setAll(cookiesToSet) {
+        // Supabase may refresh the auth session (rotating cookies). In Next.js
+        // middleware we must mirror those updates onto the outgoing response.
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
 
         response = NextResponse.next({

@@ -35,6 +35,9 @@ function getRequestOrigin(request?: Request) {
 }
 
 export function getSupabaseEnv() {
+  // `NEXT_PUBLIC_*` values are safe to use in both server and browser code.
+  // We still expose `SUPABASE_SERVICE_ROLE_KEY` here so server-only modules
+  // can import it from one place (never ship that value to the client).
   const url = normalizeSupabaseUrl(process.env.NEXT_PUBLIC_SUPABASE_URL ?? "");
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? "";
@@ -54,6 +57,8 @@ export function getSiteUrl(request?: Request) {
     return requestOrigin;
   }
 
+  // Prefer an explicit URL (useful locally and for non-Vercel hosts), but fall
+  // back to Vercel-provided hostnames when deployed.
   const explicitSiteUrl = normalizeSiteUrl(
     process.env.SITE_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? ""
   );
