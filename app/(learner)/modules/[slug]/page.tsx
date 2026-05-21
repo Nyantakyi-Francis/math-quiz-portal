@@ -74,11 +74,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
             <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
               {quizModule?.questions.length ? (
                 <>
-                  <p>This module has been imported into Postgres and is ready for protected use.</p>
-                  <p>
-                    Answer keys stay on the server. Learners only receive the questions and options
-                    needed to attempt the quiz.
-                  </p>
+
                   <p>
                     Submission creates an <span className="font-mono text-[var(--brand-deep)]">attempt</span>, saves <span className="font-mono text-[var(--brand-deep)]">attempt_answers</span>, and writes a score
                     message to the learner inbox.

@@ -1,0 +1,19 @@
+{
+  "name": "Math Quiz Portal",
+  "short_name": "Math Quiz",
+  "description": "Learner portal for Elective Mathematics quizzes, progress, and messaging.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#1e3a8a",
+  "icons": [
+    {
+      "src": "/dp.PNG",
+      "sizes": "640x640",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
+

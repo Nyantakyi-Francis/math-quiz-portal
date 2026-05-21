@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { PwaRegister } from "@/components/pwa-register";
 import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
 
@@ -11,7 +12,12 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Math Quiz Portal",
   description:
-    "Protected learner portal for Elective Mathematics with Supabase auth, progress tracking, messaging, and admin insights."
+    "Protected learner portal for Elective Mathematics by Nyantakyi Francis.",
+  manifest: "/manifest.webmanifest",
+  themeColor: "#1e3a8a",
+  icons: {
+    icon: "/favicon.png"
+  }
 };
 
 export default function RootLayout({
@@ -22,6 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="default" name="apple-mobile-web-app-status-bar-style" />
+        <meta content="Math Quiz Portal" name="apple-mobile-web-app-title" />
         {/*
           Set the theme before React renders to avoid a flash of incorrect styles.
           - Preference is stored in localStorage (key: "math-quiz-portal-theme")
@@ -52,6 +61,7 @@ export default function RootLayout({
       <body className={`${jakarta.variable} bg-[var(--surface)] text-slate-900 antialiased`}>
         {children}
         <ThemeToggle />
+        <PwaRegister />
       </body>
     </html>
   );

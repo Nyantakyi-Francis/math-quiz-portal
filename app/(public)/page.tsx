@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       <header className="chrome-header border-b border-white/45 bg-white/50 backdrop-blur-2xl">
-        <div className="shell flex h-18 items-center justify-between py-4">
+        <div className="shell flex flex-col gap-3 py-4 sm:h-18 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <div className="logo-mark">NF</div>
             <div>
@@ -23,11 +23,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          <nav className="flex flex-wrap items-center gap-3">
-            <Link className="button-secondary" href="/signup">
+          <nav className="flex flex-nowrap items-center gap-3">
+            <Link className="button-secondary whitespace-nowrap" href="/signup">
               Create account
             </Link>
-            <Link className="button-primary" href="/login">
+            <Link className="button-primary whitespace-nowrap" href="/login">
               Login
             </Link>
           </nav>
