@@ -12,7 +12,7 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Math Quiz Portal",
   description:
-    "Protected learner portal for Elective Mathematics by Nyantakyi Francis.",
+    "Learning portal for Elective Mathematics by Nyantakyi Francis.",
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [
