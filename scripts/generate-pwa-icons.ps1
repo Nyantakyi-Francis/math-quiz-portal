@@ -77,12 +77,16 @@ if (-not (Test-Path -LiteralPath $Source)) {
 
 $src = [System.Drawing.Image]::FromFile((Resolve-Path -LiteralPath $Source))
 try {
+  Save-ResizedPng -SourceImage $src -Size 128 -OutPath (Join-Path $OutDir "icon-128.png")
   Save-ResizedPng -SourceImage $src -Size 192 -OutPath (Join-Path $OutDir "icon-192.png")
+  Save-ResizedPng -SourceImage $src -Size 256 -OutPath (Join-Path $OutDir "icon-256.png")
   Save-ResizedPng -SourceImage $src -Size 512 -OutPath (Join-Path $OutDir "icon-512.png")
   Save-ResizedPng -SourceImage $src -Size 180 -OutPath (Join-Path $OutDir "apple-touch-icon.png")
 
   $bg = [System.Drawing.ColorTranslator]::FromHtml($MaskableBackground)
+  Save-MaskablePng -SourceImage $src -Size 128 -OutPath (Join-Path $OutDir "maskable-128.png") -BackgroundColor $bg
   Save-MaskablePng -SourceImage $src -Size 192 -OutPath (Join-Path $OutDir "maskable-192.png") -BackgroundColor $bg
+  Save-MaskablePng -SourceImage $src -Size 256 -OutPath (Join-Path $OutDir "maskable-256.png") -BackgroundColor $bg
   Save-MaskablePng -SourceImage $src -Size 512 -OutPath (Join-Path $OutDir "maskable-512.png") -BackgroundColor $bg
 } finally {
   $src.Dispose()
