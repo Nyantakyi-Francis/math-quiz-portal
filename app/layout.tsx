@@ -9,10 +9,27 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta"
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ??
+  "https://math-quiz-portal-j83k.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Math Quiz Portal",
   description:
     "Learning portal for Elective Mathematics by Nyantakyi Francis.",
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "Math Quiz Portal",
+    description:
+      "Learning portal for Elective Mathematics by Nyantakyi Francis."
+  },
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [
