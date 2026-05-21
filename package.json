@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "check": "npm run typecheck && npm run lint && npm run test",
+    "icons:generate": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/generate-pwa-icons.ps1",
     "import:module": "node scripts/import-module.mjs",
     "import:all-modules": "node scripts/import-module.mjs all"
   },

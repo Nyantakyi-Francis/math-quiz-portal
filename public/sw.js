@@ -1,8 +1,18 @@
 /* eslint-disable no-restricted-globals */
 
-const CACHE_NAME = "math-quiz-portal-pwa-v1";
+const CACHE_NAME = "math-quiz-portal-pwa-v2";
 
-const PRECACHE_URLS = ["/", "/offline.html", "/manifest.webmanifest", "/dp.PNG"];
+const PRECACHE_URLS = [
+  "/",
+  "/offline.html",
+  "/manifest.webmanifest",
+  "/favicon.png",
+  "/icons/icon-192.png",
+  "/icons/icon-512.png",
+  "/icons/maskable-192.png",
+  "/icons/maskable-512.png",
+  "/icons/apple-touch-icon.png"
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -73,4 +83,3 @@ self.addEventListener("fetch", (event) => {
     })()
   );
 });
-

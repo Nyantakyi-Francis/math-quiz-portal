@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { PwaRegister } from "@/components/pwa-register";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -14,10 +14,18 @@ export const metadata: Metadata = {
   description:
     "Protected learner portal for Elective Mathematics by Nyantakyi Francis.",
   manifest: "/manifest.webmanifest",
-  themeColor: "#1e3a8a",
   icons: {
-    icon: "/favicon.png"
+    icon: [
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" }
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/favicon.png"]
   }
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1e3a8a"
 };
 
 export default function RootLayout({
