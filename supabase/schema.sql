@@ -570,3 +570,16 @@ on public.directory_profiles
 for select
 to authenticated
 using (auth.uid() is not null);
+
+insert into public.directory_profiles (id, display_name)
+select profiles.id, coalesce(profiles.full_name, '')
+from public.profiles
+where profiles.role = 'learner'
+on conflict (id) do update
+set display_name = excluded.display_name,
+    updated_at = timezone('utc', now());
+
+delete from public.directory_profiles
+using public.profiles
+where directory_profiles.id = profiles.id
+  and profiles.role <> 'learner';
