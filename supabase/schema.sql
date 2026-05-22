@@ -78,7 +78,7 @@ create table if not exists public.messages (
   sender_id uuid references public.profiles (id) on delete set null,
   subject text not null,
   body text not null,
-  message_type text not null default 'system' check (message_type in ('system', 'score', 'admin', 'announcement')),
+  message_type text not null default 'system' check (message_type in ('system', 'score', 'admin', 'announcement', 'peer')),
   created_at timestamptz not null default timezone('utc', now())
 );
 
@@ -134,6 +134,46 @@ drop trigger if exists profiles_set_updated_at on public.profiles;
 create trigger profiles_set_updated_at
 before update on public.profiles
 for each row execute procedure public.update_timestamp();
+
+create table if not exists public.directory_profiles (
+  id uuid primary key references public.profiles (id) on delete cascade,
+  display_name text not null default '',
+  created_at timestamptz not null default timezone('utc', now()),
+  updated_at timestamptz not null default timezone('utc', now())
+);
+
+drop trigger if exists directory_profiles_set_updated_at on public.directory_profiles;
+
+create trigger directory_profiles_set_updated_at
+before update on public.directory_profiles
+for each row execute procedure public.update_timestamp();
+
+create or replace function public.sync_directory_profile()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if new.role = 'learner' then
+    insert into public.directory_profiles (id, display_name)
+    values (new.id, coalesce(new.full_name, ''))
+    on conflict (id) do update
+    set display_name = excluded.display_name,
+        updated_at = timezone('utc', now());
+  else
+    delete from public.directory_profiles where id = new.id;
+  end if;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists profiles_sync_directory_profile on public.profiles;
+
+create trigger profiles_sync_directory_profile
+after insert or update of full_name, role on public.profiles
+for each row execute procedure public.sync_directory_profile();
 
 create or replace function public.prevent_non_admin_role_change()
 returns trigger
@@ -320,6 +360,7 @@ alter table public.attempts enable row level security;
 alter table public.attempt_answers enable row level security;
 alter table public.messages enable row level security;
 alter table public.message_recipients enable row level security;
+alter table public.directory_profiles enable row level security;
 
 drop policy if exists "Profiles are readable by owner or admin" on public.profiles;
 create policy "Profiles are readable by owner or admin"
@@ -501,6 +542,20 @@ for select
 to authenticated
 using (recipient_id = auth.uid() or public.is_admin(auth.uid()));
 
+drop policy if exists "Senders can read message links" on public.message_recipients;
+create policy "Senders can read message links"
+on public.message_recipients
+for select
+to authenticated
+using (
+  exists (
+    select 1
+    from public.messages
+    where public.messages.id = public.message_recipients.message_id
+      and public.messages.sender_id = auth.uid()
+  )
+);
+
 drop policy if exists "Admins manage recipients" on public.message_recipients;
 create policy "Admins manage recipients"
 on public.message_recipients
@@ -508,3 +563,10 @@ for all
 to authenticated
 using (recipient_id = auth.uid() or public.is_admin(auth.uid()))
 with check (recipient_id = auth.uid() or public.is_admin(auth.uid()));
+
+drop policy if exists "Directory is readable by authenticated users" on public.directory_profiles;
+create policy "Directory is readable by authenticated users"
+on public.directory_profiles
+for select
+to authenticated
+using (auth.uid() is not null);

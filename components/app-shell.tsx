@@ -43,6 +43,11 @@ export function AppShell({
             <Link className="button-secondary" href={messagesHref}>
               Messages
             </Link>
+            {role === "learner" ? (
+              <Link className="button-secondary" href="/students">
+                Students
+              </Link>
+            ) : null}
             <Link className="button-secondary" href="/admin">
               Admin
             </Link>

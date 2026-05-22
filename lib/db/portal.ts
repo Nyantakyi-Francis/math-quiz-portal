@@ -75,6 +75,20 @@ type AdminLearnerThreadSummary = {
   lastMessagePreview: string | null;
 };
 
+type DirectoryStudentRow = {
+  id: string;
+  displayName: string;
+  joinedAt: string;
+};
+
+type StudentThreadSummary = {
+  id: string;
+  displayName: string;
+  unreadCount: number;
+  lastMessageAt: string | null;
+  lastMessagePreview: string | null;
+};
+
 type SetupWarning = string | null;
 
 const inboxMessageSelect =
@@ -145,6 +159,10 @@ function getDefaultSenderLabel(messageType: string) {
 
   if (messageType === "admin") {
     return "Admin";
+  }
+
+  if (messageType === "peer") {
+    return "Learner";
   }
 
   return "Admin team";
@@ -231,7 +249,8 @@ async function getInboxMessages(
   role: string,
   limit?: number,
   includeSent = false,
-  ascending = false
+  ascending = false,
+  messageTypes?: string[]
 ) {
   let warning: SetupWarning = null;
 
@@ -241,6 +260,10 @@ async function getInboxMessages(
       .select(inboxMessageSelect)
       .eq("recipient_id", userId)
       .order("created_at", { foreignTable: "messages", ascending });
+
+    if (messageTypes?.length) {
+      query = query.in("messages.message_type", messageTypes);
+    }
 
     if (typeof limit === "number") {
       query = query.limit(limit);
@@ -279,11 +302,17 @@ async function getInboxMessages(
     let sentMessages: RawInboxMessage[] = [];
 
     if (includeSent) {
-      const { data: sentRows, error: sentError } = await supabase
+      let sentQuery = supabase
         .from("messages")
         .select("id, sender_id, subject, body, message_type, created_at")
         .eq("sender_id", userId)
         .order("created_at", { ascending });
+
+      if (messageTypes?.length) {
+        sentQuery = sentQuery.in("message_type", messageTypes);
+      }
+
+      const { data: sentRows, error: sentError } = await sentQuery;
 
       if (sentError) {
         warning ??= mapSetupWarning(sentError.message);
@@ -490,7 +519,15 @@ export async function getDashboardSnapshot() {
     warning ??= mapSetupWarning(error instanceof Error ? error.message : "Unable to load attempts.");
   }
 
-  const inboxResult = await getInboxMessages(session.supabase, session.user.id, role, 6);
+  const inboxResult = await getInboxMessages(
+    session.supabase,
+    session.user.id,
+    role,
+    6,
+    false,
+    false,
+    ["system", "score", "admin", "announcement"]
+  );
   const unreadResult = await getUnreadMessagesCount(session.supabase, session.user.id);
   const messages = inboxResult.messages;
 
@@ -558,7 +595,8 @@ export async function getMessagesSnapshot() {
     profileSummary.role,
     undefined,
     true,
-    true
+    true,
+    ["system", "score", "admin", "announcement"]
   );
   const unreadResult = await getUnreadMessagesCount(session.supabase, session.user.id);
   const adminContactsResult =
@@ -1086,6 +1124,325 @@ export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
     warning,
     learners: threadSummaries,
     selectedLearner,
+    messages
+  };
+}
+
+async function getPeerThreadMessages(
+  supabase: NonNullable<Awaited<ReturnType<typeof createSupabaseServerClient>>>,
+  currentUserId: string,
+  peerId: string
+) {
+  let warning: SetupWarning = null;
+
+  try {
+    const { data: incomingRows, error: incomingError } = await supabase
+      .from("message_recipients")
+      .select(inboxMessageSelect)
+      .eq("recipient_id", currentUserId)
+      .eq("messages.message_type", "peer")
+      .eq("messages.sender_id", peerId)
+      .order("created_at", { foreignTable: "messages", ascending: true })
+      .limit(240);
+
+    if (incomingError) {
+      return {
+        messages: [] as InboxMessage[],
+        warning: mapSetupWarning(incomingError.message)
+      };
+    }
+
+    const { data: outgoingRows, error: outgoingError } = await supabase
+      .from("message_recipients")
+      .select(inboxMessageSelect)
+      .eq("recipient_id", peerId)
+      .eq("messages.message_type", "peer")
+      .eq("messages.sender_id", currentUserId)
+      .order("created_at", { foreignTable: "messages", ascending: true })
+      .limit(240);
+
+    if (outgoingError) {
+      warning ??= mapSetupWarning(outgoingError.message);
+    }
+
+    const incomingMessages = (incomingRows ?? [])
+      .map((entry: any): InboxMessage | null => {
+        const messageRow = Array.isArray(entry.messages) ? entry.messages[0] : entry.messages;
+
+        if (!messageRow?.id) {
+          return null;
+        }
+
+        return {
+          id: messageRow.id,
+          senderId: messageRow.sender_id ?? null,
+          senderLabel: "Learner",
+          senderEmail: null as string | null,
+          senderPhone: null as string | null,
+          subject: messageRow.subject ?? "Message",
+          body: messageRow.body ?? "",
+          preview: buildMessagePreview(messageRow.body ?? ""),
+          type: messageRow.message_type ?? "peer",
+          createdAt: messageRow.created_at ?? new Date().toISOString(),
+          readAt: entry.read_at ?? null,
+          direction: "incoming" as const
+        } satisfies InboxMessage;
+      })
+      .filter((message): message is InboxMessage => Boolean(message));
+
+    const outgoingMessages = (outgoingRows ?? [])
+      .map((entry: any): InboxMessage | null => {
+        const messageRow = Array.isArray(entry.messages) ? entry.messages[0] : entry.messages;
+
+        if (!messageRow?.id) {
+          return null;
+        }
+
+        return {
+          id: messageRow.id,
+          senderId: messageRow.sender_id ?? null,
+          senderLabel: "You",
+          senderEmail: null as string | null,
+          senderPhone: null as string | null,
+          subject: messageRow.subject ?? "Message",
+          body: messageRow.body ?? "",
+          preview: buildMessagePreview(messageRow.body ?? ""),
+          type: messageRow.message_type ?? "peer",
+          createdAt: messageRow.created_at ?? new Date().toISOString(),
+          readAt: entry.read_at ?? null,
+          direction: "outgoing" as const
+        } satisfies InboxMessage;
+      })
+      .filter((message): message is InboxMessage => Boolean(message));
+
+    const messages = [...incomingMessages, ...outgoingMessages]
+      .filter(
+        (message, index, all) => all.findIndex((candidate) => candidate.id === message.id) === index
+      )
+      .sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt));
+
+    return {
+      messages,
+      warning
+    };
+  } catch (error) {
+    return {
+      messages: [] as InboxMessage[],
+      warning: mapSetupWarning(error instanceof Error ? error.message : "Unable to load messages.")
+    };
+  }
+}
+
+export async function getStudentMessagesSnapshot(selectedStudentId?: string) {
+  const session = await requireUser();
+
+  if (!session.supabase || !session.user) {
+    return {
+      isConfigured: getSupabaseEnv().isConfigured,
+      userEmail: null,
+      userPhone: null,
+      role: "learner",
+      warning:
+        "Connect Supabase and apply the SQL schema before student messaging can load." as SetupWarning,
+      students: [] as StudentThreadSummary[],
+      selectedStudent: null as DirectoryStudentRow | null,
+      messages: [] as InboxMessage[]
+    };
+  }
+
+  await ensureProfile(session.supabase, session.user);
+  const profileSummary = await getProfileSummary(session.supabase, session.user);
+
+  let warning: SetupWarning = profileSummary.warning;
+  const currentUserId = session.user.id;
+
+  let directory: DirectoryStudentRow[] = [];
+  const directoryLookup = new Map<string, DirectoryStudentRow>();
+
+  try {
+    const { data, error } = await session.supabase
+      .from("directory_profiles")
+      .select("id, display_name, created_at")
+      .order("created_at", { ascending: false })
+      .limit(200);
+
+    if (error) {
+      warning ??= mapSetupWarning(error.message);
+    } else if (data) {
+      directory = (data as any[])
+        .filter((row) => row.id && row.id !== currentUserId)
+        .map((row) => ({
+          id: row.id,
+          displayName: row.display_name?.trim() ? row.display_name : "Learner",
+          joinedAt: row.created_at ?? new Date().toISOString()
+        }));
+
+      directory.forEach((student) => directoryLookup.set(student.id, student));
+    }
+  } catch (error) {
+    warning ??= mapSetupWarning(error instanceof Error ? error.message : "Unable to load students.");
+  }
+
+  const studentIds = directory.map((student) => student.id);
+  const unreadCountByStudent = new Map<string, number>();
+  const lastIncomingByStudent = new Map<string, { createdAt: string; preview: string }>();
+  const lastOutgoingByStudent = new Map<string, { createdAt: string; preview: string }>();
+
+  if (studentIds.length) {
+    try {
+      const { data: unreadRows, error: unreadError } = await session.supabase
+        .from("message_recipients")
+        .select("id, messages(sender_id, message_type)")
+        .eq("recipient_id", currentUserId)
+        .is("read_at", null)
+        .eq("messages.message_type", "peer")
+        .order("created_at", { foreignTable: "messages", ascending: false })
+        .limit(500);
+
+      if (unreadError) {
+        warning ??= mapSetupWarning(unreadError.message);
+      } else {
+        (unreadRows ?? []).forEach((row: any) => {
+          const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
+          const senderId = messageRow?.sender_id ?? null;
+
+          if (!senderId || !directoryLookup.has(senderId)) {
+            return;
+          }
+
+          unreadCountByStudent.set(senderId, (unreadCountByStudent.get(senderId) ?? 0) + 1);
+        });
+      }
+    } catch (error) {
+      warning ??= mapSetupWarning(
+        error instanceof Error ? error.message : "Unable to load unread student messages."
+      );
+    }
+
+    try {
+      const { data: incomingRows, error: incomingError } = await session.supabase
+        .from("message_recipients")
+        .select("read_at, messages(sender_id, body, message_type, created_at)")
+        .eq("recipient_id", currentUserId)
+        .eq("messages.message_type", "peer")
+        .order("created_at", { foreignTable: "messages", ascending: false })
+        .limit(400);
+
+      if (incomingError) {
+        warning ??= mapSetupWarning(incomingError.message);
+      } else {
+        (incomingRows ?? []).forEach((row: any) => {
+          const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
+          const senderId = messageRow?.sender_id ?? null;
+
+          if (!senderId || !directoryLookup.has(senderId) || lastIncomingByStudent.has(senderId)) {
+            return;
+          }
+
+          lastIncomingByStudent.set(senderId, {
+            createdAt: messageRow.created_at ?? new Date().toISOString(),
+            preview: buildMessagePreview(messageRow.body ?? "")
+          });
+        });
+      }
+    } catch (error) {
+      warning ??= mapSetupWarning(
+        error instanceof Error ? error.message : "Unable to load latest student messages."
+      );
+    }
+
+    try {
+      const { data: outgoingRows, error: outgoingError } = await session.supabase
+        .from("message_recipients")
+        .select("recipient_id, messages(body, message_type, created_at, sender_id)")
+        .eq("messages.sender_id", currentUserId)
+        .eq("messages.message_type", "peer")
+        .order("created_at", { foreignTable: "messages", ascending: false })
+        .limit(400);
+
+      if (outgoingError) {
+        warning ??= mapSetupWarning(outgoingError.message);
+      } else {
+        (outgoingRows ?? []).forEach((row: any) => {
+          const recipientId = row?.recipient_id ?? null;
+
+          if (!recipientId || !directoryLookup.has(recipientId) || lastOutgoingByStudent.has(recipientId)) {
+            return;
+          }
+
+          const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
+
+          if (!messageRow) {
+            return;
+          }
+
+          lastOutgoingByStudent.set(recipientId, {
+            createdAt: messageRow.created_at ?? new Date().toISOString(),
+            preview: buildMessagePreview(messageRow.body ?? "")
+          });
+        });
+      }
+    } catch (error) {
+      warning ??= mapSetupWarning(
+        error instanceof Error ? error.message : "Unable to load sent student messages."
+      );
+    }
+  }
+
+  const students: StudentThreadSummary[] = directory.map((student) => {
+    const incoming = lastIncomingByStudent.get(student.id) ?? null;
+    const outgoing = lastOutgoingByStudent.get(student.id) ?? null;
+
+    let lastMessageAt: string | null = null;
+    let lastMessagePreview: string | null = null;
+
+    if (incoming && outgoing) {
+      lastMessageAt =
+        Date.parse(incoming.createdAt) >= Date.parse(outgoing.createdAt)
+          ? incoming.createdAt
+          : outgoing.createdAt;
+      lastMessagePreview =
+        lastMessageAt === incoming.createdAt ? incoming.preview : outgoing.preview;
+    } else if (incoming) {
+      lastMessageAt = incoming.createdAt;
+      lastMessagePreview = incoming.preview;
+    } else if (outgoing) {
+      lastMessageAt = outgoing.createdAt;
+      lastMessagePreview = outgoing.preview;
+    }
+
+    return {
+      id: student.id,
+      displayName: student.displayName,
+      unreadCount: unreadCountByStudent.get(student.id) ?? 0,
+      lastMessageAt,
+      lastMessagePreview
+    };
+  });
+
+  const selectedStudent =
+    selectedStudentId && directoryLookup.has(selectedStudentId)
+      ? (directoryLookup.get(selectedStudentId) ?? null)
+      : null;
+
+  const threadResult =
+    selectedStudent && selectedStudent.id
+      ? await getPeerThreadMessages(session.supabase, currentUserId, selectedStudent.id)
+      : { messages: [] as InboxMessage[], warning: null as SetupWarning };
+
+  const messages = threadResult.messages.map((message) => ({
+    ...message,
+    senderLabel: message.direction === "outgoing" ? "You" : selectedStudent?.displayName ?? "Learner"
+  }));
+
+  return {
+    isConfigured: true,
+    userEmail: session.user.email ?? null,
+    userPhone: profileSummary.phone,
+    role: profileSummary.role,
+    warning: warning ?? threadResult.warning,
+    students,
+    selectedStudent,
     messages
   };
 }
