@@ -95,10 +95,14 @@ const inboxMessageSelect =
   "read_at, messages(id, sender_id, subject, body, message_type, created_at)";
 
 function mapSetupWarning(message: string) {
+  const normalizedMessage = message.toLowerCase();
+
   if (
-    message.includes("relation") ||
-    message.includes("does not exist") ||
-    message.includes("schema cache")
+    normalizedMessage.includes("does not exist") ||
+    normalizedMessage.includes("could not find the table") ||
+    (normalizedMessage.includes("could not find the") &&
+      normalizedMessage.includes("column") &&
+      normalizedMessage.includes("schema cache"))
   ) {
     return "Supabase is connected, but the database schema has not been applied yet.";
   }
