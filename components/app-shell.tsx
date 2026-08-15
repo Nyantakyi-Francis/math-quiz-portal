@@ -40,6 +40,9 @@ export function AppShell({
             <Link className="button-secondary" href="/modules">
               Modules
             </Link>
+            <Link className="button-secondary" href="/resources">
+              Resources
+            </Link>
             <Link className="button-secondary" href={messagesHref}>
               Messages
             </Link>
