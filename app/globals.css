@@ -244,6 +244,18 @@ html[data-theme="night"] .button-secondary {
     inset 1px 1px 0 rgba(202, 221, 255, 0.08);
 }
 
+html[data-theme="night"] .button-primary,
+html[data-theme="night"] .theme-toggle-button {
+  background: linear-gradient(135deg, #173b78, #285cae 60%, #3569bd);
+  color: #ffffff;
+}
+
+html[data-theme="night"] .logo-mark {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03)),
+    linear-gradient(135deg, #173b78, #285cae 66%, #3569bd);
+}
+
 .button-secondary:hover {
   border-color: rgba(47, 99, 191, 0.22);
   color: var(--brand-deep);
@@ -565,16 +577,47 @@ html[data-theme="night"] .text-blue-700 {
   color: #8fb6ff !important;
 }
 
+html[data-theme="night"] .text-blue-800 {
+  color: #b8d0ff !important;
+}
+
+html[data-theme="night"] .text-emerald-900,
+html[data-theme="night"] .text-emerald-800,
+html[data-theme="night"] .text-emerald-700 {
+  color: #6ee7b7 !important;
+}
+
+html[data-theme="night"] .text-rose-800,
+html[data-theme="night"] .text-rose-700 {
+  color: #fda4af !important;
+}
+
+html[data-theme="night"] .text-amber-950,
+html[data-theme="night"] .text-amber-900,
+html[data-theme="night"] .text-amber-800 {
+  color: #fcd78d !important;
+}
+
 html[data-theme="night"] .bg-slate-50,
 html[data-theme="night"] .bg-slate-100,
+html[data-theme="night"] .bg-white\/50,
+html[data-theme="night"] .bg-white\/70,
+html[data-theme="night"] .bg-blue-50,
+html[data-theme="night"] .bg-blue-50\/70,
 html[data-theme="night"] .bg-blue-50\/60,
 html[data-theme="night"] .bg-blue-50\/50 {
   background-color: rgba(19, 33, 56, 0.72) !important;
 }
 
+html[data-theme="night"] .bg-amber-100 {
+  background-color: rgba(146, 94, 18, 0.3) !important;
+}
+
 html[data-theme="night"] .border-slate-200,
 html[data-theme="night"] .border-slate-300,
 html[data-theme="night"] .border-blue-200,
+html[data-theme="night"] .border-emerald-200\/70,
+html[data-theme="night"] .border-rose-200\/70,
 html[data-theme="night"] .border-amber-200\/70 {
   border-color: rgba(135, 163, 213, 0.18) !important;
 }

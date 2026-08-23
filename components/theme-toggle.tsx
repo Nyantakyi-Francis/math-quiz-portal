@@ -36,11 +36,29 @@ function getStoredPreference(): ThemePreference {
 }
 
 export function ThemeToggle() {
-  const [preference, setPreference] = useState<ThemePreference>(getStoredPreference);
-  const [autoTheme, setAutoTheme] = useState<ResolvedTheme>(() => getTimeTheme());
+  const [preference, setPreference] = useState<ThemePreference>("auto");
+  const [autoTheme, setAutoTheme] = useState<ResolvedTheme>("day");
+  const [isHydrated, setIsHydrated] = useState(false);
   const resolvedTheme = preference === "auto" ? autoTheme : preference;
 
   useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      const storedPreference = getStoredPreference();
+
+      setPreference(storedPreference);
+      setAutoTheme(getTimeTheme());
+      applyTheme(storedPreference);
+      setIsHydrated(true);
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
+
+  useEffect(() => {
+    if (!isHydrated) {
+      return;
+    }
+
     applyTheme(preference);
 
     if (preference === "auto") {
@@ -48,10 +66,10 @@ export function ThemeToggle() {
     } else {
       window.localStorage.setItem(storageKey, preference);
     }
-  }, [preference]);
+  }, [isHydrated, preference]);
 
   useEffect(() => {
-    if (preference !== "auto") {
+    if (!isHydrated || preference !== "auto") {
       return;
     }
 
@@ -61,7 +79,7 @@ export function ThemeToggle() {
     }, 60_000);
 
     return () => window.clearInterval(intervalId);
-  }, [preference]);
+  }, [isHydrated, preference]);
 
   const toggleTheme = () => {
     setPreference((currentPreference) => {
