@@ -3,7 +3,14 @@ import { normalizeAppPath } from "@/lib/auth/redirect";
 import { getSupabaseEnv } from "@/lib/supabase/env";
 import { updateSession } from "@/lib/supabase/middleware";
 
-const protectedPrefixes = ["/dashboard", "/messages", "/modules", "/resources", "/admin"];
+const protectedPrefixes = [
+  "/dashboard",
+  "/messages",
+  "/modules",
+  "/resources",
+  "/students",
+  "/admin"
+];
 const authPages = ["/login", "/signup"];
 
 export async function proxy(request: NextRequest) {

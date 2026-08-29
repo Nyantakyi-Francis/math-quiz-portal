@@ -34,6 +34,7 @@ export default function HomePage() {
         </div>
       </header>
 
+      <main>
       <section className="shell py-12 sm:py-16">
         <div className="panel-soft relative overflow-hidden px-6 py-8 sm:px-10 sm:py-12">
           <div className="absolute inset-y-0 right-[34%] w-px bg-linear-to-b from-transparent via-slate-300/35 to-transparent" />
@@ -116,9 +117,7 @@ export default function HomePage() {
       <section className="shell pb-16">
         <ModuleCatalog modules={modules} />
       </section>
-
-
-
+      </main>
       <SiteFooter />
     </div>
   );

@@ -63,6 +63,9 @@ create table if not exists public.attempts (
   created_at timestamptz not null default timezone('utc', now())
 );
 
+create index if not exists attempts_learner_created_at_idx
+on public.attempts (learner_id, created_at desc);
+
 create table if not exists public.attempt_answers (
   id uuid primary key default gen_random_uuid(),
   attempt_id uuid not null references public.attempts (id) on delete cascade,

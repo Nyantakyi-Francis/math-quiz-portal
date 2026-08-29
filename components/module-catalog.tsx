@@ -25,9 +25,9 @@ export function ModuleCatalog({ modules }: ModuleCatalogProps) {
     <section className="space-y-6">
       <div className="panel-soft flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--brand-deep)]">
+          <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--brand-deep)]">
             Module Catalog
-          </p>
+          </h2>
           <p className="mt-1 text-sm text-slate-600">
             Learners will sign in before accessing module questions, results, and feedback.
           </p>

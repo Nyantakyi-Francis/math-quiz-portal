@@ -3,6 +3,7 @@ import { getSupabaseEnv } from "@/lib/supabase/env";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { modules } from "@/lib/data/modules";
+import { buildLearningRecommendation } from "@/lib/learning/recommendation";
 
 type DashboardAttempt = {
   id: string;
@@ -486,6 +487,7 @@ export async function getDashboardSnapshot() {
         unreadMessages: 0
       },
       attempts: [] as DashboardAttempt[],
+      recommendation: buildLearningRecommendation(modules, []),
       messages: [] as InboxMessage[],
       warning:
         "Connect Supabase and apply the SQL schema before protected learner data can load." as SetupWarning
@@ -499,6 +501,7 @@ export async function getDashboardSnapshot() {
   const role = profileSummary.role;
   const profileName = profileSummary.profileName;
   let attempts: DashboardAttempt[] = [];
+  let attemptHistory: DashboardAttempt[] = [];
 
   try {
     const { data, error } = await session.supabase
@@ -506,18 +509,19 @@ export async function getDashboardSnapshot() {
       .select("id, score_percent, created_at, modules(title, slug)")
       .eq("learner_id", session.user.id)
       .order("created_at", { ascending: false })
-      .limit(5);
+      .limit(200);
 
     if (error) {
       warning ??= mapSetupWarning(error.message);
     } else if (data) {
-      attempts = data.map((attempt: any) => ({
+      attemptHistory = data.map((attempt: any) => ({
         id: attempt.id,
         moduleTitle: attempt.modules?.title ?? "Module",
         moduleSlug: attempt.modules?.slug ?? "",
         scorePercent: Number(attempt.score_percent ?? 0),
         createdAt: attempt.created_at
       }));
+      attempts = attemptHistory.slice(0, 5);
     }
   } catch (error) {
     warning ??= mapSetupWarning(error instanceof Error ? error.message : "Unable to load attempts.");
@@ -536,16 +540,17 @@ export async function getDashboardSnapshot() {
   const messages = inboxResult.messages;
 
   const attemptedModules = new Set(
-    attempts.map((attempt) => attempt.moduleSlug).filter(Boolean)
+    attemptHistory.map((attempt) => attempt.moduleSlug).filter(Boolean)
   ).size;
-  const averageScore = attempts.length
+  const averageScore = attemptHistory.length
     ? Number(
         (
-          attempts.reduce((sum, attempt) => sum + attempt.scorePercent, 0) /
-          attempts.length
+          attemptHistory.reduce((sum, attempt) => sum + attempt.scorePercent, 0) /
+          attemptHistory.length
         ).toFixed(1)
       )
     : 0;
+  const recommendation = buildLearningRecommendation(modules, attemptHistory);
   const unreadMessages = unreadResult.unreadMessages;
   warning ??= inboxResult.warning ?? unreadResult.warning;
 
@@ -561,6 +566,7 @@ export async function getDashboardSnapshot() {
       unreadMessages
     },
     attempts,
+    recommendation,
     messages,
     warning
   };

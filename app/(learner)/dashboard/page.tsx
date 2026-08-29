@@ -43,6 +43,33 @@ export default async function DashboardPage() {
           </div>
         </section>
 
+        {snapshot.recommendation ? (
+          <section className="panel-soft overflow-hidden p-6 sm:p-8">
+            <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.16em] text-blue-700">
+                  Recommended next
+                </p>
+                <h2 className="mt-3 text-2xl font-black text-slate-950 sm:text-3xl">
+                  {snapshot.recommendation.moduleTitle}
+                </h2>
+                <p className="mt-3 max-w-3xl leading-7 text-slate-600">
+                  {snapshot.recommendation.reason}
+                </p>
+                <p className="mt-4 text-sm font-semibold text-slate-500">
+                  Based on your progress: {snapshot.recommendation.evidence}
+                </p>
+              </div>
+              <Link
+                className="button-primary w-full sm:w-auto"
+                href={`/modules/${snapshot.recommendation.moduleSlug}`}
+              >
+                {snapshot.recommendation.actionLabel}
+              </Link>
+            </div>
+          </section>
+        ) : null}
+
         <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="glass-card rounded-[2rem] p-6">
             <div className="flex items-center justify-between gap-4">
