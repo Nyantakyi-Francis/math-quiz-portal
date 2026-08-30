@@ -73,7 +73,7 @@ export function AppShell({
         </div>
       </header>
 
-      <main className="shell pt-8 pb-28 md:py-10">
+      <main className="shell pt-8 pb-40 md:py-10">
         <div className="mb-8">
           <p className="eyebrow">Protected Portal</p>
           <h1 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">

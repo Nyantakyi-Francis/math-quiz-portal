@@ -591,6 +591,13 @@ html[data-theme="night"] .skeleton {
   z-index: 60;
 }
 
+@media (max-width: 47.999rem) {
+  body:has(.mobile-navigation) .theme-toggle-wrap {
+    right: 0.75rem;
+    bottom: calc(4rem + env(safe-area-inset-bottom) + 0.75rem);
+  }
+}
+
 .theme-toggle-panel {
   display: flex;
   align-items: center;
