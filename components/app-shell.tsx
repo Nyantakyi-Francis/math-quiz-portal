@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileNavigation } from "@/components/mobile-navigation";
 
 type AppShellProps = {
   children: React.ReactNode;
@@ -34,26 +35,28 @@ export function AppShell({
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-sm">
-            <Link className="button-secondary" href="/dashboard">
-              Dashboard
-            </Link>
-            <Link className="button-secondary" href="/modules">
-              Modules
-            </Link>
-            <Link className="button-secondary" href="/resources">
-              Resources
-            </Link>
-            <Link className="button-secondary" href={messagesHref}>
-              Messages
-            </Link>
-            {role === "learner" ? (
-              <Link className="button-secondary" href="/students">
-                Students
+            <div className="hidden flex-wrap items-center gap-3 md:flex">
+              <Link className="button-secondary" href="/dashboard">
+                Dashboard
               </Link>
-            ) : null}
-            <Link className="button-secondary" href="/admin">
-              Admin
-            </Link>
+              <Link className="button-secondary" href="/modules">
+                Modules
+              </Link>
+              <Link className="button-secondary" href="/resources">
+                Resources
+              </Link>
+              <Link className="button-secondary" href={messagesHref}>
+                Messages
+              </Link>
+              {role === "learner" ? (
+                <Link className="button-secondary" href="/students">
+                  Students
+                </Link>
+              ) : null}
+              <Link className="button-secondary" href="/admin">
+                Admin
+              </Link>
+            </div>
             <div className="soft-well rounded-full px-4 py-2 text-slate-700">
               <p>{userEmail ?? "Signed in"}</p>
               {userPhone ? <p className="mt-1 text-xs text-slate-500">{userPhone}</p> : null}
@@ -70,7 +73,7 @@ export function AppShell({
         </div>
       </header>
 
-      <main className="shell py-10">
+      <main className="shell pt-8 pb-28 md:py-10">
         <div className="mb-8">
           <p className="eyebrow">Protected Portal</p>
           <h1 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
@@ -80,6 +83,7 @@ export function AppShell({
         </div>
         {children}
       </main>
+      <MobileNavigation role={role} />
     </div>
   );
 }
