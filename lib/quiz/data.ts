@@ -2,6 +2,7 @@ import { getSupabaseEnv } from "@/lib/supabase/env";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getModuleBySlug } from "@/lib/data/modules";
 import type { LearnerQuizModule, LearnerQuizQuestion } from "@/lib/quiz/types";
+import { normalizeQuizStimulus } from "@/lib/quiz/stimuli";
 
 type ModulePageSnapshot = {
   isConfigured: boolean;
@@ -112,7 +113,7 @@ export async function getModulePageSnapshot(slug: string): Promise<ModulePageSna
 
     const { data: questionRows, error: questionError } = await supabase
       .from("questions")
-      .select("id, prompt, order_index")
+      .select("id, prompt, order_index, stimulus_id")
       .eq("module_id", moduleRow.id)
       .order("order_index", { ascending: true });
 
@@ -150,11 +151,21 @@ export async function getModulePageSnapshot(slug: string): Promise<ModulePageSna
     }
 
     const questionIds = questionRows.map((question) => question.id);
-    const { data: optionRows, error: optionError } = await supabase
-      .from("question_options")
-      .select("id, question_id, option_text, order_index")
-      .in("question_id", questionIds)
-      .order("order_index", { ascending: true });
+    const stimulusIds = questionRows.flatMap((question) =>
+      question.stimulus_id ? [question.stimulus_id] : []
+    );
+    const [optionResult, stimulusResult] = await Promise.all([
+      supabase
+        .from("question_options")
+        .select("id, question_id, option_text, order_index")
+        .in("question_id", questionIds)
+        .order("order_index", { ascending: true }),
+      stimulusIds.length
+        ? supabase.from("question_stimuli").select("id, content").in("id", stimulusIds)
+        : Promise.resolve({ data: [], error: null })
+    ]);
+    const { data: optionRows, error: optionError } = optionResult;
+    const { data: stimulusRows, error: stimulusError } = stimulusResult;
 
     if (optionError) {
       return {
@@ -164,6 +175,17 @@ export async function getModulePageSnapshot(slug: string): Promise<ModulePageSna
         profileName,
         module: null,
         warning: mapSetupWarning(optionError.message)
+      };
+    }
+
+    if (stimulusError) {
+      return {
+        isConfigured: true,
+        userEmail: user.email ?? null,
+        role,
+        profileName,
+        module: null,
+        warning: mapSetupWarning(stimulusError.message)
       };
     }
 
@@ -178,11 +200,18 @@ export async function getModulePageSnapshot(slug: string): Promise<ModulePageSna
       });
       optionsByQuestion.set(option.question_id, current);
     });
+    const stimulusById = new Map(
+      (stimulusRows ?? []).map((stimulus) => [
+        stimulus.id,
+        normalizeQuizStimulus(stimulus.content)
+      ])
+    );
 
     const questions: LearnerQuizQuestion[] = questionRows.map((question) => ({
       id: question.id,
       prompt: question.prompt,
       orderIndex: question.order_index,
+      stimulus: question.stimulus_id ? stimulusById.get(question.stimulus_id) ?? null : null,
       options: optionsByQuestion.get(question.id) ?? []
     }));
 

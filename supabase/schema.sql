@@ -35,6 +35,20 @@ create table if not exists public.questions (
   unique (module_id, order_index)
 );
 
+create table if not exists public.question_stimuli (
+  id uuid primary key default gen_random_uuid(),
+  module_id uuid not null references public.modules (id) on delete cascade,
+  stimulus_key text not null,
+  content jsonb not null,
+  created_at timestamptz not null default timezone('utc', now()),
+  updated_at timestamptz not null default timezone('utc', now()),
+  unique (module_id, stimulus_key),
+  check (jsonb_typeof(content) = 'object')
+);
+
+alter table public.questions
+add column if not exists stimulus_id uuid references public.question_stimuli (id) on delete set null;
+
 create table if not exists public.question_options (
   id uuid primary key default gen_random_uuid(),
   question_id uuid not null references public.questions (id) on delete cascade,
@@ -417,6 +431,7 @@ grant execute on function public.submit_quiz_attempt(uuid, text, jsonb) to servi
 alter table public.profiles enable row level security;
 alter table public.modules enable row level security;
 alter table public.questions enable row level security;
+alter table public.question_stimuli enable row level security;
 alter table public.question_options enable row level security;
 alter table public.question_answer_keys enable row level security;
 alter table public.question_explanations enable row level security;
@@ -480,6 +495,27 @@ using (
 drop policy if exists "Only admins manage questions" on public.questions;
 create policy "Only admins manage questions"
 on public.questions
+for all
+to authenticated
+using (public.is_admin(auth.uid()))
+with check (public.is_admin(auth.uid()));
+
+drop policy if exists "Published question stimuli are readable to authenticated users" on public.question_stimuli;
+create policy "Published question stimuli are readable to authenticated users"
+on public.question_stimuli
+for select
+to authenticated
+using (
+  exists (
+    select 1 from public.modules
+    where public.modules.id = public.question_stimuli.module_id
+      and (public.modules.is_published or public.is_admin(auth.uid()))
+  )
+);
+
+drop policy if exists "Only admins manage question stimuli" on public.question_stimuli;
+create policy "Only admins manage question stimuli"
+on public.question_stimuli
 for all
 to authenticated
 using (public.is_admin(auth.uid()))

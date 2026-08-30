@@ -3,45 +3,471 @@
   "title": "Vectors",
   "module": "Vectors",
   "questions": [
-    { "q": "Given points $A(2, -3)$ and $B(-4, 5)$, find the unit vector in the direction of $\\vec{AB}$.", "options": ["$-0.6i + 0.8j$", "$\\frac{1}{10}(-6i + 8j)$", "$\\frac{1}{10}(6i - 8j)$", "$\\frac{1}{\\sqrt{10}}(-3i + 4j)$"], "correct": 0, "explanation": { "summary": "Find $\\vec{AB}$, then divide it by its magnitude.", "steps": ["$\\vec{AB}=B-A=(-4-2)i+(5-(-3))j=-6i+8j$.", "$|\\vec{AB}|=\\sqrt{(-6)^2+8^2}=10$.", "The unit vector is $\\frac{-6i+8j}{10}=-0.6i+0.8j$."], "formula": "$\\hat{v}=\\frac{\\vec{v}}{|\\vec{v}|}$", "misconceptions": { "1": "This is equivalent to the correct vector, but it has not been simplified to the requested form.", "2": "This reverses the direction by calculating $A-B$ instead of $B-A$.", "3": "The components were simplified without using the vector's magnitude of $10$." } } },
-    { "q": "If $\\vec{p} = 3i + (k-1)j$ and $|\\vec{p}| = 5$, find the possible values of $k$.", "options": ["$5, -3$", "$4, -4$", "$5, 4$", "$3, -3$"], "correct": 0, "explanation": { "summary": "Use the magnitude equation and remember that a square has two possible roots.", "steps": ["$\\sqrt{3^2+(k-1)^2}=5$.", "$(k-1)^2=25-9=16$, so $k-1=\\pm4$.", "Therefore $k=5$ or $k=-3$."], "formula": "$|ai+bj|=\\sqrt{a^2+b^2}$", "misconceptions": { "1": "These values result from treating $k-1$ as $k$.", "2": "The negative root gives $k=-3$, not $k=4$.", "3": "Both roots must be shifted by adding $1$." } } },
-    { "q": "The position vectors of $P$ and $Q$ are $2i + 3j$ and $5i - j$ respectively. Find $|\\vec{PQ}|$.", "options": ["$5$", "$7$", "$\\sqrt{13}$", "$\\sqrt{37}$"], "correct": 0, "explanation": "Subtract the position vectors: $\\vec{PQ}=(5-2)i+(-1-3)j=3i-4j$. Its magnitude is $\\sqrt{3^2+(-4)^2}=5$." },
-    { "q": "Find the coordinates of $R$ such that $\\vec{OR} = 3\\vec{a} - 2\\vec{b}$ where $\\vec{a} = \\binom{1}{2}$ and $\\vec{b} = \\binom{-2}{3}$.", "options": ["$(7, 0)$", "$(7, 12)$", "$(-1, 0)$", "$(5, 0)$"], "correct": 0 },
-    { "q": "If $\\vec{v} = \\binom{m}{12}$ is a unit vector, find $m^2$.", "options": ["No real value", "$143/144$", "$-143$", "$1$"], "correct": 0 },
-    { "q": "Express $210^\\circ$ as a unit vector in terms of $i$ and $j$.", "options": ["$-\\frac{\\sqrt{3}}{2}i - \\frac{1}{2}j$", "$\\frac{\\sqrt{3}}{2}i - \\frac{1}{2}j$", "$-\\frac{1}{2}i - \\frac{\\sqrt{3}}{2}j$", "$\\frac{1}{2}i + \\frac{\\sqrt{3}}{2}j$"], "correct": 0 },
-    { "q": "If $\\vec{OA} = \\mathbf{a}$ and $\\vec{OB} = \\mathbf{b}$, find the position vector of point $M$ which divides $AB$ in the ratio $3:2$.", "options": ["$\\frac{2\\mathbf{a} + 3\\mathbf{b}}{5}$", "$\\frac{3\\mathbf{a} + 2\\mathbf{b}}{5}$", "$\\frac{2\\mathbf{a} - 3\\mathbf{b}}{1}$", "$\\frac{3\\mathbf{b} - 2\\mathbf{a}}{5}$"], "correct": 0 },
-    { "q": "Find the value of $x$ such that $\\binom{x}{6}$ is parallel to $\\binom{2}{-3}$.", "options": ["$-4$", "$4$", "$-9$", "$9$"], "correct": 0 },
-    { "q": "In $\\triangle ABC$, $\\vec{AB} = \\mathbf{u}$ and $\\vec{AC} = \\mathbf{v}$. If $D$ is the midpoint of $BC$, find $\\vec{AD}$.", "options": ["$\\frac{1}{2}(\\mathbf{u} + \\mathbf{v})$", "$\\mathbf{v} - \\mathbf{u}$", "$\\frac{1}{2}(\\mathbf{v} - \\mathbf{u})$", "$\\mathbf{u} + \\mathbf{v}$"], "correct": 0 },
-    { "q": "Points $L(2, 3)$, $M(4, 7)$ and $N(x, y)$ are collinear. If $\\vec{LM} = \\frac{1}{2}\\vec{MN}$, find $N$.", "options": ["$(8, 15)$", "$(6, 11)$", "$(10, 19)$", "$(5, 9)$"], "correct": 0 },
-    { "q": "If $\\vec{p} = \\binom{2}{1}$, $\\vec{q} = \\binom{3}{-4}$ and $\\vec{r} = \\binom{11}{-6}$, find scalars $h$ and $k$ such that $h\\vec{p} + k\\vec{q} = \\vec{r}$.", "options": ["$h=4, k=1$", "$h=2, k=3$", "$h=1, k=3$", "$h=4, k=-1$"], "correct": 0 },
-    { "q": "In a parallelogram $OABC$, $\\vec{OA} = \\mathbf{a}$ and $\\vec{OC} = \\mathbf{c}$. $E$ is the midpoint of $AB$. Express $\\vec{OE}$ in terms of $\\mathbf{a}$ and $\\mathbf{c}$.", "options": ["$\\mathbf{a} + \\frac{1}{2}\\mathbf{c}$", "$\\mathbf{c} + \\frac{1}{2}\\mathbf{a}$", "$\\frac{1}{2}(\\mathbf{a} + \\mathbf{c})$", "$\\mathbf{a} - \\frac{1}{2}\\mathbf{c}$"], "correct": 0 },
-    { "q": "If the resultant of $\\binom{a}{3}$ and $\\binom{4}{b}$ is $\\binom{2}{-1}$, find $(a, b)$.", "options": ["$(-2, -4)$", "$(2, 4)$", "$(6, 2)$", "$(-2, 4)$"], "correct": 0 },
-    { "q": "A point $C$ divides $\\vec{AB}$ externally in the ratio $5:2$. If $\\vec{OA}=\\mathbf{a}$ and $\\vec{OB}=\\mathbf{b}$, then $\\vec{OC}$ is:", "options": ["$\\frac{5\\mathbf{b} - 2\\mathbf{a}}{3}$", "$\\frac{2\\mathbf{a} - 5\\mathbf{b}}{3}$", "$\\frac{5\\mathbf{a} - 2\\mathbf{b}}{3}$", "$\\frac{5\\mathbf{b} + 2\\mathbf{a}}{3}$"], "correct": 0 },
-    { "q": "If $|\\vec{a}| = 13$, $|\\vec{b}| = 5$ and the vectors are perpendicular, find $|\\vec{a} - \\vec{b}|$.", "options": ["$\\sqrt{194}$", "$8$", "$18$", "$\\sqrt{144}$"], "correct": 0 },
-    { "q": "Find the direction cosine of the vector $3i - 4j$ with respect to the y-axis.", "options": ["$-4/5$", "$3/5$", "$4/5$", "$-3/5$"], "correct": 0 },
-    { "q": "Calculate the dot product of $\\vec{u} = 2i + 5j$ and $\\vec{v} = 3i - 2j$.", "options": ["$-4$", "$16$", "$11$", "$1$"], "correct": 0 },
-    { "q": "If $\\vec{a} \\cdot \\vec{b} = 0$, the angle between the vectors is:", "options": ["$90^\\circ$", "$0^\\circ$", "$180^\\circ$", "$45^\\circ$"], "correct": 0 },
-    { "q": "Find the angle between $\\vec{a} = \\binom{1}{1}$ and $\\vec{b} = \\binom{0}{1}$.", "options": ["$45^\\circ$", "$90^\\circ$", "$30^\\circ$", "$60^\\circ$"], "correct": 0 },
-    { "q": "Given $|\\mathbf{a}|=3$, $|\\mathbf{b}|=4$ and the angle between them is $60^\\circ$, find $\\mathbf{a} \\cdot \\mathbf{b}$.", "options": ["$6$", "$12$", "$6\\sqrt{3}$", "$0$"], "correct": 0 },
-    { "q": "Find the value of $p$ if $pi + 2j$ is perpendicular to $4i - 3j$.", "options": ["$1.5$", "$-1.5$", "$0.66$", "$-0.66$"], "correct": 0 },
-    { "q": "Calculate $(\\vec{a} + \\vec{b}) \\cdot (\\vec{a} - \\vec{b})$ if $|\\vec{a}|=5$ and $|\\vec{b}|=3$.", "options": ["$16$", "$34$", "$8$", "$0$"], "correct": 0 },
-    { "q": "If $\\cos \\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$, find $\\theta$ for $\\mathbf{a}=i+j$ and $\\mathbf{b}=i-j$.", "options": ["$90^\\circ$", "$0^\\circ$", "$45^\\circ$", "$180^\\circ$"], "correct": 0 },
-    { "q": "If $|\\vec{a}+\\vec{b}| = |\\vec{a}-\\vec{b}|$, then $\\vec{a}$ and $\\vec{b}$ are:", "options": ["Perpendicular", "Parallel", "Equal", "Unit vectors"], "correct": 0 },
-    { "q": "Three forces $\\mathbf{F_1} = \\binom{2}{3}$, $\\mathbf{F_2} = \\binom{-1}{4}$ and $\\mathbf{F_3} = \\binom{x}{y}$ are in equilibrium. Find $(x, y)$.", "options": ["$(-1, -7)$", "$(1, 7)$", "$(1, -7)$", "$(-1, 7)$"], "correct": 0 },
-    { "q": "Find the magnitude of the resultant of $7i - 2j$ and $-3i + 5j$.", "options": ["$5$", "$25$", "$\\sqrt{65}$", "$\\sqrt{13}$"], "correct": 0 },
-    { "q": "A force $P$ of magnitude $10N$ acts on a bearing of $060^\\circ$. Express $P$ in component form.", "options": ["$5\\sqrt{3}i + 5j$", "$5i + 5\\sqrt{3}j$", "$10i + 10j$", "$5i - 5j$"], "correct": 0 },
-    { "q": "Find the work done by a force $\\vec{F} = \\binom{3}{4}$ in moving an object from $(1, 2)$ to $(5, 5)$.", "options": ["$24$ units", "$25$ units", "$12$ units", "$15$ units"], "correct": 0 },
-    { "q": "The resultant of two equal forces $F$ acting at $120^\\circ$ to each other is:", "options": ["$F$", "$2F$", "$F\\sqrt{3}$", "$0$"], "correct": 0 },
-    { "q": "Two forces of $3N$ and $4N$ act at right angles. The direction of the resultant relative to the $3N$ force is:", "options": ["$\\tan^{-1}(4/3)$", "$\\tan^{-1}(3/4)$", "$45^\\circ$", "$90^\\circ$"], "correct": 0 },
-    { "q": "A particle is acted upon by forces $2i+3j$, $i-4j$, and $-3i+j$. The particle is:", "options": ["At equilibrium", "Moving North", "Moving South", "Accelerating"], "correct": 0 },
-    { "q": "Find the projection of $\\vec{a}$ onto $\\vec{b}$ using the formula:", "options": ["$\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|}$", "$\\vec{a} \\cdot \\vec{b}$", "$\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{a}|}$", "$\\vec{a} + \\vec{b}$"], "correct": 0 },
-    { "q": "If $\\vec{a}$ and $\\vec{b}$ are unit vectors and the angle between them is $60^\\circ$, find $|\\vec{a} + \\vec{b}|$.", "options": ["$\\sqrt{3}$", "$2$", "$1$", "$\\sqrt{2}$"], "correct": 0 },
-    { "q": "In $\\triangle ABC$, $\\vec{AB} + \\vec{BC} + \\vec{CA}$ is equal to:", "options": ["$\\mathbf{0}$", "$2\\vec{AC}$", "$2\\vec{AB}$", "$\\vec{ABC}$"], "correct": 0 },
-    { "q": "Find the bearing of the vector $-i - j$.", "options": ["$225^\\circ$", "$135^\\circ$", "$045^\\circ$", "$315^\\circ$"], "correct": 0 },
-    { "q": "A plane flies at $200$ km/h on a bearing of $300^\\circ$. Find the westerly component of its velocity.", "options": ["$100\\sqrt{3}$ km/h", "$100$ km/h", "$200$ km/h", "$173$ km/h"], "correct": 0 },
-    { "q": "If $\\mathbf{r} = (t^2)i + (2t-1)j$, find the velocity vector at $t=2$.", "options": ["$4i + 2j$", "$4i + 3j$", "$2i + 2j$", "$i + j$"], "correct": 0 },
-    { "q": "Two vectors are collinear if the area of the triangle formed by them is:", "options": ["Zero", "One", "Positive", "Undefined"], "correct": 0 },
-    { "q": "If $P$ is $(2, 5)$ and the vector $\\vec{PQ} = \\binom{-3}{4}$, find the coordinates of $Q$.", "options": ["$(-1, 9)$", "$(5, 1)$", "$(1, -9)$", "$(-5, -1)$"], "correct": 0 },
-    { "q": "Simplify $3(2i - j) - 2(i + 4j) + 5j$.", "options": ["$4i - 6j$", "$4i + 10j$", "$8i - 3j$", "$4i - j$"], "correct": 0 }
+    {
+      "q": "Given points $A(2, -3)$ and $B(-4, 5)$, find the unit vector in the direction of $\\vec{AB}$.",
+      "options": [
+        "$-0.6i + 0.8j$",
+        "$\\frac{1}{10}(-6i + 8j)$",
+        "$\\frac{1}{10}(6i - 8j)$",
+        "$\\frac{1}{\\sqrt{10}}(-3i + 4j)$"
+      ],
+      "correct": 0,
+      "explanation": {
+        "summary": "Find $\\vec{AB}$, then divide it by its magnitude.",
+        "steps": [
+          "$\\vec{AB}=B-A=(-4-2)i+(5-(-3))j=-6i+8j$.",
+          "$|\\vec{AB}|=\\sqrt{(-6)^2+8^2}=10$.",
+          "The unit vector is $\\frac{-6i+8j}{10}=-0.6i+0.8j$."
+        ],
+        "formula": "$\\hat{v}=\\frac{\\vec{v}}{|\\vec{v}|}$",
+        "misconceptions": {
+          "1": "This is equivalent to the correct vector, but it has not been simplified to the requested form.",
+          "2": "This reverses the direction by calculating $A-B$ instead of $B-A$.",
+          "3": "The components were simplified without using the vector's magnitude of $10$."
+        }
+      }
+    },
+    {
+      "q": "If $\\vec{p} = 3i + (k-1)j$ and $|\\vec{p}| = 5$, find the possible values of $k$.",
+      "options": [
+        "$5, -3$",
+        "$4, -4$",
+        "$5, 4$",
+        "$3, -3$"
+      ],
+      "correct": 0,
+      "explanation": {
+        "summary": "Use the magnitude equation and remember that a square has two possible roots.",
+        "steps": [
+          "$\\sqrt{3^2+(k-1)^2}=5$.",
+          "$(k-1)^2=25-9=16$, so $k-1=\\pm4$.",
+          "Therefore $k=5$ or $k=-3$."
+        ],
+        "formula": "$|ai+bj|=\\sqrt{a^2+b^2}$",
+        "misconceptions": {
+          "1": "These values result from treating $k-1$ as $k$.",
+          "2": "The negative root gives $k=-3$, not $k=4$.",
+          "3": "Both roots must be shifted by adding $1$."
+        }
+      }
+    },
+    {
+      "q": "The position vectors of $P$ and $Q$ are $2i + 3j$ and $5i - j$ respectively. Find $|\\vec{PQ}|$.",
+      "options": [
+        "$5$",
+        "$7$",
+        "$\\sqrt{13}$",
+        "$\\sqrt{37}$"
+      ],
+      "correct": 0,
+      "explanation": "Subtract the position vectors: $\\vec{PQ}=(5-2)i+(-1-3)j=3i-4j$. Its magnitude is $\\sqrt{3^2+(-4)^2}=5$."
+    },
+    {
+      "q": "Find the coordinates of $R$ such that $\\vec{OR} = 3\\vec{a} - 2\\vec{b}$ where $\\vec{a} = \\binom{1}{2}$ and $\\vec{b} = \\binom{-2}{3}$.",
+      "options": [
+        "$(7, 0)$",
+        "$(7, 12)$",
+        "$(-1, 0)$",
+        "$(5, 0)$"
+      ],
+      "correct": 0,
+      "explanation": "$3\\vec a-2\\vec b=3(1,2)-2(-2,3)=(3,6)-(-4,6)=(7,0)$."
+    },
+    {
+      "q": "If $\\vec{v} = \\binom{m}{12}$ is a unit vector, find $m^2$.",
+      "options": [
+        "No real value",
+        "$143/144$",
+        "$-143$",
+        "$1$"
+      ],
+      "correct": 0,
+      "explanation": "A unit vector must satisfy $m^2+12^2=1$, which gives $m^2=-143$. No real $m$ exists."
+    },
+    {
+      "q": "Express $210^\\circ$ as a unit vector in terms of $i$ and $j$.",
+      "options": [
+        "$-\\frac{\\sqrt{3}}{2}i - \\frac{1}{2}j$",
+        "$\\frac{\\sqrt{3}}{2}i - \\frac{1}{2}j$",
+        "$-\\frac{1}{2}i - \\frac{\\sqrt{3}}{2}j$",
+        "$\\frac{1}{2}i + \\frac{\\sqrt{3}}{2}j$"
+      ],
+      "correct": 0,
+      "explanation": "A unit vector at $210^\\circ$ is $(\\cos210^\\circ)i+(\\sin210^\\circ)j=-\\frac{\\sqrt3}{2}i-\\frac12j$."
+    },
+    {
+      "q": "If $\\vec{OA} = \\mathbf{a}$ and $\\vec{OB} = \\mathbf{b}$, find the position vector of point $M$ which divides $AB$ in the ratio $3:2$.",
+      "options": [
+        "$\\frac{2\\mathbf{a} + 3\\mathbf{b}}{5}$",
+        "$\\frac{3\\mathbf{a} + 2\\mathbf{b}}{5}$",
+        "$\\frac{2\\mathbf{a} - 3\\mathbf{b}}{1}$",
+        "$\\frac{3\\mathbf{b} - 2\\mathbf{a}}{5}$"
+      ],
+      "correct": 0,
+      "explanation": "The internal section formula for $AM:MB=3:2$ gives $\\vec{OM}=(2\\mathbf a+3\\mathbf b)/5$."
+    },
+    {
+      "q": "Find the value of $x$ such that $\\binom{x}{6}$ is parallel to $\\binom{2}{-3}$.",
+      "options": [
+        "$-4$",
+        "$4$",
+        "$-9$",
+        "$9$"
+      ],
+      "correct": 0,
+      "explanation": "Parallel vectors are scalar multiples. From $6=-3k$, $k=-2$, so $x=2k=-4$."
+    },
+    {
+      "q": "In $\\triangle ABC$, $\\vec{AB} = \\mathbf{u}$ and $\\vec{AC} = \\mathbf{v}$. If $D$ is the midpoint of $BC$, find $\\vec{AD}$.",
+      "options": [
+        "$\\frac{1}{2}(\\mathbf{u} + \\mathbf{v})$",
+        "$\\mathbf{v} - \\mathbf{u}$",
+        "$\\frac{1}{2}(\\mathbf{v} - \\mathbf{u})$",
+        "$\\mathbf{u} + \\mathbf{v}$"
+      ],
+      "correct": 0,
+      "explanation": "Since $D$ is the midpoint, $\\vec{AD}=\\frac12(\\vec{AB}+\\vec{AC})=\\frac12(\\mathbf u+\\mathbf v)$."
+    },
+    {
+      "q": "Points $L(2, 3)$, $M(4, 7)$ and $N(x, y)$ are collinear. If $\\vec{LM} = \\frac{1}{2}\\vec{MN}$, find $N$.",
+      "options": [
+        "$(8, 15)$",
+        "$(6, 11)$",
+        "$(10, 19)$",
+        "$(5, 9)$"
+      ],
+      "correct": 0,
+      "explanation": "$\\vec{LM}=(2,4)$ and $\\vec{MN}=2\\vec{LM}=(4,8)$. Thus $N=M+(4,8)=(8,15)$."
+    },
+    {
+      "q": "If $\\vec{p} = \\binom{2}{1}$, $\\vec{q} = \\binom{3}{-4}$ and $\\vec{r} = \\binom{11}{-6}$, find scalars $h$ and $k$ such that $h\\vec{p} + k\\vec{q} = \\vec{r}$.",
+      "options": [
+        "$h=\\frac{26}{11}, k=\\frac{23}{11}$",
+        "$h=2, k=3$",
+        "$h=1, k=3$",
+        "$h=4, k=-1$"
+      ],
+      "correct": 0,
+      "explanation": "Equating components gives $2h+3k=11$ and $h-4k=-6$. Solving yields $k=23/11$ and $h=26/11$."
+    },
+    {
+      "q": "In a parallelogram $OABC$, $\\vec{OA} = \\mathbf{a}$ and $\\vec{OC} = \\mathbf{c}$. $E$ is the midpoint of $AB$. Express $\\vec{OE}$ in terms of $\\mathbf{a}$ and $\\mathbf{c}$.",
+      "options": [
+        "$\\mathbf{a} + \\frac{1}{2}\\mathbf{c}$",
+        "$\\mathbf{c} + \\frac{1}{2}\\mathbf{a}$",
+        "$\\frac{1}{2}(\\mathbf{a} + \\mathbf{c})$",
+        "$\\mathbf{a} - \\frac{1}{2}\\mathbf{c}$"
+      ],
+      "correct": 0,
+      "explanation": "In parallelogram $OABC$, $\\vec{AB}=\\mathbf c$. Since $E$ is the midpoint of $AB$, $\\vec{OE}=\\mathbf a+\\frac12\\mathbf c$."
+    },
+    {
+      "q": "If the resultant of $\\binom{a}{3}$ and $\\binom{4}{b}$ is $\\binom{2}{-1}$, find $(a, b)$.",
+      "options": [
+        "$(-2, -4)$",
+        "$(2, 4)$",
+        "$(6, 2)$",
+        "$(-2, 4)$"
+      ],
+      "correct": 0,
+      "explanation": "Add components: $(a+4,3+b)=(2,-1)$. Hence $a=-2$ and $b=-4$."
+    },
+    {
+      "q": "A point $C$ divides $\\vec{AB}$ externally in the ratio $5:2$. If $\\vec{OA}=\\mathbf{a}$ and $\\vec{OB}=\\mathbf{b}$, then $\\vec{OC}$ is:",
+      "options": [
+        "$\\frac{5\\mathbf{b} - 2\\mathbf{a}}{3}$",
+        "$\\frac{2\\mathbf{a} - 5\\mathbf{b}}{3}$",
+        "$\\frac{5\\mathbf{a} - 2\\mathbf{b}}{3}$",
+        "$\\frac{5\\mathbf{b} + 2\\mathbf{a}}{3}$"
+      ],
+      "correct": 0,
+      "explanation": "External division in ratio $5:2$ gives $\\vec{OC}=(5\\mathbf b-2\\mathbf a)/(5-2)$."
+    },
+    {
+      "q": "If $|\\vec{a}| = 13$, $|\\vec{b}| = 5$ and the vectors are perpendicular, find $|\\vec{a} - \\vec{b}|$.",
+      "options": [
+        "$\\sqrt{194}$",
+        "$8$",
+        "$18$",
+        "$\\sqrt{144}$"
+      ],
+      "correct": 0,
+      "explanation": "For perpendicular vectors, $|\\vec a-\\vec b|^2=|\\vec a|^2+|\\vec b|^2=169+25=194$, so the magnitude is $\\sqrt{194}$."
+    },
+    {
+      "q": "Find the direction cosine of the vector $3i - 4j$ with respect to the y-axis.",
+      "options": [
+        "$-4/5$",
+        "$3/5$",
+        "$4/5$",
+        "$-3/5$"
+      ],
+      "correct": 0,
+      "explanation": "The direction cosine with the y-axis is the y-component divided by the magnitude: $-4/5$."
+    },
+    {
+      "q": "Calculate the dot product of $\\vec{u} = 2i + 5j$ and $\\vec{v} = 3i - 2j$.",
+      "options": [
+        "$-4$",
+        "$16$",
+        "$11$",
+        "$1$"
+      ],
+      "correct": 0,
+      "explanation": "$\\vec u\\cdot\\vec v=2(3)+5(-2)=6-10=-4$."
+    },
+    {
+      "q": "If $\\vec{a} \\cdot \\vec{b} = 0$, the angle between the vectors is:",
+      "options": [
+        "$90^\\circ$",
+        "$0^\\circ$",
+        "$180^\\circ$",
+        "$45^\\circ$"
+      ],
+      "correct": 0,
+      "explanation": "$\\vec a\\cdot\\vec b=|a||b|\\cos\\theta=0$ for nonzero vectors, so $\\cos\\theta=0$ and $\\theta=90^\\circ$."
+    },
+    {
+      "q": "Find the angle between $\\vec{a} = \\binom{1}{1}$ and $\\vec{b} = \\binom{0}{1}$.",
+      "options": [
+        "$45^\\circ$",
+        "$90^\\circ$",
+        "$30^\\circ$",
+        "$60^\\circ$"
+      ],
+      "correct": 0,
+      "explanation": "The dot product is $1$, while the magnitudes are $\\sqrt2$ and $1$. Thus $\\cos\\theta=1/\\sqrt2$ and $\\theta=45^\\circ$."
+    },
+    {
+      "q": "Given $|\\mathbf{a}|=3$, $|\\mathbf{b}|=4$ and the angle between them is $60^\\circ$, find $\\mathbf{a} \\cdot \\mathbf{b}$.",
+      "options": [
+        "$6$",
+        "$12$",
+        "$6\\sqrt{3}$",
+        "$0$"
+      ],
+      "correct": 0,
+      "explanation": "$\\mathbf a\\cdot\\mathbf b=|a||b|\\cos60^\\circ=3(4)(1/2)=6$."
+    },
+    {
+      "q": "Find the value of $p$ if $pi + 2j$ is perpendicular to $4i - 3j$.",
+      "options": [
+        "$1.5$",
+        "$-1.5$",
+        "$0.66$",
+        "$-0.66$"
+      ],
+      "correct": 0,
+      "explanation": "Perpendicularity requires $(p,2)\\cdot(4,-3)=4p-6=0$, so $p=3/2=1.5$."
+    },
+    {
+      "q": "Calculate $(\\vec{a} + \\vec{b}) \\cdot (\\vec{a} - \\vec{b})$ if $|\\vec{a}|=5$ and $|\\vec{b}|=3$.",
+      "options": [
+        "$16$",
+        "$34$",
+        "$8$",
+        "$0$"
+      ],
+      "correct": 0,
+      "explanation": "Expand the dot product: $(a+b)\\cdot(a-b)=|a|^2-|b|^2=25-9=16$."
+    },
+    {
+      "q": "If $\\cos \\theta = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{|\\mathbf{a}||\\mathbf{b}|}$, find $\\theta$ for $\\mathbf{a}=i+j$ and $\\mathbf{b}=i-j$.",
+      "options": [
+        "$90^\\circ$",
+        "$0^\\circ$",
+        "$45^\\circ$",
+        "$180^\\circ$"
+      ],
+      "correct": 0,
+      "explanation": "$(1,1)\\cdot(1,-1)=0$, so the vectors are perpendicular and $\\theta=90^\\circ$."
+    },
+    {
+      "q": "If $|\\vec{a}+\\vec{b}| = |\\vec{a}-\\vec{b}|$, then $\\vec{a}$ and $\\vec{b}$ are:",
+      "options": [
+        "Perpendicular",
+        "Parallel",
+        "Equal",
+        "Unit vectors"
+      ],
+      "correct": 0,
+      "explanation": "Squaring both equal magnitudes gives $|a|^2+2a\\cdot b+|b|^2=|a|^2-2a\\cdot b+|b|^2$, hence $a\\cdot b=0$ and the vectors are perpendicular."
+    },
+    {
+      "q": "Three forces $\\mathbf{F_1} = \\binom{2}{3}$, $\\mathbf{F_2} = \\binom{-1}{4}$ and $\\mathbf{F_3} = \\binom{x}{y}$ are in equilibrium. Find $(x, y)$.",
+      "options": [
+        "$(-1, -7)$",
+        "$(1, 7)$",
+        "$(1, -7)$",
+        "$(-1, 7)$"
+      ],
+      "correct": 0,
+      "explanation": "Equilibrium requires the vector sum to be zero. The first two forces sum to $(1,7)$, so the third is $(-1,-7)$."
+    },
+    {
+      "q": "Find the magnitude of the resultant of $7i - 2j$ and $-3i + 5j$.",
+      "options": [
+        "$5$",
+        "$25$",
+        "$\\sqrt{65}$",
+        "$\\sqrt{13}$"
+      ],
+      "correct": 0,
+      "explanation": "Add the vectors to get $(4,3)$. Its magnitude is $\\sqrt{4^2+3^2}=5$."
+    },
+    {
+      "q": "A force $P$ of magnitude $10N$ acts on a bearing of $060^\\circ$. Express $P$ in component form.",
+      "options": [
+        "$5\\sqrt{3}i + 5j$",
+        "$5i + 5\\sqrt{3}j$",
+        "$10i + 10j$",
+        "$5i - 5j$"
+      ],
+      "correct": 0,
+      "explanation": "For a bearing measured clockwise from north, east component is $10\\sin60^\\circ=5\\sqrt3$ and north component is $10\\cos60^\\circ=5$."
+    },
+    {
+      "q": "Find the work done by a force $\\vec{F} = \\binom{3}{4}$ in moving an object from $(1, 2)$ to $(5, 5)$.",
+      "options": [
+        "$24$ units",
+        "$25$ units",
+        "$12$ units",
+        "$15$ units"
+      ],
+      "correct": 0,
+      "explanation": "Displacement is $(5-1,5-2)=(4,3)$. Work is $\\vec F\\cdot\\vec d=3(4)+4(3)=24$."
+    },
+    {
+      "q": "The resultant of two equal forces $F$ acting at $120^\\circ$ to each other is:",
+      "options": [
+        "$F$",
+        "$2F$",
+        "$F\\sqrt{3}$",
+        "$0$"
+      ],
+      "correct": 0,
+      "explanation": "$R^2=F^2+F^2+2F^2\\cos120^\\circ=2F^2-F^2=F^2$, so $R=F$."
+    },
+    {
+      "q": "Two forces of $3N$ and $4N$ act at right angles. The direction of the resultant relative to the $3N$ force is:",
+      "options": [
+        "$\\tan^{-1}(4/3)$",
+        "$\\tan^{-1}(3/4)$",
+        "$45^\\circ$",
+        "$90^\\circ$"
+      ],
+      "correct": 0,
+      "explanation": "The resultant components relative to the 3 N force are 3 adjacent and 4 opposite, so $\\tan\\theta=4/3$."
+    },
+    {
+      "q": "A particle is acted upon by forces $2i+3j$, $i-4j$, and $-3i+j$. The particle is:",
+      "options": [
+        "At equilibrium",
+        "Moving North",
+        "Moving South",
+        "Accelerating"
+      ],
+      "correct": 0,
+      "explanation": "The force sum is $(2+1-3,3-4+1)=(0,0)$, so the particle is in equilibrium."
+    },
+    {
+      "q": "Find the projection of $\\vec{a}$ onto $\\vec{b}$ using the formula:",
+      "options": [
+        "$\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|}$",
+        "$\\vec{a} \\cdot \\vec{b}$",
+        "$\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{a}|}$",
+        "$\\vec{a} + \\vec{b}$"
+      ],
+      "correct": 0,
+      "explanation": "The scalar projection of $\\vec a$ onto $\\vec b$ is $(\\vec a\\cdot\\vec b)/|\\vec b|$."
+    },
+    {
+      "q": "If $\\vec{a}$ and $\\vec{b}$ are unit vectors and the angle between them is $60^\\circ$, find $|\\vec{a} + \\vec{b}|$.",
+      "options": [
+        "$\\sqrt{3}$",
+        "$2$",
+        "$1$",
+        "$\\sqrt{2}$"
+      ],
+      "correct": 0,
+      "explanation": "$|a+b|^2=1^2+1^2+2(1)(1)\\cos60^\\circ=3$, so $|a+b|=\\sqrt3$."
+    },
+    {
+      "q": "In $\\triangle ABC$, $\\vec{AB} + \\vec{BC} + \\vec{CA}$ is equal to:",
+      "options": [
+        "$\\mathbf{0}$",
+        "$2\\vec{AC}$",
+        "$2\\vec{AB}$",
+        "$\\vec{ABC}$"
+      ],
+      "correct": 0,
+      "explanation": "Following the triangle head-to-tail returns to the starting point, so $\\vec{AB}+\\vec{BC}+\\vec{CA}=\\mathbf0$."
+    },
+    {
+      "q": "Find the bearing of the vector $-i - j$.",
+      "options": [
+        "$225^\\circ$",
+        "$135^\\circ$",
+        "$045^\\circ$",
+        "$315^\\circ$"
+      ],
+      "correct": 0,
+      "explanation": "$(-1,-1)$ points southwest. Measured clockwise from north, its bearing is $225^\\circ$."
+    },
+    {
+      "q": "A plane flies at $200$ km/h on a bearing of $300^\\circ$. Find the westerly component of its velocity.",
+      "options": [
+        "$100\\sqrt{3}$ km/h",
+        "$100$ km/h",
+        "$200$ km/h",
+        "$173$ km/h"
+      ],
+      "correct": 0,
+      "explanation": "At bearing $300^\\circ$, the westward magnitude is $200|\\sin300^\\circ|=100\\sqrt3$ km/h."
+    },
+    {
+      "q": "If $\\mathbf{r} = (t^2)i + (2t-1)j$, find the velocity vector at $t=2$.",
+      "options": [
+        "$4i + 2j$",
+        "$4i + 3j$",
+        "$2i + 2j$",
+        "$i + j$"
+      ],
+      "correct": 0,
+      "explanation": "Differentiate position componentwise: $\\vec v=(2t)i+2j$. At $t=2$, $\\vec v=4i+2j$."
+    },
+    {
+      "q": "Two vectors are collinear if the area of the triangle formed by them is:",
+      "options": [
+        "Zero",
+        "One",
+        "Positive",
+        "Undefined"
+      ],
+      "correct": 0,
+      "explanation": "The triangle area is half the magnitude of the two-dimensional cross product. Collinear vectors have zero cross product and zero area."
+    },
+    {
+      "q": "If $P$ is $(2, 5)$ and the vector $\\vec{PQ} = \\binom{-3}{4}$, find the coordinates of $Q$.",
+      "options": [
+        "$(-1, 9)$",
+        "$(5, 1)$",
+        "$(1, -9)$",
+        "$(-5, -1)$"
+      ],
+      "correct": 0,
+      "explanation": "$Q=P+\\vec{PQ}=(2,5)+(-3,4)=(-1,9)$."
+    },
+    {
+      "q": "Simplify $3(2i - j) - 2(i + 4j) + 5j$.",
+      "options": [
+        "$4i - 6j$",
+        "$4i + 10j$",
+        "$8i - 3j$",
+        "$4i - j$"
+      ],
+      "correct": 0,
+      "explanation": "Combine components: $(6i-3j)+(-2i-8j)+5j=4i-6j$."
+    }
   ]
 }

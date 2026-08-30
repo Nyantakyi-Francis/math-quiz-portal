@@ -22,6 +22,10 @@ Implemented with backward-compatible plain-text and structured JSON explanations
 
 Verification: TypeScript, unit tests, lint, and the production build pass. Lint retains 25 pre-existing warnings in unrelated files. Desktop/mobile authenticated browser verification remains pending because neither the Browser plugin, Playwright, nor the listed `agent-browser` executable is available in this environment. Apply `supabase/schema.sql`, re-import module data with `--replace`, and run that browser check before deployment.
 
+Content completion (2026-08-30): all 430 questions across the 11 module JSON files now have authored explanations. The content pass also corrected answer data exposed by working through the questions, including incorrect or missing answers in binary operations, combinations and probability, coordinate geometry, matrices, sequences and functions, surds, trigonometry, and vectors. Automated coverage now fails if any question is missing an explanation or has an out-of-range answer index.
+
+Statistics source-data repair (2026-08-30): the unavailable legacy Tables 1-3 and cumulative-frequency curve were replaced with four new, internally consistent datasets. Questions 1-14 and 37-39, their choices, answer keys, and explanations were recalculated against those datasets. Shared stimuli are defined once in `data/statistics.json`, validated during import, stored in learner-safe question metadata, and rendered as captioned semantic tables with contained mobile scrolling. Automated tests independently recalculate the relevant mode, mean, median, range, probability, frequency density, percentile, and grouped-data results.
+
 ### Goal
 
 Help learners understand why an answer is correct and where their reasoning failed. Feedback should teach the method instead of showing only “Correct” or “Incorrect.”

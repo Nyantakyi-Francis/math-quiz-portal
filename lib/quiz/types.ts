@@ -4,10 +4,19 @@ export type LearnerQuizOption = {
   orderIndex: number;
 };
 
+export type QuizTableStimulus = {
+  type: "table";
+  title: string;
+  description: string | null;
+  columns: string[];
+  rows: string[][];
+};
+
 export type LearnerQuizQuestion = {
   id: string;
   prompt: string;
   orderIndex: number;
+  stimulus: QuizTableStimulus | null;
   options: LearnerQuizOption[];
 };
 

@@ -3,45 +3,445 @@
   "title": "Straight Lines",
   "module": "Straight Lines",
   "questions": [
-    { "q": "Find the midpoint of the line joining $A(2, 5)$ and $B(4, 9)$.", "options": ["$(3, 7)$", "$(6, 14)$", "$(3, 4)$", "$(1, 2)$"], "correct": 0 },
-    { "q": "Given $R(1, 17)$ and $P(0, 4)$, determine the midpoint of $RP$.", "options": ["$(0.5, 10.5)$", "$(1, 21)$", "$(0.5, 6.5)$", "$(1, 13)$"], "correct": 0 },
-    { "q": "The midpoint of $PQ$ is $(5, 2)$. If $P$ is $(1, 4)$, find $Q$.", "options": ["$(3, 3)$", "$(9, 0)$", "$(6, 6)$", "$(4, -2)$"], "correct": 1 },
-    { "q": "Find the midpoint of a line segment with endpoints $(-3, 4)$ and $(7, -8)$.", "options": ["$(2, -2)$", "$(5, -6)$", "$(4, -4)$", "$(2, 2)$"], "correct": 0 },
-    { "q": "If $(2, 3)$ is the midpoint of $(x, 5)$ and $(4, y)$, find $x$ and $y$.", "options": ["$x=0, y=1$", "$x=1, y=0$", "$x=2, y=1$", "$x=0, y=2$"], "correct": 0 },
-    { "q": "The generalization of the midpoint $M$ for $(x_1, y_1)$ and $(x_2, y_2)$ is:", "options": ["$(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})$", "$(\\frac{x_1-x_2}{2}, \\frac{y_1-y_2}{2})$", "$(x_1+x_2, y_1+y_2)$", "$(\\sqrt{x}, \\sqrt{y})$"], "correct": 0 },
-    { "q": "Find the midpoint of the line segment joining $(-a, b)$ and $(a, -b)$.", "options": ["$(0, 0)$", "$(a, b)$", "$(2a, 2b)$", "$(a/2, b/2)$"], "correct": 0 },
-    { "q": "Find the midpoint of the line joining $(0, 0)$ and $(\\cos \\theta, \\sin \\theta)$.", "options": ["$(\\frac{\\cos \\theta}{2}, \\frac{\\sin \\theta}{2})$", "$(1, 1)$", "$(0.5, 0.5)$", "$(\\cos 2\\theta, \\sin 2\\theta)$"], "correct": 0 },
-    { "q": "Find $P$ dividing $A(1, 2)$ and $B(6, 7)$ internally in ratio $2:3$.", "options": ["$(3, 4)$", "$(4, 5)$", "$(2, 3)$", "$(3, 5)$"], "correct": 0 },
-    { "q": "The formula for internal division of $(x_1, y_1)$ and $(x_2, y_2)$ in ratio $m:n$ is:", "options": ["$(\\frac{mx_2+nx_1}{m+n}, \\frac{my_2+ny_1}{m+n})$", "$(\\frac{mx_2-nx_1}{m-n}, \\frac{my_2-ny_1}{m-n})$", "$(\\frac{nx_2+mx_1}{m+n}, \\frac{ny_2+my_1}{m+n})$", "$(\\frac{mx_1+nx_2}{m+n}, \\frac{my_1+ny_2}{m+n})$"], "correct": 0 },
-    { "q": "Find $P$ dividing $A(-1, 3)$ and $B(4, 8)$ internally in ratio $4:1$.", "options": ["$(3, 7)$", "$(2, 6)$", "$(3, 8)$", "$(4, 7)$"], "correct": 0 },
-    { "q": "Find $P$ dividing $A(2, 3)$ and $B(5, 9)$ externally in ratio $2:1$.", "options": ["$(8, 15)$", "$(7, 12)$", "$(6, 11)$", "$(4, 6)$"], "correct": 0 },
-    { "q": "External division uses which sign in the denominator of the ratio formula?", "options": ["Minus $(-)$", "Plus $(+)$", "Multiplication $(\\\\times)$", "Division $(\\\\div)$"], "correct": 0 },
-    { "q": "If $P$ divides $AB$ in ratio $1:1$ internally, $P$ is the:", "options": ["Midpoint", "Origin", "Centroid", "Intercept"], "correct": 0 },
-    { "q": "Find the ratio in which the point $(2, 3)$ divides the line joining $(1, 1)$ and $(4, 7)$.", "options": ["$1:2$ internally", "$2:1$ internally", "$1:3$ internally", "$3:1$ internally"], "correct": 0 },
-    { "q": "Find $P$ dividing $(0, 0)$ and $(10, 10)$ internally in ratio $3:2$.", "options": ["$(6, 6)$", "$(4, 4)$", "$(5, 5)$", "$(7, 7)$"], "correct": 0 },
-    { "q": "Find the gradient of the line passing through $(2, 3)$ and $(5, -3)$.", "options": ["$-2$", "$2$", "$-0.5$", "$0.5$"], "correct": 0 },
-    { "q": "The equation $y - y_1 = m(x - x_1)$ is known as the:", "options": ["Point-gradient form", "Slope-intercept form", "Two-point form", "Intercept form"], "correct": 0 },
-    { "q": "Find the equation of a line with gradient $-2$ passing through $(3, -5)$.", "options": ["$y = -2x + 1$", "$y = -2x - 11$", "$y = 2x - 1$", "$y = -2x + 11$"], "correct": 0 },
-    { "q": "What is the gradient of a line parallel to the x-axis?", "options": ["$0$", "$1$", "Undefined", "$-1$"], "correct": 0 },
-    { "q": "What is the gradient of a line perpendicular to the x-axis?", "options": ["Undefined", "$0$", "$1$", "Infinity"], "correct": 0 },
-    { "q": "Find the equation of the line passing through $(2, 4)$ and $(3, 7)$.", "options": ["$y = 3x - 2$", "$y = 3x + 2$", "$y = x + 5$", "$y = 2x + 1$"], "correct": 0 },
-    { "q": "Find the intercept form of $2x + 3y = 6$.", "options": ["$\\frac{x}{3} + \\frac{y}{2} = 1$", "$\\frac{x}{2} + \\frac{y}{3} = 1$", "$y = -\\frac{2}{3}x + 2$", "$\\frac{x}{6} + \\frac{y}{6} = 1$"], "correct": 0 },
-    { "q": "Find the gradient of $4x - 5y + 10 = 0$.", "options": ["$4/5$", "$-4/5$", "$5/4$", "$-5/4$"], "correct": 0 },
-    { "q": "If $m_1$ and $m_2$ are gradients of parallel lines, then:", "options": ["$m_1 = m_2$", "$m_1 m_2 = -1$", "$m_1 + m_2 = 0$", "$m_1 m_2 = 1$"], "correct": 0 },
-    { "q": "If $m_1$ and $m_2$ are gradients of perpendicular lines, then:", "options": ["$m_1 m_2 = -1$", "$m_1 = m_2$", "$m_1 + m_2 = 1$", "$m_1/m_2 = -1$"], "correct": 0 },
-    { "q": "Find equation of line through $(4, -1)$ parallel to $y = -2x + 7$.", "options": ["$y = -2x + 7$", "$y = -2x - 9$", "$y = -2x + 9$", "$y = 0.5x + 1$"], "correct": 0 },
-    { "q": "Find equation of line through $(1, 2)$ perpendicular to $y = 3x - 1$.", "options": ["$x + 3y - 7 = 0$", "$3x - y - 1 = 0$", "$x - 3y + 5 = 0$", "$y = -3x + 5$"], "correct": 0 },
-    { "q": "Find the perpendicular bisector of $A(1, 2)$ and $B(5, 8)$.", "options": ["$y = -\\frac{2}{3}x + 7$", "$y = \\frac{3}{2}x + 5$", "$2x + 3y = 10$", "$y = -0.5x + 3$"], "correct": 0 },
-    { "q": "If two lines $ax+by+c=0$ and $dx+ey+f=0$ are parallel, then:", "options": ["$ae = bd$", "$ad = be$", "$a/b = f/e$", "$c = f$"], "correct": 0 },
-    { "q": "Find the equation of the perpendicular bisector of $(0,0)$ and $(4,0)$.", "options": ["$x = 2$", "$y = 2$", "$x + y = 2$", "$y = 0$"], "correct": 0 },
-    { "q": "Find the line parallel to $x=5$ passing through $(2,3)$.", "options": ["$x = 2$", "$y = 3$", "$x = 5$", "$x+y=5$"], "correct": 0 },
-    { "q": "Find perpendicular distance from $(2, 3)$ to $3x + 4y - 8 = 0$.", "options": ["$2$ units", "$1$ unit", "$10$ units", "$5$ units"], "correct": 0 },
-    { "q": "Formula for perpendicular distance from $(x_0, y_0)$ to $ax+by+c=0$ is:", "options": ["$\\frac{|ax_0+by_0+c|}{\\sqrt{a^2+b^2}}$", "$\\frac{ax_0+by_0+c}{a+b}$", "$\\sqrt{(x_1-x_0)^2 + (y_1-y_0)^2}$", "$\\frac{|ax_0-by_0|}{\\sqrt{a^2-b^2}}$"], "correct": 0 },
-    { "q": "Find distance from origin to $5x - 12y + 26 = 0$.", "options": ["$2$", "$13$", "$26$", "$1$"], "correct": 0 },
-    { "q": "The angle $\\theta$ between lines with gradients $m_1, m_2$ is found using:", "options": ["$\\tan \\theta = |\\frac{m_1-m_2}{1+m_1m_2}|$", "$\\sin \\theta = m_1 - m_2$", "$\\cos \\theta = m_1m_2$", "$\\tan \\theta = m_1 + m_2$"], "correct": 0 },
-    { "q": "Find acute angle between $y = x$ and $y = 0$ (x-axis).", "options": ["$45^\\circ$", "$30^\\circ$", "$60^\\circ$", "$90^\\circ$"], "correct": 0 },
-    { "q": "If $\\tan \\theta$ is undefined, the angle between the lines is:", "options": ["$90^\\circ$", "$0^\\circ$", "$180^\\circ$", "$45^\\circ$"], "correct": 0 },
-    { "q": "Find distance between parallel lines $3x-4y+5=0$ and $3x-4y-10=0$.", "options": ["$3$", "$5$", "$15$", "$1$"], "correct": 0 },
-    { "q": "Find distance from $(1, 1)$ to the line $x + y = 0$.", "options": ["$\\sqrt{2}$", "$1$", "$2$", "$0$"], "correct": 0 }
+    {
+      "q": "Find the midpoint of the line joining $A(2, 5)$ and $B(4, 9)$.",
+      "options": [
+        "$(3, 7)$",
+        "$(6, 14)$",
+        "$(3, 4)$",
+        "$(1, 2)$"
+      ],
+      "correct": 0,
+      "explanation": "Average corresponding coordinates: $((2+4)/2,(5+9)/2)=(3,7)$."
+    },
+    {
+      "q": "Given $R(1, 17)$ and $P(0, 4)$, determine the midpoint of $RP$.",
+      "options": [
+        "$(0.5, 10.5)$",
+        "$(1, 21)$",
+        "$(0.5, 6.5)$",
+        "$(1, 13)$"
+      ],
+      "correct": 0,
+      "explanation": "The midpoint is $((1+0)/2,(17+4)/2)=(0.5,10.5)$."
+    },
+    {
+      "q": "The midpoint of $PQ$ is $(5, 2)$. If $P$ is $(1, 4)$, find $Q$.",
+      "options": [
+        "$(3, 3)$",
+        "$(9, 0)$",
+        "$(6, 6)$",
+        "$(4, -2)$"
+      ],
+      "correct": 1,
+      "explanation": "Use $(1+x_Q)/2=5$ and $(4+y_Q)/2=2$, giving $Q=(9,0)$."
+    },
+    {
+      "q": "Find the midpoint of a line segment with endpoints $(-3, 4)$ and $(7, -8)$.",
+      "options": [
+        "$(2, -2)$",
+        "$(5, -6)$",
+        "$(4, -4)$",
+        "$(2, 2)$"
+      ],
+      "correct": 0,
+      "explanation": "Average the endpoints: $((-3+7)/2,(4-8)/2)=(2,-2)$."
+    },
+    {
+      "q": "If $(2, 3)$ is the midpoint of $(x, 5)$ and $(4, y)$, find $x$ and $y$.",
+      "options": [
+        "$x=0, y=1$",
+        "$x=1, y=0$",
+        "$x=2, y=1$",
+        "$x=0, y=2$"
+      ],
+      "correct": 0,
+      "explanation": "The midpoint equations are $(x+4)/2=2$ and $(5+y)/2=3$, so $x=0$ and $y=1$."
+    },
+    {
+      "q": "The generalization of the midpoint $M$ for $(x_1, y_1)$ and $(x_2, y_2)$ is:",
+      "options": [
+        "$(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})$",
+        "$(\\frac{x_1-x_2}{2}, \\frac{y_1-y_2}{2})$",
+        "$(x_1+x_2, y_1+y_2)$",
+        "$(\\sqrt{x}, \\sqrt{y})$"
+      ],
+      "correct": 0,
+      "explanation": "A midpoint averages each coordinate: $M=((x_1+x_2)/2,(y_1+y_2)/2)$."
+    },
+    {
+      "q": "Find the midpoint of the line segment joining $(-a, b)$ and $(a, -b)$.",
+      "options": [
+        "$(0, 0)$",
+        "$(a, b)$",
+        "$(2a, 2b)$",
+        "$(a/2, b/2)$"
+      ],
+      "correct": 0,
+      "explanation": "The opposite coordinates cancel when averaged, so the midpoint is $(0,0)$."
+    },
+    {
+      "q": "Find the midpoint of the line joining $(0, 0)$ and $(\\cos \\theta, \\sin \\theta)$.",
+      "options": [
+        "$(\\frac{\\cos \\theta}{2}, \\frac{\\sin \\theta}{2})$",
+        "$(1, 1)$",
+        "$(0.5, 0.5)$",
+        "$(\\cos 2\\theta, \\sin 2\\theta)$"
+      ],
+      "correct": 0,
+      "explanation": "Average with the origin to get $(\\cos\\theta/2,\\sin\\theta/2)$."
+    },
+    {
+      "q": "Find $P$ dividing $A(1, 2)$ and $B(6, 7)$ internally in ratio $2:3$.",
+      "options": [
+        "$(3, 4)$",
+        "$(4, 5)$",
+        "$(2, 3)$",
+        "$(3, 5)$"
+      ],
+      "correct": 0,
+      "explanation": "For $AP:PB=2:3$, $P=((2\\cdot6+3\\cdot1)/5,(2\\cdot7+3\\cdot2)/5)=(3,4)$."
+    },
+    {
+      "q": "The formula for internal division of $(x_1, y_1)$ and $(x_2, y_2)$ in ratio $m:n$ is:",
+      "options": [
+        "$(\\frac{mx_2+nx_1}{m+n}, \\frac{my_2+ny_1}{m+n})$",
+        "$(\\frac{mx_2-nx_1}{m-n}, \\frac{my_2-ny_1}{m-n})$",
+        "$(\\frac{nx_2+mx_1}{m+n}, \\frac{ny_2+my_1}{m+n})$",
+        "$(\\frac{mx_1+nx_2}{m+n}, \\frac{my_1+ny_2}{m+n})$"
+      ],
+      "correct": 0,
+      "explanation": "The internal section formula weights each endpoint by the opposite segment: $((mx_2+nx_1)/(m+n),(my_2+ny_1)/(m+n))$."
+    },
+    {
+      "q": "Find $P$ dividing $A(-1, 3)$ and $B(4, 8)$ internally in ratio $4:1$.",
+      "options": [
+        "$(3, 7)$",
+        "$(2, 6)$",
+        "$(3, 8)$",
+        "$(4, 7)$"
+      ],
+      "correct": 0,
+      "explanation": "Apply the internal section formula with $m:n=4:1$: $P=((4\\cdot4+1(-1))/5,(4\\cdot8+1\\cdot3)/5)=(3,7)$."
+    },
+    {
+      "q": "Find $P$ dividing $A(2, 3)$ and $B(5, 9)$ externally in ratio $2:1$.",
+      "options": [
+        "$(8, 15)$",
+        "$(7, 12)$",
+        "$(6, 11)$",
+        "$(4, 6)$"
+      ],
+      "correct": 0,
+      "explanation": "External division uses $P=((2\\cdot5-1\\cdot2)/(2-1),(2\\cdot9-1\\cdot3)/(2-1))=(8,15)$."
+    },
+    {
+      "q": "External division uses which sign in the denominator of the ratio formula?",
+      "options": [
+        "Minus $(-)$",
+        "Plus $(+)$",
+        "Multiplication $(\\\\times)$",
+        "Division $(\\\\div)$"
+      ],
+      "correct": 0,
+      "explanation": "External division subtracts the ratio parts, so its coordinate formula has $m-n$ in the denominator."
+    },
+    {
+      "q": "If $P$ divides $AB$ in ratio $1:1$ internally, $P$ is the:",
+      "options": [
+        "Midpoint",
+        "Origin",
+        "Centroid",
+        "Intercept"
+      ],
+      "correct": 0,
+      "explanation": "A $1:1$ internal division splits the segment into equal halves, so the point is the midpoint."
+    },
+    {
+      "q": "Find the ratio in which the point $(2, 3)$ divides the line joining $(1, 1)$ and $(4, 7)$.",
+      "options": [
+        "$1:2$ internally",
+        "$2:1$ internally",
+        "$1:3$ internally",
+        "$3:1$ internally"
+      ],
+      "correct": 0,
+      "explanation": "From $(2,3)=(1+t(3),1+t(6))$, either coordinate gives $t=1/3$. Thus the internal ratio is $t:(1-t)=1:2$."
+    },
+    {
+      "q": "Find $P$ dividing $(0, 0)$ and $(10, 10)$ internally in ratio $3:2$.",
+      "options": [
+        "$(6, 6)$",
+        "$(4, 4)$",
+        "$(5, 5)$",
+        "$(7, 7)$"
+      ],
+      "correct": 0,
+      "explanation": "Apply the section formula: $P=((3\\cdot10+2\\cdot0)/5,(3\\cdot10+2\\cdot0)/5)=(6,6)$."
+    },
+    {
+      "q": "Find the gradient of the line passing through $(2, 3)$ and $(5, -3)$.",
+      "options": [
+        "$-2$",
+        "$2$",
+        "$-0.5$",
+        "$0.5$"
+      ],
+      "correct": 0,
+      "explanation": "$m=(y_2-y_1)/(x_2-x_1)=(-3-3)/(5-2)=-6/3=-2$."
+    },
+    {
+      "q": "The equation $y - y_1 = m(x - x_1)$ is known as the:",
+      "options": [
+        "Point-gradient form",
+        "Slope-intercept form",
+        "Two-point form",
+        "Intercept form"
+      ],
+      "correct": 0,
+      "explanation": "$y-y_1=m(x-x_1)$ uses a known point and gradient, so it is the point-gradient form."
+    },
+    {
+      "q": "Find the equation of a line with gradient $-2$ passing through $(3, -5)$.",
+      "options": [
+        "$y = -2x + 1$",
+        "$y = -2x - 11$",
+        "$y = 2x - 1$",
+        "$y = -2x + 11$"
+      ],
+      "correct": 0,
+      "explanation": "$y+5=-2(x-3)$, which simplifies to $y=-2x+1$."
+    },
+    {
+      "q": "What is the gradient of a line parallel to the x-axis?",
+      "options": [
+        "$0$",
+        "$1$",
+        "Undefined",
+        "$-1$"
+      ],
+      "correct": 0,
+      "explanation": "A horizontal line has no vertical change, so rise/run is $0$."
+    },
+    {
+      "q": "What is the gradient of a line perpendicular to the x-axis?",
+      "options": [
+        "Undefined",
+        "$0$",
+        "$1$",
+        "Infinity"
+      ],
+      "correct": 0,
+      "explanation": "A line perpendicular to the x-axis is vertical; its horizontal change is zero, so its gradient is undefined."
+    },
+    {
+      "q": "Find the equation of the line passing through $(2, 4)$ and $(3, 7)$.",
+      "options": [
+        "$y = 3x - 2$",
+        "$y = 3x + 2$",
+        "$y = x + 5$",
+        "$y = 2x + 1$"
+      ],
+      "correct": 0,
+      "explanation": "The gradient is $(7-4)/(3-2)=3$. Using $(2,4)$ gives $y-4=3(x-2)$, so $y=3x-2$."
+    },
+    {
+      "q": "Find the intercept form of $2x + 3y = 6$.",
+      "options": [
+        "$\\frac{x}{3} + \\frac{y}{2} = 1$",
+        "$\\frac{x}{2} + \\frac{y}{3} = 1$",
+        "$y = -\\frac{2}{3}x + 2$",
+        "$\\frac{x}{6} + \\frac{y}{6} = 1$"
+      ],
+      "correct": 0,
+      "explanation": "Divide $2x+3y=6$ by 6 to obtain $x/3+y/2=1$."
+    },
+    {
+      "q": "Find the gradient of $4x - 5y + 10 = 0$.",
+      "options": [
+        "$4/5$",
+        "$-4/5$",
+        "$5/4$",
+        "$-5/4$"
+      ],
+      "correct": 0,
+      "explanation": "Rearrange to $y=(4/5)x+2$, so the gradient is $4/5$."
+    },
+    {
+      "q": "If $m_1$ and $m_2$ are gradients of parallel lines, then:",
+      "options": [
+        "$m_1 = m_2$",
+        "$m_1 m_2 = -1$",
+        "$m_1 + m_2 = 0$",
+        "$m_1 m_2 = 1$"
+      ],
+      "correct": 0,
+      "explanation": "Non-vertical parallel lines have equal gradients, so $m_1=m_2$."
+    },
+    {
+      "q": "If $m_1$ and $m_2$ are gradients of perpendicular lines, then:",
+      "options": [
+        "$m_1 m_2 = -1$",
+        "$m_1 = m_2$",
+        "$m_1 + m_2 = 1$",
+        "$m_1/m_2 = -1$"
+      ],
+      "correct": 0,
+      "explanation": "Perpendicular non-vertical gradients are negative reciprocals, hence $m_1m_2=-1$."
+    },
+    {
+      "q": "Find equation of line through $(4, -1)$ parallel to $y = -2x + 7$.",
+      "options": [
+        "$y = -2x + 7$",
+        "$y = -2x - 9$",
+        "$y = -2x + 9$",
+        "$y = 0.5x + 1$"
+      ],
+      "correct": 0,
+      "explanation": "A parallel line has slope $-2$. Through $(4,-1)$: $y+1=-2(x-4)$, so $y=-2x+7$."
+    },
+    {
+      "q": "Find equation of line through $(1, 2)$ perpendicular to $y = 3x - 1$.",
+      "options": [
+        "$x + 3y - 7 = 0$",
+        "$3x - y - 1 = 0$",
+        "$x - 3y + 5 = 0$",
+        "$y = -3x + 5$"
+      ],
+      "correct": 0,
+      "explanation": "The perpendicular slope is $-1/3$. Thus $y-2=-\\frac13(x-1)$, or $x+3y-7=0$."
+    },
+    {
+      "q": "Find the perpendicular bisector of $A(1, 2)$ and $B(5, 8)$.",
+      "options": [
+        "$y = -\\frac{2}{3}x + 7$",
+        "$y = \\frac{3}{2}x + 5$",
+        "$2x + 3y = 10$",
+        "$y = -0.5x + 3$"
+      ],
+      "correct": 0,
+      "explanation": "The midpoint is $(3,5)$ and the segment slope is $3/2$, so the perpendicular slope is $-2/3$. This gives $y=-\\frac23x+7$."
+    },
+    {
+      "q": "If two lines $ax+by+c=0$ and $dx+ey+f=0$ are parallel, then:",
+      "options": [
+        "$ae = bd$",
+        "$ad = be$",
+        "$a/b = f/e$",
+        "$c = f$"
+      ],
+      "correct": 0,
+      "explanation": "Parallel coefficient vectors are proportional. Equating slopes $-a/b=-d/e$ gives $ae=bd$."
+    },
+    {
+      "q": "Find the equation of the perpendicular bisector of $(0,0)$ and $(4,0)$.",
+      "options": [
+        "$x = 2$",
+        "$y = 2$",
+        "$x + y = 2$",
+        "$y = 0$"
+      ],
+      "correct": 0,
+      "explanation": "The segment is horizontal with midpoint $(2,0)$; its perpendicular bisector is the vertical line $x=2$."
+    },
+    {
+      "q": "Find the line parallel to $x=5$ passing through $(2,3)$.",
+      "options": [
+        "$x = 2$",
+        "$y = 3$",
+        "$x = 5$",
+        "$x+y=5$"
+      ],
+      "correct": 0,
+      "explanation": "A line parallel to $x=5$ is vertical. Passing through $(2,3)$ makes its equation $x=2$."
+    },
+    {
+      "q": "Find perpendicular distance from $(2, 3)$ to $3x + 4y - 8 = 0$.",
+      "options": [
+        "$2$ units",
+        "$1$ unit",
+        "$10$ units",
+        "$5$ units"
+      ],
+      "correct": 0,
+      "explanation": "Distance is $|3(2)+4(3)-8|/\\sqrt{3^2+4^2}=10/5=2$."
+    },
+    {
+      "q": "Formula for perpendicular distance from $(x_0, y_0)$ to $ax+by+c=0$ is:",
+      "options": [
+        "$\\frac{|ax_0+by_0+c|}{\\sqrt{a^2+b^2}}$",
+        "$\\frac{ax_0+by_0+c}{a+b}$",
+        "$\\sqrt{(x_1-x_0)^2 + (y_1-y_0)^2}$",
+        "$\\frac{|ax_0-by_0|}{\\sqrt{a^2-b^2}}$"
+      ],
+      "correct": 0,
+      "explanation": "Substitute the point into the normalized line expression: $d=|ax_0+by_0+c|/\\sqrt{a^2+b^2}$."
+    },
+    {
+      "q": "Find distance from origin to $5x - 12y + 26 = 0$.",
+      "options": [
+        "$2$",
+        "$13$",
+        "$26$",
+        "$1$"
+      ],
+      "correct": 0,
+      "explanation": "From the origin, $d=|26|/\\sqrt{5^2+(-12)^2}=26/13=2$."
+    },
+    {
+      "q": "The angle $\\theta$ between lines with gradients $m_1, m_2$ is found using:",
+      "options": [
+        "$\\tan \\theta = |\\frac{m_1-m_2}{1+m_1m_2}|$",
+        "$\\sin \\theta = m_1 - m_2$",
+        "$\\cos \\theta = m_1m_2$",
+        "$\\tan \\theta = m_1 + m_2$"
+      ],
+      "correct": 0,
+      "explanation": "The tangent of the acute angle is the absolute slope difference divided by $1+m_1m_2$: $| (m_1-m_2)/(1+m_1m_2) |$."
+    },
+    {
+      "q": "Find acute angle between $y = x$ and $y = 0$ (x-axis).",
+      "options": [
+        "$45^\\circ$",
+        "$30^\\circ$",
+        "$60^\\circ$",
+        "$90^\\circ$"
+      ],
+      "correct": 0,
+      "explanation": "The line $y=x$ has slope 1 and the x-axis slope 0, so $\\tan\\theta=1$ and $\\theta=45^\\circ$."
+    },
+    {
+      "q": "If $\\tan \\theta$ is undefined, the angle between the lines is:",
+      "options": [
+        "$90^\\circ$",
+        "$0^\\circ$",
+        "$180^\\circ$",
+        "$45^\\circ$"
+      ],
+      "correct": 0,
+      "explanation": "An undefined tangent corresponds to $\\theta=90^\\circ$, meaning the lines are perpendicular."
+    },
+    {
+      "q": "Find distance between parallel lines $3x-4y+5=0$ and $3x-4y-10=0$.",
+      "options": [
+        "$3$",
+        "$5$",
+        "$15$",
+        "$1$"
+      ],
+      "correct": 0,
+      "explanation": "For parallel normalized coefficients, $d=|5-(-10)|/\\sqrt{3^2+(-4)^2}=15/5=3$."
+    },
+    {
+      "q": "Find distance from $(1, 1)$ to the line $x + y = 0$.",
+      "options": [
+        "$\\sqrt{2}$",
+        "$1$",
+        "$2$",
+        "$0$"
+      ],
+      "correct": 0,
+      "explanation": "Write the line as $x+y+0=0$: $d=|1+1|/\\sqrt{1^2+1^2}=2/\\sqrt2=\\sqrt2$."
+    }
   ]
 }

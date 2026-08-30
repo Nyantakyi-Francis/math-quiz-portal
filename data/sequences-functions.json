@@ -3,35 +3,335 @@
   "title": "Sequences, Series & Functions",
   "module": "Sequences, Series & Functions",
   "questions": [
-    { "q": "The $n^{th}$ term of an arithmetic sequence is $U_n = a + (n-1)d$. If $a=3$ and $d=2$, find $U_5$.", "options": ["$11$", "$13$", "$15$", "$9$"], "correct": 0 },
-    { "q": "Find the sum of the first 5 terms of A.P: $2, 4, 6, 8, \\dots$", "options": ["$30$", "$20$", "$15$", "$25$"], "correct": 0 },
-    { "q": "For a geometric sequence, $U_n = ar^{n-1}$. If $a=2$ and $r=3$, find $U_4$.", "options": ["$54$", "$24$", "$162$", "$6$"], "correct": 0 },
-    { "q": "Find the sum of infinite geometric series with $a=1$ and $r=0.5$.", "options": ["$2$", "$0.5$", "$\\infty$", "$4$"], "correct": 0 },
-    { "q": "The common difference of A.P: $5, 9, 13, 17, \\dots$ is:", "options": ["$4$", "$5$", "$9$", "$8$"], "correct": 0 },
-    { "q": "Find the 10th term of G.P: $1, 2, 4, 8, \\dots$", "options": ["$512$", "$256$", "$1024$", "$128$"], "correct": 0 },
-    { "q": "The mapping $f: x \\mapsto 2x+1$ is:", "options": ["Injection", "Surjection", "Bijection", "Multifunction"], "correct": 0 },
-    { "q": "If $f(x) = x^2$ and $g(x) = x+3$, find $g(f(2))$.", "options": ["$7$", "$11$", "$13$", "$9$"], "correct": 1 },
-    { "q": "A function is injective (one-to-one) if:", "options": ["$f(a) = f(b) \\Rightarrow a = b$", "Every element in codomain has a pre-image", "$f(x) = x$", "The domain equals the codomain"], "correct": 0 },
-    { "q": "Find the inverse of $f(x) = 3x - 5$.", "options": ["$f^{-1}(x) = \\frac{x+5}{3}$", "$f^{-1}(x) = 3x + 5$", "$f^{-1}(x) = \\frac{x-5}{3}$", "$f^{-1}(x) = x + 5$"], "correct": 0 },
-    { "q": "If the $n^{th}$ term is 50 and the first term is 2 with common difference 3, find $n$.", "options": ["$17$", "$16$", "$18$", "$15$"], "correct": 0 },
-    { "q": "The sum $S_n$ of the first $n$ terms of an A.P is given by:", "options": ["$\\frac{n}{2}(2a + (n-1)d)$", "$a + (n-1)d$", "$\\frac{n}{2}(a + l)$", "All of the above"], "correct": 3 },
-    { "q": "For a G.P, the sum of infinite terms exists when:", "options": ["$|r| < 1$", "$|r| > 1$", "$r = 0$", "$|r| = 1$"], "correct": 0 },
-    { "q": "The common ratio of G.P: $\\frac{1}{2}, \\frac{1}{4}, \\frac{1}{8}, \\dots$ is:", "options": ["$\\frac{1}{2}$", "$\\frac{1}{4}$", "$2$", "$4$"], "correct": 0 },
-    { "q": "If $f(x) = x+2$ and $g(x) = x-2$, find $gf(x)$.", "options": ["$x+4$", "$x-4$", "$x$", "$x^2-4$"], "correct": 2 },
-    { "q": "Evaluate $\\sum_{r=1}^{4} (2r + 1)$.", "options": ["$20$", "$24$", "$25$", "$30$"], "correct": 1 },
-    { "q": "The $n^{th}$ term of a G.P is $U_n = a r^{n-1}$. If $a=3$ and $U_4 = 24$, find $r$.", "options": ["$2$", "$3$", "$4$", "$8$"], "correct": 0 },
-    { "q": "A mapping is onto if:", "options": ["Every element in codomain has a pre-image", "Every element in domain has one image", "The mapping is one-to-one", "The range is a subset of codomain"], "correct": 0 },
-    { "q": "If $h(x) = x^2 - 1$, find $h(h(1))$.", "options": ["$-1$", "$0$", "$1$", "$2$"], "correct": 0 },
-    { "q": "Find the sum of the first $10$ terms of $10, 7, 4, \\dots$", "options": ["$-35$", "$-45$", "$-55$", "$-65$"], "correct": 0 },
-    { "q": "If $f(x) = 3x - 1$, find $f^{-1}(2)$.", "options": ["$1$", "$5$", "$\\frac{1}{3}$", "$7$"], "correct": 0 },
-    { "q": "Which term of the A.P $24, 21, 18, \\dots$ is the first negative term?", "options": ["8th", "9th", "10th", "11th"], "correct": 1 },
-    { "q": "Find the common ratio of the sequence $0.3, 0.03, 0.003, \\dots$", "options": ["$0.1$", "$0.01$", "$10$", "$0.3$"], "correct": 0 },
-    { "q": "If $f(x) = x^2$ and $g(x) = \\sqrt{x}$, find $f(g(x))$ for $x \\ge 0$.", "options": ["$x^2$", "$x$", "$\\sqrt{x}$", "$1$"], "correct": 1 },
-    { "q": "Find the sum of the series $1 + \\frac{1}{2} + \\frac{1}{4} + \\frac{1}{8} + \\dots$", "options": ["$2$", "$\\infty$", "$1$", "$0.5$"], "correct": 0 },
-    { "q": "Is the sequence $3, 3, 3, 3, \\dots$ an A.P or G.P?", "options": ["Both", "Only A.P", "Only G.P", "Neither"], "correct": 0 },
-    { "q": "The sum of the first $n$ natural numbers is:", "options": ["$\\frac{n(n+1)}{2}$", "$n^2$", "$n(n+1)$", "$\\frac{n^2}{2}$"], "correct": 0 },
-    { "q": "If $f(f(x)) = x$ for all $x$ in the domain, then $f$ is:", "options": ["Self-inverse", "Bijective", "Symmetric", "Cyclic"], "correct": 0 },
-    { "q": "Find $f(f(2))$ if $f(x) = x + 1$.", "options": ["$4$", "$3$", "$2$", "$5$"], "correct": 0 },
-    { "q": "The sum $1 + 2 + 3 + \\dots + 100$ equals:", "options": ["$5050$", "$5100$", "$4950$", "$10100$"], "correct": 0 }
+    {
+      "q": "The $n^{th}$ term of an arithmetic sequence is $U_n = a + (n-1)d$. If $a=3$ and $d=2$, find $U_5$.",
+      "options": [
+        "$11$",
+        "$13$",
+        "$15$",
+        "$9$"
+      ],
+      "correct": 0,
+      "explanation": "$U_5=3+(5-1)2=3+8=11$."
+    },
+    {
+      "q": "Find the sum of the first 5 terms of A.P: $2, 4, 6, 8, \\dots$",
+      "options": [
+        "$30$",
+        "$20$",
+        "$15$",
+        "$25$"
+      ],
+      "correct": 0,
+      "explanation": "The first five terms are $2,4,6,8,10$; their sum is $30$."
+    },
+    {
+      "q": "For a geometric sequence, $U_n = ar^{n-1}$. If $a=2$ and $r=3$, find $U_4$.",
+      "options": [
+        "$54$",
+        "$24$",
+        "$162$",
+        "$6$"
+      ],
+      "correct": 0,
+      "explanation": "$U_4=2(3^{4-1})=2(27)=54$."
+    },
+    {
+      "q": "Find the sum of infinite geometric series with $a=1$ and $r=0.5$.",
+      "options": [
+        "$2$",
+        "$0.5$",
+        "$\\infty$",
+        "$4$"
+      ],
+      "correct": 0,
+      "explanation": "For $|r|<1$, $S_\\infty=a/(1-r)=1/(1-0.5)=2$."
+    },
+    {
+      "q": "The common difference of A.P: $5, 9, 13, 17, \\dots$ is:",
+      "options": [
+        "$4$",
+        "$5$",
+        "$9$",
+        "$8$"
+      ],
+      "correct": 0,
+      "explanation": "Subtract consecutive terms: $9-5=13-9=4$, so the common difference is $4$."
+    },
+    {
+      "q": "Find the 10th term of G.P: $1, 2, 4, 8, \\dots$",
+      "options": [
+        "$512$",
+        "$256$",
+        "$1024$",
+        "$128$"
+      ],
+      "correct": 0,
+      "explanation": "$U_{10}=1\\cdot2^9=512$."
+    },
+    {
+      "q": "The mapping $f: x \\mapsto 2x+1$ is:",
+      "options": [
+        "Injection",
+        "Surjection",
+        "Bijection",
+        "Multifunction"
+      ],
+      "correct": 0,
+      "explanation": "If $2a+1=2b+1$, then $a=b$, so distinct inputs cannot share an output; the mapping is injective."
+    },
+    {
+      "q": "If $f(x) = x^2$ and $g(x) = x+3$, find $g(f(2))$.",
+      "options": [
+        "$7$",
+        "$11$",
+        "$13$",
+        "$9$"
+      ],
+      "correct": 0,
+      "explanation": "$f(2)=4$, then $g(f(2))=g(4)=4+3=7$."
+    },
+    {
+      "q": "A function is injective (one-to-one) if:",
+      "options": [
+        "$f(a) = f(b) \\Rightarrow a = b$",
+        "Every element in codomain has a pre-image",
+        "$f(x) = x$",
+        "The domain equals the codomain"
+      ],
+      "correct": 0,
+      "explanation": "Injectivity means equal outputs can only come from equal inputs: $f(a)=f(b)\\Rightarrow a=b$."
+    },
+    {
+      "q": "Find the inverse of $f(x) = 3x - 5$.",
+      "options": [
+        "$f^{-1}(x) = \\frac{x+5}{3}$",
+        "$f^{-1}(x) = 3x + 5$",
+        "$f^{-1}(x) = \\frac{x-5}{3}$",
+        "$f^{-1}(x) = x + 5$"
+      ],
+      "correct": 0,
+      "explanation": "Let $y=3x-5$, solve $x=(y+5)/3$, then swap variables: $f^{-1}(x)=(x+5)/3$."
+    },
+    {
+      "q": "If the $n^{th}$ term is 50 and the first term is 2 with common difference 3, find $n$.",
+      "options": [
+        "$17$",
+        "$16$",
+        "$18$",
+        "$15$"
+      ],
+      "correct": 0,
+      "explanation": "$50=2+(n-1)3$ gives $48=3(n-1)$, so $n-1=16$ and $n=17$."
+    },
+    {
+      "q": "The sum $S_n$ of the first $n$ terms of an A.P is given by:",
+      "options": [
+        "$\\frac{n}{2}(2a + (n-1)d)$",
+        "$a + (n-1)d$",
+        "$\\frac{n}{2}(a + l)$",
+        "All of the above"
+      ],
+      "correct": 3,
+      "explanation": "Both $S_n=\\frac n2[2a+(n-1)d]$ and $S_n=\\frac n2(a+l)$ are valid A.P. sum formulas, so all listed forms apply."
+    },
+    {
+      "q": "For a G.P, the sum of infinite terms exists when:",
+      "options": [
+        "$|r| < 1$",
+        "$|r| > 1$",
+        "$r = 0$",
+        "$|r| = 1$"
+      ],
+      "correct": 0,
+      "explanation": "An infinite geometric series converges exactly when repeated powers shrink to zero, which requires $|r|<1$."
+    },
+    {
+      "q": "The common ratio of G.P: $\\frac{1}{2}, \\frac{1}{4}, \\frac{1}{8}, \\dots$ is:",
+      "options": [
+        "$\\frac{1}{2}$",
+        "$\\frac{1}{4}$",
+        "$2$",
+        "$4$"
+      ],
+      "correct": 0,
+      "explanation": "Divide a term by its predecessor: $(1/4)/(1/2)=1/2$."
+    },
+    {
+      "q": "If $f(x) = x+2$ and $g(x) = x-2$, find $gf(x)$.",
+      "options": [
+        "$x+4$",
+        "$x-4$",
+        "$x$",
+        "$x^2-4$"
+      ],
+      "correct": 2,
+      "explanation": "$g(f(x))=g(x+2)=(x+2)-2=x$."
+    },
+    {
+      "q": "Evaluate $\\sum_{r=1}^{4} (2r + 1)$.",
+      "options": [
+        "$20$",
+        "$24$",
+        "$25$",
+        "$30$"
+      ],
+      "correct": 1,
+      "explanation": "Substitute $r=1,2,3,4$: $3+5+7+9=24$."
+    },
+    {
+      "q": "The $n^{th}$ term of a G.P is $U_n = a r^{n-1}$. If $a=3$ and $U_4 = 24$, find $r$.",
+      "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$8$"
+      ],
+      "correct": 0,
+      "explanation": "$24=3r^3$ gives $r^3=8$, hence $r=2$."
+    },
+    {
+      "q": "A mapping is onto if:",
+      "options": [
+        "Every element in codomain has a pre-image",
+        "Every element in domain has one image",
+        "The mapping is one-to-one",
+        "The range is a subset of codomain"
+      ],
+      "correct": 0,
+      "explanation": "A mapping is onto when every element of the codomain is the image of at least one domain element."
+    },
+    {
+      "q": "If $h(x) = x^2 - 1$, find $h(h(1))$.",
+      "options": [
+        "$-1$",
+        "$0$",
+        "$1$",
+        "$2$"
+      ],
+      "correct": 0,
+      "explanation": "$h(1)=1^2-1=0$, then $h(0)=0^2-1=-1$."
+    },
+    {
+      "q": "Find the sum of the first $10$ terms of $10, 7, 4, \\dots$",
+      "options": [
+        "$-35$",
+        "$-45$",
+        "$-55$",
+        "$-65$"
+      ],
+      "correct": 0,
+      "explanation": "Here $a=10$, $d=-3$, and $n=10$. $S_{10}=\\frac{10}{2}[20+9(-3)]=5(-7)=-35$."
+    },
+    {
+      "q": "If $f(x) = 3x - 1$, find $f^{-1}(2)$.",
+      "options": [
+        "$1$",
+        "$5$",
+        "$\\frac{1}{3}$",
+        "$7$"
+      ],
+      "correct": 0,
+      "explanation": "$f^{-1}(2)$ is the input whose output is $2$. Solve $3x-1=2$ to get $x=1$."
+    },
+    {
+      "q": "Which term of the A.P $24, 21, 18, \\dots$ is the first negative term?",
+      "options": [
+        "8th",
+        "9th",
+        "10th",
+        "11th"
+      ],
+      "correct": 2,
+      "explanation": "$U_n=24+(n-1)(-3)=27-3n$. The ninth term is $0$ and the tenth is $-3$, so the first negative term is the 10th."
+    },
+    {
+      "q": "Find the common ratio of the sequence $0.3, 0.03, 0.003, \\dots$",
+      "options": [
+        "$0.1$",
+        "$0.01$",
+        "$10$",
+        "$0.3$"
+      ],
+      "correct": 0,
+      "explanation": "The ratio is $0.03/0.3=0.1$, confirmed by $0.003/0.03=0.1$."
+    },
+    {
+      "q": "If $f(x) = x^2$ and $g(x) = \\sqrt{x}$, find $f(g(x))$ for $x \\ge 0$.",
+      "options": [
+        "$x^2$",
+        "$x$",
+        "$\\sqrt{x}$",
+        "$1$"
+      ],
+      "correct": 1,
+      "explanation": "For $x\\ge0$, $f(g(x))=(\\sqrt{x})^2=x$."
+    },
+    {
+      "q": "Find the sum of the series $1 + \\frac{1}{2} + \\frac{1}{4} + \\frac{1}{8} + \\dots$",
+      "options": [
+        "$2$",
+        "$\\infty$",
+        "$1$",
+        "$0.5$"
+      ],
+      "correct": 0,
+      "explanation": "This infinite G.P. has $a=1$ and $r=1/2$, so its sum is $1/(1-1/2)=2$."
+    },
+    {
+      "q": "Is the sequence $3, 3, 3, 3, \\dots$ an A.P or G.P?",
+      "options": [
+        "Both",
+        "Only A.P",
+        "Only G.P",
+        "Neither"
+      ],
+      "correct": 0,
+      "explanation": "The common difference is $0$, so it is an A.P.; the common ratio is $1$, so it is also a G.P."
+    },
+    {
+      "q": "The sum of the first $n$ natural numbers is:",
+      "options": [
+        "$\\frac{n(n+1)}{2}$",
+        "$n^2$",
+        "$n(n+1)$",
+        "$\\frac{n^2}{2}$"
+      ],
+      "correct": 0,
+      "explanation": "Pairing first and last terms gives the standard sum $1+2+\\cdots+n=n(n+1)/2$."
+    },
+    {
+      "q": "If $f(f(x)) = x$ for all $x$ in the domain, then $f$ is:",
+      "options": [
+        "Self-inverse",
+        "Bijective",
+        "Symmetric",
+        "Cyclic"
+      ],
+      "correct": 0,
+      "explanation": "$f(f(x))=x$ means applying $f$ twice restores the input, so $f=f^{-1}$ and the function is self-inverse."
+    },
+    {
+      "q": "Find $f(f(2))$ if $f(x) = x + 1$.",
+      "options": [
+        "$4$",
+        "$3$",
+        "$2$",
+        "$5$"
+      ],
+      "correct": 0,
+      "explanation": "$f(2)=3$ and then $f(3)=4$."
+    },
+    {
+      "q": "The sum $1 + 2 + 3 + \\dots + 100$ equals:",
+      "options": [
+        "$5050$",
+        "$5100$",
+        "$4950$",
+        "$10100$"
+      ],
+      "correct": 0,
+      "explanation": "Use $n(n+1)/2$ with $n=100$: $100(101)/2=5050$."
+    }
   ]
 }

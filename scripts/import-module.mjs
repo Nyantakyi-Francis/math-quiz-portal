@@ -4,6 +4,7 @@ import { join, resolve } from "node:path";
 import process from "node:process";
 import { createClient } from "@supabase/supabase-js";
 import { validateExplanation } from "./lib/explanations.mjs";
+import { validateModuleStimuli } from "./lib/stimuli.mjs";
 
 function normalizeSupabaseUrl(url) {
   return url.replace(/\/rest\/v1\/?$/, "").replace(/\/$/, "");
@@ -72,6 +73,7 @@ async function importModule(slug, options = {}) {
   const explanations = quizData.questions.map((question, index) =>
     validateExplanation(question.explanation, index + 1)
   );
+  const stimuli = validateModuleStimuli(quizData);
 
   explanations.forEach((explanation, index) => {
     if (typeof explanation === "string" || explanation === null) return;
@@ -129,6 +131,15 @@ async function importModule(slug, options = {}) {
     if (deleteError) {
       throw new Error(deleteError.message);
     }
+
+    const { error: stimulusDeleteError } = await supabase
+      .from("question_stimuli")
+      .delete()
+      .eq("module_id", moduleRow.id);
+
+    if (stimulusDeleteError) {
+      throw new Error(stimulusDeleteError.message);
+    }
   }
 
   const { error: moduleUpdateError } = await supabase
@@ -144,13 +155,34 @@ async function importModule(slug, options = {}) {
     throw new Error(moduleUpdateError.message);
   }
 
+  const stimulusPayload = Object.entries(stimuli).map(([stimulusKey, content]) => ({
+    module_id: moduleRow.id,
+    stimulus_key: stimulusKey,
+    content
+  }));
+  const { data: stimulusRows, error: stimulusError } = stimulusPayload.length
+    ? await supabase
+        .from("question_stimuli")
+        .upsert(stimulusPayload, { onConflict: "module_id,stimulus_key" })
+        .select("id, stimulus_key")
+    : { data: [], error: null };
+
+  if (stimulusError) {
+    throw new Error(stimulusError.message);
+  }
+
+  const stimulusIdByKey = new Map(
+    (stimulusRows ?? []).map((stimulus) => [stimulus.stimulus_key, stimulus.id])
+  );
+
   for (const [index, question] of quizData.questions.entries()) {
     const { data: insertedQuestion, error: questionInsertError } = await supabase
       .from("questions")
       .insert({
         module_id: moduleRow.id,
         prompt: question.q,
-        order_index: index + 1
+        order_index: index + 1,
+        stimulus_id: question.stimulusId ? stimulusIdByKey.get(question.stimulusId) : null
       })
       .select("id")
       .single();

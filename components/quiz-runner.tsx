@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { MathText } from "@/components/math-text";
+import { QuizStimulus } from "@/components/quiz-stimulus";
 import type {
   LearnerQuizQuestion,
   QuizSubmissionAnswer,
@@ -193,7 +194,9 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
                   {index + 1}
                 </div>
                 <div className="flex-1">
-                  <p className="text-base font-semibold leading-7 text-slate-900">
+                  {question.stimulus ? <QuizStimulus stimulus={question.stimulus} /> : null}
+
+                  <p className={`${question.stimulus ? "mt-5" : ""} text-base font-semibold leading-7 text-slate-900`}>
                     <MathText text={question.prompt} />
                   </p>
 

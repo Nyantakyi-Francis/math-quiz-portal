@@ -3,45 +3,445 @@
   "title": "Matrices",
   "module": "Matrices",
   "questions": [
-    { "q": "What is the order of a matrix with $3$ rows and $2$ columns?", "options": ["$2 \\times 3$", "$6$", "$3 \\times 3$", "$3 \\times 2$"], "correct": 3 },
-    { "q": "If $A = \\begin{pmatrix} 2 & 3 \\\\ 1 & 4 \\end{pmatrix}$, find $3A$.", "options": ["$\\begin{pmatrix} 6 & 3 \\\\ 1 & 4 \\end{pmatrix}$", "$\\begin{pmatrix} 6 & 9 \\\\ 3 & 12 \\end{pmatrix}$", "$\\begin{pmatrix} 5 & 6 \\\\ 4 & 7 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 9 \\\\ 1 & 12 \\end{pmatrix}$"], "correct": 1 },
-    { "q": "Find $A + B$ if $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$ and $B = \\begin{pmatrix} 5 & 6 \\\\ 7 & 8 \\end{pmatrix}$.", "options": ["$\\begin{pmatrix} 6 & 8 \\\\ 10 & 12 \\end{pmatrix}$", "$\\begin{pmatrix} 4 & 4 \\\\ 4 & 4 \\end{pmatrix}$", "$\\begin{pmatrix} 5 & 12 \\\\ 21 & 32 \\end{pmatrix}$", "$\\begin{pmatrix} 6 & 10 \\\\ 8 & 12 \\end{pmatrix}$"], "correct": 0 },
-    { "q": "Given $P = \\begin{pmatrix} 10 & 2 \\\\ 5 & 7 \\end{pmatrix}$ and $Q = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}$, find $P - Q$.", "options": ["$\\begin{pmatrix} 6 & 3 \\\\ 3 & 4 \\end{pmatrix}$", "$\\begin{pmatrix} 14 & 3 \\\\ 7 & 10 \\end{pmatrix}$", "$\\begin{pmatrix} 6 & 1 \\\\ 3 & 4 \\end{pmatrix}$", "$\\begin{pmatrix} 6 & 1 \\\\ 7 & 4 \\end{pmatrix}$"], "correct": 2 },
-    { "q": "Two matrices can be added only if they have the same:", "options": ["Determinant", "First row", "Order", "Number of elements"], "correct": 2 },
-    { "q": "If $k \\begin{pmatrix} 2 \\\\ -3 \\end{pmatrix} = \\begin{pmatrix} 10 \\\\ -15 \\end{pmatrix}$, find the value of $k$.", "options": ["$2$", "$-5$", "$5$", "$10$"], "correct": 2 },
-    { "q": "Find the value of $x$ and $y$ if $\\begin{pmatrix} x+y \\\\ x-y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 1 \\end{pmatrix}$.", "options": ["$x=2, y=3$", "$x=3, y=2$", "$x=4, y=1$", "$x=5, y=0$"], "correct": 1 },
-    { "q": "If $M = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$, the transpose $M^T$ is:", "options": ["$\\begin{pmatrix} a & c \\\\ b & d \\end{pmatrix}$", "$\\begin{pmatrix} d & b \\\\ c & a \\end{pmatrix}$", "$\\begin{pmatrix} c & d \\\\ a & b \\end{pmatrix}$", "$\\begin{pmatrix} -a & -b \\\\ -c & -d \\end{pmatrix}$"], "correct": 0 },
-    { "q": "Evaluate $2 \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} - \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$.", "options": ["$\\begin{pmatrix} 0 & -2 \\\\ -3 & -3 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & -2 \\\\ -3 & -2 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 2 \\\\ 3 & 3 \\end{pmatrix}$", "$\\begin{pmatrix} -1 & -2 \\\\ -3 & -4 \\end{pmatrix}$"], "correct": 1 },
-    { "q": "Find the transpose of $\\begin{pmatrix} 1 & 2 & 3 \\end{pmatrix}$.", "options": ["$\\begin{pmatrix} 3 & 2 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 2 & 3 \\end{pmatrix}$", "$\\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix}$", "$\\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$"], "correct": 2 },
-    { "q": "Find the determinant of $\\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$.", "options": ["$11$", "$7$", "$-1$", "$1$"], "correct": 3 },
-    { "q": "If $|A| = 0$, the matrix $A$ is said to be:", "options": ["Identity", "Singular", "Null", "Non-singular"], "correct": 1 },
-    { "q": "Evaluate the determinant of $\\begin{pmatrix} 4 & -2 \\\\ 3 & 1 \\end{pmatrix}$.", "options": ["$10$", "$2$", "$-2$", "$6$"], "correct": 0 },
-    { "q": "Find $x$ if $\\begin{vmatrix} x & 4 \\\\ 3 & 2 \\end{vmatrix} = 0$.", "options": ["$2$", "$6$", "$4$", "$12$"], "correct": 1 },
-    { "q": "Find the determinant of the identity matrix $I = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$.", "options": ["$0$", "$2$", "$1$", "$-1$"], "correct": 2 },
-    { "q": "Calculate the determinant of $\\begin{pmatrix} -3 & 4 \\\\ -2 & 5 \\end{pmatrix}$.", "options": ["$7$", "$-7$", "$-23$", "$23$"], "correct": 1 },
-    { "q": "If $\\begin{vmatrix} 2x & 1 \\\\ 8 & x \\end{vmatrix} = 0$, find the positive value of $x$.", "options": ["$2$", "$4$", "$8$", "$16$"], "correct": 0 },
-    { "q": "Find the determinant of $\\begin{pmatrix} a & 0 \\\\ 0 & b \\end{pmatrix}$.", "options": ["$a+b$", "$0$", "$a-b$", "$ab$"], "correct": 3 },
-    { "q": "If the determinant of $\\begin{pmatrix} k & 2 \\\\ 3 & 4 \\end{pmatrix}$ is $10$, find $k$.", "options": ["$2$", "$10$", "$4$", "$16$"], "correct": 2 },
-    { "q": "A $2 \\times 2$ matrix $M$ has a determinant of $-5$. What is the determinant of $2M$?", "options": ["$-10$", "$-5$", "$-2.5$", "$-20$"], "correct": 3 },
-    { "q": "Find the adjoint of $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$.", "options": ["$\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$", "$\\begin{pmatrix} d & c \\\\ b & a \\end{pmatrix}$", "$\\begin{pmatrix} a & -c \\\\ -b & d \\end{pmatrix}$", "$\\begin{pmatrix} d & -c \\\\ -b & a \\end{pmatrix}$"], "correct": 0 },
-    { "q": "Find the inverse of $\\begin{pmatrix} 3 & 5 \\\\ 1 & 2 \\end{pmatrix}$.", "options": ["$\\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & -5 \\\\ -1 & 3 \\end{pmatrix}$", "$\\begin{pmatrix} -3 & 5 \\\\ 1 & -2 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & -1 \\\\ -5 & 3 \\end{pmatrix}$"], "correct": 1 },
-    { "q": "If $A A^{-1} = I$, what is $I$?", "options": ["Initial Matrix", "Inverse Matrix", "Identity Matrix", "Inert Matrix"], "correct": 2 },
-    { "q": "Find the inverse of $\\begin{pmatrix} 1 & 2 \\\\ 3 & 7 \\end{pmatrix}$.", "options": ["$\\begin{pmatrix} 7 & 2 \\\\ 3 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & -2 \\\\ -3 & 7 \\end{pmatrix}$", "$\\begin{pmatrix} 7 & -2 \\\\ -3 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 7 & -3 \\\\ -2 & 1 \\end{pmatrix}$"], "correct": 2 },
-    { "q": "Which of these matrices has no inverse?", "options": ["$\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 5 & 6 \\\\ 7 & 8 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 4 \\\\ 1 & 2 \\end{pmatrix}$"], "correct": 3 },
-    { "q": "Find the inverse of $\\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}$.", "options": ["$\\begin{pmatrix} 0.5 & 0 \\\\ 0 & 0.5 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} -2 & 0 \\\\ 0 & -2 \\end{pmatrix}$"], "correct": 0 },
-    { "q": "If $M = \\begin{pmatrix} 1 & 3 \\\\ 2 & 4 \\end{pmatrix}$, find $(M^T)^{-1}$.", "options": ["$\\begin{pmatrix} -2 & 1.5 \\\\ 1 & -0.5 \\end{pmatrix}$", "$\\begin{pmatrix} -2 & 1 \\\\ 1.5 & -0.5 \\end{pmatrix}$", "$\\begin{pmatrix} 4 & -3 \\\\ -2 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} -2 & 1 \\\\ 1 & -0.5 \\end{pmatrix}$"], "correct": 1 },
-    { "q": "The inverse of a singular matrix:", "options": ["Is the identity matrix", "Does not exist", "Is the null matrix", "Is its transpose"], "correct": 1 },
-    { "q": "Find the inverse of $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$.", "options": ["$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$", "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$", "$\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$"], "correct": 1 },
-    { "q": "If $M = \\begin{pmatrix} 4 & 1 \\\\ 3 & 1 \\end{pmatrix}$, find the sum of the elements of $M^{-1}$.", "options": ["$0$", "$1$", "$-1$", "$2$"], "correct": 2 },
-    { "q": "Solve for $X$ in the equation $X + \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 7 \\end{pmatrix}$.", "options": ["$\\begin{pmatrix} 6 \\\\ 9 \\end{pmatrix}$", "$\\begin{pmatrix} 4 \\\\ 5 \\end{pmatrix}$", "$\\begin{pmatrix} 4 \\\\ 9 \\end{pmatrix}$", "$\\begin{pmatrix} 5 \\\\ 5 \\end{pmatrix}$"], "correct": 1 },
-    { "q": "Using Cramer's Rule, if $D = 10$ and $D_x = 20$, find $x$.", "options": ["$2$", "$0.5$", "$10$", "$30$"], "correct": 0 },
-    { "q": "Express $2x + 3y = 5$ and $x - y = 2$ in matrix form $AX=B$.", "options": ["$\\begin{pmatrix} 2 & 3 \\\\ 1 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 3 \\\\ 1 & 1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 1 \\\\ 3 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$", "$\\begin{pmatrix} x \\\\ y \\end{pmatrix} \\begin{pmatrix} 2 & 3 \\\\ 1 & -1 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$"], "correct": 0 },
-    { "q": "In the equation $AX = B$, the solution is given by $X = $", "options": ["$B A^{-1}$", "$A B^{-1}$", "$B/A$", "$A^{-1} B$"], "correct": 3 },
-    { "q": "Find $x$ and $y$ if $\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 4 \\\\ -3 \\end{pmatrix}$.", "options": ["$x=4, y=3$", "$x=4, y=-3$", "$x=-3, y=4$", "$x=-4, y=3$"], "correct": 1 },
-    { "q": "Find the product $\\begin{pmatrix} 1 & 2 \\end{pmatrix} \\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$.", "options": ["$\\begin{pmatrix} 3 & 8 \\end{pmatrix}$", "$\\begin{pmatrix} 11 \\end{pmatrix}$", "$11$", "$\\begin{pmatrix} 3 \\\\ 8 \\end{pmatrix}$"], "correct": 2 },
-    { "q": "If $\\begin{pmatrix} 2 & x \\\\ 1 & 3 \\end{pmatrix} \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 8 \\\\ 7 \\end{pmatrix}$, find $x$.", "options": ["$2$", "$3$", "$4$", "$5$"], "correct": 1 },
-    { "q": "The product of a matrix and its inverse is always:", "options": ["Null matrix", "Identity matrix", "Transpose matrix", "The matrix itself"], "correct": 1 },
-    { "q": "Calculate $\\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}^2$.", "options": ["$\\begin{pmatrix} 1 & 4 \\\\ 0 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}$", "$\\begin{pmatrix} 1 & 4 \\\\ 0 & 2 \\end{pmatrix}$", "$\\begin{pmatrix} 2 & 4 \\\\ 0 & 2 \\end{pmatrix}$"], "correct": 0 },
-    { "q": "If $A$ is a $2 \\times 3$ matrix and $B$ is a $3 \\times 4$ matrix, the product $AB$ is of order:", "options": ["$3 \\times 3$", "$4 \\times 2$", "$2 \\times 3$", "$2 \\times 4$"], "correct": 3 }
+    {
+      "q": "What is the order of a matrix with $3$ rows and $2$ columns?",
+      "options": [
+        "$2 \\times 3$",
+        "$6$",
+        "$3 \\times 3$",
+        "$3 \\times 2$"
+      ],
+      "correct": 3,
+      "explanation": "Matrix order is rows by columns. Three rows and two columns give order $3\\times2$."
+    },
+    {
+      "q": "If $A = \\begin{pmatrix} 2 & 3 \\\\ 1 & 4 \\end{pmatrix}$, find $3A$.",
+      "options": [
+        "$\\begin{pmatrix} 6 & 3 \\\\ 1 & 4 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 6 & 9 \\\\ 3 & 12 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 5 & 6 \\\\ 4 & 7 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 2 & 9 \\\\ 1 & 12 \\end{pmatrix}$"
+      ],
+      "correct": 1,
+      "explanation": "Multiply every entry by $3$ to obtain $\\begin{pmatrix}6&9\\\\3&12\\end{pmatrix}$."
+    },
+    {
+      "q": "Find $A + B$ if $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$ and $B = \\begin{pmatrix} 5 & 6 \\\\ 7 & 8 \\end{pmatrix}$.",
+      "options": [
+        "$\\begin{pmatrix} 6 & 8 \\\\ 10 & 12 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 4 & 4 \\\\ 4 & 4 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 5 & 12 \\\\ 21 & 32 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 6 & 10 \\\\ 8 & 12 \\end{pmatrix}$"
+      ],
+      "correct": 0,
+      "explanation": "Add corresponding entries: $\\begin{pmatrix}1+5&2+6\\\\3+7&4+8\\end{pmatrix}=\\begin{pmatrix}6&8\\\\10&12\\end{pmatrix}$."
+    },
+    {
+      "q": "Given $P = \\begin{pmatrix} 10 & 2 \\\\ 5 & 7 \\end{pmatrix}$ and $Q = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}$, find $P - Q$.",
+      "options": [
+        "$\\begin{pmatrix} 6 & 3 \\\\ 3 & 4 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 14 & 3 \\\\ 7 & 10 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 6 & 1 \\\\ 3 & 4 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 6 & 1 \\\\ 7 & 4 \\end{pmatrix}$"
+      ],
+      "correct": 2,
+      "explanation": "Subtract corresponding entries to get $\\begin{pmatrix}6&1\\\\3&4\\end{pmatrix}$."
+    },
+    {
+      "q": "Two matrices can be added only if they have the same:",
+      "options": [
+        "Determinant",
+        "First row",
+        "Order",
+        "Number of elements"
+      ],
+      "correct": 2,
+      "explanation": "Addition pairs corresponding entries, so both matrices must have the same number of rows and columns, or the same order."
+    },
+    {
+      "q": "If $k \\begin{pmatrix} 2 \\\\ -3 \\end{pmatrix} = \\begin{pmatrix} 10 \\\\ -15 \\end{pmatrix}$, find the value of $k$.",
+      "options": [
+        "$2$",
+        "$-5$",
+        "$5$",
+        "$10$"
+      ],
+      "correct": 2,
+      "explanation": "From the first entry, $2k=10$, so $k=5$; the second entry confirms $-3k=-15$."
+    },
+    {
+      "q": "Find the value of $x$ and $y$ if $\\begin{pmatrix} x+y \\\\ x-y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 1 \\end{pmatrix}$.",
+      "options": [
+        "$x=2, y=3$",
+        "$x=3, y=2$",
+        "$x=4, y=1$",
+        "$x=5, y=0$"
+      ],
+      "correct": 1,
+      "explanation": "Equating entries gives $x+y=5$ and $x-y=1$. Adding yields $2x=6$, so $x=3$ and $y=2$."
+    },
+    {
+      "q": "If $M = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$, the transpose $M^T$ is:",
+      "options": [
+        "$\\begin{pmatrix} a & c \\\\ b & d \\end{pmatrix}$",
+        "$\\begin{pmatrix} d & b \\\\ c & a \\end{pmatrix}$",
+        "$\\begin{pmatrix} c & d \\\\ a & b \\end{pmatrix}$",
+        "$\\begin{pmatrix} -a & -b \\\\ -c & -d \\end{pmatrix}$"
+      ],
+      "correct": 0,
+      "explanation": "Transposition swaps rows with columns, so $M^T=\\begin{pmatrix}a&c\\\\b&d\\end{pmatrix}$."
+    },
+    {
+      "q": "Evaluate $2 \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} - \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$.",
+      "options": [
+        "$\\begin{pmatrix} 0 & -2 \\\\ -3 & -3 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 & -2 \\\\ -3 & -2 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 & 2 \\\\ 3 & 3 \\end{pmatrix}$",
+        "$\\begin{pmatrix} -1 & -2 \\\\ -3 & -4 \\end{pmatrix}$"
+      ],
+      "correct": 1,
+      "explanation": "$2I=\\begin{pmatrix}2&0\\\\0&2\\end{pmatrix}$. Entrywise subtraction gives $\\begin{pmatrix}1&-2\\\\-3&-2\\end{pmatrix}$."
+    },
+    {
+      "q": "Find the transpose of $\\begin{pmatrix} 1 & 2 & 3 \\end{pmatrix}$.",
+      "options": [
+        "$\\begin{pmatrix} 3 & 2 & 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 & 2 & 3 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix}$"
+      ],
+      "correct": 2,
+      "explanation": "A row becomes a column under transposition, giving $\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}$."
+    },
+    {
+      "q": "Find the determinant of $\\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$.",
+      "options": [
+        "$11$",
+        "$7$",
+        "$-1$",
+        "$1$"
+      ],
+      "correct": 3,
+      "explanation": "For $\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$, the determinant is $ad-bc$. Here it is $2(3)-5(1)=1$."
+    },
+    {
+      "q": "If $|A| = 0$, the matrix $A$ is said to be:",
+      "options": [
+        "Identity",
+        "Singular",
+        "Null",
+        "Non-singular"
+      ],
+      "correct": 1,
+      "explanation": "A square matrix with determinant zero has no inverse and is called singular."
+    },
+    {
+      "q": "Evaluate the determinant of $\\begin{pmatrix} 4 & -2 \\\\ 3 & 1 \\end{pmatrix}$.",
+      "options": [
+        "$10$",
+        "$2$",
+        "$-2$",
+        "$6$"
+      ],
+      "correct": 0,
+      "explanation": "The determinant is $4(1)-(-2)(3)=4+6=10$."
+    },
+    {
+      "q": "Find $x$ if $\\begin{vmatrix} x & 4 \\\\ 3 & 2 \\end{vmatrix} = 0$.",
+      "options": [
+        "$2$",
+        "$6$",
+        "$4$",
+        "$12$"
+      ],
+      "correct": 1,
+      "explanation": "Set the determinant to zero: $2x-12=0$, so $x=6$."
+    },
+    {
+      "q": "Find the determinant of the identity matrix $I = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$.",
+      "options": [
+        "$0$",
+        "$2$",
+        "$1$",
+        "$-1$"
+      ],
+      "correct": 2,
+      "explanation": "The determinant of the identity matrix is $1(1)-0(0)=1$."
+    },
+    {
+      "q": "Calculate the determinant of $\\begin{pmatrix} -3 & 4 \\\\ -2 & 5 \\end{pmatrix}$.",
+      "options": [
+        "$7$",
+        "$-7$",
+        "$-23$",
+        "$23$"
+      ],
+      "correct": 1,
+      "explanation": "The determinant is $(-3)(5)-4(-2)=-15+8=-7$."
+    },
+    {
+      "q": "If $\\begin{vmatrix} 2x & 1 \\\\ 8 & x \\end{vmatrix} = 0$, find the positive value of $x$.",
+      "options": [
+        "$2$",
+        "$4$",
+        "$8$",
+        "$16$"
+      ],
+      "correct": 0,
+      "explanation": "$2x^2-8=0$ gives $x^2=4$. The requested positive value is $x=2$."
+    },
+    {
+      "q": "Find the determinant of $\\begin{pmatrix} a & 0 \\\\ 0 & b \\end{pmatrix}$.",
+      "options": [
+        "$a+b$",
+        "$0$",
+        "$a-b$",
+        "$ab$"
+      ],
+      "correct": 3,
+      "explanation": "A diagonal matrix's determinant is the product of its diagonal entries, $ab$."
+    },
+    {
+      "q": "If the determinant of $\\begin{pmatrix} k & 2 \\\\ 3 & 4 \\end{pmatrix}$ is $10$, find $k$.",
+      "options": [
+        "$2$",
+        "$10$",
+        "$4$",
+        "$16$"
+      ],
+      "correct": 2,
+      "explanation": "$4k-6=10$, so $4k=16$ and $k=4$."
+    },
+    {
+      "q": "A $2 \\times 2$ matrix $M$ has a determinant of $-5$. What is the determinant of $2M$?",
+      "options": [
+        "$-10$",
+        "$-5$",
+        "$-2.5$",
+        "$-20$"
+      ],
+      "correct": 3,
+      "explanation": "For a $2\\times2$ matrix, $|2M|=2^2|M|=4(-5)=-20$."
+    },
+    {
+      "q": "Find the adjoint of $\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$.",
+      "options": [
+        "$\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$",
+        "$\\begin{pmatrix} d & c \\\\ b & a \\end{pmatrix}$",
+        "$\\begin{pmatrix} a & -c \\\\ -b & d \\end{pmatrix}$",
+        "$\\begin{pmatrix} d & -c \\\\ -b & a \\end{pmatrix}$"
+      ],
+      "correct": 0,
+      "explanation": "Swap the diagonal entries and negate the off-diagonal entries: $\\operatorname{adj}M=\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$."
+    },
+    {
+      "q": "Find the inverse of $\\begin{pmatrix} 3 & 5 \\\\ 1 & 2 \\end{pmatrix}$.",
+      "options": [
+        "$\\begin{pmatrix} 2 & 5 \\\\ 1 & 3 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 2 & -5 \\\\ -1 & 3 \\end{pmatrix}$",
+        "$\\begin{pmatrix} -3 & 5 \\\\ 1 & -2 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 2 & -1 \\\\ -5 & 3 \\end{pmatrix}$"
+      ],
+      "correct": 1,
+      "explanation": "The determinant is $6-5=1$, so the inverse equals the adjoint: $\\begin{pmatrix}2&-5\\\\-1&3\\end{pmatrix}$."
+    },
+    {
+      "q": "If $A A^{-1} = I$, what is $I$?",
+      "options": [
+        "Initial Matrix",
+        "Inverse Matrix",
+        "Identity Matrix",
+        "Inert Matrix"
+      ],
+      "correct": 2,
+      "explanation": "$I$ is the identity matrix, the multiplicative matrix equivalent of the number $1$."
+    },
+    {
+      "q": "Find the inverse of $\\begin{pmatrix} 1 & 2 \\\\ 3 & 7 \\end{pmatrix}$.",
+      "options": [
+        "$\\begin{pmatrix} 7 & 2 \\\\ 3 & 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 & -2 \\\\ -3 & 7 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 7 & -2 \\\\ -3 & 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 7 & -3 \\\\ -2 & 1 \\end{pmatrix}$"
+      ],
+      "correct": 2,
+      "explanation": "The determinant is $7-6=1$. Swapping the diagonal and negating the off-diagonal gives $\\begin{pmatrix}7&-2\\\\-3&1\\end{pmatrix}$."
+    },
+    {
+      "q": "Which of these matrices has no inverse?",
+      "options": [
+        "$\\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 5 & 6 \\\\ 7 & 8 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 2 & 4 \\\\ 1 & 2 \\end{pmatrix}$"
+      ],
+      "correct": 3,
+      "explanation": "$\\begin{pmatrix}2&4\\\\1&2\\end{pmatrix}$ has determinant $4-4=0$, so it has no inverse."
+    },
+    {
+      "q": "Find the inverse of $\\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}$.",
+      "options": [
+        "$\\begin{pmatrix} 0.5 & 0 \\\\ 0 & 0.5 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 2 & 0 \\\\ 0 & 2 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} -2 & 0 \\\\ 0 & -2 \\end{pmatrix}$"
+      ],
+      "correct": 0,
+      "explanation": "The matrix is $2I$, whose inverse is $(1/2)I=\\begin{pmatrix}0.5&0\\\\0&0.5\\end{pmatrix}$."
+    },
+    {
+      "q": "If $M = \\begin{pmatrix} 1 & 3 \\\\ 2 & 4 \\end{pmatrix}$, find $(M^T)^{-1}$.",
+      "options": [
+        "$\\begin{pmatrix} -2 & 1.5 \\\\ 1 & -0.5 \\end{pmatrix}$",
+        "$\\begin{pmatrix} -2 & 1 \\\\ 1.5 & -0.5 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 4 & -3 \\\\ -2 & 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} -2 & 1 \\\\ 1 & -0.5 \\end{pmatrix}$"
+      ],
+      "correct": 1,
+      "explanation": "$M^T=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ has determinant $-2$. Applying the inverse formula gives $\\begin{pmatrix}-2&1\\\\1.5&-0.5\\end{pmatrix}$."
+    },
+    {
+      "q": "The inverse of a singular matrix:",
+      "options": [
+        "Is the identity matrix",
+        "Does not exist",
+        "Is the null matrix",
+        "Is its transpose"
+      ],
+      "correct": 1,
+      "explanation": "A singular matrix has determinant zero, so division by its determinant is impossible and its inverse does not exist."
+    },
+    {
+      "q": "Find the inverse of $\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$.",
+      "options": [
+        "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$",
+        "$\\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$"
+      ],
+      "correct": 1,
+      "explanation": "This matrix swaps two coordinates; applying it twice restores them. Therefore it is its own inverse."
+    },
+    {
+      "q": "If $M = \\begin{pmatrix} 4 & 1 \\\\ 3 & 1 \\end{pmatrix}$, find the sum of the elements of $M^{-1}$.",
+      "options": [
+        "$0$",
+        "$1$",
+        "$-1$",
+        "$2$"
+      ],
+      "correct": 1,
+      "explanation": "$|M|=1$, so $M^{-1}=\\begin{pmatrix}1&-1\\\\-3&4\\end{pmatrix}$. Its entries sum to $1$."
+    },
+    {
+      "q": "Solve for $X$ in the equation $X + \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 7 \\end{pmatrix}$.",
+      "options": [
+        "$\\begin{pmatrix} 6 \\\\ 9 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 4 \\\\ 5 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 4 \\\\ 9 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 5 \\\\ 5 \\end{pmatrix}$"
+      ],
+      "correct": 1,
+      "explanation": "Subtract the column matrix entrywise: $X=\\begin{pmatrix}5\\\\7\\end{pmatrix}-\\begin{pmatrix}1\\\\2\\end{pmatrix}=\\begin{pmatrix}4\\\\5\\end{pmatrix}$."
+    },
+    {
+      "q": "Using Cramer's Rule, if $D = 10$ and $D_x = 20$, find $x$.",
+      "options": [
+        "$2$",
+        "$0.5$",
+        "$10$",
+        "$30$"
+      ],
+      "correct": 0,
+      "explanation": "Cramer's Rule gives $x=D_x/D=20/10=2$."
+    },
+    {
+      "q": "Express $2x + 3y = 5$ and $x - y = 2$ in matrix form $AX=B$.",
+      "options": [
+        "$\\begin{pmatrix} 2 & 3 \\\\ 1 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 2 & 3 \\\\ 1 & 1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 2 & 1 \\\\ 3 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$",
+        "$\\begin{pmatrix} x \\\\ y \\end{pmatrix} \\begin{pmatrix} 2 & 3 \\\\ 1 & -1 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 2 \\end{pmatrix}$"
+      ],
+      "correct": 0,
+      "explanation": "Put the coefficients in $A$, variables in $X$, and constants in $B$: $\\begin{pmatrix}2&3\\\\1&-1\\end{pmatrix}\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}5\\\\2\\end{pmatrix}$."
+    },
+    {
+      "q": "In the equation $AX = B$, the solution is given by $X = $",
+      "options": [
+        "$B A^{-1}$",
+        "$A B^{-1}$",
+        "$B/A$",
+        "$A^{-1} B$"
+      ],
+      "correct": 3,
+      "explanation": "Multiplying $AX=B$ on the left by $A^{-1}$ gives $X=A^{-1}B$ when $A$ is invertible."
+    },
+    {
+      "q": "Find $x$ and $y$ if $\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 4 \\\\ -3 \\end{pmatrix}$.",
+      "options": [
+        "$x=4, y=3$",
+        "$x=4, y=-3$",
+        "$x=-3, y=4$",
+        "$x=-4, y=3$"
+      ],
+      "correct": 1,
+      "explanation": "Multiplication by the identity leaves the vector unchanged, so $x=4$ and $y=-3$."
+    },
+    {
+      "q": "Find the product $\\begin{pmatrix} 1 & 2 \\end{pmatrix} \\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$.",
+      "options": [
+        "$\\begin{pmatrix} 3 & 8 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 11 \\end{pmatrix}$",
+        "$11$",
+        "$\\begin{pmatrix} 3 \\\\ 8 \\end{pmatrix}$"
+      ],
+      "correct": 2,
+      "explanation": "Multiply row by column: $1(3)+2(4)=3+8=11$."
+    },
+    {
+      "q": "If $\\begin{pmatrix} 2 & x \\\\ 1 & 3 \\end{pmatrix} \\begin{pmatrix} 1 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 8 \\\\ 7 \\end{pmatrix}$, find $x$.",
+      "options": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+      ],
+      "correct": 1,
+      "explanation": "The first row gives $2+2x=8$, so $2x=6$ and $x=3$; the second row already gives $7$."
+    },
+    {
+      "q": "The product of a matrix and its inverse is always:",
+      "options": [
+        "Null matrix",
+        "Identity matrix",
+        "Transpose matrix",
+        "The matrix itself"
+      ],
+      "correct": 1,
+      "explanation": "By the definition of an inverse, $AA^{-1}=A^{-1}A=I$."
+    },
+    {
+      "q": "Calculate $\\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}^2$.",
+      "options": [
+        "$\\begin{pmatrix} 1 & 4 \\\\ 0 & 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 1 & 4 \\\\ 0 & 2 \\end{pmatrix}$",
+        "$\\begin{pmatrix} 2 & 4 \\\\ 0 & 2 \\end{pmatrix}$"
+      ],
+      "correct": 0,
+      "explanation": "Multiply the matrix by itself: $\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix}^2=\\begin{pmatrix}1&4\\\\0&1\\end{pmatrix}$."
+    },
+    {
+      "q": "If $A$ is a $2 \\times 3$ matrix and $B$ is a $3 \\times 4$ matrix, the product $AB$ is of order:",
+      "options": [
+        "$3 \\times 3$",
+        "$4 \\times 2$",
+        "$2 \\times 3$",
+        "$2 \\times 4$"
+      ],
+      "correct": 3,
+      "explanation": "The inner dimensions $3$ match, and the product takes the outer dimensions, so $AB$ has order $2\\times4$."
+    }
   ]
 }
