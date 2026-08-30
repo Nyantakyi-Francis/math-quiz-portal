@@ -3,6 +3,7 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { notifyMessageRecipientsByEmail } from "@/lib/email/notifications";
 import { requiredTextField } from "@/lib/http/validation";
+import { getSafeActionError } from "@/lib/errors/user-facing";
 
 type AdminRecipientRow = {
   id: string;
@@ -26,7 +27,7 @@ export async function POST(request: Request) {
 
   if (!supabase || !admin) {
     return redirectWithStatus(request.url, {
-      error: "Supabase is not configured yet."
+      error: getSafeActionError()
     });
   }
 
@@ -48,7 +49,7 @@ export async function POST(request: Request) {
 
   if (profileError) {
     return redirectWithStatus(request.url, {
-      error: profileError.message
+      error: getSafeActionError()
     });
   }
 
@@ -94,7 +95,7 @@ export async function POST(request: Request) {
 
   if (adminsError) {
     return redirectWithStatus(request.url, {
-      error: adminsError.message
+      error: getSafeActionError()
     });
   }
 
@@ -126,7 +127,7 @@ export async function POST(request: Request) {
 
   if (messageError || !message) {
     return redirectWithStatus(request.url, {
-      error: messageError?.message ?? "Unable to create your message."
+      error: getSafeActionError()
     });
   }
 
@@ -139,7 +140,7 @@ export async function POST(request: Request) {
 
   if (recipientsError) {
     return redirectWithStatus(request.url, {
-      error: recipientsError.message
+      error: getSafeActionError()
     });
   }
 

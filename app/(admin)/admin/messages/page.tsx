@@ -38,8 +38,8 @@ export default async function AdminMessagesPage({ searchParams }: AdminMessagesP
 
         {!snapshot.authorized ? (
           <div className="panel p-6 text-sm leading-7 text-slate-600">
-            This page is protected by login. Set your `profiles.role` value to `admin` in Supabase
-            to unlock learner chats.
+            You do not have permission to view learner chats. Contact an administrator if you
+            believe this is a mistake.
           </div>
         ) : (
           <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
@@ -242,4 +242,3 @@ export default async function AdminMessagesPage({ searchParams }: AdminMessagesP
     </AppShell>
   );
 }
-

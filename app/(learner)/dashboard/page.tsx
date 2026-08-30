@@ -11,7 +11,7 @@ export default async function DashboardPage() {
 
   return (
     <AppShell
-      description="Your protected learner home for scores, progress, and inbox activity."
+      description="See your scores, continue learning, and check your messages."
       role={snapshot.role}
       title={`Welcome${snapshot.profileName ? `, ${snapshot.profileName}` : ""}`}
       userEmail={snapshot.userEmail}
@@ -19,7 +19,7 @@ export default async function DashboardPage() {
     >
       <div className="space-y-8">
         {snapshot.warning ? (
-          <SetupBanner message={snapshot.warning} title="Protected data setup" />
+          <SetupBanner message={snapshot.warning} title="Information unavailable" />
         ) : null}
 
         <section className="grid gap-5 md:grid-cols-3">
@@ -76,7 +76,7 @@ export default async function DashboardPage() {
               <div>
                 <p className="text-lg font-bold text-slate-950">Recent attempts</p>
                 <p className="mt-1 text-sm text-slate-500">
-                  Resent attempts will populate automatically once quizes are submitted.
+                  Your completed quizzes will appear here.
                 </p>
               </div>
               <Link className="button-secondary" href="/messages">
@@ -106,7 +106,7 @@ export default async function DashboardPage() {
                 ))
               ) : (
                 <div className="soft-well rounded-[1.5rem] px-5 py-8 text-sm text-slate-500">
-                  No attempts yet. The first migrated quiz module will start populating this area.
+                  You have not completed a quiz yet.
                 </div>
               )}
             </div>
@@ -117,7 +117,7 @@ export default async function DashboardPage() {
               <div>
                 <p className="text-lg font-bold text-slate-950">All modules</p>
                 <p className="mt-1 text-sm text-slate-500">
-                  Every protected module is available from your learner account now.
+                  Choose a module to continue learning.
                 </p>
               </div>
               <Link className="button-secondary" href="/modules">

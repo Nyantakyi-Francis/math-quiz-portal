@@ -11,7 +11,7 @@ export default async function ModulesPage() {
 
   return (
     <AppShell
-      description="Browse every protected module in the learner portal."
+      description="Choose a topic and begin a quiz when you are ready."
       role={snapshot.role}
       title="Module Catalog"
       userEmail={snapshot.userEmail}

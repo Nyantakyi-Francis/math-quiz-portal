@@ -27,7 +27,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
 
   return (
     <AppShell
-      description="Protected module route with database-backed quiz delivery and server-side scoring."
+      description="Review the topic, answer each question, and receive your score when you finish."
       role={snapshot.role}
       title={legacyModule.title}
       userEmail={snapshot.userEmail}
@@ -45,9 +45,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
             </h2>
             <div className="academic-rule mt-4" />
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600">
-              {legacyModule.description} This route is now wired for real database-backed quiz
-              delivery. Once a module has been imported, attempts are scored on the server and
-              written to the learner dashboard and inbox automatically.
+              {legacyModule.description}
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -60,9 +58,9 @@ export default async function ModulePage({ params }: ModulePageProps) {
                 <p className="mt-2 text-lg font-bold text-slate-900">{legacyModule.questionCount}</p>
               </div>
               <div className="neo-stat rounded-[1.5rem] p-5">
-                <p className="text-sm text-slate-500">Legacy source</p>
-                <p className="mt-2 text-sm font-semibold text-slate-900">
-                  {legacyModule.legacyDataPath}
+                <p className="text-sm text-slate-500">Estimated time</p>
+                <p className="mt-2 text-lg font-bold text-slate-900">
+                  {Math.max(10, Math.ceil(legacyModule.questionCount * 1.5))} minutes
                 </p>
               </div>
             </div>
@@ -75,22 +73,11 @@ export default async function ModulePage({ params }: ModulePageProps) {
               {quizModule?.questions.length ? (
                 <>
 
-                  <p>
-                    Submission creates an <span className="font-mono text-[var(--brand-deep)]">attempt</span>, saves <span className="font-mono text-[var(--brand-deep)]">attempt_answers</span>, and writes a score
-                    message to the learner inbox.
-                  </p>
+                  <p>Your score and answer explanations will be shown after you submit the quiz.</p>
                 </>
               ) : (
                 <>
-                  <p>This module shell exists, but the question bank has not been imported yet.</p>
-                  <p>
-                    Run the import script for this module and refresh this page to switch from the
-                    placeholder to the live quiz runner.
-                  </p>
-                  <p>
-                    Start with `binary-sets-binomial`, then repeat the same flow for the remaining
-                    modules.
-                  </p>
+                  <p>This quiz is not available yet. Please choose another module for now.</p>
                 </>
               )}
             </div>

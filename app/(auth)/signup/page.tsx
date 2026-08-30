@@ -21,17 +21,15 @@ export default async function SignupPage({ searchParams }: SignupPageProps) {
         <section className="panel-soft p-8 sm:p-10">
           <span className="eyebrow">Create a learner account</span>
           <h1 className="mt-5 text-4xl font-black tracking-tight text-slate-950">
-            Start the database-backed version of the portal.
+            Create your learner account.
           </h1>
           <p className="mt-5 max-w-xl text-base leading-8 text-slate-600">
-            Account creation is the first step toward protected quizzes, persistent scores, admin
-            reporting, and in-app messaging.
+            Use one account to take quizzes, save your scores, and receive messages.
           </p>
 
           <div className="mt-8 space-y-4 text-sm leading-7 text-slate-600">
             <p>Each learner gets a profile, attempt history, and personal message inbox.</p>
-            <p>Admins get a separate monitoring view for learners, attempts, and announcements.</p>
-            <p>The current quiz bank will be migrated into Postgres module by module.</p>
+            <p>Your quiz history stays available when you return.</p>
           </div>
         </section>
 
@@ -44,8 +42,8 @@ export default async function SignupPage({ searchParams }: SignupPageProps) {
           <div className="mt-6 space-y-4">
             {!isConfigured ? (
               <SetupBanner
-                message="Supabase is not configured yet. Add your environment variables before testing signup."
-                title="Setup required"
+                message="Account creation is temporarily unavailable. Please try again later."
+                title="Service unavailable"
               />
             ) : null}
             {params.error ? (

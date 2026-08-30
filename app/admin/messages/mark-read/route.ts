@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { isUuid } from "@/lib/http/validation";
+import { getSafeActionError } from "@/lib/errors/user-facing";
 
 type MessageRecipientIdRow = {
   id: string;
@@ -16,11 +17,11 @@ export async function POST(request: Request) {
 
   if (!supabase) {
     if (!wantsHtml(request)) {
-      return NextResponse.json({ ok: false, error: "Supabase is not configured yet." }, { status: 400 });
+      return NextResponse.json({ ok: false, error: getSafeActionError() }, { status: 503 });
     }
 
     const url = new URL("/admin/messages", request.url);
-    url.searchParams.set("error", "Supabase is not configured yet.");
+    url.searchParams.set("error", getSafeActionError());
     return NextResponse.redirect(url);
   }
 
@@ -84,11 +85,12 @@ export async function POST(request: Request) {
 
   if (unreadError) {
     if (!wantsHtml(request)) {
-      return NextResponse.json({ ok: false, error: unreadError.message }, { status: 400 });
+      return NextResponse.json({ ok: false, error: getSafeActionError() }, { status: 500 });
     }
 
     const url = new URL(`/admin/messages?learner=${learnerId}`, request.url);
-    url.searchParams.set("error", unreadError.message);
+    console.error("Unable to load unread messages:", unreadError.message);
+    url.searchParams.set("error", getSafeActionError());
     return NextResponse.redirect(url);
   }
 
@@ -102,11 +104,12 @@ export async function POST(request: Request) {
 
     if (updateError) {
       if (!wantsHtml(request)) {
-        return NextResponse.json({ ok: false, error: updateError.message }, { status: 400 });
+        return NextResponse.json({ ok: false, error: getSafeActionError() }, { status: 500 });
       }
 
       const url = new URL(`/admin/messages?learner=${learnerId}`, request.url);
-      url.searchParams.set("error", updateError.message);
+      console.error("Unable to mark the message thread as read:", updateError.message);
+      url.searchParams.set("error", getSafeActionError());
       return NextResponse.redirect(url);
     }
   }

@@ -4,6 +4,7 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { modules } from "@/lib/data/modules";
 import { buildLearningRecommendation } from "@/lib/learning/recommendation";
+import { getSafeDataError } from "@/lib/errors/user-facing";
 
 type DashboardAttempt = {
   id: string;
@@ -96,19 +97,8 @@ const inboxMessageSelect =
   "read_at, messages(id, sender_id, subject, body, message_type, created_at)";
 
 function mapSetupWarning(message: string) {
-  const normalizedMessage = message.toLowerCase();
-
-  if (
-    normalizedMessage.includes("does not exist") ||
-    normalizedMessage.includes("could not find the table") ||
-    (normalizedMessage.includes("could not find the") &&
-      normalizedMessage.includes("column") &&
-      normalizedMessage.includes("schema cache"))
-  ) {
-    return "Supabase is connected, but the database schema has not been applied yet.";
-  }
-
-  return message;
+  console.error("Portal data request failed:", message);
+  return getSafeDataError();
 }
 
 export async function getCurrentSession() {
@@ -409,7 +399,7 @@ async function getAdminContacts() {
   if (!admin) {
     return {
       adminContacts: [] as AdminContact[],
-      warning: "Supabase is not configured yet." as SetupWarning
+      warning: getSafeDataError() as SetupWarning
     };
   }
 
@@ -489,8 +479,7 @@ export async function getDashboardSnapshot() {
       attempts: [] as DashboardAttempt[],
       recommendation: buildLearningRecommendation(modules, []),
       messages: [] as InboxMessage[],
-      warning:
-        "Connect Supabase and apply the SQL schema before protected learner data can load." as SetupWarning
+      warning: getSafeDataError() as SetupWarning
     };
   }
 
@@ -591,8 +580,7 @@ export async function getMessagesSnapshot() {
       messages: [] as InboxMessage[],
       adminContacts: [] as AdminContact[],
       allModules: modules,
-      warning:
-        "Connect Supabase and apply the SQL schema before protected learner data can load." as SetupWarning
+      warning: getSafeDataError() as SetupWarning
     };
   }
 
@@ -644,8 +632,7 @@ export async function getMessageDetailSnapshot(messageId: string) {
       userPhone: null,
       role: "learner",
       message: null as InboxMessage | null,
-      warning:
-        "Connect Supabase and apply the SQL schema before protected learner data can load." as SetupWarning
+      warning: getSafeDataError() as SetupWarning
     };
   }
 
@@ -787,8 +774,7 @@ export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
       userEmail: null,
       userPhone: null,
       authorized: false,
-      warning:
-        "Connect Supabase and apply the schema before the admin message center can load." as SetupWarning,
+      warning: getSafeDataError() as SetupWarning,
       learners: [] as AdminLearnerThreadSummary[],
       selectedLearner: null as LearnerRow | null,
       messages: [] as InboxMessage[]
@@ -827,7 +813,7 @@ export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
       authorized: false,
       warning:
         warning ??
-        "Your account is not marked as an admin yet. Update your profile role in Supabase after applying the schema.",
+        "You do not have permission to view the administrator message center.",
       learners: [] as AdminLearnerThreadSummary[],
       selectedLearner: null as LearnerRow | null,
       messages: [] as InboxMessage[]
@@ -1252,8 +1238,7 @@ export async function getStudentMessagesSnapshot(selectedStudentId?: string) {
       userEmail: null,
       userPhone: null,
       role: "learner",
-      warning:
-        "Connect Supabase and apply the SQL schema before student messaging can load." as SetupWarning,
+      warning: getSafeDataError() as SetupWarning,
       students: [] as StudentThreadSummary[],
       selectedStudent: null as DirectoryStudentRow | null,
       messages: [] as InboxMessage[]
@@ -1466,8 +1451,7 @@ export async function getAdminSnapshot() {
       userEmail: null,
       userPhone: null,
       authorized: false,
-      warning:
-        "Connect Supabase and apply the schema before the admin dashboard can load." as SetupWarning,
+      warning: getSafeDataError() as SetupWarning,
       learners: [] as LearnerRow[],
       attempts: [] as AttemptRow[],
       sentMessages: [] as SentMessageRow[]
@@ -1507,7 +1491,7 @@ export async function getAdminSnapshot() {
       authorized: false,
       warning:
         warning ??
-        "Your account is not marked as an admin yet. Update your profile role in Supabase after applying the schema.",
+        "You do not have permission to view the administrator dashboard.",
       learners,
       attempts,
       sentMessages

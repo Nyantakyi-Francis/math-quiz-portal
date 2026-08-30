@@ -20,7 +20,7 @@ export const modules: ModuleMeta[] = [
   {
     slug: "binary-sets-binomial",
     title: "Binary Operations, Sets & Binomial",
-    description: "Foundational structures, notation, and pattern fluency for early Elective Maths confidence.",
+    description: "Practise binary operations, set notation, Venn diagrams, and binomial expansion.",
     moduleNumber: 1,
     questionCount: 40,
     difficulty: "Intermediate",
@@ -35,7 +35,7 @@ export const modules: ModuleMeta[] = [
   {
     slug: "surds-indices-logs",
     title: "Surds, Indices & Logarithm",
-    description: "Simplification, transformation, and laws of indices with exam-style algebraic reasoning.",
+    description: "Simplify surds and solve problems involving indices and logarithms.",
     moduleNumber: 2,
     questionCount: 40,
     difficulty: "Intermediate",
@@ -50,7 +50,7 @@ export const modules: ModuleMeta[] = [
   {
     slug: "sequences-functions",
     title: "Sequences & Functions",
-    description: "Patterns, mappings, and formal relationships that connect algebra to graph thinking.",
+    description: "Work with arithmetic and geometric sequences, mappings, and functions.",
     moduleNumber: 3,
     questionCount: 30,
     difficulty: "Intermediate",
@@ -65,7 +65,7 @@ export const modules: ModuleMeta[] = [
   {
     slug: "straight-lines",
     title: "Straight Lines",
-    description: "Coordinate geometry techniques for slope, intercepts, and line equations under time pressure.",
+    description: "Find gradients, intercepts, equations of lines, and relationships between lines.",
     moduleNumber: 4,
     questionCount: 40,
     difficulty: "Intermediate",
@@ -80,7 +80,7 @@ export const modules: ModuleMeta[] = [
   {
     slug: "vectors",
     title: "Vectors",
-    description: "Magnitude, direction, and geometric interpretation for accurate vector manipulation.",
+    description: "Calculate vector magnitudes, directions, components, and geometric relationships.",
     moduleNumber: 5,
     questionCount: 40,
     difficulty: "Intermediate",
@@ -95,7 +95,7 @@ export const modules: ModuleMeta[] = [
   {
     slug: "trigonometry",
     title: "Trigonometry",
-    description: "Identities, ratios, and angle reasoning with stronger emphasis on exam stamina.",
+    description: "Use trigonometric ratios, identities, equations, and angle relationships.",
     moduleNumber: 6,
     questionCount: 40,
     difficulty: "Hard",
@@ -110,7 +110,7 @@ export const modules: ModuleMeta[] = [
   {
     slug: "limits-differentiation",
     title: "Limits & Differentiation",
-    description: "Core calculus transition topics with step-based algebra and interpretation practice.",
+    description: "Evaluate limits and apply differentiation rules to functions and graphs.",
     moduleNumber: 7,
     questionCount: 40,
     difficulty: "Hard",
@@ -125,7 +125,7 @@ export const modules: ModuleMeta[] = [
   {
     slug: "coordinate-geometry",
     title: "Coordinate Geometry II: Circles",
-    description: "Circle geometry in coordinate form, with focus on equations, tangents, and interpretation.",
+    description: "Work with circle equations, centres, radii, tangents, and coordinate proofs.",
     moduleNumber: 8,
     questionCount: 40,
     difficulty: "Intermediate",
@@ -140,7 +140,7 @@ export const modules: ModuleMeta[] = [
   {
     slug: "matrices",
     title: "Matrices",
-    description: "Matrix arithmetic, transformations, and determinant intuition for high-accuracy problem solving.",
+    description: "Perform matrix operations and use determinants, inverses, and transformations.",
     moduleNumber: 9,
     questionCount: 40,
     difficulty: "Intermediate",
@@ -155,7 +155,7 @@ export const modules: ModuleMeta[] = [
   {
     slug: "combinations-probability",
     title: "Combinations, Permutations & Probability",
-    description: "Counting strategies and probability modelling for more demanding exam questions.",
+    description: "Solve counting problems using permutations, combinations, and probability rules.",
     moduleNumber: 10,
     questionCount: 40,
     difficulty: "Hard",
@@ -170,7 +170,7 @@ export const modules: ModuleMeta[] = [
   {
     slug: "statistics",
     title: "Statistics",
-    description: "Interpretation, grouped data, and applied statistical reasoning in test conditions.",
+    description: "Calculate and interpret averages, dispersion, grouped data, and statistical diagrams.",
     moduleNumber: 11,
     questionCount: 40,
     difficulty: "Intermediate",

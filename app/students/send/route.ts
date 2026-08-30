@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { requiredTextField } from "@/lib/http/validation";
+import { getSafeActionError } from "@/lib/errors/user-facing";
 
 function redirectWithStatus(requestUrl: string, studentId: string, params: Record<string, string>) {
   const url = new URL("/students", requestUrl);
@@ -20,7 +21,7 @@ export async function POST(request: Request) {
 
   if (!supabase || !admin) {
     const url = new URL("/students", request.url);
-    url.searchParams.set("error", "Supabase is not configured yet.");
+    url.searchParams.set("error", getSafeActionError());
     return NextResponse.redirect(url);
   }
 
@@ -42,7 +43,8 @@ export async function POST(request: Request) {
 
   if (profileError) {
     const url = new URL("/students", request.url);
-    url.searchParams.set("error", profileError.message);
+    console.error("Unable to load the sender profile:", profileError.message);
+    url.searchParams.set("error", getSafeActionError());
     return NextResponse.redirect(url);
   }
 
@@ -97,7 +99,7 @@ export async function POST(request: Request) {
 
   if (recipientError) {
     return redirectWithStatus(request.url, recipientId, {
-      error: recipientError.message
+      error: getSafeActionError()
     });
   }
 
@@ -120,7 +122,7 @@ export async function POST(request: Request) {
 
   if (messageError || !message) {
     return redirectWithStatus(request.url, recipientId, {
-      error: messageError?.message ?? "Unable to create your message."
+      error: getSafeActionError()
     });
   }
 
@@ -131,7 +133,7 @@ export async function POST(request: Request) {
 
   if (recipientsError) {
     return redirectWithStatus(request.url, recipientId, {
-      error: recipientsError.message
+      error: getSafeActionError()
     });
   }
 
@@ -139,4 +141,3 @@ export async function POST(request: Request) {
     sent: "1"
   });
 }
-

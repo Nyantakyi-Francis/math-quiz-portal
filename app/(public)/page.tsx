@@ -47,8 +47,8 @@ export default function HomePage() {
               </h1>
               <div className="academic-rule mt-6" />
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                Math Quiz Portal now includes a learner platform with accounts, login-gated quizzes,
-                tracked scores, personal inboxes, and an admin performance view.
+                Practise Elective Mathematics by topic, check your answers, and keep track of your
+                scores as you work through the modules.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -73,9 +73,9 @@ export default function HomePage() {
                 </div>
                 <div className="neo-stat rounded-[1.75rem] p-5">
                   <p className="text-sm uppercase tracking-[0.16em] text-slate-500">
-                    Capability
+                    Progress
                   </p>
-                  <p className="mt-2 text-xl font-black text-slate-950">Accounts + progress</p>
+                  <p className="mt-2 text-xl font-black text-slate-950">Saved scores</p>
                 </div>
               </div>
             </div>
@@ -93,11 +93,11 @@ export default function HomePage() {
               </div>
               <div className="dark-panel mt-5 rounded-[1.75rem] px-5 py-4 text-slate-200">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white">
-                  Instructor-led platform vision
+                  Learn at your pace
                 </p>
                 <p className="mt-3 text-sm leading-6 text-slate-300">
                   Learners sign in before opening questions, see their own score history, receive
-                  score messages, and progress through the curriculum with a real dashboard.
+                  score messages, and continue from where they stopped.
                 </p>
               </div>
             </div>
@@ -108,8 +108,8 @@ export default function HomePage() {
       <section className="shell pb-12">
         {!isConfigured ? (
           <SetupBanner
-            message="Add your Supabase project URL and anon key in .env.local, then apply the SQL schema before protected pages can load real learner data."
-            title="Supabase setup still needed"
+            message="The learning portal is temporarily unavailable. Please try again later."
+            title="Service unavailable"
           />
         ) : null}
       </section>

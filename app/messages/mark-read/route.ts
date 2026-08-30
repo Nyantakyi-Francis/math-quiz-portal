@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { getSafeActionError } from "@/lib/errors/user-facing";
 
 export async function POST(request: Request) {
   const supabase = await createSupabaseServerClient();
 
   if (!supabase) {
     const url = new URL("/messages", request.url);
-    url.searchParams.set("error", "Supabase is not configured yet.");
+    url.searchParams.set("error", getSafeActionError());
     return NextResponse.redirect(url);
   }
 
@@ -31,7 +32,8 @@ export async function POST(request: Request) {
   const url = new URL("/messages", request.url);
 
   if (error) {
-    url.searchParams.set("error", error.message);
+    console.error("Unable to mark messages as read:", error.message);
+    url.searchParams.set("error", getSafeActionError());
   } else {
     url.searchParams.set("marked", "1");
   }

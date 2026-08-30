@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { normalizeAppPath } from "@/lib/auth/redirect";
+import { getSafeAuthError } from "@/lib/errors/user-facing";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
@@ -11,7 +12,7 @@ export async function POST(request: Request) {
   const supabase = await createSupabaseServerClient();
 
   if (!supabase) {
-    redirect(`/login?error=${encodeURIComponent("Supabase is not configured yet.")}`);
+    redirect(`/login?error=${encodeURIComponent("Sign-in is temporarily unavailable. Please try again later.")}`);
   }
 
   const { error } = await supabase.auth.signInWithPassword({
@@ -21,7 +22,7 @@ export async function POST(request: Request) {
 
   if (error) {
     redirect(
-      `/login?error=${encodeURIComponent(error.message)}&next=${encodeURIComponent(next)}`
+      `/login?error=${encodeURIComponent(getSafeAuthError(error.message))}&next=${encodeURIComponent(next)}`
     );
   }
 

@@ -29,7 +29,7 @@ export function LearnerModuleCatalog({ modules }: LearnerModuleCatalogProps) {
             All Modules
           </p>
           <p className="mt-1 text-sm text-slate-600">
-            Open any protected module and your score will feed your dashboard and inbox.
+            Choose a module to practise the topic and track your scores.
           </p>
         </div>
         <label className="relative block min-w-[280px]">

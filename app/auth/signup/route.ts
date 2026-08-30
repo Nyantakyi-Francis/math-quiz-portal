@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { normalizeAppPath } from "@/lib/auth/redirect";
 import { getSiteUrl } from "@/lib/supabase/env";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { getSafeAuthError } from "@/lib/errors/user-facing";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
@@ -13,7 +14,7 @@ export async function POST(request: Request) {
   const supabase = await createSupabaseServerClient();
 
   if (!supabase) {
-    redirect(`/signup?error=${encodeURIComponent("Supabase is not configured yet.")}`);
+    redirect(`/signup?error=${encodeURIComponent("Account creation is temporarily unavailable. Please try again later.")}`);
   }
 
   const { error } = await supabase.auth.signUp({
@@ -28,7 +29,7 @@ export async function POST(request: Request) {
   });
 
   if (error) {
-    redirect(`/signup?error=${encodeURIComponent(error.message)}`);
+    redirect(`/signup?error=${encodeURIComponent(getSafeAuthError(error.message))}`);
   }
 
   redirect(

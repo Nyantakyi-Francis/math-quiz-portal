@@ -24,11 +24,10 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         <section className="panel-soft p-8 sm:p-10">
           <span className="eyebrow">Learner access</span>
           <h1 className="mt-5 text-4xl font-black tracking-tight text-slate-950">
-            Sign in before opening any quiz modules.
+            Sign in to continue learning.
           </h1>
           <p className="mt-5 max-w-xl text-base leading-8 text-slate-600">
-            Authentication is the gate that lets us track module attempts, show personal score
-            history, and deliver messages inside the learner dashboard.
+            Your account keeps your quiz scores, learning history, and messages together.
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -54,8 +53,8 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <div className="mt-6 space-y-4">
             {!isConfigured ? (
               <SetupBanner
-                message="Supabase is not configured yet. Add your environment variables first, then login will start working."
-                title="Setup required"
+                message="Sign-in is temporarily unavailable. Please try again later."
+                title="Service unavailable"
               />
             ) : null}
             {params.error ? (

@@ -152,7 +152,7 @@ export function HomePageLoading() {
 export function DashboardPageLoading() {
   return (
     <PortalShellLoading
-      description="Loading your learner overview, recent attempts, and full protected module list."
+      description="Loading your scores, recent quizzes, and modules."
       title="Dashboard"
     >
       <div className="space-y-8">
@@ -194,7 +194,7 @@ export function DashboardPageLoading() {
 export function ModulesPageLoading() {
   return (
     <PortalShellLoading
-      description="Loading the protected module catalog so learners can browse every topic."
+      description="Loading the module catalog."
       title="Module Catalog"
     >
       <div className="space-y-6">
@@ -306,7 +306,7 @@ export function AdminPageLoading() {
 export function QuizPageLoading() {
   return (
     <PortalShellLoading
-      description="Loading your protected quiz, question set, and answer options."
+      description="Loading your quiz questions and answer choices."
       title="Module Quiz"
     >
       <div className="space-y-8">

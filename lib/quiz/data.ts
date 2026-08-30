@@ -3,6 +3,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getModuleBySlug } from "@/lib/data/modules";
 import type { LearnerQuizModule, LearnerQuizQuestion } from "@/lib/quiz/types";
 import { normalizeQuizStimulus } from "@/lib/quiz/stimuli";
+import { getSafeDataError } from "@/lib/errors/user-facing";
 
 type ModulePageSnapshot = {
   isConfigured: boolean;
@@ -14,19 +15,8 @@ type ModulePageSnapshot = {
 };
 
 function mapSetupWarning(message: string) {
-  const normalizedMessage = message.toLowerCase();
-
-  if (
-    normalizedMessage.includes("does not exist") ||
-    normalizedMessage.includes("could not find the table") ||
-    (normalizedMessage.includes("could not find the") &&
-      normalizedMessage.includes("column") &&
-      normalizedMessage.includes("schema cache"))
-  ) {
-    return "Supabase is connected, but the database schema or quiz import has not been applied yet.";
-  }
-
-  return message;
+  console.error("Quiz data request failed:", message);
+  return getSafeDataError();
 }
 
 export async function getModulePageSnapshot(slug: string): Promise<ModulePageSnapshot> {
@@ -40,8 +30,7 @@ export async function getModulePageSnapshot(slug: string): Promise<ModulePageSna
       role: "learner",
       profileName: null,
       module: null,
-      warning:
-        "Connect Supabase and import at least one module before protected quiz delivery can begin."
+      warning: getSafeDataError()
     };
   }
 
@@ -107,7 +96,7 @@ export async function getModulePageSnapshot(slug: string): Promise<ModulePageSna
         role,
         profileName,
         module: null,
-        warning: "This module has not been seeded into the database yet."
+        warning: "This module is not available yet."
       };
     }
 
@@ -143,10 +132,7 @@ export async function getModulePageSnapshot(slug: string): Promise<ModulePageSna
           questionCount: moduleRow.question_count,
           questions: []
         },
-        warning:
-          legacyModule?.slug === slug
-            ? "The module shell exists in Postgres, but its question bank has not been imported yet."
-            : warning
+        warning: legacyModule?.slug === slug ? "This quiz is not available yet." : warning
       };
     }
 
@@ -239,7 +225,7 @@ export async function getModulePageSnapshot(slug: string): Promise<ModulePageSna
       profileName,
       module: null,
       warning: mapSetupWarning(
-        error instanceof Error ? error.message : "Unable to load the protected quiz module."
+        error instanceof Error ? error.message : "Unable to load the quiz module."
       )
     };
   }

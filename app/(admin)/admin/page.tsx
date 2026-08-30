@@ -37,8 +37,8 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
 
         {!snapshot.authorized ? (
           <div className="panel p-6 text-sm leading-7 text-slate-600">
-            This page is already protected by login. After you apply the schema, set your own
-            `profiles.role` value to `admin` in Supabase to unlock learner and performance data.
+            You do not have permission to view this page. Contact an administrator if you believe
+            this is a mistake.
           </div>
         ) : (
           <div className="space-y-6">

@@ -113,8 +113,7 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
           <div>
             <p className="text-lg font-bold text-slate-950">{moduleTitle}</p>
             <p className="mt-1 text-sm text-slate-500">
-              Questions are now coming from Postgres and scores are written back to your protected
-              learner record.
+              Answer each question, then submit the quiz to see your score and explanations.
             </p>
           </div>
           <div className="soft-well rounded-full px-4 py-2 text-sm font-semibold text-[var(--brand-deep)]">
@@ -310,7 +309,7 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
             <div>
               <p className="text-lg font-bold text-slate-950">Submit attempt</p>
               <p className="mt-1 text-sm text-slate-500">
-                Submission writes your score to Postgres and sends a score message to your inbox.
+                You can review your score and explanations as soon as you finish.
               </p>
             </div>
 

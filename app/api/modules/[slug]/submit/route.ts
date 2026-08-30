@@ -7,6 +7,7 @@ import { notifyMessageRecipientsByEmail } from "@/lib/email/notifications";
 import { validateQuizSubmissionBody } from "@/lib/quiz/validation";
 import { normalizeQuizExplanation } from "@/lib/quiz/explanations";
 import type { QuizSubmissionResult } from "@/lib/quiz/types";
+import { getSafeActionError } from "@/lib/errors/user-facing";
 
 type SubmitRouteContext = {
   params: Promise<{
@@ -34,7 +35,7 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
   if (!supabase) {
     return NextResponse.json(
       {
-        error: "Supabase is not configured yet."
+        error: "Quiz submission is temporarily unavailable. Please try again later."
       },
       { status: 500 }
     );
@@ -43,7 +44,7 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
   if (!admin) {
     return NextResponse.json(
       {
-        error: "The service role key is missing, so quiz scoring cannot run yet."
+        error: "Quiz submission is temporarily unavailable. Please try again later."
       },
       { status: 500 }
     );
@@ -102,10 +103,10 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
       {
         error:
           message.includes("MODULE_NOT_FOUND")
-            ? "This module was not found in the database."
+            ? "This module could not be found."
             : message.includes("QUESTION_BANK_EMPTY")
-              ? "This module exists, but its question bank has not been imported yet."
-              : message
+              ? "This quiz is not available yet."
+              : getSafeActionError()
       },
       { status }
     );
@@ -132,7 +133,7 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
 
   if (answerKeyError || explanationError) {
     return NextResponse.json(
-      { error: answerKeyError?.message ?? explanationError?.message ?? "Unable to load answer reviews." },
+      { error: "Your score was saved, but the answer review could not be loaded." },
       { status: 500 }
     );
   }
@@ -144,7 +145,7 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
 
   if (missingAnswerKey) {
     return NextResponse.json(
-      { error: `No answer key was found for question ${missingAnswerKey}.` },
+      { error: "Your score was saved, but the answer review could not be completed." },
       { status: 500 }
     );
   }
@@ -159,7 +160,10 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
     : { data: [], error: null };
 
   if (reviewOptionError) {
-    return NextResponse.json({ error: reviewOptionError.message }, { status: 500 });
+    return NextResponse.json(
+      { error: "Your score was saved, but the answer review could not be loaded." },
+      { status: 500 }
+    );
   }
 
   const optionTextById = new Map(

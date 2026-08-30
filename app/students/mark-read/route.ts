@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { requiredTextField } from "@/lib/http/validation";
+import { getSafeActionError } from "@/lib/errors/user-facing";
 
 function redirectWithStatus(requestUrl: string, studentId: string, params: Record<string, string>) {
   const url = new URL("/students", requestUrl);
@@ -18,7 +19,7 @@ export async function POST(request: Request) {
 
   if (!supabase) {
     const url = new URL("/students", request.url);
-    url.searchParams.set("error", "Supabase is not configured yet.");
+    url.searchParams.set("error", getSafeActionError());
     return NextResponse.redirect(url);
   }
 
@@ -56,7 +57,7 @@ export async function POST(request: Request) {
 
   if (unreadError) {
     return redirectWithStatus(request.url, studentId, {
-      error: unreadError.message
+      error: getSafeActionError()
     });
   }
 
@@ -81,7 +82,7 @@ export async function POST(request: Request) {
 
   if (updateError) {
     return redirectWithStatus(request.url, studentId, {
-      error: updateError.message
+      error: getSafeActionError()
     });
   }
 
@@ -89,4 +90,3 @@ export async function POST(request: Request) {
     marked: "1"
   });
 }
-
