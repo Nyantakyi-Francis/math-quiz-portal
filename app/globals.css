@@ -282,6 +282,15 @@ html[data-theme="night"] .button-secondary:hover {
   padding-left: 2.75rem;
 }
 
+select.field {
+  color-scheme: light;
+}
+
+select.field option {
+  color: #0f172a;
+  background-color: #ffffff;
+}
+
 html[data-theme="night"] .field {
   color: var(--ink);
   border-color: rgba(135, 163, 213, 0.18);
@@ -290,6 +299,15 @@ html[data-theme="night"] .field {
   box-shadow:
     inset 6px 6px 14px -14px rgba(0, 0, 0, 0.58),
     8px 8px 20px -20px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="night"] select.field {
+  color-scheme: dark;
+}
+
+html[data-theme="night"] select.field option {
+  color: #edf4ff;
+  background-color: #101c30;
 }
 
 .field:focus {
