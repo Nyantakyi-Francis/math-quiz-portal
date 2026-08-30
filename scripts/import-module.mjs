@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import process from "node:process";
 import { createClient } from "@supabase/supabase-js";
+import { validateExplanation } from "./lib/explanations.mjs";
 
 function normalizeSupabaseUrl(url) {
   return url.replace(/\/rest\/v1\/?$/, "").replace(/\/$/, "");
@@ -67,6 +68,24 @@ async function importModule(slug, options = {}) {
   if (!questionCount) {
     throw new Error(`The file ${dataPath} does not contain any questions.`);
   }
+
+  const explanations = quizData.questions.map((question, index) =>
+    validateExplanation(question.explanation, index + 1)
+  );
+
+  explanations.forEach((explanation, index) => {
+    if (typeof explanation === "string" || explanation === null) return;
+    const optionCount = Array.isArray(quizData.questions[index].options)
+      ? quizData.questions[index].options.length
+      : 0;
+    for (const optionIndex of Object.keys(explanation.misconceptions)) {
+      if (!Number.isInteger(Number(optionIndex)) || Number(optionIndex) < 0 || Number(optionIndex) >= optionCount) {
+        throw new Error(
+          `Question ${index + 1} explanation references invalid option index ${optionIndex}.`
+        );
+      }
+    }
+  });
 
   const { data: moduleRow, error: moduleError } = await supabase
     .from("modules")
@@ -170,6 +189,37 @@ async function importModule(slug, options = {}) {
 
     if (answerKeyError) {
       throw new Error(answerKeyError.message);
+    }
+
+    if (explanations[index] !== null) {
+      const explanation = explanations[index];
+      const storedExplanation =
+        typeof explanation === "string"
+          ? explanation
+          : {
+              ...explanation,
+              misconceptions: Object.fromEntries(
+                Object.entries(explanation.misconceptions).map(([optionIndex, message]) => {
+                  const option = insertedOptions.find(
+                    (insertedOption) => insertedOption.order_index === Number(optionIndex)
+                  );
+                  if (!option) {
+                    throw new Error(
+                      `Question ${index + 1} explanation references invalid option index ${optionIndex}.`
+                    );
+                  }
+                  return [option.id, message];
+                })
+              )
+            };
+      const { error: explanationError } = await supabase.from("question_explanations").insert({
+        question_id: insertedQuestion.id,
+        content: storedExplanation
+      });
+
+      if (explanationError) {
+        throw new Error(explanationError.message);
+      }
     }
   }
 

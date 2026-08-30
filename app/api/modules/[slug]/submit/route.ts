@@ -5,6 +5,7 @@ import { buildScoreMessageBody, buildScoreMessageSubject } from "@/lib/quiz/mess
 import { readJsonBody } from "@/lib/http/validation";
 import { notifyMessageRecipientsByEmail } from "@/lib/email/notifications";
 import { validateQuizSubmissionBody } from "@/lib/quiz/validation";
+import { normalizeQuizExplanation } from "@/lib/quiz/explanations";
 import type { QuizSubmissionResult } from "@/lib/quiz/types";
 
 type SubmitRouteContext = {
@@ -115,6 +116,58 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
   const scoreTotal = Number(scoredAttempt.score_total);
   const scorePercent = Number(scoredAttempt.score_percent);
   const moduleTitle = scoredAttempt.module_title;
+  const questionIds = scoredAttempt.breakdown.map((entry) => entry.questionId);
+  const selectedOptionByQuestion = new Map(
+    body.value.answers.map((answer) => [answer.questionId, answer.selectedOptionId])
+  );
+
+  const [{ data: answerKeys, error: answerKeyError }, { data: explanations, error: explanationError }] =
+    await Promise.all([
+      admin
+        .from("question_answer_keys")
+        .select("question_id, correct_option_id")
+        .in("question_id", questionIds),
+      admin.from("question_explanations").select("question_id, content").in("question_id", questionIds)
+    ]);
+
+  if (answerKeyError || explanationError) {
+    return NextResponse.json(
+      { error: answerKeyError?.message ?? explanationError?.message ?? "Unable to load answer reviews." },
+      { status: 500 }
+    );
+  }
+
+  const answerKeyByQuestion = new Map(
+    (answerKeys ?? []).map((answerKey) => [answerKey.question_id, answerKey.correct_option_id])
+  );
+  const missingAnswerKey = questionIds.find((questionId) => !answerKeyByQuestion.has(questionId));
+
+  if (missingAnswerKey) {
+    return NextResponse.json(
+      { error: `No answer key was found for question ${missingAnswerKey}.` },
+      { status: 500 }
+    );
+  }
+  const optionIds = Array.from(
+    new Set([
+      ...Array.from(answerKeyByQuestion.values()),
+      ...Array.from(selectedOptionByQuestion.values()).filter((id): id is string => Boolean(id))
+    ])
+  );
+  const { data: reviewOptions, error: reviewOptionError } = optionIds.length
+    ? await admin.from("question_options").select("id, option_text").in("id", optionIds)
+    : { data: [], error: null };
+
+  if (reviewOptionError) {
+    return NextResponse.json({ error: reviewOptionError.message }, { status: 500 });
+  }
+
+  const optionTextById = new Map(
+    (reviewOptions ?? []).map((option) => [option.id, option.option_text])
+  );
+  const explanationByQuestion = new Map(
+    (explanations ?? []).map((explanation) => [explanation.question_id, explanation.content])
+  );
 
   const learnerName =
     typeof user.user_metadata.full_name === "string" && user.user_metadata.full_name.trim()
@@ -165,10 +218,25 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
     scorePercent,
     incorrectCount: scoreTotal - scoreRaw,
     messageSubject,
-    breakdown: scoredAttempt.breakdown.map((entry) => ({
-      questionId: entry.questionId,
-      isCorrect: entry.isCorrect
-    }))
+    breakdown: scoredAttempt.breakdown.map((entry) => {
+      const selectedOptionId = selectedOptionByQuestion.get(entry.questionId) ?? null;
+      const correctOptionId = answerKeyByQuestion.get(entry.questionId);
+      const explanation = normalizeQuizExplanation(explanationByQuestion.get(entry.questionId));
+
+      return {
+        questionId: entry.questionId,
+        isCorrect: entry.isCorrect,
+        selectedOptionId,
+        selectedOptionText: selectedOptionId ? optionTextById.get(selectedOptionId) ?? null : null,
+        correctOptionId: correctOptionId!,
+        correctOptionText: optionTextById.get(correctOptionId!) ?? "Correct answer unavailable",
+        explanation,
+        misconception:
+          !entry.isCorrect && selectedOptionId
+            ? explanation.misconceptions[selectedOptionId] ?? null
+            : null
+      };
+    })
   };
 
   return NextResponse.json(result);

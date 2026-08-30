@@ -138,6 +138,83 @@ a {
   border-radius: 0.85rem;
 }
 
+.mobile-navigation {
+  border-top: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
+}
+
+.mobile-navigation-item {
+  min-height: 44px;
+  color: #475569;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-navigation-item:hover {
+  color: #0f172a;
+}
+
+.mobile-navigation-item.is-active {
+  background: #eef2ff;
+  color: #3730a3;
+}
+
+.mobile-navigation-item:focus-visible {
+  outline: 3px solid #1d4ed8;
+  outline-offset: -3px;
+}
+
+.mobile-navigation-indicator {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1.5rem;
+  height: 3px;
+  border-radius: 0 0 999px 999px;
+  background: currentColor;
+  transform: translateX(-50%);
+}
+
+html[data-theme="night"] .mobile-navigation {
+  border-top-color: #475569;
+  background: #0f172a;
+  color: #cbd5e1;
+}
+
+html[data-theme="night"] .mobile-navigation-item {
+  color: #cbd5e1;
+}
+
+html[data-theme="night"] .mobile-navigation-item:hover {
+  color: #ffffff;
+}
+
+html[data-theme="night"] .mobile-navigation-item.is-active {
+  background: #1e293b;
+  color: #c7d2fe;
+}
+
+html[data-theme="night"] .mobile-navigation-item:focus-visible {
+  outline-color: #93c5fd;
+}
+
+@media (forced-colors: active) {
+  .mobile-navigation,
+  .mobile-navigation-item.is-active {
+    border-color: CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  .mobile-navigation-item.is-active {
+    border: 2px solid Highlight;
+  }
+
+  .mobile-navigation-item:focus-visible {
+    outline-color: Highlight;
+  }
+}
+
 ::selection {
   background: rgba(47, 99, 191, 0.18);
 }

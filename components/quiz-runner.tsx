@@ -37,9 +37,13 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<QuizSubmissionResult | null>(null);
+  const [expandedExplanations, setExpandedExplanations] = useState<Set<string>>(new Set());
 
   const answeredCount = Object.keys(answers).length;
-  const breakdownMap = new Map(result?.breakdown.map((item) => [item.questionId, item.isCorrect]));
+  const breakdownMap = new Map(result?.breakdown.map((item) => [item.questionId, item]));
+  const allExplanationsExpanded = Boolean(
+    result && result.breakdown.every((item) => expandedExplanations.has(item.questionId))
+  );
 
   function handleSelect(questionId: string, optionId: string) {
     setAnswers((current) => ({
@@ -52,6 +56,7 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
     setAnswers({});
     setResult(null);
     setError(null);
+    setExpandedExplanations(new Set());
     setDisplayQuestions(shuffleOptions(questions));
   }
 
@@ -92,6 +97,7 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
       }
 
       setResult(data as QuizSubmissionResult);
+      setExpandedExplanations(new Set());
     } catch {
       setError("Unable to reach the server. Please try again.");
     } finally {
@@ -130,6 +136,20 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
+                <button
+                  aria-expanded={allExplanationsExpanded}
+                  className="button-secondary"
+                  onClick={() =>
+                    setExpandedExplanations(
+                      allExplanationsExpanded
+                        ? new Set()
+                        : new Set(result.breakdown.map((item) => item.questionId))
+                    )
+                  }
+                  type="button"
+                >
+                  {allExplanationsExpanded ? "Collapse all explanations" : "Expand all explanations"}
+                </button>
                 <Link className="button-secondary" href="/dashboard">
                   View dashboard
                 </Link>
@@ -153,14 +173,16 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
 
       <form className="space-y-6" onSubmit={handleSubmit}>
         {displayQuestions.map((question, index) => {
-          const questionResult = result ? breakdownMap.get(question.id) : undefined;
+          const questionReview = result ? breakdownMap.get(question.id) : undefined;
+          const explanationId = `explanation-${question.id}`;
+          const isExplanationExpanded = expandedExplanations.has(question.id);
 
           return (
             <section
               className={`glass-card rounded-[2rem] p-6 ${
-                questionResult === true
+                questionReview?.isCorrect === true
                   ? "border-emerald-200"
-                  : questionResult === false
+                  : questionReview?.isCorrect === false
                     ? "border-rose-200"
                     : ""
               }`}
@@ -192,6 +214,7 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
                             <input
                               checked={checked}
                               className="mt-1"
+                              disabled={Boolean(result)}
                               name={question.id}
                               onChange={() => handleSelect(question.id, option.id)}
                               type="radio"
@@ -206,13 +229,72 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
                     })}
                   </div>
 
-                  {questionResult === true ? (
+                  {questionReview?.isCorrect === true ? (
                     <p className="mt-4 text-sm font-semibold text-emerald-700">Correct</p>
                   ) : null}
-                  {questionResult === false ? (
+                  {questionReview?.isCorrect === false ? (
                     <p className="mt-4 text-sm font-semibold text-rose-700">
-                      Incorrect. Review this one before the next attempt.
+                      {questionReview.selectedOptionText
+                        ? <>Incorrect. You selected <MathText text={questionReview.selectedOptionText} />.</>
+                        : "Unanswered."}
                     </p>
+                  ) : null}
+
+                  {questionReview ? (
+                    <div className="mt-5 border-t border-slate-200 pt-5">
+                      <p className="text-sm text-slate-700">
+                        <span className="font-semibold text-slate-900">Correct answer: </span>
+                        <MathText text={questionReview.correctOptionText} />
+                      </p>
+                      <button
+                        aria-controls={explanationId}
+                        aria-expanded={isExplanationExpanded}
+                        className="focus-outline mt-4 rounded-lg text-sm font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4"
+                        onClick={() =>
+                          setExpandedExplanations((current) => {
+                            const next = new Set(current);
+                            if (next.has(question.id)) next.delete(question.id);
+                            else next.add(question.id);
+                            return next;
+                          })
+                        }
+                        type="button"
+                      >
+                        {isExplanationExpanded ? "Hide explanation" : "Show explanation"}
+                      </button>
+
+                      {isExplanationExpanded ? (
+                        <div
+                          aria-label={`Explanation for question ${index + 1}`}
+                          className="soft-well mt-4 rounded-[1.25rem] p-4 text-sm text-slate-700"
+                          id={explanationId}
+                          role="region"
+                        >
+                          <p className="font-semibold leading-7 text-slate-900">
+                            <MathText text={questionReview.explanation.summary} />
+                          </p>
+                          {questionReview.explanation.steps.length ? (
+                            <ol className="mt-3 list-decimal space-y-2 pl-5 leading-7">
+                              {questionReview.explanation.steps.map((step, stepIndex) => (
+                                <li key={`${question.id}-step-${stepIndex}`}><MathText text={step} /></li>
+                              ))}
+                            </ol>
+                          ) : null}
+                          {questionReview.explanation.formula ? (
+                            <div className="mt-3 rounded-xl bg-white/50 p-3">
+                              <span className="font-semibold">Rule or formula: </span>
+                              <MathText text={questionReview.explanation.formula} />
+                            </div>
+                          ) : null}
+                          {questionReview.misconception ? (
+                            <p className="mt-3 leading-7 text-amber-900">
+                              <span className="font-semibold">Likely mistake: </span>
+                              <MathText text={questionReview.misconception} />
+                            </p>
+                          ) : null}
+                        </div>
+                      ) : null}
+                    </div>
                   ) : null}
                 </div>
               </div>

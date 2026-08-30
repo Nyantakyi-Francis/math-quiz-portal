@@ -16,6 +16,12 @@ Implement one feature at a time in the order below. For each feature:
 
 ## 2. Step-by-step answer explanations
 
+### Completion note (2026-08-30)
+
+Implemented with backward-compatible plain-text and structured JSON explanations. Explanation content now lives in the RLS-protected `question_explanations` table instead of the learner-readable `questions` table. The submission route returns the selected answer, correct answer, ordered steps, formula, and matching misconception only after a scored attempt. The results UI supports accessible per-question toggles and an expand/collapse-all control. The importer validates explanation data and converts portable option-index misconception keys to database option IDs. Initial structured and plain-text examples are included in `data/vectors.json`; missing content uses a safe fallback.
+
+Verification: TypeScript, unit tests, lint, and the production build pass. Lint retains 25 pre-existing warnings in unrelated files. Desktop/mobile authenticated browser verification remains pending because neither the Browser plugin, Playwright, nor the listed `agent-browser` executable is available in this environment. Apply `supabase/schema.sql`, re-import module data with `--replace`, and run that browser check before deployment.
+
 ### Goal
 
 Help learners understand why an answer is correct and where their reasoning failed. Feedback should teach the method instead of showing only “Correct” or “Incorrect.”

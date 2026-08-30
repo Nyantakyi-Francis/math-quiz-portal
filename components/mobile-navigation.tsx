@@ -45,7 +45,7 @@ export function MobileNavigation({ role }: MobileNavigationProps) {
       ];
 
   return (
-    <nav aria-label="Primary navigation" className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 px-2 pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl md:hidden">
+    <nav aria-label="Primary navigation" className="mobile-navigation fixed inset-x-0 bottom-0 z-50 px-2 pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_30px_rgba(15,23,42,0.08)] md:hidden">
       <div className="mx-auto grid h-16 max-w-lg grid-cols-5">
         {items.map((item) => {
           const active = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(`${item.href}/`));
@@ -53,10 +53,11 @@ export function MobileNavigation({ role }: MobileNavigationProps) {
           return (
             <Link
               aria-current={active ? "page" : undefined}
-              className={`focus-outline flex min-w-0 flex-col items-center justify-center gap-1 rounded-xl text-[0.65rem] font-semibold transition-colors ${active ? "text-indigo-700" : "text-slate-500 hover:text-slate-900"}`}
+              className={`mobile-navigation-item relative flex min-w-0 flex-col items-center justify-center gap-1 rounded-lg text-[0.6875rem] font-semibold transition-colors ${active ? "is-active" : ""}`}
               href={item.href}
               key={item.href}
             >
+              {active ? <span aria-hidden="true" className="mobile-navigation-indicator" /> : null}
               <NavIcon name={item.icon} />
               <span className="max-w-full truncate px-1">{item.label}</span>
             </Link>

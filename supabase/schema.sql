@@ -28,7 +28,6 @@ create table if not exists public.questions (
   id uuid primary key default gen_random_uuid(),
   module_id uuid not null references public.modules (id) on delete cascade,
   prompt text not null,
-  explanation text,
   points integer not null default 1,
   order_index integer not null,
   metadata jsonb not null default '{}'::jsonb,
@@ -50,6 +49,31 @@ create table if not exists public.question_answer_keys (
   correct_option_id uuid not null references public.question_options (id) on delete cascade,
   created_at timestamptz not null default timezone('utc', now())
 );
+
+create table if not exists public.question_explanations (
+  question_id uuid primary key references public.questions (id) on delete cascade,
+  content jsonb not null,
+  created_at timestamptz not null default timezone('utc', now()),
+  updated_at timestamptz not null default timezone('utc', now()),
+  check (jsonb_typeof(content) in ('string', 'object'))
+);
+
+do $$
+begin
+  if exists (
+    select 1 from information_schema.columns
+    where table_schema = 'public' and table_name = 'questions' and column_name = 'explanation'
+  ) then
+    insert into public.question_explanations (question_id, content)
+    select id, to_jsonb(explanation)
+    from public.questions
+    where explanation is not null and btrim(explanation) <> ''
+    on conflict (question_id) do nothing;
+
+    alter table public.questions drop column explanation;
+  end if;
+end
+$$;
 
 create table if not exists public.attempts (
   id uuid primary key default gen_random_uuid(),
@@ -395,6 +419,7 @@ alter table public.modules enable row level security;
 alter table public.questions enable row level security;
 alter table public.question_options enable row level security;
 alter table public.question_answer_keys enable row level security;
+alter table public.question_explanations enable row level security;
 alter table public.attempts enable row level security;
 alter table public.attempt_answers enable row level security;
 alter table public.messages enable row level security;
@@ -486,6 +511,14 @@ with check (public.is_admin(auth.uid()));
 drop policy if exists "Answer keys are hidden from learners" on public.question_answer_keys;
 create policy "Answer keys are hidden from learners"
 on public.question_answer_keys
+for all
+to authenticated
+using (public.is_admin(auth.uid()))
+with check (public.is_admin(auth.uid()));
+
+drop policy if exists "Explanations are hidden from learners" on public.question_explanations;
+create policy "Explanations are hidden from learners"
+on public.question_explanations
 for all
 to authenticated
 using (public.is_admin(auth.uid()))

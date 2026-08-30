@@ -26,6 +26,24 @@ export type QuizSubmissionAnswer = {
   selectedOptionId: string | null;
 };
 
+export type StructuredQuizExplanation = {
+  summary: string;
+  steps: string[];
+  formula: string | null;
+  misconceptions: Record<string, string>;
+};
+
+export type QuizAnswerReview = {
+  questionId: string;
+  isCorrect: boolean;
+  selectedOptionId: string | null;
+  selectedOptionText: string | null;
+  correctOptionId: string;
+  correctOptionText: string;
+  explanation: StructuredQuizExplanation;
+  misconception: string | null;
+};
+
 export type QuizSubmissionResult = {
   attemptId: string;
   scoreRaw: number;
@@ -33,8 +51,5 @@ export type QuizSubmissionResult = {
   scorePercent: number;
   incorrectCount: number;
   messageSubject: string;
-  breakdown: Array<{
-    questionId: string;
-    isCorrect: boolean;
-  }>;
+  breakdown: QuizAnswerReview[];
 };
