@@ -21,9 +21,9 @@ function numericRow(stimulusId: string, rowIndex = 0) {
 }
 
 describe("Statistics question stimuli", () => {
-  it("validates every table and all 17 question references", () => {
+  it("validates every table and all 21 question references", () => {
     expect(() => validateModuleStimuli(statistics)).not.toThrow();
-    expect(statistics.questions.filter((question) => question.stimulusId)).toHaveLength(17);
+    expect(statistics.questions.filter((question) => question.stimulusId)).toHaveLength(21);
     for (const stimulus of Object.values(statistics.stimuli)) {
       expect(normalizeQuizStimulus({ type: "table", ...stimulus, title: "Dataset" })).not.toBeNull();
     }
@@ -75,5 +75,22 @@ describe("Statistics question stimuli", () => {
     expect(59.5 + ((20 - 16) / 16) * 10).toBe(62);
     expect(frequencies[0]).toBeLessThan(10);
     expect(frequencies[0] + frequencies[1]).toBeGreaterThanOrEqual(10);
+  });
+
+  it("recalculates the unequal-width grouped-data answers", () => {
+    const rows = statistics.stimuli["unequal-width-table"].rows;
+    const frequencies = rows.map((row) => Number(row[1]));
+    const widths = [10, 10, 10, 20];
+    const densities = frequencies.map((frequency, index) => frequency / widths[index]);
+    const cumulativeThroughThirdClass = frequencies.slice(0, 3).reduce(
+      (sum, frequency) => sum + frequency,
+      0
+    );
+
+    expect(frequencies.reduce((sum, frequency) => sum + frequency, 0)).toBe(60);
+    expect(densities[2]).toBe(2.4);
+    expect(densities.indexOf(Math.max(...densities))).toBe(2);
+    expect(cumulativeThroughThirdClass).toBe(45);
+    expect(19.5 + ((30 - 21) / 24) * 10).toBe(23.25);
   });
 });

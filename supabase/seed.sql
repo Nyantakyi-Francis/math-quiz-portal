@@ -19,7 +19,7 @@ values
   ('coordinate-geometry', 'Coordinate Geometry II: Circles', 'Circle geometry in coordinate form, with focus on equations, tangents, and interpretation.', 'Intermediate', 40, 8, 'data/coordinate-geometry.json', 'legacy/quizzes/coordinate-geometry-ii-circles.html'),
   ('matrices', 'Matrices', 'Matrix arithmetic, transformations, and determinant intuition for high-accuracy problem solving.', 'Intermediate', 40, 9, 'data/matrices.json', 'legacy/quizzes/matrices.html'),
   ('combinations-probability', 'Combinations, Permutations & Probability', 'Counting strategies and probability modelling for more demanding exam questions.', 'Hard', 40, 10, 'data/combinations-probability.json', 'legacy/quizzes/combinations-permutations-and-probability.html'),
-  ('statistics', 'Statistics', 'Interpretation, grouped data, and applied statistical reasoning in test conditions.', 'Intermediate', 40, 11, 'data/statistics.json', 'legacy/quizzes/statistics.html')
+  ('statistics', 'Statistics', 'Calculate and interpret averages, dispersion, grouped data, and statistical diagrams.', 'Intermediate', 80, 11, 'data/statistics.json', 'legacy/quizzes/statistics.html')
 on conflict (slug) do update
 set
   title = excluded.title,

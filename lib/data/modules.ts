@@ -172,7 +172,7 @@ export const modules: ModuleMeta[] = [
     title: "Statistics",
     description: "Calculate and interpret averages, dispersion, grouped data, and statistical diagrams.",
     moduleNumber: 11,
-    questionCount: 40,
+    questionCount: 80,
     difficulty: "Intermediate",
     legacyDataPath: "data/statistics.json",
     legacyQuizPath: "quizzes/statistics.html",

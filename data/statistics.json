@@ -458,6 +458,250 @@
       ],
       "correct": 0,
       "explanation": "Positive skew is characterized by a right tail that gives $\\text{mean}>\\text{median}>\\text{mode}$."
+    },
+    {
+      "q": "The mean of five numbers is 18. Four of the numbers are 12, 17, 20, and 24. Find the fifth number.",
+      "options": ["17", "19", "18", "21"],
+      "correct": 0,
+      "explanation": "The total of the five numbers is $5(18)=90$. The four known numbers total $12+17+20+24=73$, so the fifth number is $90-73=17$."
+    },
+    {
+      "q": "A class of 20 students has a mean mark of 64, and another class of 30 students has a mean mark of 70. Find the combined mean mark.",
+      "options": ["67.0", "67.6", "66.4", "69.2"],
+      "correct": 1,
+      "explanation": "Use the class sizes as weights. The combined total is $20(64)+30(70)=3380$, and there are $50$ students. Hence the combined mean is $3380/50=67.6$."
+    },
+    {
+      "q": "A course grade is based on homework 20%, a test 30%, and an examination 50%. A student scores 80, 70, and 60 respectively. Find the weighted mean grade.",
+      "options": ["66", "67", "70", "72"],
+      "correct": 1,
+      "explanation": "Multiply each score by its weight: $0.20(80)+0.30(70)+0.50(60)=16+21+30=67$."
+    },
+    {
+      "q": "Find the median of 3, 5, 7, 8, 11, and 14.",
+      "options": ["7", "7.5", "8", "9"],
+      "correct": 1,
+      "explanation": "There are six ordered values, so average the third and fourth: $(7+8)/2=7.5$."
+    },
+    {
+      "q": "For the data 2, 4, 4, 5, 6, 6, 6, 8, identify the mode.",
+      "options": ["4", "5", "6", "8"],
+      "correct": 2,
+      "explanation": "The value $6$ occurs three times, more often than any other value, so the mode is $6$."
+    },
+    {
+      "q": "Every value in a data set is multiplied by 3. If the original range is 8, what is the new range?",
+      "options": ["8", "11", "24", "64"],
+      "correct": 2,
+      "explanation": "Multiplying every observation by $3$ multiplies the difference between the maximum and minimum by $3$. The new range is $3(8)=24$."
+    },
+    {
+      "q": "A data set has variance 5. If every value is multiplied by 4, what is the new variance?",
+      "options": ["20", "25", "80", "100"],
+      "correct": 2,
+      "explanation": "Variance is multiplied by the square of the scale factor. Thus the new variance is $4^2(5)=16(5)=80$."
+    },
+    {
+      "q": "A data set has standard deviation 6. If every value is divided by 2, what is the new standard deviation?",
+      "options": ["2", "3", "6", "12"],
+      "correct": 1,
+      "explanation": "Standard deviation changes by the absolute scale factor. Dividing every value by $2$ gives $6/2=3$."
+    },
+    {
+      "q": "Find the mean absolute deviation about the mean for 2, 4, and 6.",
+      "options": ["$\\frac{2}{3}$", "$\\frac{4}{3}$", "2", "$\\frac{8}{3}$"],
+      "correct": 1,
+      "explanation": "The mean is $4$. The absolute deviations are $2,0,2$, so the mean absolute deviation is $(2+0+2)/3=4/3$."
+    },
+    {
+      "q": "Using the median-of-halves method, find the interquartile range of 1, 3, 4, 6, 8, 9, 11, and 15.",
+      "options": ["5", "6", "6.5", "8"],
+      "correct": 2,
+      "explanation": "The lower half is $1,3,4,6$, so $Q_1=(3+4)/2=3.5$. The upper half is $8,9,11,15$, so $Q_3=(9+11)/2=10$. Therefore $IQR=10-3.5=6.5$."
+    },
+    {
+      "q": "In an ordered data set of 80 observations, which position corresponds to the 30th percentile?",
+      "options": ["20th", "24th", "30th", "56th"],
+      "correct": 1,
+      "explanation": "The percentile position is $0.30(80)=24$, so use the 24th observation."
+    },
+    {
+      "q": "A box plot has $Q_1=18$, median $=25$, and $Q_3=31$. What length should the box have on the measurement scale?",
+      "options": ["6", "7", "13", "49"],
+      "correct": 2,
+      "explanation": "The box runs from $Q_1$ to $Q_3$, so its length is the interquartile range: $31-18=13$."
+    },
+    {
+      "q": "For a data set with $Q_1=12$ and $Q_3=20$, which value is an upper outlier under the $1.5\\times IQR$ rule?",
+      "options": ["28", "31", "32", "33"],
+      "correct": 3,
+      "explanation": "$IQR=20-12=8$, so the upper fence is $20+1.5(8)=32$. Values greater than $32$ are outliers; therefore $33$ is an upper outlier."
+    },
+    {
+      "q": "Measurements recorded to the nearest kilogram are grouped in the class 50-59 kg. State the class boundaries.",
+      "options": ["50 and 59", "49.5 and 59.5", "50.5 and 59.5", "49 and 60"],
+      "correct": 1,
+      "explanation": "Values rounded to the nearest kilogram extend half a unit below and above the class limits. The boundaries are $49.5$ kg and $59.5$ kg."
+    },
+    {
+      "stimulusId": "unequal-width-table",
+      "q": "Using Table 5, calculate the frequency density for the 20-29 class.",
+      "options": ["1.2", "2.4", "12", "24"],
+      "correct": 1,
+      "explanation": "The class width is $30-20=10$. Frequency density is $24/10=2.4$."
+    },
+    {
+      "stimulusId": "unequal-width-table",
+      "q": "Using Table 5, which class should have the tallest bar in a histogram?",
+      "options": ["0-9", "10-19", "20-29", "30-49"],
+      "correct": 2,
+      "explanation": "The frequency densities are $0.6,1.5,2.4,$ and $0.75$. The greatest density is $2.4$ for the $20$-$29$ class, so it has the tallest bar."
+    },
+    {
+      "stimulusId": "unequal-width-table",
+      "q": "Using Table 5, find the cumulative frequency up to the end of the 20-29 class.",
+      "options": ["24", "39", "45", "60"],
+      "correct": 2,
+      "explanation": "Add the first three frequencies: $6+15+24=45$."
+    },
+    {
+      "stimulusId": "unequal-width-table",
+      "q": "Using linear interpolation in Table 5, estimate the median value.",
+      "options": ["23.3", "24.5", "25.0", "26.3"],
+      "correct": 0,
+      "explanation": "There are $60$ values, so the median position is $30$. The median class is $20$-$29$, with lower boundary $19.5$, previous cumulative frequency $21$, frequency $24$, and width $10$. Thus the median is $19.5+((30-21)/24)(10)=23.25\\approx23.3$."
+    },
+    {
+      "q": "A school wants a sample of 40 learners from a register of 800 learners. For a systematic sample, what sampling interval should be used?",
+      "options": ["10", "20", "40", "80"],
+      "correct": 1,
+      "explanation": "The sampling interval is population size divided by sample size: $800/40=20$. After a random start, select every 20th learner."
+    },
+    {
+      "q": "A school has 300 first-year and 200 second-year students. In a stratified sample of 50 students, how many should be selected from the first year?",
+      "options": ["20", "25", "30", "35"],
+      "correct": 2,
+      "explanation": "First-year students form $300/500=0.6$ of the population. Their share of the sample is $0.6(50)=30$."
+    },
+    {
+      "q": "Which method gives every member of a population an equal known chance of selection?",
+      "options": ["Convenience sampling", "Quota sampling", "Simple random sampling", "Judgement sampling"],
+      "correct": 2,
+      "explanation": "In simple random sampling, each population member has an equal known chance of being chosen. The other methods depend on availability or researcher choice."
+    },
+    {
+      "q": "A researcher collects information from every household in a village. This is called a:",
+      "options": ["Sample survey", "Census", "Pilot study", "Systematic sample"],
+      "correct": 1,
+      "explanation": "A census collects data from every member of the population rather than from a subset."
+    },
+    {
+      "q": "Which variable is ordinal categorical data?",
+      "options": ["Blood group", "Satisfaction level: low, medium, high", "Number of siblings", "Body temperature"],
+      "correct": 1,
+      "explanation": "The satisfaction categories have a meaningful order, but their gaps are not numerical measurements, so the variable is ordinal categorical."
+    },
+    {
+      "q": "Which variable is continuous?",
+      "options": ["Number of books", "Number of goals", "Time taken to run 100 m", "Shoe size category"],
+      "correct": 2,
+      "explanation": "Time can take any value within an interval and is measured rather than counted, so it is continuous."
+    },
+    {
+      "q": "A scatter plot rises from left to right, with points lying close to a straight line. This indicates:",
+      "options": ["Strong positive correlation", "Weak positive correlation", "Strong negative correlation", "No correlation"],
+      "correct": 0,
+      "explanation": "An upward pattern shows positive correlation, and points close to a line show that the relationship is strong."
+    },
+    {
+      "q": "Ice-cream sales and sunburn cases both increase on hot days. What is the most reasonable interpretation?",
+      "options": ["Ice cream causes sunburn", "Sunburn causes ice-cream sales", "Temperature is a possible common factor", "There is no association"],
+      "correct": 2,
+      "explanation": "Both variables can rise because of hotter weather. Their correlation does not show that either variable causes the other."
+    },
+    {
+      "q": "A line of best fit is $y=2.5x+4$. Estimate $y$ when $x=6$.",
+      "options": ["15", "17", "19", "21"],
+      "correct": 2,
+      "explanation": "Substitute $x=6$: $y=2.5(6)+4=15+4=19$."
+    },
+    {
+      "q": "In a survey of 120 learners, 42 prefer football. What angle should represent football in a pie chart?",
+      "options": ["42 degrees", "108 degrees", "120 degrees", "126 degrees"],
+      "correct": 3,
+      "explanation": "The sector angle is $(42/120)360^\\circ=126^\\circ$."
+    },
+    {
+      "q": "Which points are joined to form a frequency polygon for grouped data?",
+      "options": ["Class boundaries and cumulative frequencies", "Class midpoints and frequencies", "Class widths and frequencies", "Upper boundaries and percentages"],
+      "correct": 1,
+      "explanation": "Plot each class midpoint against its frequency, then join successive plotted points with straight line segments."
+    },
+    {
+      "q": "A distribution has a long tail to the left. Which ordering is usually expected?",
+      "options": ["Mean > Median > Mode", "Mode > Median > Mean", "Mean = Median = Mode", "Median > Mean > Mode"],
+      "correct": 1,
+      "explanation": "A long left tail pulls the mean downward most strongly. For a negatively skewed distribution, the usual order is $\\text{mean}<\\text{median}<\\text{mode}$."
+    },
+    {
+      "q": "Machine A has mean output 50 with standard deviation 5. Machine B has mean output 80 with standard deviation 6. Which machine is more consistent relative to its mean?",
+      "options": ["Machine A", "Machine B", "They are equally consistent", "There is not enough information"],
+      "correct": 1,
+      "explanation": "Compare coefficients of variation. For A, $CV=(5/50)100=10\\%$. For B, $CV=(6/80)100=7.5\\%$. The smaller relative spread makes Machine B more consistent."
+    },
+    {
+      "q": "The mean of 12 observations is 15. If one observation recorded as 18 should have been 30, find the corrected mean.",
+      "options": ["15", "16", "17", "18"],
+      "correct": 1,
+      "explanation": "The recorded total is $12(15)=180$. Correcting the error adds $30-18=12$, giving $192$. The corrected mean is $192/12=16$."
+    },
+    {
+      "q": "A test score is 72, the mean is 60, and the standard deviation is 6. Find the z-score.",
+      "options": ["2", "1", "6", "12"],
+      "correct": 0,
+      "explanation": "Use $z=(x-\\mu)/\\sigma$. Thus $z=(72-60)/6=12/6=2$, so the score is two standard deviations above the mean."
+    },
+    {
+      "q": "A variable $x$ has mean 10. A new variable is defined by $y=2x+3$. Find the mean of $y$.",
+      "options": ["20", "23", "26", "30"],
+      "correct": 1,
+      "explanation": "A linear transformation changes the mean in the same way: $\\bar{y}=2\\bar{x}+3=2(10)+3=23$."
+    },
+    {
+      "q": "The ordered data are shown by the stem-and-leaf display $1\\mid2,5,8$ and $2\\mid1,4,7$. Find the median.",
+      "options": ["18", "19", "19.5", "21"],
+      "correct": 2,
+      "explanation": "The values are $12,15,18,21,24,27$. With six values, the median is the mean of the third and fourth: $(18+21)/2=19.5$."
+    },
+    {
+      "q": "In 60 trials, an event occurs 18 times. Find its relative frequency.",
+      "options": ["0.18", "0.25", "0.28", "0.30"],
+      "correct": 3,
+      "explanation": "Relative frequency is the event frequency divided by the total number of trials: $18/60=0.30$."
+    },
+    {
+      "q": "Which survey question is most likely to produce response bias?",
+      "options": ["Do you agree that the excellent new library should receive more funding?", "How many times did you visit the library last month?", "Which library service did you use most recently?", "What is your age group?"],
+      "correct": 0,
+      "explanation": "Calling the library excellent and implying that it should receive more funding leads respondents toward agreement. Neutral wording avoids this kind of response bias."
+    },
+    {
+      "q": "Which quantity is a statistic rather than a parameter?",
+      "options": ["The mean height of every learner in a school", "The mean height of 50 sampled learners", "The total number of learners enrolled in the school", "The proportion of all voters who voted"],
+      "correct": 1,
+      "explanation": "A statistic describes a sample. The mean calculated from the 50 sampled learners is therefore a statistic; quantities describing an entire population are parameters."
+    },
+    {
+      "q": "Find the three-point moving average of the values 12, 15, and 18.",
+      "options": ["14", "14.5", "15", "16"],
+      "correct": 2,
+      "explanation": "Add the three consecutive values and divide by three: $(12+15+18)/3=45/3=15$."
+    },
+    {
+      "q": "Student A scores 75 on a test with mean 60 and standard deviation 5. Student B scores 88 on a test with mean 70 and standard deviation 6. Who performed better relative to the group?",
+      "options": ["Student A", "Student B", "The raw scores are enough to decide", "They performed equally well relative to their groups"],
+      "correct": 3,
+      "explanation": "Student A has $z=(75-60)/5=3$. Student B has $z=(88-70)/6=3$. Their standardized scores are equal, so they performed equally well relative to their groups."
     }
   ],
   "stimuli": {
@@ -577,6 +821,21 @@
           "80-89",
           "7"
         ]
+      ]
+    },
+    "unequal-width-table": {
+      "type": "table",
+      "title": "Table 5: Distribution with unequal class widths",
+      "description": "The observations are grouped into intervals of different widths.",
+      "columns": [
+        "Class interval",
+        "Frequency"
+      ],
+      "rows": [
+        ["0-9", "6"],
+        ["10-19", "15"],
+        ["20-29", "24"],
+        ["30-49", "15"]
       ]
     }
   }
