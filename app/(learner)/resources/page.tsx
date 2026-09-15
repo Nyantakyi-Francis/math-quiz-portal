@@ -33,8 +33,8 @@ export default async function ResourcesPage() {
               </h2>
               <div className="academic-rule mt-5" />
               <p className="mt-5 max-w-lg text-sm leading-7 text-slate-200">
-                Ten topic packs are gathered in one protected place, with clean filenames that are
-                easy to share and maintain.
+                Topic packs are gathered in one protected place, with links that are easy to open
+                during revision.
               </p>
             </div>
 
@@ -46,7 +46,7 @@ export default async function ResourcesPage() {
                 </p>
               </div>
               <div className="bg-white/70 px-5 py-6">
-                <p className="text-3xl font-black text-slate-950">10</p>
+                <p className="text-3xl font-black text-slate-950">{resources.length}</p>
                 <p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                   Topics
                 </p>

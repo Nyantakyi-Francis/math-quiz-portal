@@ -17,6 +17,9 @@ export function SiteFooter() {
           <Link className="focus-outline text-slate-600 transition hover:text-[var(--brand-deep)]" href="/signup">
             Create account
           </Link>
+          <Link className="focus-outline text-slate-600 transition hover:text-[var(--brand-deep)]" href="/terms">
+            Terms
+          </Link>
           <Link className="focus-outline text-slate-600 transition hover:text-[var(--brand-deep)]" href="/dashboard">
             Dashboard
           </Link>

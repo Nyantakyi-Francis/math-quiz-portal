@@ -51,7 +51,11 @@ The UI is organized into route groups under `app/`.
 
 - Signup (`/signup`)
   - Creates a Supabase Auth user with `full_name` metadata.
+  - Requires Terms of Service acceptance and stores `terms_accepted_at` and `terms_version` metadata.
   - Shows success/error banners and instructs the user to confirm email.
+
+- Terms of Service (`/terms`)
+  - Public page describing account use, learner data, acceptable use, and account removal.
 
 - Login (`/login`)
   - Signs in with email + password and redirects to the protected dashboard.
@@ -83,6 +87,9 @@ The UI is organized into route groups under `app/`.
 
 - Admin messages (`/admin/messages`) (protected + admin role)
   - Select a learner to open a thread-style conversation and reply directly.
+
+- Resource Library (`/resources`) (protected)
+  - Lists the PDF topic packs available to signed-in learners and admins.
 
 # Development Environment
 

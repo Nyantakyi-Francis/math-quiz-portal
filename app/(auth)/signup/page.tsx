@@ -86,6 +86,29 @@ export default async function SignupPage({ searchParams }: SignupPageProps) {
               />
             </div>
 
+            <div className="soft-well rounded-lg p-4">
+              <label className="flex gap-3 text-sm leading-6 text-slate-700" htmlFor="terms">
+                <input
+                  className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700 focus:ring-blue-100"
+                  id="terms"
+                  name="terms"
+                  required
+                  type="checkbox"
+                  value="accepted"
+                />
+                <span>
+                  I agree to the{" "}
+                  <Link
+                    className="font-semibold text-blue-700 hover:text-blue-800"
+                    href="/terms"
+                  >
+                    Terms of Service
+                  </Link>
+                  .
+                </span>
+              </label>
+            </div>
+
             <button className="button-primary w-full" type="submit">
               Create account
             </button>

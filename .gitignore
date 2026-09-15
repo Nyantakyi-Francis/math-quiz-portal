@@ -4,6 +4,7 @@ out
 coverage
 .vercel
 .DS_Store
+desktop.ini
 *.log
 *.tsbuildinfo
 .env
