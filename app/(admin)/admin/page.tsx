@@ -8,6 +8,7 @@ type AdminPageProps = {
   searchParams: Promise<{
     sent?: string;
     error?: string;
+    roleUpdated?: string;
   }>;
 };
 
@@ -34,6 +35,9 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
           />
         ) : null}
         {params.error ? <SetupBanner message={params.error} title="Message failed" /> : null}
+        {params.roleUpdated ? (
+          <SetupBanner message="Account role updated successfully." title="Role updated" />
+        ) : null}
 
         {!snapshot.authorized ? (
           <div className="panel p-6 text-sm leading-7 text-slate-600">
@@ -148,6 +152,28 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
                         </p>
                         <p className="text-slate-500">{learner.email}</p>
                         {learner.phone ? <p className="text-slate-500">{learner.phone}</p> : null}
+                        <form
+                          action="/admin/users/role"
+                          className="mt-3 flex flex-wrap items-center gap-2"
+                          method="post"
+                        >
+                          <input name="profile_id" type="hidden" value={learner.id} />
+                          <label className="sr-only" htmlFor={`role-${learner.id}`}>
+                            Role for {learner.email}
+                          </label>
+                          <select
+                            className="field min-h-0 w-32 py-2 text-xs"
+                            defaultValue={learner.role}
+                            id={`role-${learner.id}`}
+                            name="role"
+                          >
+                            <option value="learner">Learner</option>
+                            <option value="admin">Admin</option>
+                          </select>
+                          <button className="button-secondary px-3 py-2 text-xs" type="submit">
+                            Save role
+                          </button>
+                        </form>
                         <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">
                           {learner.role} • joined {new Date(learner.joinedAt).toLocaleDateString()}
                         </p>

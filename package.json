@@ -12,7 +12,8 @@
     "check": "npm run typecheck && npm run lint && npm run test",
     "icons:generate": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/generate-pwa-icons.ps1",
     "import:module": "node scripts/import-module.mjs",
-    "import:all-modules": "node scripts/import-module.mjs all"
+    "import:all-modules": "node scripts/import-module.mjs all",
+    "demo:reviewer-data": "node scripts/create-reviewer-demo-data.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.2",

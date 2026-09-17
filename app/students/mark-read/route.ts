@@ -3,6 +3,10 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { requiredTextField } from "@/lib/http/validation";
 import { getSafeActionError } from "@/lib/errors/user-facing";
 
+type UnreadPeerMessageRecipientRow = {
+  message_id: string | null;
+};
+
 function redirectWithStatus(requestUrl: string, studentId: string, params: Record<string, string>) {
   const url = new URL("/students", requestUrl);
   url.searchParams.set("student", studentId);
@@ -61,9 +65,9 @@ export async function POST(request: Request) {
     });
   }
 
-  const messageIds = (unreadRows ?? [])
-    .map((row: any) => row.message_id)
-    .filter((messageId: any): messageId is string => typeof messageId === "string" && Boolean(messageId));
+  const messageIds = ((unreadRows ?? []) as UnreadPeerMessageRecipientRow[])
+    .map((row) => row.message_id)
+    .filter((messageId): messageId is string => typeof messageId === "string" && Boolean(messageId));
 
   if (!messageIds.length) {
     return redirectWithStatus(request.url, studentId, {

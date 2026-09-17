@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
 const CACHE_NAME = "math-quiz-portal-pwa-v4";
 
 const PRECACHE_URLS = [

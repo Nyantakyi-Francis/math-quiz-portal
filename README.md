@@ -1,122 +1,111 @@
-# Overview
+# Math Quiz Portal
 
-Math Quiz Portal is a protected learner platform for Elective Mathematics. I built it to practice designing a real full‑stack workflow: authentication, role-based access (learner vs admin), database-backed quiz delivery, server-side scoring, progress tracking, and a simple in-app messaging system.
+Math Quiz Portal is a branded Elective Mathematics learning portal by Nyantakyi Francis. It combines topic-based quizzes, protected learner accounts, server-side scoring, score history, structured explanations, downloadable learning resources, and admin messaging.
 
-The app is written with Node.js, Next.js (App Router) and Supabase. Learners sign up, confirm their email, log in, and then access quiz modules through a dashboard. Quiz submissions are handled on the server so answer keys stay protected. Admins can view recent learner activity and send announcements or direct messages.
+The current product contains 11 quiz modules and 470 authored questions with explanations. Learners sign up, confirm their email, log in, practise by module, submit answers to a trusted server route, and review their results after scoring. Admin users can monitor recent learners and attempts, send announcements, manage learner roles, and reply to messages.
 
-## Running locally
+## Product Highlights
+
+- Branded learner portal for Elective Mathematics.
+- 470 questions across 11 modules.
+- Authenticated learner and admin areas.
+- Server-side quiz scoring so answer keys are not exposed before submission.
+- Post-submission explanations, correct answers, selected answers, and misconception feedback.
+- Learner dashboard with recommendations, score history, messages, and progress analytics.
+- Admin console for recent learners, recent performance, announcements, direct messages, and role management.
+- Protected PDF resource library with 19 authored study packs.
+- PWA assets and offline fallback page.
+- Supabase schema with row-level security policies for profiles, quiz data, attempts, messages, and admin-only answer data.
+
+## Tech Stack
+
+- Next.js App Router
+- React and TypeScript
+- Supabase Auth and Postgres
+- Tailwind CSS
+- KaTeX for mathematical notation
+- Vitest and ESLint
+
+## Local Setup
 
 1. Install dependencies:
+
    ```bash
    npm install
    ```
 
 2. Create an environment file:
+
    ```bash
    copy .env.example .env.local
    ```
 
-3. Fill in at least these values in `.env.local`:
+3. Fill in the required values:
+
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `SUPABASE_SERVICE_ROLE_KEY` (required for the module import script)
+   - `SUPABASE_SERVICE_ROLE_KEY`
    - `SITE_URL=http://localhost:3000`
 
-4. Apply the database schema in your Supabase project:
-   - Run `supabase/schema.sql`
-   - Optionally run `supabase/seed.sql` (module shell rows)
+4. Apply the database schema in Supabase:
 
-5. Start the dev server:
+   - Run `supabase/schema.sql`
+   - Run `supabase/seed.sql`
+
+5. Import quiz modules:
+
+   ```bash
+   npm run import:all-modules -- --replace
+   ```
+
+6. Optional: create synthetic reviewer data:
+
+   ```bash
+   npm run demo:reviewer-data
+   ```
+
+7. Start the app:
+
    ```bash
    npm run dev
    ```
 
-6. Open the app:
-   - http://localhost:3000
+8. Open:
 
-## Demo video
+   ```text
+   http://localhost:3000
+   ```
 
-This project includes a short demo video showing the app running (starting the server, navigating the pages, and a quick code walkthrough):
+## Admin Setup
 
-[Software Demo Video](https://youtu.be/Ix951WLkg9c)
+After creating the first account, set that account's `profiles.role` to `admin` in Supabase. Once one admin exists, the Admin Console can promote or demote other users through the role-management controls.
 
-# Web Pages
+Do not commit `.env.local` or service-role credentials. `.env.example` is the only environment file intended for source control.
 
-The UI is organized into route groups under `app/`.
+## Validation
 
-- Public landing page (`/`)
-  - Shows the module catalog and high-level stats (module count, question count).
-  - Dynamically displays a setup banner when Supabase env vars/schema are missing.
-  - Primary navigation flows into `/signup` and `/login`.
+Use the combined check before packaging or deployment:
 
-- Signup (`/signup`)
-  - Creates a Supabase Auth user with `full_name` metadata.
-  - Requires Terms of Service acceptance and stores `terms_accepted_at` and `terms_version` metadata.
-  - Shows success/error banners and instructs the user to confirm email.
+```bash
+npm run check
+```
 
-- Terms of Service (`/terms`)
-  - Public page describing account use, learner data, acceptable use, and account removal.
+Useful individual commands:
 
-- Login (`/login`)
-  - Signs in with email + password and redirects to the protected dashboard.
-  - Accepts a `next` parameter so protected routes can send users back after login.
+```bash
+npm run typecheck
+npm run lint
+npm test -- --run
+npm run build
+```
 
-- Learner dashboard (`/dashboard`) (protected)
-  - Dynamically builds a snapshot for the signed-in user (attempt totals, average score, unread message count).
-  - Shows a list of recent attempts and a scrollable module list.
+## Licensing Materials
 
-- Module catalog (`/modules`) (protected)
-  - Lists modules available to the learner account.
+The repository includes supporting documents for review:
 
-- Module page (`/modules/[slug]`) (protected)
-  - Loads the module snapshot from the database.
-  - If questions have been imported, renders the quiz runner; otherwise shows status messaging.
-  - Quiz submission is server-handled so answer keys remain hidden from learners.
+- `PRODUCT_BRIEF.md`
+- `ASSET_OWNERSHIP.md`
+- `PRIVACY_AND_DATA_HANDLING.md`
+- `REVIEWER_WALKTHROUGH.md`
 
-- Message center (`/messages`) (protected)
-  - Learner view: a single “conversation-style” thread with admin/system messages and score notifications.
-  - Learners can send messages to admins (if an admin account exists).
-  - If the signed-in user is an admin, this route redirects to `/admin/messages`.
-
-- Message detail (`/messages/[messageId]`) (protected)
-  - Opens a single message and displays sender and read timestamps.
-
-- Admin console (`/admin`) (protected + admin role)
-  - Requires the signed-in user’s `profiles.role` to be set to `admin` in Supabase.
-  - Shows recent learners, performance snapshots, and provides an admin “send message” form.
-
-- Admin messages (`/admin/messages`) (protected + admin role)
-  - Select a learner to open a thread-style conversation and reply directly.
-
-- Resource Library (`/resources`) (protected)
-  - Lists the PDF topic packs available to signed-in learners and admins.
-
-# Development Environment
-
-- Tools
-  - Visual Studio Code
-  - Node.js + npm
-  - Supabase (Auth + Postgres)
-
-- Language and libraries
-  - TypeScript + React
-  - Next.js (App Router)
-  - Supabase SSR helpers (`@supabase/ssr`) + client SDK (`@supabase/supabase-js`)
-  - Tailwind CSS
-  - Vitest (unit tests)
-  - ESLint (linting)
-
-# Useful Websites
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Supabase Documentation](https://supabase.com/docs)
-- [Supabase Auth (Email) Guides](https://supabase.com/docs/guides/auth)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Vitest Documentation](https://vitest.dev/guide/)
-- [Vercel Documentation](https://vercel.com/docs)
-
-# Future Work
-
-- Finish importing the full legacy quiz bank into Postgres and remove remaining placeholders.
-- Add an admin UI to manage roles (promote/demote users) instead of editing `profiles.role` manually.
-- Expand learner analytics (per-topic breakdowns, attempt history charting, and export for admins).
+These files describe the licensing offer, owned assets, data handling, reviewer flow, and deployment expectations.

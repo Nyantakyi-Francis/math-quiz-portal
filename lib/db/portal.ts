@@ -67,6 +67,25 @@ type SentMessageRow = {
   recipientCount: number;
 };
 
+type ProgressModuleRow = {
+  slug: string;
+  title: string;
+  attempts: number;
+  bestScore: number;
+  latestScore: number;
+  firstScore: number;
+  improvement: number;
+  lastAttemptAt: string;
+  mastered: boolean;
+};
+
+type ProgressRecentAttempt = {
+  id: string;
+  moduleTitle: string;
+  scorePercent: number;
+  createdAt: string;
+};
+
 type AdminLearnerThreadSummary = {
   id: string;
   email: string;
@@ -95,6 +114,76 @@ type SetupWarning = string | null;
 
 const inboxMessageSelect =
   "read_at, messages(id, sender_id, subject, body, message_type, created_at)";
+
+type ProfileRecord = {
+  id: string;
+  email: string | null;
+  full_name: string | null;
+  phone: string | null;
+  role: string | null;
+  created_at: string;
+};
+
+type SenderProfileRecord = Pick<ProfileRecord, "id" | "email" | "full_name" | "phone">;
+
+type MessageRecord = {
+  id?: string;
+  sender_id: string | null;
+  subject?: string | null;
+  body?: string | null;
+  message_type: string | null;
+  created_at?: string | null;
+};
+
+type MessageRecipientRecord = {
+  read_at?: string | null;
+  recipient_id?: string | null;
+  message_id?: string | null;
+  messages: MessageRecord | MessageRecord[] | null;
+};
+
+type DashboardAttemptRecord = {
+  id: string;
+  score_percent: number | string | null;
+  created_at: string;
+  modules: { title: string | null; slug: string | null } | { title: string | null; slug: string | null }[] | null;
+};
+
+type ProgressAttemptRecord = DashboardAttemptRecord;
+
+type AdminAttemptRecord = {
+  id: string;
+  learner_id: string;
+  score_percent: number | string | null;
+  created_at: string;
+  profiles: { full_name: string | null } | { full_name: string | null }[] | null;
+  modules: { title: string | null } | { title: string | null }[] | null;
+};
+
+type DirectoryProfileRecord = {
+  id: string;
+  display_name: string | null;
+  created_at: string;
+};
+
+type SentMessageRecord = {
+  id: string;
+  subject: string;
+  message_type: string;
+  created_at: string;
+};
+
+type MessageRecipientCountRecord = {
+  message_id: string;
+};
+
+function getJoinedMessage(row: MessageRecipientRecord) {
+  return Array.isArray(row.messages) ? row.messages[0] : row.messages;
+}
+
+function getJoinedRecord<T>(row: T | T[] | null | undefined) {
+  return Array.isArray(row) ? row[0] : row ?? null;
+}
 
 function mapSetupWarning(message: string) {
   console.error("Portal data request failed:", message);
@@ -273,9 +362,9 @@ async function getInboxMessages(
       };
     }
 
-    const rawMessages: RawInboxMessage[] = (data ?? [])
-      .map<RawInboxMessage | null>((entry: any) => {
-        const messageRow = Array.isArray(entry.messages) ? entry.messages[0] : entry.messages;
+    const rawMessages: RawInboxMessage[] = ((data ?? []) as MessageRecipientRecord[])
+      .map<RawInboxMessage | null>((entry) => {
+        const messageRow = getJoinedMessage(entry);
 
         if (!messageRow?.id) {
           return null;
@@ -288,7 +377,7 @@ async function getInboxMessages(
           body: messageRow.body ?? "",
           type: messageRow.message_type ?? "system",
           createdAt: messageRow.created_at ?? new Date().toISOString(),
-          readAt: entry.read_at,
+          readAt: entry.read_at ?? null,
           direction: "incoming" as const
         };
       })
@@ -312,16 +401,20 @@ async function getInboxMessages(
       if (sentError) {
         warning ??= mapSetupWarning(sentError.message);
       } else {
-        sentMessages = (sentRows ?? []).map((messageRow: any) => ({
-          id: messageRow.id,
-          senderId: messageRow.sender_id ?? null,
-          subject: messageRow.subject ?? "Message",
-          body: messageRow.body ?? "",
-          type: messageRow.message_type ?? "admin",
-          createdAt: messageRow.created_at ?? new Date().toISOString(),
-          readAt: null,
-          direction: "outgoing" as const
-        }));
+        sentMessages = ((sentRows ?? []) as MessageRecord[])
+          .filter((messageRow): messageRow is MessageRecord & { id: string } =>
+            Boolean(messageRow.id)
+          )
+          .map((messageRow) => ({
+            id: messageRow.id,
+            senderId: messageRow.sender_id ?? null,
+            subject: messageRow.subject ?? "Message",
+            body: messageRow.body ?? "",
+            type: messageRow.message_type ?? "admin",
+            createdAt: messageRow.created_at ?? new Date().toISOString(),
+            readAt: null,
+            direction: "outgoing" as const
+          }));
       }
     }
 
@@ -352,7 +445,7 @@ async function getInboxMessages(
       if (sendersError) {
         warning ??= mapSetupWarning(sendersError.message);
       } else {
-        (senders ?? []).forEach((sender: any) => {
+        ((senders ?? []) as SenderProfileRecord[]).forEach((sender) => {
           senderLookup.set(sender.id, {
             fullName: sender.full_name,
             email: sender.email ?? null,
@@ -418,7 +511,7 @@ async function getAdminContacts() {
     }
 
     return {
-      adminContacts: (data ?? []).map((profile: any) => ({
+      adminContacts: ((data ?? []) as SenderProfileRecord[]).map((profile) => ({
         id: profile.id,
         email: profile.email ?? "No email",
         fullName: profile.full_name,
@@ -503,13 +596,17 @@ export async function getDashboardSnapshot() {
     if (error) {
       warning ??= mapSetupWarning(error.message);
     } else if (data) {
-      attemptHistory = data.map((attempt: any) => ({
-        id: attempt.id,
-        moduleTitle: attempt.modules?.title ?? "Module",
-        moduleSlug: attempt.modules?.slug ?? "",
-        scorePercent: Number(attempt.score_percent ?? 0),
-        createdAt: attempt.created_at
-      }));
+      attemptHistory = (data as unknown as DashboardAttemptRecord[]).map((attempt) => {
+        const moduleRow = getJoinedRecord(attempt.modules);
+
+        return {
+          id: attempt.id,
+          moduleTitle: moduleRow?.title ?? "Module",
+          moduleSlug: moduleRow?.slug ?? "",
+          scorePercent: Number(attempt.score_percent ?? 0),
+          createdAt: attempt.created_at
+        };
+      });
       attempts = attemptHistory.slice(0, 5);
     }
   } catch (error) {
@@ -558,6 +655,123 @@ export async function getDashboardSnapshot() {
     recommendation,
     messages,
     warning
+  };
+}
+
+export async function getProgressSnapshot() {
+  const session = await requireUser();
+
+  if (!session.supabase || !session.user) {
+    return {
+      isConfigured: getSupabaseEnv().isConfigured,
+      userEmail: null,
+      userPhone: null,
+      role: "learner",
+      warning: getSafeDataError() as SetupWarning,
+      totals: {
+        attempts: 0,
+        modulesAttempted: 0,
+        averageScore: 0,
+        masteredModules: 0
+      },
+      modules: [] as ProgressModuleRow[],
+      recentAttempts: [] as ProgressRecentAttempt[]
+    };
+  }
+
+  await ensureProfile(session.supabase, session.user);
+  const profileSummary = await getProfileSummary(session.supabase, session.user);
+  let warning: SetupWarning = profileSummary.warning;
+  let attempts: ProgressAttemptRecord[] = [];
+
+  try {
+    const { data, error } = await session.supabase
+      .from("attempts")
+      .select("id, score_percent, created_at, modules(title, slug)")
+      .eq("learner_id", session.user.id)
+      .order("created_at", { ascending: false })
+      .limit(500);
+
+    if (error) {
+      warning ??= mapSetupWarning(error.message);
+    } else {
+      attempts = (data ?? []) as unknown as ProgressAttemptRecord[];
+    }
+  } catch (error) {
+    warning ??= mapSetupWarning(
+      error instanceof Error ? error.message : "Unable to load progress analytics."
+    );
+  }
+
+  const moduleRows = new Map<string, ProgressAttemptRecord[]>();
+
+  attempts.forEach((attempt) => {
+    const moduleRow = getJoinedRecord(attempt.modules);
+    const slug = moduleRow?.slug;
+
+    if (!slug) {
+      return;
+    }
+
+    moduleRows.set(slug, [...(moduleRows.get(slug) ?? []), attempt]);
+  });
+
+  const progressModules: ProgressModuleRow[] = modules
+    .map((module) => {
+      const moduleAttempts = moduleRows.get(module.slug) ?? [];
+
+      if (!moduleAttempts.length) {
+        return null;
+      }
+
+      const sortedOldestFirst = [...moduleAttempts].sort(
+        (a, b) => Date.parse(a.created_at) - Date.parse(b.created_at)
+      );
+      const scores = moduleAttempts.map((attempt) => Number(attempt.score_percent ?? 0));
+      const latestScore = Number(moduleAttempts[0]?.score_percent ?? 0);
+      const firstScore = Number(sortedOldestFirst[0]?.score_percent ?? 0);
+      const bestScore = Math.max(...scores);
+
+      return {
+        slug: module.slug,
+        title: module.title,
+        attempts: moduleAttempts.length,
+        bestScore,
+        latestScore,
+        firstScore,
+        improvement: Number((latestScore - firstScore).toFixed(1)),
+        lastAttemptAt: moduleAttempts[0]?.created_at ?? new Date().toISOString(),
+        mastered: bestScore >= 70
+      } satisfies ProgressModuleRow;
+    })
+    .filter((module): module is ProgressModuleRow => Boolean(module));
+
+  const scoredAttempts = attempts.map((attempt) => Number(attempt.score_percent ?? 0));
+  const averageScore = scoredAttempts.length
+    ? Number(
+        (scoredAttempts.reduce((sum, score) => sum + score, 0) / scoredAttempts.length).toFixed(1)
+      )
+    : 0;
+
+  return {
+    isConfigured: true,
+    userEmail: session.user.email ?? null,
+    userPhone: profileSummary.phone,
+    role: profileSummary.role,
+    warning,
+    totals: {
+      attempts: attempts.length,
+      modulesAttempted: progressModules.length,
+      averageScore,
+      masteredModules: progressModules.filter((module) => module.mastered).length
+    },
+    modules: progressModules.sort((a, b) => Date.parse(b.lastAttemptAt) - Date.parse(a.lastAttemptAt)),
+    recentAttempts: attempts.slice(0, 12).map((attempt) => ({
+      id: attempt.id,
+      moduleTitle: getJoinedRecord(attempt.modules)?.title ?? "Module",
+      scorePercent: Number(attempt.score_percent ?? 0),
+      createdAt: attempt.created_at
+    }))
   };
 }
 
@@ -834,7 +1048,7 @@ export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
     if (error) {
       warning ??= mapSetupWarning(error.message);
     } else if (data) {
-      learners = data.map((profile: any) => ({
+      learners = (data as ProfileRecord[]).map((profile) => ({
         id: profile.id,
         email: profile.email ?? "No email",
         fullName: profile.full_name,
@@ -867,7 +1081,7 @@ export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
       if (unreadError) {
         warning ??= mapSetupWarning(unreadError.message);
       } else {
-        (unreadRows ?? []).forEach((row: any) => {
+        ((unreadRows ?? []) as unknown as MessageRecipientRecord[]).forEach((row) => {
           const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
           const senderId = messageRow?.sender_id ?? null;
 
@@ -896,11 +1110,16 @@ export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
       if (incomingError) {
         warning ??= mapSetupWarning(incomingError.message);
       } else {
-        (incomingRows ?? []).forEach((row: any) => {
-          const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
+        ((incomingRows ?? []) as unknown as MessageRecipientRecord[]).forEach((row) => {
+          const messageRow = getJoinedMessage(row);
           const senderId = messageRow?.sender_id ?? null;
 
-          if (!senderId || !learnerLookup.has(senderId) || lastIncomingByLearner.has(senderId)) {
+          if (
+            !messageRow ||
+            !senderId ||
+            !learnerLookup.has(senderId) ||
+            lastIncomingByLearner.has(senderId)
+          ) {
             return;
           }
 
@@ -928,12 +1147,12 @@ export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
       if (outgoingError) {
         warning ??= mapSetupWarning(outgoingError.message);
       } else {
-        (outgoingRows ?? []).forEach((row: any) => {
+        ((outgoingRows ?? []) as unknown as MessageRecipientRecord[]).forEach((row) => {
           if (!row?.recipient_id || lastOutgoingByLearner.has(row.recipient_id)) {
             return;
           }
 
-          const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
+          const messageRow = getJoinedMessage(row);
 
           if (!messageRow) {
             return;
@@ -1037,13 +1256,13 @@ export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
       }
 
       const rawRows = [
-        ...(incomingResult.data ?? []).map((row: any) => ({
+        ...((incomingResult.data ?? []) as unknown as MessageRecipientRecord[]).map((row) => ({
           readAt: row.read_at ?? null,
-          message: Array.isArray(row.messages) ? row.messages[0] : row.messages
+          message: getJoinedMessage(row)
         })),
-        ...(outgoingResult.data ?? []).map((row: any) => ({
+        ...((outgoingResult.data ?? []) as unknown as MessageRecipientRecord[]).map((row) => ({
           readAt: row.read_at ?? null,
-          message: Array.isArray(row.messages) ? row.messages[0] : row.messages
+          message: getJoinedMessage(row)
         }))
       ].filter((entry) => Boolean(entry.message));
 
@@ -1066,7 +1285,7 @@ export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
         if (sendersError) {
           warning ??= mapSetupWarning(sendersError.message);
         } else {
-          (senders ?? []).forEach((sender: any) => {
+          ((senders ?? []) as SenderProfileRecord[]).forEach((sender) => {
             senderLookup.set(sender.id, {
               fullName: sender.full_name ?? null,
               email: sender.email ?? null
@@ -1076,6 +1295,9 @@ export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
       }
 
       messages = rawRows
+        .filter((entry): entry is { readAt: string | null; message: MessageRecord } =>
+          Boolean(entry.message?.id)
+        )
         .map((entry) => {
           const messageRow = entry.message;
           const createdAt = messageRow.created_at ?? new Date().toISOString();
@@ -1090,7 +1312,7 @@ export async function getAdminMessagesSnapshot(selectedLearnerId?: string) {
               : sender?.fullName ?? sender?.email ?? "Admin";
 
           return {
-            id: messageRow.id,
+            id: messageRow.id!,
             senderId,
             senderLabel,
             senderEmail: null,
@@ -1161,9 +1383,8 @@ async function getPeerThreadMessages(
       warning ??= mapSetupWarning(outgoingError.message);
     }
 
-    const incomingMessages = (incomingRows ?? [])
-      .map((entry: any): InboxMessage | null => {
-        const messageRow = Array.isArray(entry.messages) ? entry.messages[0] : entry.messages;
+    const incomingMessages = ((incomingRows ?? []) as unknown as MessageRecipientRecord[]).map((entry): InboxMessage | null => {
+        const messageRow = getJoinedMessage(entry);
 
         if (!messageRow?.id) {
           return null;
@@ -1186,9 +1407,8 @@ async function getPeerThreadMessages(
       })
       .filter((message): message is InboxMessage => Boolean(message));
 
-    const outgoingMessages = (outgoingRows ?? [])
-      .map((entry: any): InboxMessage | null => {
-        const messageRow = Array.isArray(entry.messages) ? entry.messages[0] : entry.messages;
+    const outgoingMessages = ((outgoingRows ?? []) as unknown as MessageRecipientRecord[]).map((entry): InboxMessage | null => {
+        const messageRow = getJoinedMessage(entry);
 
         if (!messageRow?.id) {
           return null;
@@ -1264,7 +1484,7 @@ export async function getStudentMessagesSnapshot(selectedStudentId?: string) {
     if (error) {
       warning ??= mapSetupWarning(error.message);
     } else if (data) {
-      directory = (data as any[])
+      directory = (data as DirectoryProfileRecord[])
         .filter((row) => row.id && row.id !== currentUserId)
         .map((row) => ({
           id: row.id,
@@ -1297,8 +1517,8 @@ export async function getStudentMessagesSnapshot(selectedStudentId?: string) {
       if (unreadError) {
         warning ??= mapSetupWarning(unreadError.message);
       } else {
-        (unreadRows ?? []).forEach((row: any) => {
-          const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
+        ((unreadRows ?? []) as unknown as MessageRecipientRecord[]).forEach((row) => {
+          const messageRow = getJoinedMessage(row);
           const senderId = messageRow?.sender_id ?? null;
 
           if (!senderId || !directoryLookup.has(senderId)) {
@@ -1326,11 +1546,16 @@ export async function getStudentMessagesSnapshot(selectedStudentId?: string) {
       if (incomingError) {
         warning ??= mapSetupWarning(incomingError.message);
       } else {
-        (incomingRows ?? []).forEach((row: any) => {
-          const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
+        ((incomingRows ?? []) as unknown as MessageRecipientRecord[]).forEach((row) => {
+          const messageRow = getJoinedMessage(row);
           const senderId = messageRow?.sender_id ?? null;
 
-          if (!senderId || !directoryLookup.has(senderId) || lastIncomingByStudent.has(senderId)) {
+          if (
+            !messageRow ||
+            !senderId ||
+            !directoryLookup.has(senderId) ||
+            lastIncomingByStudent.has(senderId)
+          ) {
             return;
           }
 
@@ -1358,14 +1583,14 @@ export async function getStudentMessagesSnapshot(selectedStudentId?: string) {
       if (outgoingError) {
         warning ??= mapSetupWarning(outgoingError.message);
       } else {
-        (outgoingRows ?? []).forEach((row: any) => {
+        ((outgoingRows ?? []) as unknown as MessageRecipientRecord[]).forEach((row) => {
           const recipientId = row?.recipient_id ?? null;
 
           if (!recipientId || !directoryLookup.has(recipientId) || lastOutgoingByStudent.has(recipientId)) {
             return;
           }
 
-          const messageRow = Array.isArray(row.messages) ? row.messages[0] : row.messages;
+          const messageRow = getJoinedMessage(row);
 
           if (!messageRow) {
             return;
@@ -1508,7 +1733,7 @@ export async function getAdminSnapshot() {
     if (error) {
       warning ??= mapSetupWarning(error.message);
     } else if (data) {
-      learners = data.map((profile: any) => ({
+      learners = (data as ProfileRecord[]).map((profile) => ({
         id: profile.id,
         email: profile.email ?? "No email",
         fullName: profile.full_name,
@@ -1531,11 +1756,11 @@ export async function getAdminSnapshot() {
     if (error) {
       warning ??= mapSetupWarning(error.message);
     } else if (data) {
-      attempts = data.map((attempt: any) => ({
+      attempts = (data as unknown as AdminAttemptRecord[]).map((attempt) => ({
         id: attempt.id,
         learnerId: attempt.learner_id,
-        learnerName: attempt.profiles?.full_name ?? "Learner",
-        moduleTitle: attempt.modules?.title ?? "Module",
+        learnerName: getJoinedRecord(attempt.profiles)?.full_name ?? "Learner",
+        moduleTitle: getJoinedRecord(attempt.modules)?.title ?? "Module",
         scorePercent: Number(attempt.score_percent ?? 0),
         createdAt: attempt.created_at
       }));
@@ -1568,12 +1793,12 @@ export async function getAdminSnapshot() {
       } else {
         const recipientCountByMessage = new Map<string, number>();
 
-        recipients?.forEach((recipient: any) => {
+        (recipients as MessageRecipientCountRecord[] | null)?.forEach((recipient) => {
           const count = recipientCountByMessage.get(recipient.message_id) ?? 0;
           recipientCountByMessage.set(recipient.message_id, count + 1);
         });
 
-        sentMessages = messages.map((message: any) => ({
+        sentMessages = (messages as SentMessageRecord[]).map((message) => ({
           id: message.id,
           subject: message.subject,
           type: message.message_type,
@@ -1599,3 +1824,4 @@ export async function getAdminSnapshot() {
     sentMessages
   };
 }
+

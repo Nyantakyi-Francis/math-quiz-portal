@@ -39,6 +39,9 @@ export function AppShell({
               <Link className="button-secondary" href="/dashboard">
                 Dashboard
               </Link>
+              <Link className="button-secondary" href="/progress">
+                Progress
+              </Link>
               <Link className="button-secondary" href="/modules">
                 Modules
               </Link>
