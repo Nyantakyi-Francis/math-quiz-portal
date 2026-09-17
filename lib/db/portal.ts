@@ -577,52 +577,64 @@ export async function getDashboardSnapshot() {
   }
 
   await ensureProfile(session.supabase, session.user);
+  const supabase = session.supabase;
+  const user = session.user;
 
-  const profileSummary = await getProfileSummary(session.supabase, session.user);
-  let warning: SetupWarning = profileSummary.warning;
-  const role = profileSummary.role;
-  const profileName = profileSummary.profileName;
-  let attempts: DashboardAttempt[] = [];
-  let attemptHistory: DashboardAttempt[] = [];
+  const [profileSummary, attemptResult, unreadResult] = await Promise.all([
+    getProfileSummary(supabase, user),
+    (async () => {
+      try {
+        const { data, error } = await supabase
+          .from("attempts")
+          .select("id, score_percent, created_at, modules(title, slug)")
+          .eq("learner_id", user.id)
+          .order("created_at", { ascending: false })
+          .limit(200);
 
-  try {
-    const { data, error } = await session.supabase
-      .from("attempts")
-      .select("id, score_percent, created_at, modules(title, slug)")
-      .eq("learner_id", session.user.id)
-      .order("created_at", { ascending: false })
-      .limit(200);
-
-    if (error) {
-      warning ??= mapSetupWarning(error.message);
-    } else if (data) {
-      attemptHistory = (data as unknown as DashboardAttemptRecord[]).map((attempt) => {
-        const moduleRow = getJoinedRecord(attempt.modules);
+        if (error) {
+          return {
+            attemptHistory: [] as DashboardAttempt[],
+            warning: mapSetupWarning(error.message)
+          };
+        }
 
         return {
-          id: attempt.id,
-          moduleTitle: moduleRow?.title ?? "Module",
-          moduleSlug: moduleRow?.slug ?? "",
-          scorePercent: Number(attempt.score_percent ?? 0),
-          createdAt: attempt.created_at
+          attemptHistory: ((data ?? []) as unknown as DashboardAttemptRecord[]).map((attempt) => {
+            const moduleRow = getJoinedRecord(attempt.modules);
+
+            return {
+              id: attempt.id,
+              moduleTitle: moduleRow?.title ?? "Module",
+              moduleSlug: moduleRow?.slug ?? "",
+              scorePercent: Number(attempt.score_percent ?? 0),
+              createdAt: attempt.created_at
+            };
+          }),
+          warning: null as SetupWarning
         };
-      });
-      attempts = attemptHistory.slice(0, 5);
-    }
-  } catch (error) {
-    warning ??= mapSetupWarning(error instanceof Error ? error.message : "Unable to load attempts.");
-  }
+      } catch (error) {
+        return {
+          attemptHistory: [] as DashboardAttempt[],
+          warning: mapSetupWarning(
+            error instanceof Error ? error.message : "Unable to load attempts."
+          )
+        };
+      }
+    })(),
+    getUnreadMessagesCount(supabase, user.id)
+  ]);
 
   const inboxResult = await getInboxMessages(
-    session.supabase,
-    session.user.id,
-    role,
+    supabase,
+    user.id,
+    profileSummary.role,
     6,
     false,
     false,
     ["system", "score", "admin", "announcement"]
   );
-  const unreadResult = await getUnreadMessagesCount(session.supabase, session.user.id);
+  const attemptHistory = attemptResult.attemptHistory;
+  const attempts = attemptHistory.slice(0, 5);
   const messages = inboxResult.messages;
 
   const attemptedModules = new Set(
@@ -638,14 +650,15 @@ export async function getDashboardSnapshot() {
     : 0;
   const recommendation = buildLearningRecommendation(modules, attemptHistory);
   const unreadMessages = unreadResult.unreadMessages;
-  warning ??= inboxResult.warning ?? unreadResult.warning;
+  const warning =
+    profileSummary.warning ?? attemptResult.warning ?? inboxResult.warning ?? unreadResult.warning;
 
   return {
     isConfigured: true,
-    userEmail: session.user.email ?? null,
-    profileName,
+    userEmail: user.email ?? null,
+    profileName: profileSummary.profileName,
     userPhone: profileSummary.phone,
-    role,
+    role: profileSummary.role,
     totals: {
       attemptedModules,
       averageScore,
@@ -655,6 +668,31 @@ export async function getDashboardSnapshot() {
     recommendation,
     messages,
     warning
+  };
+}
+
+export async function getPortalShellSnapshot() {
+  const session = await requireUser();
+
+  if (!session.supabase || !session.user) {
+    return {
+      isConfigured: getSupabaseEnv().isConfigured,
+      userEmail: null,
+      userPhone: null,
+      role: "learner",
+      warning: getSafeDataError() as SetupWarning
+    };
+  }
+
+  await ensureProfile(session.supabase, session.user);
+  const profileSummary = await getProfileSummary(session.supabase, session.user);
+
+  return {
+    isConfigured: true,
+    userEmail: session.user.email ?? null,
+    userPhone: profileSummary.phone,
+    role: profileSummary.role,
+    warning: profileSummary.warning
   };
 }
 
@@ -680,28 +718,42 @@ export async function getProgressSnapshot() {
   }
 
   await ensureProfile(session.supabase, session.user);
-  const profileSummary = await getProfileSummary(session.supabase, session.user);
-  let warning: SetupWarning = profileSummary.warning;
-  let attempts: ProgressAttemptRecord[] = [];
+  const supabase = session.supabase;
+  const user = session.user;
+  const [profileSummary, attemptResult] = await Promise.all([
+    getProfileSummary(supabase, user),
+    (async () => {
+      try {
+        const { data, error } = await supabase
+          .from("attempts")
+          .select("id, score_percent, created_at, modules(title, slug)")
+          .eq("learner_id", user.id)
+          .order("created_at", { ascending: false })
+          .limit(500);
 
-  try {
-    const { data, error } = await session.supabase
-      .from("attempts")
-      .select("id, score_percent, created_at, modules(title, slug)")
-      .eq("learner_id", session.user.id)
-      .order("created_at", { ascending: false })
-      .limit(500);
+        if (error) {
+          return {
+            attempts: [] as ProgressAttemptRecord[],
+            warning: mapSetupWarning(error.message)
+          };
+        }
 
-    if (error) {
-      warning ??= mapSetupWarning(error.message);
-    } else {
-      attempts = (data ?? []) as unknown as ProgressAttemptRecord[];
-    }
-  } catch (error) {
-    warning ??= mapSetupWarning(
-      error instanceof Error ? error.message : "Unable to load progress analytics."
-    );
-  }
+        return {
+          attempts: (data ?? []) as unknown as ProgressAttemptRecord[],
+          warning: null as SetupWarning
+        };
+      } catch (error) {
+        return {
+          attempts: [] as ProgressAttemptRecord[],
+          warning: mapSetupWarning(
+            error instanceof Error ? error.message : "Unable to load progress analytics."
+          )
+        };
+      }
+    })()
+  ]);
+  const warning = profileSummary.warning ?? attemptResult.warning;
+  const attempts = attemptResult.attempts;
 
   const moduleRows = new Map<string, ProgressAttemptRecord[]>();
 
@@ -755,7 +807,7 @@ export async function getProgressSnapshot() {
 
   return {
     isConfigured: true,
-    userEmail: session.user.email ?? null,
+    userEmail: user.email ?? null,
     userPhone: profileSummary.phone,
     role: profileSummary.role,
     warning,
@@ -801,20 +853,21 @@ export async function getMessagesSnapshot() {
   await ensureProfile(session.supabase, session.user);
 
   const profileSummary = await getProfileSummary(session.supabase, session.user);
-  const inboxResult = await getInboxMessages(
-    session.supabase,
-    session.user.id,
-    profileSummary.role,
-    undefined,
-    true,
-    true,
-    ["system", "score", "admin", "announcement"]
-  );
-  const unreadResult = await getUnreadMessagesCount(session.supabase, session.user.id);
-  const adminContactsResult =
+  const [inboxResult, unreadResult, adminContactsResult] = await Promise.all([
+    getInboxMessages(
+      session.supabase,
+      session.user.id,
+      profileSummary.role,
+      undefined,
+      true,
+      true,
+      ["system", "score", "admin", "announcement"]
+    ),
+    getUnreadMessagesCount(session.supabase, session.user.id),
     profileSummary.role === "admin"
-      ? { adminContacts: [] as AdminContact[], warning: null as SetupWarning }
-      : await getAdminContacts();
+      ? Promise.resolve({ adminContacts: [] as AdminContact[], warning: null as SetupWarning })
+      : getAdminContacts()
+  ]);
 
   return {
     isConfigured: true,

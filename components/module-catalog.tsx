@@ -1,6 +1,3 @@
-"use client";
-
-import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { ModuleMeta } from "@/lib/data/modules";
 
@@ -9,21 +6,9 @@ type ModuleCatalogProps = {
 };
 
 export function ModuleCatalog({ modules }: ModuleCatalogProps) {
-  const [query, setQuery] = useState("");
-
-  const filteredModules = useMemo(() => {
-    const value = query.toLowerCase().trim();
-
-    if (!value) {
-      return modules;
-    }
-
-    return modules.filter((module) => module.title.toLowerCase().includes(value));
-  }, [modules, query]);
-
   return (
     <section className="space-y-6">
-      <div className="panel-soft flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="panel-soft p-5">
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--brand-deep)]">
             Module Catalog
@@ -32,50 +17,10 @@ export function ModuleCatalog({ modules }: ModuleCatalogProps) {
             Learners will sign in before accessing module questions, results, and feedback.
           </p>
         </div>
-        <label className="relative block min-w-[280px]">
-          <span className="sr-only">Search modules</span>
-          <input
-            className="field field-has-leading"
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search..."
-            type="search"
-            value={query}
-          />
-          {query ? null : (
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"
-            >
-              <svg
-                aria-hidden="true"
-                fill="none"
-                height="18"
-                viewBox="0 0 24 24"
-                width="18"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11 4a7 7 0 1 1 0 14 7 7 0 0 1 0-14Z"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M20 20l-3.5-3.5"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </svg>
-            </span>
-          )}
-        </label>
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {filteredModules.map((module) => (
+        {modules.map((module) => (
           <article
             className={`glass-card flex h-full flex-col border ${module.tone.accent} rounded-[2rem] p-6 transition hover:-translate-y-1`}
             key={module.slug}

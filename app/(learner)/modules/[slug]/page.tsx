@@ -4,6 +4,7 @@ import { AppShell } from "@/components/app-shell";
 import { QuizRunner } from "@/components/quiz-runner";
 import { SetupBanner } from "@/components/setup-banner";
 import { getModuleBySlug } from "@/lib/data/modules";
+import { renderMathText } from "@/lib/math/render";
 import { getModulePageSnapshot } from "@/lib/quiz/data";
 
 type ModulePageProps = {
@@ -24,6 +25,22 @@ export default async function ModulePage({ params }: ModulePageProps) {
 
   const snapshot = await getModulePageSnapshot(slug);
   const quizModule = snapshot.module;
+  const renderedQuestions =
+    quizModule?.questions.map((question) => ({
+      ...question,
+      renderedPrompt: renderMathText(question.prompt),
+      stimulus: question.stimulus
+        ? {
+            ...question.stimulus,
+            columns: question.stimulus.columns.map(renderMathText),
+            rows: question.stimulus.rows.map((row) => row.map(renderMathText))
+          }
+        : null,
+      options: question.options.map((option) => ({
+        ...option,
+        renderedText: renderMathText(option.text)
+      }))
+    })) ?? [];
 
   return (
     <AppShell
@@ -97,7 +114,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
           <QuizRunner
             moduleSlug={quizModule.slug}
             moduleTitle={quizModule.title}
-            questions={quizModule.questions}
+            questions={renderedQuestions}
           />
         ) : null}
       </div>

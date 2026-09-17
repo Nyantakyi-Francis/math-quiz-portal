@@ -4,6 +4,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { buildScoreMessageBody, buildScoreMessageSubject } from "@/lib/quiz/messages";
 import { readJsonBody } from "@/lib/http/validation";
 import { notifyMessageRecipientsByEmail } from "@/lib/email/notifications";
+import { renderMathText } from "@/lib/math/render";
 import { validateQuizSubmissionBody } from "@/lib/quiz/validation";
 import { normalizeQuizExplanation } from "@/lib/quiz/explanations";
 import type { QuizSubmissionResult } from "@/lib/quiz/types";
@@ -224,21 +225,32 @@ export async function POST(request: Request, { params }: SubmitRouteContext) {
     messageSubject,
     breakdown: scoredAttempt.breakdown.map((entry) => {
       const selectedOptionId = selectedOptionByQuestion.get(entry.questionId) ?? null;
+      const selectedOptionText = selectedOptionId ? optionTextById.get(selectedOptionId) ?? null : null;
       const correctOptionId = answerKeyByQuestion.get(entry.questionId);
+      const correctOptionText = optionTextById.get(correctOptionId!) ?? "Correct answer unavailable";
       const explanation = normalizeQuizExplanation(explanationByQuestion.get(entry.questionId));
+      const misconception =
+        !entry.isCorrect && selectedOptionId
+          ? explanation.misconceptions[selectedOptionId] ?? null
+          : null;
 
       return {
         questionId: entry.questionId,
         isCorrect: entry.isCorrect,
         selectedOptionId,
-        selectedOptionText: selectedOptionId ? optionTextById.get(selectedOptionId) ?? null : null,
+        selectedOptionText,
+        renderedSelectedOptionText: selectedOptionText ? renderMathText(selectedOptionText) : null,
         correctOptionId: correctOptionId!,
-        correctOptionText: optionTextById.get(correctOptionId!) ?? "Correct answer unavailable",
-        explanation,
-        misconception:
-          !entry.isCorrect && selectedOptionId
-            ? explanation.misconceptions[selectedOptionId] ?? null
-            : null
+        correctOptionText,
+        renderedCorrectOptionText: renderMathText(correctOptionText),
+        explanation: {
+          ...explanation,
+          renderedSummary: renderMathText(explanation.summary),
+          renderedSteps: explanation.steps.map(renderMathText),
+          renderedFormula: explanation.formula ? renderMathText(explanation.formula) : null
+        },
+        misconception,
+        renderedMisconception: misconception ? renderMathText(misconception) : null
       };
     })
   };

@@ -87,7 +87,7 @@ export default function HomePage() {
                   className="h-auto w-full object-cover"
                   height={640}
                   priority
-                  src="/dp.PNG"
+                  src="/dp.webp"
                   width={640}
                 />
               </div>

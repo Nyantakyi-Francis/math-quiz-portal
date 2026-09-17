@@ -2,12 +2,12 @@ import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { SetupBanner } from "@/components/setup-banner";
 import { resources } from "@/lib/data/resources";
-import { getDashboardSnapshot } from "@/lib/db/portal";
+import { getPortalShellSnapshot } from "@/lib/db/portal";
 
 export const dynamic = "force-dynamic";
 
 export default async function ResourcesPage() {
-  const snapshot = await getDashboardSnapshot();
+  const snapshot = await getPortalShellSnapshot();
 
   return (
     <AppShell

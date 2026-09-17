@@ -2,21 +2,21 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { MathText } from "@/components/math-text";
+import { RenderedMathText } from "@/components/rendered-math-text";
 import { QuizStimulus } from "@/components/quiz-stimulus";
 import type {
-  LearnerQuizQuestion,
   QuizSubmissionAnswer,
-  QuizSubmissionResult
+  QuizSubmissionResult,
+  RenderedLearnerQuizQuestion
 } from "@/lib/quiz/types";
 
 type QuizRunnerProps = {
   moduleSlug: string;
   moduleTitle: string;
-  questions: LearnerQuizQuestion[];
+  questions: RenderedLearnerQuizQuestion[];
 };
 
-function shuffleOptions(questions: LearnerQuizQuestion[]) {
+function shuffleOptions(questions: RenderedLearnerQuizQuestion[]) {
   return questions.map((question) => {
     const options = [...question.options];
 
@@ -196,7 +196,7 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
                   {question.stimulus ? <QuizStimulus stimulus={question.stimulus} /> : null}
 
                   <p className={`${question.stimulus ? "mt-5" : ""} text-base font-semibold leading-7 text-slate-900`}>
-                    <MathText text={question.prompt} />
+                    <RenderedMathText segments={question.renderedPrompt} />
                   </p>
 
                   <div className="mt-5 grid gap-3">
@@ -223,7 +223,7 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
                               value={option.id}
                             />
                             <span className="leading-7 text-slate-700">
-                              <MathText text={option.text} />
+                              <RenderedMathText segments={option.renderedText} />
                             </span>
                           </div>
                         </label>
@@ -237,7 +237,7 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
                   {questionReview?.isCorrect === false ? (
                     <p className="mt-4 text-sm font-semibold text-rose-700">
                       {questionReview.selectedOptionText
-                        ? <>Incorrect. You selected <MathText text={questionReview.selectedOptionText} />.</>
+                        ? <>Incorrect. You selected <RenderedMathText segments={questionReview.renderedSelectedOptionText ?? []} />.</>
                         : "Unanswered."}
                     </p>
                   ) : null}
@@ -246,7 +246,7 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
                     <div className="mt-5 border-t border-slate-200 pt-5">
                       <p className="text-sm text-slate-700">
                         <span className="font-semibold text-slate-900">Correct answer: </span>
-                        <MathText text={questionReview.correctOptionText} />
+                        <RenderedMathText segments={questionReview.renderedCorrectOptionText} />
                       </p>
                       <button
                         aria-controls={explanationId}
@@ -273,25 +273,27 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
                           role="region"
                         >
                           <p className="font-semibold leading-7 text-slate-900">
-                            <MathText text={questionReview.explanation.summary} />
+                            <RenderedMathText segments={questionReview.explanation.renderedSummary} />
                           </p>
                           {questionReview.explanation.steps.length ? (
                             <ol className="mt-3 list-decimal space-y-2 pl-5 leading-7">
-                              {questionReview.explanation.steps.map((step, stepIndex) => (
-                                <li key={`${question.id}-step-${stepIndex}`}><MathText text={step} /></li>
+                              {questionReview.explanation.renderedSteps.map((step, stepIndex) => (
+                                <li key={`${question.id}-step-${stepIndex}`}>
+                                  <RenderedMathText segments={step} />
+                                </li>
                               ))}
                             </ol>
                           ) : null}
                           {questionReview.explanation.formula ? (
                             <div className="mt-3 rounded-xl bg-white/50 p-3">
                               <span className="font-semibold">Rule or formula: </span>
-                              <MathText text={questionReview.explanation.formula} />
+                              <RenderedMathText segments={questionReview.explanation.renderedFormula ?? []} />
                             </div>
                           ) : null}
                           {questionReview.misconception ? (
                             <p className="mt-3 leading-7 text-amber-900">
                               <span className="font-semibold">Likely mistake: </span>
-                              <MathText text={questionReview.misconception} />
+                              <RenderedMathText segments={questionReview.renderedMisconception ?? []} />
                             </p>
                           ) : null}
                         </div>

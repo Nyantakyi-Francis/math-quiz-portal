@@ -1,6 +1,7 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { QuizStimulus } from "../components/quiz-stimulus";
+import { renderMathText } from "../lib/math/render";
 
 describe("QuizStimulus", () => {
   it("renders a captioned table with row and column headers", () => {
@@ -10,8 +11,8 @@ describe("QuizStimulus", () => {
           type: "table",
           title: "Table 1: Scores",
           description: "Scores for 40 students.",
-          columns: ["Score", "4", "5"],
-          rows: [["Frequency", "3", "5"]]
+          columns: ["Score", "4", "5"].map(renderMathText),
+          rows: [["Frequency", "3", "5"].map(renderMathText)]
         }}
       />
     );

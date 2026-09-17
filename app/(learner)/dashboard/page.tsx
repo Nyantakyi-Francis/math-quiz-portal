@@ -1,23 +1,41 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { SetupBanner } from "@/components/setup-banner";
-import { getDashboardSnapshot } from "@/lib/db/portal";
+import { getDashboardSnapshot, getPortalShellSnapshot } from "@/lib/db/portal";
 import { modules } from "@/lib/data/modules";
 
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  const snapshot = await getDashboardSnapshot();
+  const shell = await getPortalShellSnapshot();
 
   return (
     <AppShell
       description="See your scores, continue learning, and check your messages."
-      role={snapshot.role}
-      title={`Welcome${snapshot.profileName ? `, ${snapshot.profileName}` : ""}`}
-      userEmail={snapshot.userEmail}
-      userPhone={snapshot.userPhone}
+      role={shell.role}
+      title="Dashboard"
+      userEmail={shell.userEmail}
+      userPhone={shell.userPhone}
     >
-      <div className="space-y-8">
+      <Suspense fallback={<DashboardContentLoading />}>
+        <DashboardContent />
+      </Suspense>
+    </AppShell>
+  );
+}
+
+async function DashboardContent() {
+  const snapshot = await getDashboardSnapshot();
+
+  return (
+    <div className="space-y-8">
+        {snapshot.profileName ? (
+          <section className="panel-soft p-5">
+            <p className="text-lg font-bold text-slate-950">Welcome, {snapshot.profileName}</p>
+          </section>
+        ) : null}
+
         {snapshot.warning ? (
           <SetupBanner message={snapshot.warning} title="Information unavailable" />
         ) : null}
@@ -140,6 +158,22 @@ export default async function DashboardPage() {
           </div>
         </section>
       </div>
-    </AppShell>
+  );
+}
+
+function DashboardContentLoading() {
+  return (
+    <div className="space-y-8" aria-label="Loading dashboard data">
+      <section className="grid gap-5 md:grid-cols-3">
+        {Array.from({ length: 3 }).map((_, index) => (
+          <div className="skeleton h-32 rounded-lg" key={index} />
+        ))}
+      </section>
+      <div className="skeleton h-40 rounded-lg" />
+      <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="skeleton h-96 rounded-lg" />
+        <div className="skeleton h-96 rounded-lg" />
+      </section>
+    </div>
   );
 }

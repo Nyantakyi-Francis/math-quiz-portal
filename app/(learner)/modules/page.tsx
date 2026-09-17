@@ -1,13 +1,13 @@
 import { AppShell } from "@/components/app-shell";
 import { LearnerModuleCatalog } from "@/components/learner-module-catalog";
 import { SetupBanner } from "@/components/setup-banner";
-import { getDashboardSnapshot } from "@/lib/db/portal";
+import { getPortalShellSnapshot } from "@/lib/db/portal";
 import { modules } from "@/lib/data/modules";
 
 export const dynamic = "force-dynamic";
 
 export default async function ModulesPage() {
-  const snapshot = await getDashboardSnapshot();
+  const snapshot = await getPortalShellSnapshot();
 
   return (
     <AppShell
@@ -15,6 +15,7 @@ export default async function ModulesPage() {
       role={snapshot.role}
       title="Module Catalog"
       userEmail={snapshot.userEmail}
+      userPhone={snapshot.userPhone}
     >
       <div className="space-y-8">
         {snapshot.warning ? (

@@ -1,7 +1,7 @@
-import { MathText } from "@/components/math-text";
-import type { QuizTableStimulus } from "@/lib/quiz/types";
+import { RenderedMathText } from "@/components/rendered-math-text";
+import type { RenderedQuizTableStimulus } from "@/lib/quiz/types";
 
-export function QuizStimulus({ stimulus }: { stimulus: QuizTableStimulus }) {
+export function QuizStimulus({ stimulus }: { stimulus: RenderedQuizTableStimulus }) {
   return (
     <figure className="mt-5 rounded-[1.25rem] border border-slate-200 bg-white/50 p-4">
       <figcaption className="mb-3">
@@ -21,8 +21,8 @@ export function QuizStimulus({ stimulus }: { stimulus: QuizTableStimulus }) {
           <thead>
             <tr>
               {stimulus.columns.map((column) => (
-                <th className="border border-slate-300 bg-slate-100 px-3 py-2 font-semibold text-slate-900" key={column} scope="col">
-                  <MathText text={column} />
+                <th className="border border-slate-300 bg-slate-100 px-3 py-2 font-semibold text-slate-900" key={JSON.stringify(column)} scope="col">
+                  <RenderedMathText segments={column} />
                 </th>
               ))}
             </tr>
@@ -33,11 +33,11 @@ export function QuizStimulus({ stimulus }: { stimulus: QuizTableStimulus }) {
                 {row.map((cell, cellIndex) =>
                   cellIndex === 0 ? (
                     <th className="border border-slate-300 px-3 py-2 font-medium text-slate-900" key={`${rowIndex}-${cellIndex}`} scope="row">
-                      <MathText text={cell} />
+                      <RenderedMathText segments={cell} />
                     </th>
                   ) : (
                     <td className="border border-slate-300 px-3 py-2 text-slate-700" key={`${rowIndex}-${cellIndex}`}>
-                      <MathText text={cell} />
+                      <RenderedMathText segments={cell} />
                     </td>
                   )
                 )}
