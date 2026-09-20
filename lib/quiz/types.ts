@@ -60,7 +60,16 @@ export type QuizDiagramStimulus = {
   elements: QuizDiagramStimulusElement[];
 };
 
-export type QuizStimulusData = QuizTableStimulus | QuizDiagramStimulus;
+export type QuizImageStimulus = {
+  type: "image";
+  title: string;
+  description: string | null;
+  src: string;
+  alt: string;
+  attribution: string | null;
+};
+
+export type QuizStimulusData = QuizTableStimulus | QuizDiagramStimulus | QuizImageStimulus;
 
 export type LearnerQuizQuestion = {
   id: string;
@@ -76,8 +85,12 @@ export type RenderedQuizTableStimulus = Omit<QuizTableStimulus, "columns" | "row
 };
 
 export type RenderedQuizDiagramStimulus = QuizDiagramStimulus;
+export type RenderedQuizImageStimulus = QuizImageStimulus;
 
-export type RenderedQuizStimulus = RenderedQuizTableStimulus | RenderedQuizDiagramStimulus;
+export type RenderedQuizStimulus =
+  | RenderedQuizTableStimulus
+  | RenderedQuizDiagramStimulus
+  | RenderedQuizImageStimulus;
 
 export type RenderedLearnerQuizOption = LearnerQuizOption & {
   renderedText: RenderedMathText;

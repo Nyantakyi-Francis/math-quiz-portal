@@ -5,7 +5,7 @@
   "description": "WASSCE-style questions on angle facts, parallel lines, polygons, bearings, and Pythagorean applications.",
   "questions": [
     {
-      "q": "Using the diagram, find the value of $x$.",
+      "q": "In the parallel-lines diagram, the marked angle corresponding to $x$ is $118^\\circ$. Find $x$.",
       "options": [
         "$62^\\circ$",
         "$118^\\circ$",
@@ -17,7 +17,7 @@
       "stimulusId": "parallel-transversal"
     },
     {
-      "q": "Using the diagram, find the exterior angle $x$.",
+      "q": "In the exterior-angle diagram, the two remote interior angles are $42^\\circ$ and $68^\\circ$. Find the exterior angle $x$.",
       "options": [
         "$68^\\circ$",
         "$70^\\circ$",
@@ -29,7 +29,7 @@
       "stimulusId": "triangle-exterior"
     },
     {
-      "q": "A ladder problem is shown in the diagram. Find $x$.",
+      "q": "The right-triangle diagram models a ladder against a wall. The ladder is $13$ m and the wall height is $12$ m. Find the distance of the foot of the ladder from the wall.",
       "options": [
         "$5$ m",
         "$7$ m",
@@ -41,7 +41,7 @@
       "stimulusId": "right-triangle-ladder"
     },
     {
-      "q": "In the isosceles triangle shown, find $x$.",
+      "q": "In an isosceles triangle, the vertex angle is $44^\\circ$. Find each base angle $x$.",
       "options": [
         "$44^\\circ$",
         "$68^\\circ$",
@@ -65,7 +65,7 @@
       "stimulusId": "polygon-exterior"
     },
     {
-      "q": "Using the rectangle diagram, find the diagonal $d$.",
+      "q": "A rectangle has length $15$ cm and width $8$ cm. Use the diagonal idea to find the diagonal $d$.",
       "options": [
         "$17$ cm",
         "$19$ cm",
@@ -77,7 +77,7 @@
       "stimulusId": "rectangle-diagonal"
     },
     {
-      "q": "Write the bearing of $B$ from $A$ shown in the diagram.",
+      "q": "A line from $A$ to $B$ makes a clockwise angle of $68^\\circ$ from north. Write the bearing of $B$ from $A$.",
       "options": [
         "$068^\\circ$",
         "$112^\\circ$",
@@ -89,7 +89,7 @@
       "stimulusId": "bearing"
     },
     {
-      "q": "Using the route diagram, find the direct distance $d$.",
+      "q": "A student walks $9$ km east and then $12$ km north. Use the right-triangle route idea to find the direct distance from the starting point.",
       "options": [
         "$15$ km",
         "$18$ km",
@@ -101,7 +101,7 @@
       "stimulusId": "compound-right"
     },
     {
-      "q": "In the circle diagram, find $x$, the angle between the radius and tangent at $T$.",
+      "q": "A tangent touches a circle at $T$, and $OT$ is a radius to the point of contact. Find the angle between $OT$ and the tangent.",
       "options": [
         "$45^\\circ$",
         "$60^\\circ$",
@@ -113,7 +113,7 @@
       "stimulusId": "circle-tangent"
     },
     {
-      "q": "Using the similar triangles diagram, find $x$.",
+      "q": "Two right triangles are similar. The smaller triangle has corresponding sides $6$ and $8$; the larger triangle has the side corresponding to $6$ equal to $15$. Find the side corresponding to $8$.",
       "options": [
         "$12$",
         "$18$",
@@ -125,7 +125,7 @@
       "stimulusId": "similar-triangles"
     },
     {
-      "q": "Using the straight-line diagram, find $x$.",
+      "q": "Two adjacent angles on a straight line are $(3x+20)^\\circ$ and $(2x-10)^\\circ$. Find $x$.",
       "options": [
         "$17^\\circ$",
         "$24^\\circ$",
@@ -137,7 +137,7 @@
       "stimulusId": "straight-line"
     },
     {
-      "q": "Using the rhombus diagram, find the side length $x$.",
+      "q": "A rhombus has diagonals $10$ cm and $24$ cm. Use the diagonal property to find its side length.",
       "options": [
         "$13$ cm",
         "$17$ cm",
@@ -459,724 +459,100 @@
   ],
   "stimuli": {
     "parallel-transversal": {
-      "type": "diagram",
-      "title": "Parallel lines cut by a transversal",
-      "description": "Lines l and m are parallel.",
-      "alt": "Two parallel horizontal lines crossed by a slanting transversal. The angle above line l on the left is 118 degrees. The corresponding angle at line m is x.",
-      "viewBox": [
-        0,
-        0,
-        260,
-        170
-      ],
-      "elements": [
-        {
-          "type": "line",
-          "x1": 25,
-          "y1": 45,
-          "x2": 235,
-          "y2": 45
-        },
-        {
-          "type": "line",
-          "x1": 25,
-          "y1": 125,
-          "x2": 235,
-          "y2": 125
-        },
-        {
-          "type": "line",
-          "x1": 95,
-          "y1": 15,
-          "x2": 165,
-          "y2": 155
-        },
-        {
-          "type": "text",
-          "x": 230,
-          "y": 28,
-          "text": "l"
-        },
-        {
-          "type": "text",
-          "x": 230,
-          "y": 108,
-          "text": "m"
-        },
-        {
-          "type": "text",
-          "x": 72,
-          "y": 30,
-          "text": "118 deg"
-        },
-        {
-          "type": "text",
-          "x": 132,
-          "y": 106,
-          "text": "x"
-        }
-      ]
+      "type": "image",
+      "title": "Parallel lines and a transversal",
+      "description": "Use the labelled angle positions in the diagram.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Corresponding_angles_with_parallel_line.svg",
+      "alt": "Two parallel lines cut by a transversal, showing corresponding angle positions.",
+      "attribution": "Diagram: Wikimedia Commons, Corresponding angles with parallel line.svg, CC0 public domain."
     },
     "triangle-exterior": {
-      "type": "diagram",
+      "type": "image",
       "title": "Exterior angle of a triangle",
-      "description": "The side BC is extended to D.",
-      "alt": "Triangle ABC with angle A 42 degrees, angle B 68 degrees, and exterior angle x at C.",
-      "viewBox": [
-        0,
-        0,
-        260,
-        180
-      ],
-      "elements": [
-        {
-          "type": "polygon",
-          "points": [
-            [
-              55,
-              130
-            ],
-            [
-              125,
-              35
-            ],
-            [
-              190,
-              130
-            ]
-          ]
-        },
-        {
-          "type": "line",
-          "x1": 190,
-          "y1": 130,
-          "x2": 235,
-          "y2": 130
-        },
-        {
-          "type": "text",
-          "x": 125,
-          "y": 20,
-          "text": "A"
-        },
-        {
-          "type": "text",
-          "x": 45,
-          "y": 142,
-          "text": "B"
-        },
-        {
-          "type": "text",
-          "x": 192,
-          "y": 145,
-          "text": "C"
-        },
-        {
-          "type": "text",
-          "x": 238,
-          "y": 145,
-          "text": "D"
-        },
-        {
-          "type": "text",
-          "x": 117,
-          "y": 62,
-          "text": "42 deg"
-        },
-        {
-          "type": "text",
-          "x": 76,
-          "y": 116,
-          "text": "68 deg"
-        },
-        {
-          "type": "text",
-          "x": 214,
-          "y": 113,
-          "text": "x"
-        }
-      ]
+      "description": "Use the exterior angle relationship shown in the diagram.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/External_angle_triangle_el.svg",
+      "alt": "A triangle with one side extended to form an exterior angle.",
+      "attribution": "Diagram: Wikimedia Commons, External angle triangle el.svg. See Commons file page for license details."
     },
     "right-triangle-ladder": {
-      "type": "diagram",
-      "title": "Ladder against a wall",
-      "description": "The wall and ground meet at a right angle.",
-      "alt": "Right triangle with vertical height 12 metres, hypotenuse 13 metres, and ground distance x.",
-      "viewBox": [
-        0,
-        0,
-        260,
-        180
-      ],
-      "elements": [
-        {
-          "type": "polygon",
-          "points": [
-            [
-              70,
-              140
-            ],
-            [
-              70,
-              40
-            ],
-            [
-              210,
-              140
-            ]
-          ]
-        },
-        {
-          "type": "text",
-          "x": 58,
-          "y": 90,
-          "text": "12 m"
-        },
-        {
-          "type": "text",
-          "x": 148,
-          "y": 82,
-          "text": "13 m"
-        },
-        {
-          "type": "text",
-          "x": 140,
-          "y": 158,
-          "text": "x"
-        },
-        {
-          "type": "text",
-          "x": 84,
-          "y": 128,
-          "text": "90 deg"
-        }
-      ]
+      "type": "image",
+      "title": "Right triangle model",
+      "description": "Treat the ladder, wall, and ground as a right triangle.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Triangle-right.svg",
+      "alt": "A right triangle diagram.",
+      "attribution": "Diagram: Wikimedia Commons, Triangle-right.svg, public domain."
     },
     "isosceles": {
-      "type": "diagram",
+      "type": "image",
       "title": "Isosceles triangle",
-      "description": "AB = AC.",
-      "alt": "Isosceles triangle ABC with vertex angle 44 degrees and equal base angles x.",
-      "viewBox": [
-        0,
-        0,
-        260,
-        180
-      ],
-      "elements": [
-        {
-          "type": "polygon",
-          "points": [
-            [
-              130,
-              35
-            ],
-            [
-              55,
-              135
-            ],
-            [
-              205,
-              135
-            ]
-          ]
-        },
-        {
-          "type": "text",
-          "x": 130,
-          "y": 20,
-          "text": "A"
-        },
-        {
-          "type": "text",
-          "x": 45,
-          "y": 150,
-          "text": "B"
-        },
-        {
-          "type": "text",
-          "x": 215,
-          "y": 150,
-          "text": "C"
-        },
-        {
-          "type": "text",
-          "x": 130,
-          "y": 62,
-          "text": "44 deg"
-        },
-        {
-          "type": "text",
-          "x": 80,
-          "y": 120,
-          "text": "x"
-        },
-        {
-          "type": "text",
-          "x": 180,
-          "y": 120,
-          "text": "x"
-        }
-      ]
+      "description": "Use the equal-side/equal-angle property of an isosceles triangle.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Triangle-isosceles.svg",
+      "alt": "An isosceles triangle with equal sides and equal base angles marked.",
+      "attribution": "Diagram: Wikimedia Commons, Triangle-isosceles.svg, public domain."
     },
     "polygon-exterior": {
-      "type": "diagram",
+      "type": "image",
       "title": "Regular polygon exterior angle",
-      "description": "The marked exterior angle belongs to a regular polygon.",
-      "alt": "A regular polygon corner with exterior angle x shown outside.",
-      "viewBox": [
-        0,
-        0,
-        260,
-        170
-      ],
-      "elements": [
-        {
-          "type": "line",
-          "x1": 60,
-          "y1": 120,
-          "x2": 135,
-          "y2": 45
-        },
-        {
-          "type": "line",
-          "x1": 135,
-          "y1": 45,
-          "x2": 210,
-          "y2": 120
-        },
-        {
-          "type": "line",
-          "x1": 135,
-          "y1": 45,
-          "x2": 230,
-          "y2": 45
-        },
-        {
-          "type": "arc",
-          "cx": 135,
-          "cy": 45,
-          "r": 38,
-          "start": 90,
-          "end": 128
-        },
-        {
-          "type": "text",
-          "x": 184,
-          "y": 64,
-          "text": "45 deg"
-        }
-      ]
+      "description": "Use the exterior-angle idea for a regular polygon.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Regular_polygon_5_annotated.svg",
+      "alt": "A regular polygon diagram with exterior angle idea.",
+      "attribution": "Diagram: Wikimedia Commons, Regular polygon annotated diagram. See Commons file page for license details."
     },
     "rectangle-diagonal": {
-      "type": "diagram",
+      "type": "image",
       "title": "Rectangle diagonal",
-      "description": "ABCD is a rectangle.",
-      "alt": "Rectangle with length 15 centimetres, width 8 centimetres, and diagonal d.",
-      "viewBox": [
-        0,
-        0,
-        280,
-        180
-      ],
-      "elements": [
-        {
-          "type": "polygon",
-          "points": [
-            [
-              45,
-              45
-            ],
-            [
-              230,
-              45
-            ],
-            [
-              230,
-              135
-            ],
-            [
-              45,
-              135
-            ]
-          ]
-        },
-        {
-          "type": "line",
-          "x1": 45,
-          "y1": 45,
-          "x2": 230,
-          "y2": 135
-        },
-        {
-          "type": "text",
-          "x": 137,
-          "y": 32,
-          "text": "15 cm"
-        },
-        {
-          "type": "text",
-          "x": 245,
-          "y": 90,
-          "text": "8 cm"
-        },
-        {
-          "type": "text",
-          "x": 145,
-          "y": 98,
-          "text": "d"
-        }
-      ]
+      "description": "The diagonal splits the rectangle into two right triangles.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Rectangle.svg",
+      "alt": "A rectangle with a diagonal drawn from one corner to the opposite corner.",
+      "attribution": "Diagram: Wikimedia Commons, Rectangle.svg. See Commons file page for license details."
     },
     "bearing": {
-      "type": "diagram",
-      "title": "Bearing diagram",
-      "description": "North is shown at point A.",
-      "alt": "Point A with north line upward and line AB slanting down to the right. The clockwise bearing angle is 68 degrees.",
-      "viewBox": [
-        0,
-        0,
-        260,
-        180
-      ],
-      "elements": [
-        {
-          "type": "line",
-          "x1": 90,
-          "y1": 140,
-          "x2": 90,
-          "y2": 35
-        },
-        {
-          "type": "line",
-          "x1": 90,
-          "y1": 140,
-          "x2": 205,
-          "y2": 95
-        },
-        {
-          "type": "arc",
-          "cx": 90,
-          "cy": 140,
-          "r": 45,
-          "start": 0,
-          "end": 68
-        },
-        {
-          "type": "text",
-          "x": 90,
-          "y": 22,
-          "text": "N"
-        },
-        {
-          "type": "text",
-          "x": 78,
-          "y": 154,
-          "text": "A"
-        },
-        {
-          "type": "text",
-          "x": 215,
-          "y": 96,
-          "text": "B"
-        },
-        {
-          "type": "text",
-          "x": 132,
-          "y": 102,
-          "text": "68 deg"
-        }
-      ]
+      "type": "image",
+      "title": "Bearing from north",
+      "description": "Bearings are measured clockwise from north.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Compass_rose_pale.svg",
+      "alt": "A compass rose showing north, east, south, and west directions.",
+      "attribution": "Diagram: Wikimedia Commons, Compass rose pale.svg. See Commons file page for license details."
     },
     "compound-right": {
-      "type": "diagram",
-      "title": "Compound route",
-      "description": "A student walks east, then north.",
-      "alt": "Right angled route with east distance 9 kilometres, north distance 12 kilometres, and direct distance d.",
-      "viewBox": [
-        0,
-        0,
-        260,
-        170
-      ],
-      "elements": [
-        {
-          "type": "line",
-          "x1": 55,
-          "y1": 130,
-          "x2": 170,
-          "y2": 130
-        },
-        {
-          "type": "line",
-          "x1": 170,
-          "y1": 130,
-          "x2": 170,
-          "y2": 35
-        },
-        {
-          "type": "line",
-          "x1": 55,
-          "y1": 130,
-          "x2": 170,
-          "y2": 35
-        },
-        {
-          "type": "text",
-          "x": 112,
-          "y": 148,
-          "text": "9 km"
-        },
-        {
-          "type": "text",
-          "x": 188,
-          "y": 82,
-          "text": "12 km"
-        },
-        {
-          "type": "text",
-          "x": 105,
-          "y": 78,
-          "text": "d"
-        }
-      ]
+      "type": "image",
+      "title": "Right-triangle route",
+      "description": "A north/east route can be modelled as a right triangle.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Triangle-right.svg",
+      "alt": "A right triangle used to model a two-leg route and direct distance.",
+      "attribution": "Diagram: Wikimedia Commons, Triangle-right.svg, public domain."
     },
     "circle-tangent": {
-      "type": "diagram",
+      "type": "image",
       "title": "Radius and tangent",
-      "description": "OT is a radius and PT is a tangent.",
-      "alt": "Circle with centre O, tangent PT touching the circle at T, and angle OTP marked x.",
-      "viewBox": [
-        0,
-        0,
-        260,
-        180
-      ],
-      "elements": [
-        {
-          "type": "circle",
-          "cx": 120,
-          "cy": 90,
-          "r": 45
-        },
-        {
-          "type": "line",
-          "x1": 120,
-          "y1": 90,
-          "x2": 165,
-          "y2": 90
-        },
-        {
-          "type": "line",
-          "x1": 165,
-          "y1": 35,
-          "x2": 165,
-          "y2": 145
-        },
-        {
-          "type": "text",
-          "x": 118,
-          "y": 105,
-          "text": "O"
-        },
-        {
-          "type": "text",
-          "x": 178,
-          "y": 90,
-          "text": "T"
-        },
-        {
-          "type": "text",
-          "x": 183,
-          "y": 55,
-          "text": "P"
-        },
-        {
-          "type": "text",
-          "x": 153,
-          "y": 76,
-          "text": "x"
-        }
-      ]
+      "description": "A radius to a tangent point is perpendicular to the tangent.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Circle-withsegments.svg",
+      "alt": "A circle diagram with radius and line segments.",
+      "attribution": "Diagram: Wikimedia Commons, Circle-withsegments.svg. See Commons file page for license details."
     },
     "similar-triangles": {
-      "type": "diagram",
-      "title": "Similar right triangles",
-      "description": "The two triangles are similar.",
-      "alt": "Small right triangle has sides 6 and 8. Large similar triangle has corresponding side 15 and unknown base x.",
-      "viewBox": [
-        0,
-        0,
-        300,
-        180
-      ],
-      "elements": [
-        {
-          "type": "polygon",
-          "points": [
-            [
-              35,
-              135
-            ],
-            [
-              35,
-              75
-            ],
-            [
-              95,
-              135
-            ]
-          ]
-        },
-        {
-          "type": "polygon",
-          "points": [
-            [
-              150,
-              135
-            ],
-            [
-              150,
-              35
-            ],
-            [
-              250,
-              135
-            ]
-          ]
-        },
-        {
-          "type": "text",
-          "x": 24,
-          "y": 105,
-          "text": "6"
-        },
-        {
-          "type": "text",
-          "x": 65,
-          "y": 151,
-          "text": "8"
-        },
-        {
-          "type": "text",
-          "x": 136,
-          "y": 85,
-          "text": "15"
-        },
-        {
-          "type": "text",
-          "x": 200,
-          "y": 151,
-          "text": "x"
-        }
-      ]
+      "type": "image",
+      "title": "Similar triangles",
+      "description": "Corresponding sides of similar triangles are in the same ratio.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Similar-geometric-shapes.svg",
+      "alt": "Two similar triangles shown side by side.",
+      "attribution": "Diagram: Wikimedia Commons, Similar-geometric-shapes.svg. See Commons file page for license details."
     },
     "straight-line": {
-      "type": "diagram",
+      "type": "image",
       "title": "Angles on a straight line",
-      "description": "The angles lie on one straight line.",
-      "alt": "A straight line with adjacent angles 3x plus 20 degrees and 2x minus 10 degrees.",
-      "viewBox": [
-        0,
-        0,
-        280,
-        160
-      ],
-      "elements": [
-        {
-          "type": "line",
-          "x1": 35,
-          "y1": 105,
-          "x2": 245,
-          "y2": 105
-        },
-        {
-          "type": "line",
-          "x1": 140,
-          "y1": 105,
-          "x2": 105,
-          "y2": 45
-        },
-        {
-          "type": "text",
-          "x": 87,
-          "y": 88,
-          "text": "3x+20"
-        },
-        {
-          "type": "text",
-          "x": 176,
-          "y": 88,
-          "text": "2x-10"
-        }
-      ]
+      "description": "Adjacent angles on a straight line sum to 180 degrees.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Supplementary_Angles.svg",
+      "alt": "Two adjacent supplementary angles on a straight line.",
+      "attribution": "Diagram: Wikimedia Commons, Supplementary Angles.svg. See Commons file page for license details."
     },
     "rhombus-diagonals": {
-      "type": "diagram",
+      "type": "image",
       "title": "Rhombus diagonals",
-      "description": "The diagonals meet at right angles and bisect each other.",
-      "alt": "Rhombus with diagonals 10 centimetres and 24 centimetres crossing at right angles. Side length is x.",
-      "viewBox": [
-        0,
-        0,
-        260,
-        180
-      ],
-      "elements": [
-        {
-          "type": "polygon",
-          "points": [
-            [
-              130,
-              25
-            ],
-            [
-              220,
-              90
-            ],
-            [
-              130,
-              155
-            ],
-            [
-              40,
-              90
-            ]
-          ]
-        },
-        {
-          "type": "line",
-          "x1": 130,
-          "y1": 25,
-          "x2": 130,
-          "y2": 155
-        },
-        {
-          "type": "line",
-          "x1": 40,
-          "y1": 90,
-          "x2": 220,
-          "y2": 90
-        },
-        {
-          "type": "text",
-          "x": 115,
-          "y": 58,
-          "text": "10 cm"
-        },
-        {
-          "type": "text",
-          "x": 82,
-          "y": 106,
-          "text": "24 cm"
-        },
-        {
-          "type": "text",
-          "x": 177,
-          "y": 54,
-          "text": "x"
-        }
-      ]
+      "description": "The diagonals of a rhombus bisect each other at right angles.",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Rhombus.svg",
+      "alt": "A rhombus diagram.",
+      "attribution": "Diagram: Wikimedia Commons, Rhombus.svg. See Commons file page for license details."
     }
   }
 }

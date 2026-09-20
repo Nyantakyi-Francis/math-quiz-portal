@@ -75,6 +75,34 @@ export function normalizeQuizStimulus(value: unknown): QuizStimulusData | null {
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
 
   const stimulus = value as Record<string, unknown>;
+  if (stimulus.type === "image") {
+    if (
+      typeof stimulus.title !== "string" ||
+      !stimulus.title.trim() ||
+      typeof stimulus.src !== "string" ||
+      !stimulus.src.trim() ||
+      typeof stimulus.alt !== "string" ||
+      !stimulus.alt.trim()
+    ) {
+      return null;
+    }
+
+    return {
+      type: "image",
+      title: stimulus.title.trim(),
+      description:
+        typeof stimulus.description === "string" && stimulus.description.trim()
+          ? stimulus.description.trim()
+          : null,
+      src: stimulus.src.trim(),
+      alt: stimulus.alt.trim(),
+      attribution:
+        typeof stimulus.attribution === "string" && stimulus.attribution.trim()
+          ? stimulus.attribution.trim()
+          : null
+    };
+  }
+
   if (stimulus.type === "diagram") {
     if (
       typeof stimulus.title !== "string" ||

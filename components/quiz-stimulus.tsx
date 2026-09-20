@@ -1,5 +1,10 @@
 import { RenderedMathText } from "@/components/rendered-math-text";
-import type { RenderedQuizDiagramStimulus, RenderedQuizStimulus, RenderedQuizTableStimulus } from "@/lib/quiz/types";
+import type {
+  RenderedQuizDiagramStimulus,
+  RenderedQuizImageStimulus,
+  RenderedQuizStimulus,
+  RenderedQuizTableStimulus
+} from "@/lib/quiz/types";
 
 function polarToCartesian(cx: number, cy: number, r: number, angle: number) {
   const radians = ((angle - 90) * Math.PI) / 180;
@@ -161,7 +166,35 @@ function QuizDiagramStimulus({ stimulus }: { stimulus: RenderedQuizDiagramStimul
   );
 }
 
+function QuizImageStimulus({ stimulus }: { stimulus: RenderedQuizImageStimulus }) {
+  return (
+    <figure className="mt-5 rounded-[1.25rem] border border-slate-200 bg-white/50 p-4">
+      <figcaption className="mb-3">
+        <span className="block text-sm font-bold text-slate-900">{stimulus.title}</span>
+        {stimulus.description ? (
+          <span className="mt-1 block text-xs leading-5 text-slate-500">{stimulus.description}</span>
+        ) : null}
+      </figcaption>
+      {/* Question-bank image sources may be local or licensed external assets. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt={stimulus.alt}
+        className="h-auto max-h-[26rem] w-full rounded-xl bg-white object-contain"
+        loading="lazy"
+        src={stimulus.src}
+      />
+      {stimulus.attribution ? (
+        <p className="mt-2 text-xs leading-5 text-slate-500">{stimulus.attribution}</p>
+      ) : null}
+    </figure>
+  );
+}
+
 export function QuizStimulus({ stimulus }: { stimulus: RenderedQuizStimulus }) {
+  if (stimulus.type === "image") {
+    return <QuizImageStimulus stimulus={stimulus} />;
+  }
+
   if (stimulus.type === "diagram") {
     return <QuizDiagramStimulus stimulus={stimulus} />;
   }

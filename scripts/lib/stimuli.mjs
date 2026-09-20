@@ -8,6 +8,10 @@ export function validateModuleStimuli(quizData) {
     if (!stimulus || typeof stimulus !== "object" || Array.isArray(stimulus)) {
       throw new Error(`Stimulus "${id}" must be an object.`);
     }
+    if (stimulus.type === "image") {
+      validateImageStimulus(id, stimulus);
+      continue;
+    }
     if (stimulus.type === "diagram") {
       validateDiagramStimulus(id, stimulus);
       continue;
@@ -30,6 +34,32 @@ export function validateModuleStimuli(quizData) {
   });
 
   return stimuli;
+}
+
+function validateImageStimulus(id, stimulus) {
+  if (typeof stimulus.title !== "string" || !stimulus.title.trim()) {
+    throw new Error(`Image stimulus "${id}" must have a title.`);
+  }
+  if (typeof stimulus.src !== "string" || !stimulus.src.trim()) {
+    throw new Error(`Image stimulus "${id}" must have a source.`);
+  }
+  if (typeof stimulus.alt !== "string" || !stimulus.alt.trim()) {
+    throw new Error(`Image stimulus "${id}" must have alt text.`);
+  }
+  if (
+    stimulus.description !== undefined &&
+    stimulus.description !== null &&
+    typeof stimulus.description !== "string"
+  ) {
+    throw new Error(`Image stimulus "${id}" description must be text when provided.`);
+  }
+  if (
+    stimulus.attribution !== undefined &&
+    stimulus.attribution !== null &&
+    typeof stimulus.attribution !== "string"
+  ) {
+    throw new Error(`Image stimulus "${id}" attribution must be text when provided.`);
+  }
 }
 
 function isNumber(value) {

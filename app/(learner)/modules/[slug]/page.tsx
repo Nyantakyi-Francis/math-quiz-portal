@@ -39,7 +39,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
       ...question,
       renderedPrompt: renderMathText(question.prompt),
       stimulus: question.stimulus
-        ? question.stimulus.type === "diagram"
+        ? question.stimulus.type === "diagram" || question.stimulus.type === "image"
           ? question.stimulus
           : renderTableStimulus(question.stimulus)
         : null,
