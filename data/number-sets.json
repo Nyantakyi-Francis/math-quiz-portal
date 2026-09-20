@@ -1,0 +1,448 @@
+{
+  "id": "number-sets",
+  "title": "Number Sets",
+  "module": 13,
+  "description": "Classification of numbers, set notation, membership, subsets, complements, and Venn reasoning.",
+  "questions": [
+    {
+      "q": "Which of the following is a natural number?",
+      "options": [
+        "$0$",
+        "$-3$",
+        "$\\frac12$",
+        "$7$"
+      ],
+      "correct": 3,
+      "explanation": "Natural numbers are positive counting numbers, so $7$ is natural."
+    },
+    {
+      "q": "Which set contains only integers?",
+      "options": [
+        "$\\{-2,0,5\\}$",
+        "$\\{1.5,2,3\\}$",
+        "$\\{\\sqrt2,4,6\\}$",
+        "$\\{\\frac12,1,2\\}$"
+      ],
+      "correct": 0,
+      "explanation": "Integers include negative whole numbers, zero, and positive whole numbers."
+    },
+    {
+      "q": "Which number is irrational?",
+      "options": [
+        "$0.25$",
+        "$\\sqrt{2}$",
+        "$-7$",
+        "$\\frac{3}{8}$"
+      ],
+      "correct": 1,
+      "explanation": "$\\sqrt2$ cannot be written as a ratio of two integers."
+    },
+    {
+      "q": "Write $A=\\{1,2,3,4\\}$ and $B=\\{3,4,5\\}$. Find $A\\cap B$.",
+      "options": [
+        "$\\{1,2,5\\}$",
+        "$\\{3,4\\}$",
+        "$\\{1,2,3,4,5\\}$",
+        "$\\{5\\}$"
+      ],
+      "correct": 1,
+      "explanation": "The intersection contains elements common to both sets: $3$ and $4$."
+    },
+    {
+      "q": "For $A=\\{a,b,c\\}$ and $B=\\{c,d\\}$, find $A\\cup B$.",
+      "options": [
+        "$\\{c\\}$",
+        "$\\{a,b,d\\}$",
+        "$\\{a,b,c,d\\}$",
+        "$\\{a,b,c,c,d\\}$"
+      ],
+      "correct": 2,
+      "explanation": "The union lists all distinct elements in either set."
+    },
+    {
+      "q": "If $U=\\{1,2,3,4,5\\}$ and $A=\\{2,4\\}$, find $A'$.",
+      "options": [
+        "$\\{1,3,5\\}$",
+        "$\\{2,4\\}$",
+        "$\\{1,2,3,4,5\\}$",
+        "$\\{5\\}$"
+      ],
+      "correct": 0,
+      "explanation": "The complement of $A$ contains elements of $U$ not in $A$."
+    },
+    {
+      "q": "Which statement is true?",
+      "options": [
+        "$3\\in\\{1,2,4\\}$",
+        "$5\\notin\\{2,4,6\\}$",
+        "$0\\in\\{1,2,3\\}$",
+        "$7\\notin\\{7,8\\}$"
+      ],
+      "correct": 1,
+      "explanation": "$5$ is not a member of $\\{2,4,6\\}$, so the statement is true."
+    },
+    {
+      "q": "How many subsets does a set with $4$ elements have?",
+      "options": [
+        "$4$",
+        "$8$",
+        "$12$",
+        "$16$"
+      ],
+      "correct": 3,
+      "explanation": "A set with $n$ elements has $2^n$ subsets. Here $2^4=16$."
+    },
+    {
+      "q": "How many proper subsets does a set with $3$ elements have?",
+      "options": [
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$"
+      ],
+      "correct": 1,
+      "explanation": "There are $2^3=8$ subsets. Excluding the set itself leaves $7$ proper subsets."
+    },
+    {
+      "q": "Which of the following is an empty set?",
+      "options": [
+        "Set of even prime numbers",
+        "Set of months with 32 days",
+        "Set of factors of 1",
+        "Set of vowels in 'cat'"
+      ],
+      "correct": 1,
+      "explanation": "No month has $32$ days, so that set has no elements."
+    },
+    {
+      "q": "Classify $-5$.",
+      "options": [
+        "natural number",
+        "integer",
+        "rational number",
+        "irrational number"
+      ],
+      "correct": 1,
+      "explanation": "$-5$ is a negative whole number, so it is an integer."
+    },
+    {
+      "q": "Classify $0$.",
+      "options": [
+        "natural number",
+        "whole number",
+        "integer",
+        "irrational number"
+      ],
+      "correct": 1,
+      "explanation": "$0$ belongs to the whole numbers."
+    },
+    {
+      "q": "Classify $\\frac{9}{3}$.",
+      "options": [
+        "natural number",
+        "integer",
+        "rational number",
+        "irrational number"
+      ],
+      "correct": 1,
+      "explanation": "$9/3=3$, which is an integer."
+    },
+    {
+      "q": "Classify $\\pi$.",
+      "options": [
+        "natural number",
+        "integer",
+        "rational number",
+        "irrational number"
+      ],
+      "correct": 3,
+      "explanation": "$\\pi$ is non-terminating and non-repeating."
+    },
+    {
+      "q": "Classify $0.\\overline{6}$.",
+      "options": [
+        "natural number",
+        "integer",
+        "rational number",
+        "irrational number"
+      ],
+      "correct": 2,
+      "explanation": "A recurring decimal can be written as a fraction."
+    },
+    {
+      "q": "Classify $\\sqrt{49}$.",
+      "options": [
+        "natural number",
+        "integer",
+        "rational number",
+        "irrational number"
+      ],
+      "correct": 0,
+      "explanation": "$\\sqrt{49}=7$, a positive counting number."
+    },
+    {
+      "q": "If $n(A)=12$, $n(B)=9$, and $n(A\\cap B)=4$, find $n(A\\cup B)$.",
+      "options": [
+        "$17$",
+        "$21$",
+        "$25$",
+        "$5$"
+      ],
+      "correct": 0,
+      "explanation": "$n(A\\cup B)=n(A)+n(B)-n(A\\cap B)=12+9-4=17$."
+    },
+    {
+      "q": "If $A\\subset B$, which statement is always true?",
+      "options": [
+        "Every element of $A$ is in $B$.",
+        "Every element of $B$ is in $A$.",
+        "$A$ and $B$ have no common element.",
+        "$A$ is empty."
+      ],
+      "correct": 0,
+      "explanation": "$A\\subset B$ means every element of $A$ belongs to $B$."
+    },
+    {
+      "q": "Which notation means '$x$ is not an element of $A$'?",
+      "options": [
+        "$x\\in A$",
+        "$x\\notin A$",
+        "$x\\subset A$",
+        "$x\\cup A$"
+      ],
+      "correct": 1,
+      "explanation": "$\\notin$ means 'is not an element of'."
+    },
+    {
+      "q": "Find the cardinality of $\\{2,4,6,8,10\\}$.",
+      "options": [
+        "$2$",
+        "$4$",
+        "$5$",
+        "$10$"
+      ],
+      "correct": 2,
+      "explanation": "Cardinality is the number of elements. This set has $5$ elements."
+    },
+    {
+      "q": "Which set is finite?",
+      "options": [
+        "Set of counting numbers",
+        "Set of integers",
+        "Set of multiples of 5",
+        "Set of factors of 24"
+      ],
+      "correct": 3,
+      "explanation": "The factors of $24$ can be listed completely, so the set is finite."
+    },
+    {
+      "q": "Which set is infinite?",
+      "options": [
+        "Set of prime factors of 30",
+        "Set of vowels in English",
+        "Set of multiples of 3",
+        "Set of days in a week"
+      ],
+      "correct": 2,
+      "explanation": "Multiples of $3$ continue without end."
+    },
+    {
+      "q": "Find $A-B$ if $A=\\{1,2,3,4\\}$ and $B=\\{3,4,5\\}$.",
+      "options": [
+        "$\\{1,2\\}$",
+        "$\\{3,4\\}$",
+        "$\\{5\\}$",
+        "$\\{1,2,5\\}$"
+      ],
+      "correct": 0,
+      "explanation": "$A-B$ means elements in $A$ that are not in $B$."
+    },
+    {
+      "q": "Which of these is a singleton set?",
+      "options": [
+        "$\\{1,2\\}$",
+        "$\\{0\\}$",
+        "$\\{\\}$",
+        "$\\{a,b,c\\}$"
+      ],
+      "correct": 1,
+      "explanation": "A singleton set has exactly one element."
+    },
+    {
+      "q": "If $A=\\{x:x$ is a factor of $6\\}$, which set represents $A$?",
+      "options": [
+        "$\\{1,2,3,6\\}$",
+        "$\\{2,3,4,5\\}$",
+        "$\\{6,12,18\\}$",
+        "$\\{0,1,2,3\\}$"
+      ],
+      "correct": 0,
+      "explanation": "The positive factors of $6$ are $1,2,3,$ and $6$."
+    },
+    {
+      "q": "Which is the set of prime numbers less than $10$?",
+      "options": [
+        "$\\{1,2,3,5,7\\}$",
+        "$\\{2,3,5,7\\}$",
+        "$\\{2,4,6,8\\}$",
+        "$\\{3,5,7,9\\}$"
+      ],
+      "correct": 1,
+      "explanation": "$1$ is not prime, and the primes less than $10$ are $2,3,5,7$."
+    },
+    {
+      "q": "Find $A\\cap B$ if $A$ is the set of even numbers less than $10$ and $B$ is the set of multiples of $3$ less than $10$.",
+      "options": [
+        "$\\{6\\}$",
+        "$\\{2,4,8\\}$",
+        "$\\{3,6,9\\}$",
+        "$\\{2,3,4,6,8,9\\}$"
+      ],
+      "correct": 0,
+      "explanation": "Even numbers less than $10$ are $2,4,6,8$; multiples of $3$ are $3,6,9$. The common element is $6$."
+    },
+    {
+      "q": "Which statement correctly describes disjoint sets?",
+      "options": [
+        "They have equal elements.",
+        "They have no common element.",
+        "One is a subset of the other.",
+        "Their union is empty."
+      ],
+      "correct": 1,
+      "explanation": "Disjoint sets have an empty intersection."
+    },
+    {
+      "q": "If $A\\cap B=\\varnothing$, then $A$ and $B$ are:",
+      "options": [
+        "equal sets",
+        "disjoint sets",
+        "universal sets",
+        "infinite sets"
+      ],
+      "correct": 1,
+      "explanation": "An empty intersection means the sets are disjoint."
+    },
+    {
+      "q": "Which symbol represents the empty set?",
+      "options": [
+        "$\\in$",
+        "$\\subset$",
+        "$\\varnothing$",
+        "$\\cup$"
+      ],
+      "correct": 2,
+      "explanation": "$\\varnothing$ denotes the empty set."
+    },
+    {
+      "q": "Which of the following is a rational number?",
+      "options": [
+        "$\\sqrt3$",
+        "$\\pi$",
+        "$-\\frac{4}{7}$",
+        "$\\sqrt5$"
+      ],
+      "correct": 2,
+      "explanation": "$-4/7$ is a ratio of two integers."
+    },
+    {
+      "q": "Find $n(A')$ if $n(U)=30$ and $n(A)=18$.",
+      "options": [
+        "$12$",
+        "$18$",
+        "$30$",
+        "$48$"
+      ],
+      "correct": 0,
+      "explanation": "$n(A')=n(U)-n(A)=30-18=12$."
+    },
+    {
+      "q": "Which set is equal to $\\{3,1,2\\}$?",
+      "options": [
+        "$\\{1,2,3\\}$",
+        "$\\{1,2\\}$",
+        "$\\{3,3,1,2\\}$",
+        "$\\{1,2,4\\}$"
+      ],
+      "correct": 0,
+      "explanation": "Order does not matter in a set; the elements are $1,2,3$."
+    },
+    {
+      "q": "If $A=\\{1,2\\}$ and $B=\\{1,2,3\\}$, what is the relation between $A$ and $B$?",
+      "options": [
+        "$A\\subset B$",
+        "$B\\subset A$",
+        "$A\\cap B=\\varnothing$",
+        "$A=B$"
+      ],
+      "correct": 0,
+      "explanation": "Every element of $A$ is also in $B$."
+    },
+    {
+      "q": "The universal set is usually the set that contains:",
+      "options": [
+        "only empty elements",
+        "all elements under discussion",
+        "only common elements",
+        "only natural numbers"
+      ],
+      "correct": 1,
+      "explanation": "The universal set contains all elements being considered in the problem."
+    },
+    {
+      "q": "Which number belongs to $\\mathbb{Z}$ but not to $\\mathbb{N}$?",
+      "options": [
+        "$5$",
+        "$-2$",
+        "$\\frac12$",
+        "$\\sqrt2$"
+      ],
+      "correct": 1,
+      "explanation": "$-2$ is an integer but not a natural counting number."
+    },
+    {
+      "q": "Which is true for $A=\\{2,4,6\\}$?",
+      "options": [
+        "$4\\subset A$",
+        "$4\\in A$",
+        "$A\\in4$",
+        "$A\\notin 6$"
+      ],
+      "correct": 1,
+      "explanation": "$4$ is an element of $A$, so $4\\in A$."
+    },
+    {
+      "q": "How many elements are in $\\{x:x$ is a letter in the word LEVEL$\\}$?",
+      "options": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$2$"
+      ],
+      "correct": 0,
+      "explanation": "The distinct letters are L, E, and V, so there are $3$ elements."
+    },
+    {
+      "q": "Which expression gives the number of elements in exactly one of two sets?",
+      "options": [
+        "$n(A)+n(B)+n(A\\cap B)$",
+        "$n(A\\cup B)-n(A\\cap B)$",
+        "$n(A\\cap B)$",
+        "$n(A)-n(B)$"
+      ],
+      "correct": 1,
+      "explanation": "Elements in exactly one set are the union excluding the intersection, so use $n(A\\cup B)-n(A\\cap B)$."
+    },
+    {
+      "q": "If $A=\\{1,3,5,7\\}$ and $B=\\{2,3,5,8\\}$, find $(A\\cup B)-(A\\cap B)$.",
+      "options": [
+        "$\\{1,2,7,8\\}$",
+        "$\\{3,5\\}$",
+        "$\\{1,2,3,5,7,8\\}$",
+        "$\\{1,7\\}$"
+      ],
+      "correct": 0,
+      "explanation": "The union is $\\{1,2,3,5,7,8\\}$ and the intersection is $\\{3,5\\}$, leaving $\\{1,2,7,8\\}$."
+    }
+  ]
+}

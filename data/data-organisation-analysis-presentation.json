@@ -1,0 +1,448 @@
+{
+  "id": "data-organisation-analysis-presentation",
+  "title": "Data Organisation, Analysis & Presentation",
+  "module": 19,
+  "description": "Collecting, organising, presenting, and interpreting data in tables and charts.",
+  "questions": [
+    {
+      "q": "The data $2,4,4,5,10$ has mode:",
+      "options": [
+        "$2$",
+        "$4$",
+        "$5$",
+        "$10$"
+      ],
+      "correct": 1,
+      "explanation": "The mode is the value that occurs most often. Here $4$ occurs twice."
+    },
+    {
+      "q": "Find the mean of $3,5,7,9$.",
+      "options": [
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$"
+      ],
+      "correct": 1,
+      "explanation": "The sum is $24$ and there are $4$ values, so mean is $6$."
+    },
+    {
+      "q": "Find the median of $1,3,8,10,12$.",
+      "options": [
+        "$3$",
+        "$8$",
+        "$10$",
+        "$12$"
+      ],
+      "correct": 1,
+      "explanation": "The middle value is $8$."
+    },
+    {
+      "q": "Find the range of $6,9,2,11,5$.",
+      "options": [
+        "$5$",
+        "$7$",
+        "$9$",
+        "$11$"
+      ],
+      "correct": 2,
+      "explanation": "Range is largest minus smallest: $11-2=9$."
+    },
+    {
+      "q": "A tally mark group of four is usually written as:",
+      "options": [
+        "four vertical strokes",
+        "one crossed group of five",
+        "two crossed groups",
+        "a bar chart"
+      ],
+      "correct": 0,
+      "explanation": "Four tally marks are four separate strokes; the fifth crosses them."
+    },
+    {
+      "q": "Which graph is best for comparing categories?",
+      "options": [
+        "Bar chart",
+        "Line graph",
+        "Scatter graph",
+        "Histogram only"
+      ],
+      "correct": 0,
+      "explanation": "A bar chart is used to compare separate categories."
+    },
+    {
+      "q": "Which graph is best for showing change over time?",
+      "options": [
+        "Pie chart",
+        "Line graph",
+        "Pictogram",
+        "Venn diagram"
+      ],
+      "correct": 1,
+      "explanation": "A line graph shows trends over time clearly."
+    },
+    {
+      "q": "A pie chart represents a whole as:",
+      "options": [
+        "$90^\\circ$",
+        "$180^\\circ$",
+        "$270^\\circ$",
+        "$360^\\circ$"
+      ],
+      "correct": 3,
+      "explanation": "A full pie chart is a full circle, so it has $360^\\circ$."
+    },
+    {
+      "q": "In a class of $30$, $12$ learners like football. What pie-chart angle represents football?",
+      "options": [
+        "$72^\\circ$",
+        "$120^\\circ$",
+        "$144^\\circ$",
+        "$180^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "$12/30\\times360=144^\\circ$."
+    },
+    {
+      "q": "A frequency table shows score $5$ has frequency $8$. What does this mean?",
+      "options": [
+        "The score is $8$.",
+        "$5$ occurred $8$ times.",
+        "$8$ occurred $5$ times.",
+        "The mean is $5$."
+      ],
+      "correct": 1,
+      "explanation": "Frequency tells how many times a value occurs."
+    },
+    {
+      "q": "Find the total frequency: $3,5,7,10$.",
+      "options": [
+        "$10$",
+        "$15$",
+        "$25$",
+        "$35$"
+      ],
+      "correct": 2,
+      "explanation": "Add the frequencies: $3+5+7+10=25$."
+    },
+    {
+      "q": "Scores $1,2,3$ have frequencies $4,5,1$. Find the mean score.",
+      "options": [
+        "$1.7$",
+        "$2.0$",
+        "$2.3$",
+        "$10$"
+      ],
+      "correct": 0,
+      "explanation": "Weighted total is $1(4)+2(5)+3(1)=17$; total frequency is $10$, so mean is $1.7$."
+    },
+    {
+      "q": "Which is primary data?",
+      "options": [
+        "Data copied from a textbook",
+        "Data collected by the researcher directly",
+        "Data from an old newspaper",
+        "Data from a website only"
+      ],
+      "correct": 1,
+      "explanation": "Primary data is collected directly for the investigation."
+    },
+    {
+      "q": "Which is secondary data?",
+      "options": [
+        "Measurements taken in class today",
+        "Responses from your own survey",
+        "Data from a published report",
+        "Your own experiment results"
+      ],
+      "correct": 2,
+      "explanation": "Secondary data has already been collected by another source."
+    },
+    {
+      "q": "A questionnaire is mainly used to collect:",
+      "options": [
+        "survey responses",
+        "circle areas",
+        "angle sizes",
+        "multiplication tables"
+      ],
+      "correct": 0,
+      "explanation": "Questionnaires collect responses from people."
+    },
+    {
+      "q": "Which average is most affected by an extreme value?",
+      "options": [
+        "Mean",
+        "Median",
+        "Mode",
+        "Range only"
+      ],
+      "correct": 0,
+      "explanation": "The mean uses every value, so an extreme value can change it strongly."
+    },
+    {
+      "q": "The median is useful because it is:",
+      "options": [
+        "always the largest value",
+        "less affected by extremes",
+        "always equal to the mean",
+        "the total frequency"
+      ],
+      "correct": 1,
+      "explanation": "The median depends on position, so extreme values affect it less."
+    },
+    {
+      "q": "If a pictogram key says one symbol represents $5$ learners, how many learners do $7$ symbols represent?",
+      "options": [
+        "$12$",
+        "$25$",
+        "$35$",
+        "$75$"
+      ],
+      "correct": 2,
+      "explanation": "$7\\times5=35$ learners."
+    },
+    {
+      "q": "If $20\\%$ of a pie chart is shaded, find the angle shaded.",
+      "options": [
+        "$20^\\circ$",
+        "$36^\\circ$",
+        "$72^\\circ$",
+        "$90^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "$20\\%$ of $360^\\circ$ is $72^\\circ$."
+    },
+    {
+      "q": "The class interval $10-19$ has class width:",
+      "options": [
+        "$9$",
+        "$10$",
+        "$19$",
+        "$29$"
+      ],
+      "correct": 1,
+      "explanation": "For whole-number classes, $10-19$ covers $10$ values."
+    },
+    {
+      "q": "The midpoint of the class interval $20-30$ is:",
+      "options": [
+        "$10$",
+        "$20$",
+        "$25$",
+        "$30$"
+      ],
+      "correct": 2,
+      "explanation": "Midpoint is $(20+30)/2=25$."
+    },
+    {
+      "q": "A histogram is mainly used for:",
+      "options": [
+        "continuous grouped data",
+        "names of learners",
+        "set complements",
+        "angles only"
+      ],
+      "correct": 0,
+      "explanation": "Histograms display continuous grouped data."
+    },
+    {
+      "q": "A bar chart should have bars that are:",
+      "options": [
+        "touching always",
+        "separated for categories",
+        "circular",
+        "slanted only"
+      ],
+      "correct": 1,
+      "explanation": "For separate categories, bar-chart bars are usually separated."
+    },
+    {
+      "q": "Find the mode of $7,8,8,9,9,9,10$.",
+      "options": [
+        "$7$",
+        "$8$",
+        "$9$",
+        "$10$"
+      ],
+      "correct": 2,
+      "explanation": "$9$ occurs three times, more than any other value."
+    },
+    {
+      "q": "Find the median of $4,6,8,10$.",
+      "options": [
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$"
+      ],
+      "correct": 1,
+      "explanation": "For four values, median is the average of the two middle values: $(6+8)/2=7$."
+    },
+    {
+      "q": "Find the mean of $2,2,6,10$.",
+      "options": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "$20$"
+      ],
+      "correct": 1,
+      "explanation": "The sum is $20$ and there are $4$ values, so mean is $5$."
+    },
+    {
+      "q": "Which data type is qualitative?",
+      "options": [
+        "Height",
+        "Mass",
+        "Eye colour",
+        "Age"
+      ],
+      "correct": 2,
+      "explanation": "Eye colour is a category, not a numerical measurement."
+    },
+    {
+      "q": "Which data type is quantitative?",
+      "options": [
+        "Favourite food",
+        "House colour",
+        "Number of siblings",
+        "Type of transport"
+      ],
+      "correct": 2,
+      "explanation": "Number of siblings is numerical."
+    },
+    {
+      "q": "A sample is:",
+      "options": [
+        "the whole population",
+        "a part of the population selected for study",
+        "always zero",
+        "only grouped data"
+      ],
+      "correct": 1,
+      "explanation": "A sample is a selected part of the population."
+    },
+    {
+      "q": "A population is:",
+      "options": [
+        "all items or people under study",
+        "only one respondent",
+        "the frequency column",
+        "a bar in a chart"
+      ],
+      "correct": 0,
+      "explanation": "The population is the full group being studied."
+    },
+    {
+      "q": "Which method is likely to give a biased sample?",
+      "options": [
+        "Randomly selecting names",
+        "Surveying only your friends",
+        "Using a number generator",
+        "Drawing names from a box"
+      ],
+      "correct": 1,
+      "explanation": "Surveying only friends is unlikely to represent the whole population fairly."
+    },
+    {
+      "q": "The cumulative frequency after frequencies $2,4,6$ is:",
+      "options": [
+        "$6$",
+        "$10$",
+        "$12$",
+        "$24$"
+      ],
+      "correct": 2,
+      "explanation": "Cumulative frequency adds up to that point: $2+4+6=12$."
+    },
+    {
+      "q": "If the total frequency is $50$, the median position is approximately:",
+      "options": [
+        "$10.5$th",
+        "$25.5$th",
+        "$50$th",
+        "$100$th"
+      ],
+      "correct": 1,
+      "explanation": "Median position is $(n+1)/2=(50+1)/2=25.5$."
+    },
+    {
+      "q": "Which display is best for showing parts of a whole?",
+      "options": [
+        "Pie chart",
+        "Line graph",
+        "Scatter plot",
+        "Stem-and-leaf only"
+      ],
+      "correct": 0,
+      "explanation": "A pie chart shows how a whole is divided into parts."
+    },
+    {
+      "q": "A stem-and-leaf plot preserves:",
+      "options": [
+        "original data values",
+        "only percentages",
+        "only angles",
+        "only colours"
+      ],
+      "correct": 0,
+      "explanation": "Stem-and-leaf plots show the individual data values."
+    },
+    {
+      "q": "For data $5,5,6,8,11$, find the range.",
+      "options": [
+        "$5$",
+        "$6$",
+        "$8$",
+        "$11$"
+      ],
+      "correct": 1,
+      "explanation": "Range is $11-5=6$."
+    },
+    {
+      "q": "If a bar has height $12$ on a frequency chart, the frequency is:",
+      "options": [
+        "$6$",
+        "$12$",
+        "$24$",
+        "$144$"
+      ],
+      "correct": 1,
+      "explanation": "The height of the bar represents the frequency."
+    },
+    {
+      "q": "Which question is better for collecting numerical data?",
+      "options": [
+        "What is your height?",
+        "What colour do you like?",
+        "Which team do you support?",
+        "What is your favourite subject?"
+      ],
+      "correct": 0,
+      "explanation": "Height is a numerical measurement."
+    },
+    {
+      "q": "A pie-chart sector of $90^\\circ$ represents what fraction of the data?",
+      "options": [
+        "$\\frac14$",
+        "$\\frac12$",
+        "$\\frac34$",
+        "$\\frac19$"
+      ],
+      "correct": 0,
+      "explanation": "$90/360=1/4$."
+    },
+    {
+      "q": "If $8$ out of $40$ learners walk to school, what percentage walk?",
+      "options": [
+        "$8\\%$",
+        "$20\\%$",
+        "$32\\%$",
+        "$40\\%$"
+      ],
+      "correct": 1,
+      "explanation": "$8/40\\times100\\%=20\\%$."
+    }
+  ]
+}

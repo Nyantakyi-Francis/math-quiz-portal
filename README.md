@@ -98,14 +98,3 @@ npm run lint
 npm test -- --run
 npm run build
 ```
-
-## Licensing Materials
-
-The repository includes supporting documents for review:
-
-- `PRODUCT_BRIEF.md`
-- `ASSET_OWNERSHIP.md`
-- `PRIVACY_AND_DATA_HANDLING.md`
-- `REVIEWER_WALKTHROUGH.md`
-
-These files describe the licensing offer, owned assets, data handling, reviewer flow, and deployment expectations.

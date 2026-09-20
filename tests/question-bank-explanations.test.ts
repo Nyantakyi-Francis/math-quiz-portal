@@ -39,7 +39,7 @@ describe("authored question-bank explanations", () => {
       });
     }
 
-    expect(questionCount).toBe(470);
+    expect(questionCount).toBe(790);
   });
 
   it("keeps every corrected answer index within its option list", () => {

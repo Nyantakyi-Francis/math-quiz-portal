@@ -1,0 +1,448 @@
+{
+  "id": "probability-independent-events",
+  "title": "Probability of Independent Events",
+  "module": 18,
+  "description": "Simple probability, multiplication rule, complements, and independent-event reasoning.",
+  "questions": [
+    {
+      "q": "A fair coin is tossed once. Find the probability of getting heads.",
+      "options": [
+        "$0$",
+        "$\\frac12$",
+        "$1$",
+        "$2$"
+      ],
+      "correct": 1,
+      "explanation": "A fair coin has two equally likely outcomes, so $P(H)=1/2$."
+    },
+    {
+      "q": "A fair die is rolled once. Find the probability of getting a $4$.",
+      "options": [
+        "$\\frac16$",
+        "$\\frac14$",
+        "$\\frac12$",
+        "$\\frac56$"
+      ],
+      "correct": 0,
+      "explanation": "There is one favourable outcome out of six."
+    },
+    {
+      "q": "A fair die is rolled once. Find the probability of getting an even number.",
+      "options": [
+        "$\\frac16$",
+        "$\\frac13$",
+        "$\\frac12$",
+        "$\\frac23$"
+      ],
+      "correct": 2,
+      "explanation": "The even outcomes are $2,4,6$, so probability is $3/6=1/2$."
+    },
+    {
+      "q": "Two fair coins are tossed. Find the probability of getting two heads.",
+      "options": [
+        "$\\frac14$",
+        "$\\frac12$",
+        "$\\frac34$",
+        "$1$"
+      ],
+      "correct": 0,
+      "explanation": "$P(HH)=1/2\\times1/2=1/4$."
+    },
+    {
+      "q": "A coin is tossed and a die is rolled. Find the probability of heads and a $6$.",
+      "options": [
+        "$\\frac16$",
+        "$\\frac18$",
+        "$\\frac1{12}$",
+        "$\\frac12$"
+      ],
+      "correct": 2,
+      "explanation": "The events are independent, so multiply: $1/2\\times1/6=1/12$."
+    },
+    {
+      "q": "Two fair dice are rolled. Find the probability of getting two sixes.",
+      "options": [
+        "$\\frac16$",
+        "$\\frac1{12}$",
+        "$\\frac1{36}$",
+        "$\\frac{6}{36}$"
+      ],
+      "correct": 2,
+      "explanation": "$P(6,6)=1/6\\times1/6=1/36$."
+    },
+    {
+      "q": "If $P(A)=\\frac{2}{5}$ and $P(B)=\\frac{3}{4}$ for independent events, find $P(A\\cap B)$.",
+      "options": [
+        "$\\frac{6}{20}$",
+        "$\\frac{5}{9}$",
+        "$\\frac{6}{9}$",
+        "$\\frac{1}{10}$"
+      ],
+      "correct": 0,
+      "explanation": "For independent events, $P(A\\cap B)=P(A)P(B)=2/5\\times3/4=6/20=3/10$."
+    },
+    {
+      "q": "If $P(A)=0.3$, find $P(A')$.",
+      "options": [
+        "$0.3$",
+        "$0.6$",
+        "$0.7$",
+        "$1.3$"
+      ],
+      "correct": 2,
+      "explanation": "$P(A')=1-P(A)=1-0.3=0.7$."
+    },
+    {
+      "q": "A bag has $3$ red and $2$ blue balls. One ball is picked at random. Find $P(blue)$.",
+      "options": [
+        "$\\frac25$",
+        "$\\frac23$",
+        "$\\frac35$",
+        "$\\frac12$"
+      ],
+      "correct": 0,
+      "explanation": "There are $2$ blue balls out of $5$ balls."
+    },
+    {
+      "q": "A bag has $4$ red and $6$ green balls. A ball is picked, replaced, and another is picked. Find the probability both are red.",
+      "options": [
+        "$\\frac{2}{5}$",
+        "$\\frac{4}{25}$",
+        "$\\frac{8}{25}$",
+        "$\\frac{16}{100}$"
+      ],
+      "correct": 3,
+      "explanation": "With replacement, the events are independent: $4/10\\times4/10=16/100=4/25$."
+    },
+    {
+      "q": "What does it mean for two events to be independent?",
+      "options": [
+        "One event prevents the other.",
+        "One event changes the probability of the other.",
+        "One event does not affect the probability of the other.",
+        "They cannot occur together."
+      ],
+      "correct": 2,
+      "explanation": "Independent events do not change each other's probabilities."
+    },
+    {
+      "q": "If $P(A)=\\frac14$ and $P(B)=\\frac12$, independent, find $P(A\\text{ and not }B)$.",
+      "options": [
+        "$\\frac18$",
+        "$\\frac14$",
+        "$\\frac38$",
+        "$\\frac34$"
+      ],
+      "correct": 0,
+      "explanation": "$P(A\\cap B')=P(A)P(B')=1/4\\times1/2=1/8$."
+    },
+    {
+      "q": "A fair die is rolled twice. Find the probability of getting an odd number both times.",
+      "options": [
+        "$\\frac14$",
+        "$\\frac12$",
+        "$\\frac34$",
+        "$1$"
+      ],
+      "correct": 0,
+      "explanation": "Each roll has probability $3/6=1/2$ of odd, so both odd is $1/2\\times1/2=1/4$."
+    },
+    {
+      "q": "A card is drawn from a standard deck. Find the probability of drawing a heart.",
+      "options": [
+        "$\\frac14$",
+        "$\\frac12$",
+        "$\\frac1{13}$",
+        "$\\frac4{13}$"
+      ],
+      "correct": 0,
+      "explanation": "There are $13$ hearts out of $52$ cards, so $13/52=1/4$."
+    },
+    {
+      "q": "A card is drawn from a standard deck. Find the probability of drawing an ace.",
+      "options": [
+        "$\\frac1{52}$",
+        "$\\frac1{13}$",
+        "$\\frac14$",
+        "$\\frac4{13}$"
+      ],
+      "correct": 1,
+      "explanation": "There are $4$ aces out of $52$ cards, so $4/52=1/13$."
+    },
+    {
+      "q": "A coin is tossed three times. Find the probability of getting all tails.",
+      "options": [
+        "$\\frac12$",
+        "$\\frac14$",
+        "$\\frac18$",
+        "$\\frac38$"
+      ],
+      "correct": 2,
+      "explanation": "$1/2\\times1/2\\times1/2=1/8$."
+    },
+    {
+      "q": "If the probability of rain is $0.2$, find the probability that it will not rain.",
+      "options": [
+        "$0.2$",
+        "$0.4$",
+        "$0.8$",
+        "$1.2$"
+      ],
+      "correct": 2,
+      "explanation": "The complement is $1-0.2=0.8$."
+    },
+    {
+      "q": "A spinner has equal sectors numbered $1$ to $5$. Find the probability of landing on a number greater than $3$.",
+      "options": [
+        "$\\frac15$",
+        "$\\frac25$",
+        "$\\frac35$",
+        "$\\frac45$"
+      ],
+      "correct": 1,
+      "explanation": "The favourable outcomes are $4$ and $5$, so probability is $2/5$."
+    },
+    {
+      "q": "Two independent events have probabilities $0.6$ and $0.5$. Find the probability that both occur.",
+      "options": [
+        "$0.1$",
+        "$0.3$",
+        "$0.6$",
+        "$1.1$"
+      ],
+      "correct": 1,
+      "explanation": "Multiply: $0.6\\times0.5=0.3$."
+    },
+    {
+      "q": "Two fair dice are rolled. Find the probability of getting a sum of $7$.",
+      "options": [
+        "$\\frac16$",
+        "$\\frac1{12}$",
+        "$\\frac7{36}$",
+        "$\\frac12$"
+      ],
+      "correct": 0,
+      "explanation": "The six favourable pairs are $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$, so probability is $6/36=1/6$."
+    },
+    {
+      "q": "A fair die is rolled twice. Find the probability of no six appearing.",
+      "options": [
+        "$\\frac{25}{36}$",
+        "$\\frac{11}{36}$",
+        "$\\frac16$",
+        "$\\frac56$"
+      ],
+      "correct": 0,
+      "explanation": "Probability of no six on one roll is $5/6$, so on two rolls it is $5/6\\times5/6=25/36$."
+    },
+    {
+      "q": "A coin is tossed twice. Find the probability of at least one head.",
+      "options": [
+        "$\\frac14$",
+        "$\\frac12$",
+        "$\\frac34$",
+        "$1$"
+      ],
+      "correct": 2,
+      "explanation": "Use the complement: no heads is TT with probability $1/4$, so at least one head is $1-1/4=3/4$."
+    },
+    {
+      "q": "A bag has $5$ black and $5$ white balls. A ball is picked, replaced, and another is picked. Find $P(white, then black)$.",
+      "options": [
+        "$\\frac14$",
+        "$\\frac12$",
+        "$\\frac34$",
+        "$1$"
+      ],
+      "correct": 0,
+      "explanation": "$P(W)P(B)=1/2\\times1/2=1/4$."
+    },
+    {
+      "q": "If $P(A\\cap B)=P(A)P(B)$, then $A$ and $B$ are:",
+      "options": [
+        "mutually exclusive",
+        "independent",
+        "complementary",
+        "impossible"
+      ],
+      "correct": 1,
+      "explanation": "This product rule is the test for independence."
+    },
+    {
+      "q": "A fair die is rolled. Find the probability of not getting a $1$.",
+      "options": [
+        "$\\frac16$",
+        "$\\frac56$",
+        "$\\frac12$",
+        "$1$"
+      ],
+      "correct": 1,
+      "explanation": "Five outcomes are not $1$, so probability is $5/6$."
+    },
+    {
+      "q": "Two coins are tossed. Find the probability of exactly one head.",
+      "options": [
+        "$\\frac14$",
+        "$\\frac12$",
+        "$\\frac34$",
+        "$1$"
+      ],
+      "correct": 1,
+      "explanation": "The outcomes HT and TH are favourable, so $2/4=1/2$."
+    },
+    {
+      "q": "A box has $2$ defective bulbs out of $10$. Find the probability of selecting a good bulb.",
+      "options": [
+        "$\\frac15$",
+        "$\\frac45$",
+        "$\\frac12$",
+        "$\\frac25$"
+      ],
+      "correct": 1,
+      "explanation": "There are $8$ good bulbs out of $10$, so $8/10=4/5$."
+    },
+    {
+      "q": "If $P(A)=0$, event $A$ is:",
+      "options": [
+        "certain",
+        "impossible",
+        "independent",
+        "likely"
+      ],
+      "correct": 1,
+      "explanation": "A probability of $0$ means the event cannot occur."
+    },
+    {
+      "q": "If $P(A)=1$, event $A$ is:",
+      "options": [
+        "impossible",
+        "unlikely",
+        "certain",
+        "independent"
+      ],
+      "correct": 2,
+      "explanation": "A probability of $1$ means the event must occur."
+    },
+    {
+      "q": "Which value cannot be a probability?",
+      "options": [
+        "$0$",
+        "$\\frac12$",
+        "$1$",
+        "$1.2$"
+      ],
+      "correct": 3,
+      "explanation": "Probabilities must lie between $0$ and $1$ inclusive."
+    },
+    {
+      "q": "A fair die is rolled and a fair coin is tossed. How many equally likely outcomes are there?",
+      "options": [
+        "$6$",
+        "$8$",
+        "$12$",
+        "$36$"
+      ],
+      "correct": 2,
+      "explanation": "There are $6$ die outcomes and $2$ coin outcomes, so $6\\times2=12$."
+    },
+    {
+      "q": "A password uses one letter from $A,B,C$ and one digit from $1,2,3,4$. How many outcomes are possible?",
+      "options": [
+        "$7$",
+        "$12$",
+        "$24$",
+        "$34$"
+      ],
+      "correct": 1,
+      "explanation": "Use the multiplication rule: $3\\times4=12$."
+    },
+    {
+      "q": "If two events are mutually exclusive and both have non-zero probability, are they independent?",
+      "options": [
+        "Always",
+        "Never",
+        "Only if equal",
+        "Only if complements"
+      ],
+      "correct": 1,
+      "explanation": "If one occurs, the other cannot occur, so the probability of the other changes."
+    },
+    {
+      "q": "A bag has $3$ red and $7$ blue balls. With replacement, find the probability of drawing red twice.",
+      "options": [
+        "$\\frac{3}{10}$",
+        "$\\frac{6}{20}$",
+        "$\\frac{9}{100}$",
+        "$\\frac{21}{100}$"
+      ],
+      "correct": 2,
+      "explanation": "$3/10\\times3/10=9/100$."
+    },
+    {
+      "q": "A family has two children. Assuming boy and girl are equally likely, find the probability both are girls.",
+      "options": [
+        "$\\frac14$",
+        "$\\frac12$",
+        "$\\frac34$",
+        "$1$"
+      ],
+      "correct": 0,
+      "explanation": "The equally likely outcomes are BB, BG, GB, GG. Only GG works."
+    },
+    {
+      "q": "A fair die is rolled twice. Find the probability that the first roll is $2$ and the second is greater than $4$.",
+      "options": [
+        "$\\frac1{18}$",
+        "$\\frac1{12}$",
+        "$\\frac13$",
+        "$\\frac12$"
+      ],
+      "correct": 0,
+      "explanation": "$P(2)=1/6$ and $P(>4)=2/6=1/3$, so product is $1/18$."
+    },
+    {
+      "q": "A spinner has $8$ equal sectors, $3$ of which are red. Find $P(not red)$.",
+      "options": [
+        "$\\frac38$",
+        "$\\frac58$",
+        "$\\frac35$",
+        "$\\frac83$"
+      ],
+      "correct": 1,
+      "explanation": "Five of the eight sectors are not red."
+    },
+    {
+      "q": "A coin is tossed four times. Find the probability of four heads.",
+      "options": [
+        "$\\frac1{16}$",
+        "$\\frac14$",
+        "$\\frac18$",
+        "$\\frac12$"
+      ],
+      "correct": 0,
+      "explanation": "$(1/2)^4=1/16$."
+    },
+    {
+      "q": "A die is rolled once. Find $P($prime number$)$.",
+      "options": [
+        "$\\frac13$",
+        "$\\frac12$",
+        "$\\frac23$",
+        "$\\frac56$"
+      ],
+      "correct": 1,
+      "explanation": "Prime outcomes on a die are $2,3,5$, so $3/6=1/2$."
+    },
+    {
+      "q": "If $P(A)=\\frac35$, find the odds against $A$ as a probability of not $A$.",
+      "options": [
+        "$\\frac25$",
+        "$\\frac35$",
+        "$\\frac23$",
+        "$\\frac32$"
+      ],
+      "correct": 0,
+      "explanation": "$P(A')=1-3/5=2/5$."
+    }
+  ]
+}

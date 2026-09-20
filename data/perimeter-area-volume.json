@@ -1,0 +1,448 @@
+{
+  "id": "perimeter-area-volume",
+  "title": "Perimeter, Area & Volume",
+  "module": 17,
+  "description": "Perimeter, area, circumference, surface area, volume, and unit conversion.",
+  "questions": [
+    {
+      "q": "Find the perimeter of a rectangle $8$ cm by $5$ cm.",
+      "options": [
+        "$13$ cm",
+        "$26$ cm",
+        "$40$ cm",
+        "$80$ cm"
+      ],
+      "correct": 1,
+      "explanation": "Perimeter is $2(l+w)=2(8+5)=26$ cm."
+    },
+    {
+      "q": "Find the area of a rectangle $8$ cm by $5$ cm.",
+      "options": [
+        "$13$ cm$^2$",
+        "$26$ cm$^2$",
+        "$40$ cm$^2$",
+        "$80$ cm$^2$"
+      ],
+      "correct": 2,
+      "explanation": "Area is $lw=8\\times5=40$ cm$^2$."
+    },
+    {
+      "q": "Find the area of a triangle with base $10$ cm and height $6$ cm.",
+      "options": [
+        "$16$ cm$^2$",
+        "$30$ cm$^2$",
+        "$60$ cm$^2$",
+        "$100$ cm$^2$"
+      ],
+      "correct": 1,
+      "explanation": "Area is $\\frac12 bh=\\frac12(10)(6)=30$ cm$^2$."
+    },
+    {
+      "q": "Find the circumference of a circle with radius $7$ cm, using $\\pi=\\frac{22}{7}$.",
+      "options": [
+        "$22$ cm",
+        "$44$ cm",
+        "$49$ cm",
+        "$154$ cm"
+      ],
+      "correct": 1,
+      "explanation": "$C=2\\pi r=2\\times22/7\\times7=44$ cm."
+    },
+    {
+      "q": "Find the area of a circle with radius $7$ cm, using $\\pi=\\frac{22}{7}$.",
+      "options": [
+        "$44$ cm$^2$",
+        "$77$ cm$^2$",
+        "$154$ cm$^2$",
+        "$308$ cm$^2$"
+      ],
+      "correct": 2,
+      "explanation": "$A=\\pi r^2=22/7\\times49=154$ cm$^2$."
+    },
+    {
+      "q": "Find the volume of a cuboid $4$ cm by $5$ cm by $6$ cm.",
+      "options": [
+        "$15$ cm$^3$",
+        "$60$ cm$^3$",
+        "$120$ cm$^3$",
+        "$240$ cm$^3$"
+      ],
+      "correct": 2,
+      "explanation": "Volume is $lwh=4\\times5\\times6=120$ cm$^3$."
+    },
+    {
+      "q": "Find the volume of a cube of side $3$ cm.",
+      "options": [
+        "$9$ cm$^3$",
+        "$18$ cm$^3$",
+        "$27$ cm$^3$",
+        "$81$ cm$^3$"
+      ],
+      "correct": 2,
+      "explanation": "Volume of a cube is $s^3=3^3=27$ cm$^3$."
+    },
+    {
+      "q": "Find the total surface area of a cube of side $4$ cm.",
+      "options": [
+        "$16$ cm$^2$",
+        "$64$ cm$^2$",
+        "$96$ cm$^2$",
+        "$256$ cm$^2$"
+      ],
+      "correct": 2,
+      "explanation": "A cube has $6$ square faces, so surface area is $6\\times4^2=96$ cm$^2$."
+    },
+    {
+      "q": "Find the area of a parallelogram with base $12$ cm and height $5$ cm.",
+      "options": [
+        "$17$ cm$^2$",
+        "$30$ cm$^2$",
+        "$60$ cm$^2$",
+        "$120$ cm$^2$"
+      ],
+      "correct": 2,
+      "explanation": "Area of a parallelogram is $bh=12\\times5=60$ cm$^2$."
+    },
+    {
+      "q": "Find the area of a trapezium with parallel sides $8$ cm and $12$ cm and height $5$ cm.",
+      "options": [
+        "$40$ cm$^2$",
+        "$50$ cm$^2$",
+        "$60$ cm$^2$",
+        "$100$ cm$^2$"
+      ],
+      "correct": 1,
+      "explanation": "Area is $\\frac12(a+b)h=\\frac12(8+12)5=50$ cm$^2$."
+    },
+    {
+      "q": "Convert $2.5$ m to centimetres.",
+      "options": [
+        "$25$ cm",
+        "$250$ cm",
+        "$2500$ cm",
+        "$0.25$ cm"
+      ],
+      "correct": 1,
+      "explanation": "$1$ m is $100$ cm, so $2.5$ m is $250$ cm."
+    },
+    {
+      "q": "Convert $3000$ cm$^3$ to litres.",
+      "options": [
+        "$0.3$ L",
+        "$3$ L",
+        "$30$ L",
+        "$300$ L"
+      ],
+      "correct": 1,
+      "explanation": "$1000$ cm$^3=1$ litre, so $3000$ cm$^3=3$ litres."
+    },
+    {
+      "q": "Find the perimeter of a square of side $9$ cm.",
+      "options": [
+        "$18$ cm",
+        "$27$ cm",
+        "$36$ cm",
+        "$81$ cm"
+      ],
+      "correct": 2,
+      "explanation": "Perimeter of a square is $4s=4\\times9=36$ cm."
+    },
+    {
+      "q": "Find the area of a square of side $9$ cm.",
+      "options": [
+        "$18$ cm$^2$",
+        "$36$ cm$^2$",
+        "$81$ cm$^2$",
+        "$729$ cm$^2$"
+      ],
+      "correct": 2,
+      "explanation": "Area is $s^2=9^2=81$ cm$^2$."
+    },
+    {
+      "q": "Find the volume of a cylinder with radius $3$ cm and height $10$ cm, using $\\pi=3.14$.",
+      "options": [
+        "$94.2$ cm$^3$",
+        "$188.4$ cm$^3$",
+        "$282.6$ cm$^3$",
+        "$314$ cm$^3$"
+      ],
+      "correct": 2,
+      "explanation": "$V=\\pi r^2h=3.14\\times9\\times10=282.6$ cm$^3$."
+    },
+    {
+      "q": "Find the curved surface area of a cylinder with radius $7$ cm and height $10$ cm, using $\\pi=\\frac{22}{7}$.",
+      "options": [
+        "$220$ cm$^2$",
+        "$330$ cm$^2$",
+        "$440$ cm$^2$",
+        "$1540$ cm$^2$"
+      ],
+      "correct": 2,
+      "explanation": "Curved surface area is $2\\pi rh=2\\times22/7\\times7\\times10=440$ cm$^2$."
+    },
+    {
+      "q": "A rectangular floor is $6$ m by $4$ m. Find its area.",
+      "options": [
+        "$10$ m$^2$",
+        "$20$ m$^2$",
+        "$24$ m$^2$",
+        "$48$ m$^2$"
+      ],
+      "correct": 2,
+      "explanation": "Area is $6\\times4=24$ m$^2$."
+    },
+    {
+      "q": "How many $1$ cm cubes fit in a cuboid $5$ cm by $4$ cm by $3$ cm?",
+      "options": [
+        "$12$",
+        "$20$",
+        "$60$",
+        "$120$"
+      ],
+      "correct": 2,
+      "explanation": "The number of unit cubes equals the volume: $5\\times4\\times3=60$."
+    },
+    {
+      "q": "Find the perimeter of a triangle with sides $5$ cm, $7$ cm, and $9$ cm.",
+      "options": [
+        "$12$ cm",
+        "$16$ cm",
+        "$21$ cm",
+        "$35$ cm"
+      ],
+      "correct": 2,
+      "explanation": "Perimeter is the sum of the sides: $5+7+9=21$ cm."
+    },
+    {
+      "q": "A circle has diameter $14$ cm. Find its radius.",
+      "options": [
+        "$7$ cm",
+        "$14$ cm",
+        "$28$ cm",
+        "$49$ cm"
+      ],
+      "correct": 0,
+      "explanation": "The radius is half the diameter: $14/2=7$ cm."
+    },
+    {
+      "q": "Find the area of a semicircle of radius $7$ cm using $\\pi=\\frac{22}{7}$.",
+      "options": [
+        "$77$ cm$^2$",
+        "$154$ cm$^2$",
+        "$44$ cm$^2$",
+        "$22$ cm$^2$"
+      ],
+      "correct": 0,
+      "explanation": "A semicircle is half a circle: $\\frac12\\times22/7\\times49=77$ cm$^2$."
+    },
+    {
+      "q": "Find the volume of a prism with cross-sectional area $18$ cm$^2$ and length $9$ cm.",
+      "options": [
+        "$27$ cm$^3$",
+        "$81$ cm$^3$",
+        "$162$ cm$^3$",
+        "$324$ cm$^3$"
+      ],
+      "correct": 2,
+      "explanation": "Volume of a prism is cross-sectional area times length: $18\\times9=162$ cm$^3$."
+    },
+    {
+      "q": "Find the total surface area of a cuboid $2$ cm by $3$ cm by $4$ cm.",
+      "options": [
+        "$24$ cm$^2$",
+        "$36$ cm$^2$",
+        "$52$ cm$^2$",
+        "$72$ cm$^2$"
+      ],
+      "correct": 2,
+      "explanation": "Surface area is $2(lw+lh+wh)=2(6+8+12)=52$ cm$^2$."
+    },
+    {
+      "q": "A rectangle has area $48$ cm$^2$ and length $12$ cm. Find its width.",
+      "options": [
+        "$3$ cm",
+        "$4$ cm",
+        "$6$ cm",
+        "$36$ cm"
+      ],
+      "correct": 1,
+      "explanation": "Width is area divided by length: $48/12=4$ cm."
+    },
+    {
+      "q": "A square has perimeter $28$ cm. Find its side.",
+      "options": [
+        "$4$ cm",
+        "$7$ cm",
+        "$14$ cm",
+        "$28$ cm"
+      ],
+      "correct": 1,
+      "explanation": "Each side is $28/4=7$ cm."
+    },
+    {
+      "q": "Find the circumference of a circle with diameter $21$ cm using $\\pi=\\frac{22}{7}$.",
+      "options": [
+        "$44$ cm",
+        "$66$ cm",
+        "$132$ cm",
+        "$462$ cm"
+      ],
+      "correct": 1,
+      "explanation": "$C=\\pi d=22/7\\times21=66$ cm."
+    },
+    {
+      "q": "Find the area of a rhombus with diagonals $10$ cm and $12$ cm.",
+      "options": [
+        "$30$ cm$^2$",
+        "$60$ cm$^2$",
+        "$120$ cm$^2$",
+        "$240$ cm$^2$"
+      ],
+      "correct": 1,
+      "explanation": "Area of a rhombus is $\\frac12 d_1d_2=\\frac12(10)(12)=60$ cm$^2$."
+    },
+    {
+      "q": "A cuboid has volume $96$ cm$^3$, length $8$ cm, and width $4$ cm. Find its height.",
+      "options": [
+        "$2$ cm",
+        "$3$ cm",
+        "$4$ cm",
+        "$12$ cm"
+      ],
+      "correct": 1,
+      "explanation": "Height is $96/(8\\times4)=3$ cm."
+    },
+    {
+      "q": "Convert $5$ hectares to square metres.",
+      "options": [
+        "$500$ m$^2$",
+        "$5000$ m$^2$",
+        "$50000$ m$^2$",
+        "$500000$ m$^2$"
+      ],
+      "correct": 2,
+      "explanation": "$1$ hectare is $10000$ m$^2$, so $5$ hectares is $50000$ m$^2$."
+    },
+    {
+      "q": "Find the area of a sector with angle $90^\\circ$ and radius $14$ cm using $\\pi=\\frac{22}{7}$.",
+      "options": [
+        "$77$ cm$^2$",
+        "$154$ cm$^2$",
+        "$308$ cm$^2$",
+        "$616$ cm$^2$"
+      ],
+      "correct": 1,
+      "explanation": "Sector area is $90/360\\times\\pi r^2=1/4\\times22/7\\times196=154$ cm$^2$."
+    },
+    {
+      "q": "Find the arc length of a $60^\\circ$ sector of radius $21$ cm using $\\pi=\\frac{22}{7}$.",
+      "options": [
+        "$11$ cm",
+        "$22$ cm",
+        "$44$ cm",
+        "$132$ cm"
+      ],
+      "correct": 1,
+      "explanation": "Arc length is $60/360\\times2\\pi r=1/6\\times2\\times22/7\\times21=22$ cm."
+    },
+    {
+      "q": "A compound shape is made from two rectangles of areas $24$ cm$^2$ and $15$ cm$^2$. Find the total area.",
+      "options": [
+        "$9$ cm$^2$",
+        "$24$ cm$^2$",
+        "$39$ cm$^2$",
+        "$360$ cm$^2$"
+      ],
+      "correct": 2,
+      "explanation": "Add the non-overlapping areas: $24+15=39$ cm$^2$."
+    },
+    {
+      "q": "Find the volume of a cone with radius $3$ cm and height $8$ cm using $\\pi=3$.",
+      "options": [
+        "$24$ cm$^3$",
+        "$48$ cm$^3$",
+        "$72$ cm$^3$",
+        "$216$ cm$^3$"
+      ],
+      "correct": 2,
+      "explanation": "$V=\\frac13\\pi r^2h=\\frac13\\times3\\times9\\times8=72$ cm$^3$."
+    },
+    {
+      "q": "Find the volume of a sphere of radius $3$ cm using $\\pi=3$.",
+      "options": [
+        "$36$ cm$^3$",
+        "$72$ cm$^3$",
+        "$108$ cm$^3$",
+        "$144$ cm$^3$"
+      ],
+      "correct": 2,
+      "explanation": "$V=\\frac43\\pi r^3=\\frac43\\times3\\times27=108$ cm$^3$."
+    },
+    {
+      "q": "A path around a square garden has outer side $12$ m and inner side $10$ m. Find the area of the path.",
+      "options": [
+        "$22$ m$^2$",
+        "$44$ m$^2$",
+        "$100$ m$^2$",
+        "$144$ m$^2$"
+      ],
+      "correct": 1,
+      "explanation": "Area of path is outer area minus inner area: $12^2-10^2=144-100=44$ m$^2$."
+    },
+    {
+      "q": "Find the area of a kite with diagonals $8$ cm and $15$ cm.",
+      "options": [
+        "$23$ cm$^2$",
+        "$46$ cm$^2$",
+        "$60$ cm$^2$",
+        "$120$ cm$^2$"
+      ],
+      "correct": 2,
+      "explanation": "Area of a kite is $\\frac12 d_1d_2=\\frac12(8)(15)=60$ cm$^2$."
+    },
+    {
+      "q": "Find the perimeter of a regular pentagon of side $6$ cm.",
+      "options": [
+        "$11$ cm",
+        "$25$ cm",
+        "$30$ cm",
+        "$36$ cm"
+      ],
+      "correct": 2,
+      "explanation": "A regular pentagon has five equal sides, so perimeter is $5\\times6=30$ cm."
+    },
+    {
+      "q": "A tank holds $2.4$ m$^3$ of water. How many litres is this?",
+      "options": [
+        "$24$ L",
+        "$240$ L",
+        "$2400$ L",
+        "$24000$ L"
+      ],
+      "correct": 2,
+      "explanation": "$1$ m$^3=1000$ L, so $2.4$ m$^3=2400$ L."
+    },
+    {
+      "q": "Find the side of a square whose area is $121$ cm$^2$.",
+      "options": [
+        "$10$ cm",
+        "$11$ cm",
+        "$12$ cm",
+        "$22$ cm"
+      ],
+      "correct": 1,
+      "explanation": "The side is $\\sqrt{121}=11$ cm."
+    },
+    {
+      "q": "Find the area of a rectangle whose perimeter is $30$ cm and length is $9$ cm.",
+      "options": [
+        "$45$ cm$^2$",
+        "$54$ cm$^2$",
+        "$63$ cm$^2$",
+        "$81$ cm$^2$"
+      ],
+      "correct": 1,
+      "explanation": "For a rectangle, $2(l+w)=30$, so $l+w=15$. With $l=9$, $w=6$, and area is $9\\times6=54$ cm$^2$."
+    }
+  ]
+}

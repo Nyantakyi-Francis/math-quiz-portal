@@ -1,0 +1,448 @@
+{
+  "id": "angles-pythagorean-theorem",
+  "title": "Angles & the Pythagorean Theorem",
+  "module": 16,
+  "description": "Angle facts, parallel lines, triangle angles, and Pythagorean calculations.",
+  "questions": [
+    {
+      "q": "Angles on a straight line add up to:",
+      "options": [
+        "$90^\\circ$",
+        "$180^\\circ$",
+        "$270^\\circ$",
+        "$360^\\circ$"
+      ],
+      "correct": 1,
+      "explanation": "Adjacent angles on a straight line sum to $180^\\circ$."
+    },
+    {
+      "q": "Angles around a point add up to:",
+      "options": [
+        "$90^\\circ$",
+        "$180^\\circ$",
+        "$270^\\circ$",
+        "$360^\\circ$"
+      ],
+      "correct": 3,
+      "explanation": "A full turn around a point is $360^\\circ$."
+    },
+    {
+      "q": "The angles in a triangle add up to:",
+      "options": [
+        "$90^\\circ$",
+        "$120^\\circ$",
+        "$180^\\circ$",
+        "$360^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "The interior angles of a triangle sum to $180^\\circ$."
+    },
+    {
+      "q": "Find the third angle of a triangle with angles $50^\\circ$ and $60^\\circ$.",
+      "options": [
+        "$60^\\circ$",
+        "$70^\\circ$",
+        "$80^\\circ$",
+        "$90^\\circ$"
+      ],
+      "correct": 1,
+      "explanation": "$180-50-60=70^\\circ$."
+    },
+    {
+      "q": "A right triangle has shorter sides $6$ cm and $8$ cm. Find the hypotenuse.",
+      "options": [
+        "$10$ cm",
+        "$12$ cm",
+        "$14$ cm",
+        "$48$ cm"
+      ],
+      "correct": 0,
+      "explanation": "$c=\\sqrt{6^2+8^2}=\\sqrt{100}=10$ cm."
+    },
+    {
+      "q": "A right triangle has hypotenuse $13$ cm and one side $5$ cm. Find the other side.",
+      "options": [
+        "$8$ cm",
+        "$10$ cm",
+        "$12$ cm",
+        "$18$ cm"
+      ],
+      "correct": 2,
+      "explanation": "$b=\\sqrt{13^2-5^2}=\\sqrt{169-25}=12$ cm."
+    },
+    {
+      "q": "Which triple forms a right-angled triangle?",
+      "options": [
+        "$3,4,5$",
+        "$4,5,6$",
+        "$5,6,7$",
+        "$6,7,8$"
+      ],
+      "correct": 0,
+      "explanation": "$3^2+4^2=9+16=25=5^2$."
+    },
+    {
+      "q": "Vertically opposite angles are:",
+      "options": [
+        "equal",
+        "supplementary",
+        "complementary",
+        "always right angles"
+      ],
+      "correct": 0,
+      "explanation": "Vertically opposite angles are equal."
+    },
+    {
+      "q": "Complementary angles add up to:",
+      "options": [
+        "$45^\\circ$",
+        "$90^\\circ$",
+        "$180^\\circ$",
+        "$360^\\circ$"
+      ],
+      "correct": 1,
+      "explanation": "Complementary angles have sum $90^\\circ$."
+    },
+    {
+      "q": "Supplementary angles add up to:",
+      "options": [
+        "$90^\\circ$",
+        "$120^\\circ$",
+        "$180^\\circ$",
+        "$360^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "Supplementary angles have sum $180^\\circ$."
+    },
+    {
+      "q": "Find the supplement of $115^\\circ$.",
+      "options": [
+        "$55^\\circ$",
+        "$65^\\circ$",
+        "$75^\\circ$",
+        "$245^\\circ$"
+      ],
+      "correct": 1,
+      "explanation": "$180-115=65^\\circ$."
+    },
+    {
+      "q": "Find the complement of $38^\\circ$.",
+      "options": [
+        "$42^\\circ$",
+        "$52^\\circ$",
+        "$62^\\circ$",
+        "$142^\\circ$"
+      ],
+      "correct": 1,
+      "explanation": "$90-38=52^\\circ$."
+    },
+    {
+      "q": "Each angle of an equilateral triangle is:",
+      "options": [
+        "$30^\\circ$",
+        "$45^\\circ$",
+        "$60^\\circ$",
+        "$90^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "An equilateral triangle has three equal angles, each $180/3=60^\\circ$."
+    },
+    {
+      "q": "The base angles of an isosceles triangle are:",
+      "options": [
+        "equal",
+        "right angles",
+        "supplementary",
+        "always obtuse"
+      ],
+      "correct": 0,
+      "explanation": "An isosceles triangle has equal base angles."
+    },
+    {
+      "q": "A square has diagonal $10$ cm. Find its side length.",
+      "options": [
+        "$5$ cm",
+        "$5\\sqrt2$ cm",
+        "$10\\sqrt2$ cm",
+        "$20$ cm"
+      ],
+      "correct": 1,
+      "explanation": "For side $s$, $s^2+s^2=10^2$, so $2s^2=100$ and $s=5\\sqrt2$."
+    },
+    {
+      "q": "A ladder $15$ m long reaches a point $12$ m up a wall. How far is its foot from the wall?",
+      "options": [
+        "$3$ m",
+        "$6$ m",
+        "$9$ m",
+        "$12$ m"
+      ],
+      "correct": 2,
+      "explanation": "Distance $=\\sqrt{15^2-12^2}=\\sqrt{81}=9$ m."
+    },
+    {
+      "q": "If two parallel lines are cut by a transversal, corresponding angles are:",
+      "options": [
+        "equal",
+        "supplementary",
+        "complementary",
+        "unequal"
+      ],
+      "correct": 0,
+      "explanation": "Corresponding angles are equal for parallel lines."
+    },
+    {
+      "q": "Alternate interior angles between parallel lines are:",
+      "options": [
+        "equal",
+        "right angles",
+        "supplementary",
+        "zero"
+      ],
+      "correct": 0,
+      "explanation": "Alternate interior angles are equal when the lines are parallel."
+    },
+    {
+      "q": "Interior angles on the same side of a transversal add up to:",
+      "options": [
+        "$90^\\circ$",
+        "$120^\\circ$",
+        "$180^\\circ$",
+        "$360^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "Co-interior angles between parallel lines are supplementary."
+    },
+    {
+      "q": "Find $x$ if $x+35^\\circ=90^\\circ$.",
+      "options": [
+        "$45^\\circ$",
+        "$55^\\circ$",
+        "$65^\\circ$",
+        "$125^\\circ$"
+      ],
+      "correct": 1,
+      "explanation": "$x=90-35=55^\\circ$."
+    },
+    {
+      "q": "Find $x$ if $2x+40^\\circ=180^\\circ$.",
+      "options": [
+        "$50^\\circ$",
+        "$60^\\circ$",
+        "$70^\\circ$",
+        "$80^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "$2x=140$, so $x=70^\\circ$."
+    },
+    {
+      "q": "The exterior angle of a triangle equals:",
+      "options": [
+        "sum of the two opposite interior angles",
+        "sum of all three interior angles",
+        "half the opposite angle",
+        "the adjacent interior angle"
+      ],
+      "correct": 0,
+      "explanation": "An exterior angle equals the sum of the two remote interior angles."
+    },
+    {
+      "q": "A triangle has sides $7,24,25$. What type is it?",
+      "options": [
+        "right-angled",
+        "equilateral",
+        "isosceles only",
+        "not a triangle"
+      ],
+      "correct": 0,
+      "explanation": "$7^2+24^2=49+576=625=25^2$."
+    },
+    {
+      "q": "Find the diagonal of a rectangle $9$ cm by $12$ cm.",
+      "options": [
+        "$15$ cm",
+        "$18$ cm",
+        "$21$ cm",
+        "$24$ cm"
+      ],
+      "correct": 0,
+      "explanation": "$d=\\sqrt{9^2+12^2}=15$ cm."
+    },
+    {
+      "q": "If an angle is $x$ and its vertically opposite angle is $78^\\circ$, find $x$.",
+      "options": [
+        "$78^\\circ$",
+        "$102^\\circ$",
+        "$156^\\circ$",
+        "$282^\\circ$"
+      ],
+      "correct": 0,
+      "explanation": "Vertically opposite angles are equal."
+    },
+    {
+      "q": "A triangle has angles $x,2x,3x$. Find $x$.",
+      "options": [
+        "$20^\\circ$",
+        "$30^\\circ$",
+        "$40^\\circ$",
+        "$60^\\circ$"
+      ],
+      "correct": 1,
+      "explanation": "$x+2x+3x=180$, so $6x=180$ and $x=30^\\circ$."
+    },
+    {
+      "q": "Which angle is obtuse?",
+      "options": [
+        "$45^\\circ$",
+        "$90^\\circ$",
+        "$125^\\circ$",
+        "$360^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "An obtuse angle is greater than $90^\\circ$ and less than $180^\\circ$."
+    },
+    {
+      "q": "Which angle is reflex?",
+      "options": [
+        "$80^\\circ$",
+        "$180^\\circ$",
+        "$240^\\circ$",
+        "$90^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "A reflex angle is greater than $180^\\circ$ and less than $360^\\circ$."
+    },
+    {
+      "q": "Find the length of the hypotenuse when the legs are $9$ and $40$.",
+      "options": [
+        "$41$",
+        "$49$",
+        "$31$",
+        "$1600$"
+      ],
+      "correct": 0,
+      "explanation": "$9^2+40^2=81+1600=1681=41^2$."
+    },
+    {
+      "q": "Find the missing leg if the hypotenuse is $10$ and one leg is $8$.",
+      "options": [
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$"
+      ],
+      "correct": 2,
+      "explanation": "$\\sqrt{10^2-8^2}=\\sqrt{36}=6$."
+    },
+    {
+      "q": "A rhombus has perpendicular diagonals $6$ cm and $8$ cm. Find the side length.",
+      "options": [
+        "$5$ cm",
+        "$7$ cm",
+        "$10$ cm",
+        "$14$ cm"
+      ],
+      "correct": 0,
+      "explanation": "Half-diagonals are $3$ and $4$, so the side is $\\sqrt{3^2+4^2}=5$ cm."
+    },
+    {
+      "q": "The angle sum of a quadrilateral is:",
+      "options": [
+        "$180^\\circ$",
+        "$270^\\circ$",
+        "$360^\\circ$",
+        "$540^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "A quadrilateral can be split into two triangles, so its angle sum is $360^\\circ$."
+    },
+    {
+      "q": "Find one angle of a regular hexagon.",
+      "options": [
+        "$90^\\circ$",
+        "$108^\\circ$",
+        "$120^\\circ$",
+        "$135^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "Interior angle of a regular $n$-gon is $(n-2)180/n$. For $6$, it is $120^\\circ$."
+    },
+    {
+      "q": "The exterior angle of a regular pentagon is:",
+      "options": [
+        "$36^\\circ$",
+        "$60^\\circ$",
+        "$72^\\circ$",
+        "$108^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "Each exterior angle is $360/5=72^\\circ$."
+    },
+    {
+      "q": "If a bearing is $090^\\circ$, the direction is:",
+      "options": [
+        "North",
+        "East",
+        "South",
+        "West"
+      ],
+      "correct": 1,
+      "explanation": "A bearing of $090^\\circ$ points due East."
+    },
+    {
+      "q": "If $a^2+b^2<c^2$ for the longest side $c$, the triangle is:",
+      "options": [
+        "acute",
+        "right-angled",
+        "obtuse",
+        "equilateral"
+      ],
+      "correct": 2,
+      "explanation": "When the square of the longest side is greater than the sum of the other squares, the triangle is obtuse."
+    },
+    {
+      "q": "Find the distance between $(0,0)$ and $(6,8)$.",
+      "options": [
+        "$7$",
+        "$10$",
+        "$12$",
+        "$14$"
+      ],
+      "correct": 1,
+      "explanation": "Use Pythagoras: $\\sqrt{6^2+8^2}=10$."
+    },
+    {
+      "q": "A pole casts a shadow $5$ m long. The top of the pole is $13$ m from the tip of the shadow. Find the pole height.",
+      "options": [
+        "$8$ m",
+        "$10$ m",
+        "$12$ m",
+        "$15$ m"
+      ],
+      "correct": 2,
+      "explanation": "Height $=\\sqrt{13^2-5^2}=12$ m."
+    },
+    {
+      "q": "If two angles are supplementary and one is $4$ times the other, find the smaller angle.",
+      "options": [
+        "$30^\\circ$",
+        "$36^\\circ$",
+        "$45^\\circ$",
+        "$60^\\circ$"
+      ],
+      "correct": 1,
+      "explanation": "Let the smaller angle be $x$. Then $x+4x=180$, so $x=36^\\circ$."
+    },
+    {
+      "q": "The longest side of a right triangle is called the:",
+      "options": [
+        "base",
+        "height",
+        "hypotenuse",
+        "median"
+      ],
+      "correct": 2,
+      "explanation": "The side opposite the right angle is the hypotenuse."
+    }
+  ]
+}

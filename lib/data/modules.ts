@@ -181,6 +181,126 @@ export const modules: ModuleMeta[] = [
       badgeText: "text-red-700",
       accent: "border-red-200"
     }
+  },
+  {
+    slug: "fractions-percentages",
+    title: "Fractions & Percentages",
+    description: "Practise fraction operations, percentage change, discounts, profit, and comparison.",
+    moduleNumber: 12,
+    questionCount: 40,
+    difficulty: "Intermediate",
+    legacyDataPath: "data/fractions-percentages.json",
+    legacyQuizPath: "quizzes/fractions-percentages.html",
+    tone: {
+      badge: "bg-pink-50",
+      badgeText: "text-pink-700",
+      accent: "border-pink-200"
+    }
+  },
+  {
+    slug: "number-sets",
+    title: "Number Sets",
+    description: "Classify numbers and practise set notation, membership, complements, and Venn reasoning.",
+    moduleNumber: 13,
+    questionCount: 40,
+    difficulty: "Intermediate",
+    legacyDataPath: "data/number-sets.json",
+    legacyQuizPath: "quizzes/number-sets.html",
+    tone: {
+      badge: "bg-violet-50",
+      badgeText: "text-violet-700",
+      accent: "border-violet-200"
+    }
+  },
+  {
+    slug: "algebraic-expressions-factorisation",
+    title: "Algebraic Expressions & Factorisation",
+    description: "Expand, simplify, substitute into, and factorise algebraic expressions.",
+    moduleNumber: 14,
+    questionCount: 40,
+    difficulty: "Intermediate",
+    legacyDataPath: "data/algebraic-expressions-factorisation.json",
+    legacyQuizPath: "quizzes/algebraic-expressions-factorisation.html",
+    tone: {
+      badge: "bg-emerald-50",
+      badgeText: "text-emerald-700",
+      accent: "border-emerald-200"
+    }
+  },
+  {
+    slug: "linear-equations-relations-functions",
+    title: "Linear Equations, Relations & Functions",
+    description: "Solve linear equations and work with relations, mappings, domains, ranges, and functions.",
+    moduleNumber: 15,
+    questionCount: 40,
+    difficulty: "Intermediate",
+    legacyDataPath: "data/linear-equations-relations-functions.json",
+    legacyQuizPath: "quizzes/linear-equations-relations-functions.html",
+    tone: {
+      badge: "bg-blue-50",
+      badgeText: "text-blue-700",
+      accent: "border-blue-200"
+    }
+  },
+  {
+    slug: "angles-pythagorean-theorem",
+    title: "Angles & the Pythagorean Theorem",
+    description: "Use angle facts, parallel-line relationships, and Pythagoras in direct and applied questions.",
+    moduleNumber: 16,
+    questionCount: 40,
+    difficulty: "Intermediate",
+    legacyDataPath: "data/angles-pythagorean-theorem.json",
+    legacyQuizPath: "quizzes/angles-pythagorean-theorem.html",
+    tone: {
+      badge: "bg-lime-50",
+      badgeText: "text-lime-700",
+      accent: "border-lime-200"
+    }
+  },
+  {
+    slug: "perimeter-area-volume",
+    title: "Perimeter, Area & Volume",
+    description: "Calculate perimeter, area, circumference, surface area, volume, and unit conversions.",
+    moduleNumber: 17,
+    questionCount: 40,
+    difficulty: "Intermediate",
+    legacyDataPath: "data/perimeter-area-volume.json",
+    legacyQuizPath: "quizzes/perimeter-area-volume.html",
+    tone: {
+      badge: "bg-amber-50",
+      badgeText: "text-amber-700",
+      accent: "border-amber-200"
+    }
+  },
+  {
+    slug: "probability-independent-events",
+    title: "Probability of Independent Events",
+    description: "Practise simple probability, complements, multiplication rule, and independent events.",
+    moduleNumber: 18,
+    questionCount: 40,
+    difficulty: "Intermediate",
+    legacyDataPath: "data/probability-independent-events.json",
+    legacyQuizPath: "quizzes/probability-independent-events.html",
+    tone: {
+      badge: "bg-orange-50",
+      badgeText: "text-orange-700",
+      accent: "border-orange-200"
+    }
+  },
+  {
+    slug: "data-organisation-analysis-presentation",
+    title: "Data Organisation, Analysis & Presentation",
+    description: "Collect, organise, present, and interpret data using tables, charts, and averages.",
+    moduleNumber: 19,
+    questionCount: 40,
+    difficulty: "Intermediate",
+    legacyDataPath: "data/data-organisation-analysis-presentation.json",
+    legacyQuizPath: "quizzes/data-organisation-analysis-presentation.html",
+    tone: {
+      badge: "bg-teal-50",
+      badgeText: "text-teal-700",
+      accent: "border-teal-200"
+    }
   }
 ];
 

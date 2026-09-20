@@ -1,0 +1,448 @@
+{
+  "id": "fractions-percentages",
+  "title": "Fractions & Percentages",
+  "module": 12,
+  "description": "Practice on fraction operations, percentage change, discounts, profit, and comparison.",
+  "questions": [
+    {
+      "q": "Simplify $\\frac{18}{24}$.",
+      "options": [
+        "$\\frac{3}{4}$",
+        "$\\frac{2}{3}$",
+        "$\\frac{4}{3}$",
+        "$\\frac{6}{8}$"
+      ],
+      "correct": 0,
+      "explanation": "Divide numerator and denominator by $6$: $18/24=3/4$."
+    },
+    {
+      "q": "Evaluate $\\frac{2}{3}+\\frac{1}{6}$.",
+      "options": [
+        "$\\frac{1}{2}$",
+        "$\\frac{5}{6}$",
+        "$\\frac{3}{9}$",
+        "$\\frac{2}{9}$"
+      ],
+      "correct": 1,
+      "explanation": "Use denominator $6$: $2/3=4/6$, so $4/6+1/6=5/6$."
+    },
+    {
+      "q": "Evaluate $\\frac{5}{8}-\\frac{1}{4}$.",
+      "options": [
+        "$\\frac{3}{8}$",
+        "$\\frac{4}{4}$",
+        "$\\frac{1}{8}$",
+        "$\\frac{1}{2}$"
+      ],
+      "correct": 0,
+      "explanation": "$1/4=2/8$, so $5/8-2/8=3/8$."
+    },
+    {
+      "q": "Find $\\frac{3}{5}$ of $45$.",
+      "options": [
+        "$15$",
+        "$18$",
+        "$27$",
+        "$30$"
+      ],
+      "correct": 2,
+      "explanation": "$3/5$ of $45$ is $(3/5)\\times45=27$."
+    },
+    {
+      "q": "Evaluate $2\\frac{1}{3}+1\\frac{1}{6}$.",
+      "options": [
+        "$3\\frac{1}{2}$",
+        "$3\\frac{1}{3}$",
+        "$4\\frac{1}{6}$",
+        "$2\\frac{1}{2}$"
+      ],
+      "correct": 0,
+      "explanation": "$2\\frac13=14/6$ and $1\\frac16=7/6$. Their sum is $21/6=3\\frac12$."
+    },
+    {
+      "q": "Which is greater: $\\frac{3}{4}$ or $\\frac{5}{8}$?",
+      "options": [
+        "$\\frac{5}{8}$",
+        "$\\frac{3}{4}$",
+        "They are equal",
+        "Cannot be compared"
+      ],
+      "correct": 1,
+      "explanation": "$3/4=6/8$, and $6/8>5/8$."
+    },
+    {
+      "q": "Convert $0.35$ to a fraction in its simplest form.",
+      "options": [
+        "$\\frac{7}{20}$",
+        "$\\frac{35}{10}$",
+        "$\\frac{3}{5}$",
+        "$\\frac{5}{7}$"
+      ],
+      "correct": 0,
+      "explanation": "$0.35=35/100=7/20$."
+    },
+    {
+      "q": "Convert $\\frac{7}{20}$ to a percentage.",
+      "options": [
+        "$20\\%$",
+        "$28\\%$",
+        "$35\\%$",
+        "$70\\%$"
+      ],
+      "correct": 2,
+      "explanation": "$7/20=0.35=35\\%$."
+    },
+    {
+      "q": "Find $15\\%$ of $240$.",
+      "options": [
+        "$24$",
+        "$30$",
+        "$36$",
+        "$42$"
+      ],
+      "correct": 2,
+      "explanation": "$15\\%$ of $240$ is $0.15\\times240=36$."
+    },
+    {
+      "q": "Increase $80$ by $25\\%$.",
+      "options": [
+        "$95$",
+        "$100$",
+        "$105$",
+        "$120$"
+      ],
+      "correct": 1,
+      "explanation": "$25\\%$ of $80$ is $20$, so the increased value is $100$."
+    },
+    {
+      "q": "Decrease $150$ by $20\\%$.",
+      "options": [
+        "$120$",
+        "$130$",
+        "$140$",
+        "$100$"
+      ],
+      "correct": 0,
+      "explanation": "$20\\%$ of $150$ is $30$, so $150-30=120$."
+    },
+    {
+      "q": "A shirt costs GHS $120$ after a $25\\%$ discount. What was the original price?",
+      "options": [
+        "GHS $140$",
+        "GHS $150$",
+        "GHS $160$",
+        "GHS $180$"
+      ],
+      "correct": 2,
+      "explanation": "After a $25\\%$ discount, the price is $75\\%$ of the original. $120/0.75=160$."
+    },
+    {
+      "q": "A trader buys an item for GHS $80$ and sells it for GHS $100$. Find the percentage profit.",
+      "options": [
+        "$20\\%$",
+        "$25\\%$",
+        "$30\\%$",
+        "$80\\%$"
+      ],
+      "correct": 1,
+      "explanation": "Profit is $20$. Percentage profit is $20/80\\times100\\%=25\\%$."
+    },
+    {
+      "q": "A price rises from GHS $50$ to GHS $65$. Find the percentage increase.",
+      "options": [
+        "$15\\%$",
+        "$23\\%$",
+        "$30\\%$",
+        "$35\\%$"
+      ],
+      "correct": 2,
+      "explanation": "Increase is $15$. $15/50\\times100\\%=30\\%$."
+    },
+    {
+      "q": "Express $\\frac{5}{8}$ as a decimal.",
+      "options": [
+        "$0.58$",
+        "$0.625$",
+        "$0.675$",
+        "$0.75$"
+      ],
+      "correct": 1,
+      "explanation": "$5\\div8=0.625$."
+    },
+    {
+      "q": "Evaluate $\\frac{4}{9}\\div\\frac{2}{3}$.",
+      "options": [
+        "$\\frac{2}{3}$",
+        "$\\frac{8}{27}$",
+        "$\\frac{3}{2}$",
+        "$\\frac{6}{13}$"
+      ],
+      "correct": 0,
+      "explanation": "Divide by multiplying by the reciprocal: $4/9\\times3/2=12/18=2/3$."
+    },
+    {
+      "q": "Evaluate $\\frac{7}{10}\\times\\frac{5}{14}$.",
+      "options": [
+        "$\\frac{1}{2}$",
+        "$\\frac{1}{4}$",
+        "$\\frac{35}{140}$",
+        "$\\frac{7}{28}$"
+      ],
+      "correct": 1,
+      "explanation": "$7/10\\times5/14=35/140=1/4$."
+    },
+    {
+      "q": "What percentage of $80$ is $12$?",
+      "options": [
+        "$12\\%$",
+        "$15\\%$",
+        "$18\\%$",
+        "$20\\%$"
+      ],
+      "correct": 1,
+      "explanation": "$12/80\\times100\\%=15\\%$."
+    },
+    {
+      "q": "A class has $18$ boys and $12$ girls. What fraction of the class are girls?",
+      "options": [
+        "$\\frac{2}{5}$",
+        "$\\frac{3}{5}$",
+        "$\\frac{12}{18}$",
+        "$\\frac{5}{2}$"
+      ],
+      "correct": 0,
+      "explanation": "There are $30$ learners. The fraction of girls is $12/30=2/5$."
+    },
+    {
+      "q": "Share GHS $84$ in the ratio $3:4$. What is the larger share?",
+      "options": [
+        "GHS $36$",
+        "GHS $42$",
+        "GHS $48$",
+        "GHS $54$"
+      ],
+      "correct": 2,
+      "explanation": "There are $7$ parts. One part is $84/7=12$, so the larger share is $4\\times12=48$."
+    },
+    {
+      "q": "A fraction equals $\\frac{3}{5}$. If its denominator is $35$, find its numerator.",
+      "options": [
+        "$15$",
+        "$18$",
+        "$21$",
+        "$25$"
+      ],
+      "correct": 2,
+      "explanation": "$5$ is multiplied by $7$ to get $35$, so $3$ is also multiplied by $7$ to get $21$."
+    },
+    {
+      "q": "Find the value of $\\frac{2}{5}$ as a percentage.",
+      "options": [
+        "$20\\%$",
+        "$25\\%$",
+        "$40\\%$",
+        "$50\\%$"
+      ],
+      "correct": 2,
+      "explanation": "$2/5=0.4=40\\%$."
+    },
+    {
+      "q": "A student scored $36$ out of $45$. Express the score as a percentage.",
+      "options": [
+        "$75\\%$",
+        "$80\\%$",
+        "$85\\%$",
+        "$90\\%$"
+      ],
+      "correct": 1,
+      "explanation": "$36/45\\times100\\%=80\\%$."
+    },
+    {
+      "q": "Find $125\\%$ of $64$.",
+      "options": [
+        "$72$",
+        "$76$",
+        "$80$",
+        "$96$"
+      ],
+      "correct": 2,
+      "explanation": "$125\\%=1.25$, and $1.25\\times64=80$."
+    },
+    {
+      "q": "If $40\\%$ of a number is $28$, find the number.",
+      "options": [
+        "$56$",
+        "$64$",
+        "$70$",
+        "$84$"
+      ],
+      "correct": 2,
+      "explanation": "Let the number be $x$. $0.4x=28$, so $x=70$."
+    },
+    {
+      "q": "A value changes from $200$ to $170$. Find the percentage decrease.",
+      "options": [
+        "$10\\%$",
+        "$15\\%$",
+        "$20\\%$",
+        "$30\\%$"
+      ],
+      "correct": 1,
+      "explanation": "Decrease is $30$. $30/200\\times100\\%=15\\%$."
+    },
+    {
+      "q": "Simplify $\\frac{3}{7}+\\frac{2}{21}$.",
+      "options": [
+        "$\\frac{5}{28}$",
+        "$\\frac{11}{21}$",
+        "$\\frac{5}{21}$",
+        "$\\frac{1}{3}$"
+      ],
+      "correct": 1,
+      "explanation": "$3/7=9/21$, so $9/21+2/21=11/21$."
+    },
+    {
+      "q": "Evaluate $3-\\frac{5}{6}$.",
+      "options": [
+        "$2\\frac{1}{6}$",
+        "$2\\frac{5}{6}$",
+        "$3\\frac{5}{6}$",
+        "$1\\frac{1}{6}$"
+      ],
+      "correct": 0,
+      "explanation": "$3=18/6$, so $18/6-5/6=13/6=2\\frac16$."
+    },
+    {
+      "q": "Which fraction is equivalent to $0.125$?",
+      "options": [
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{8}$",
+        "$\\frac{1}{5}$",
+        "$\\frac{3}{8}$"
+      ],
+      "correct": 1,
+      "explanation": "$0.125=125/1000=1/8$."
+    },
+    {
+      "q": "A phone is sold for GHS $900$ at a loss of $10\\%$. Find the cost price.",
+      "options": [
+        "GHS $810$",
+        "GHS $990$",
+        "GHS $1000$",
+        "GHS $1100$"
+      ],
+      "correct": 2,
+      "explanation": "Selling price is $90\\%$ of cost price. $900/0.9=1000$."
+    },
+    {
+      "q": "A quantity is increased by $10\\%$ and then decreased by $10\\%$. What is the final percentage change?",
+      "options": [
+        "No change",
+        "$1\\%$ decrease",
+        "$1\\%$ increase",
+        "$10\\%$ decrease"
+      ],
+      "correct": 1,
+      "explanation": "Using $100$ as the original value: $100\\to110\\to99$, so the final value is $1\\%$ lower."
+    },
+    {
+      "q": "Find $\\frac{3}{4}$ of $\\frac{2}{9}$.",
+      "options": [
+        "$\\frac{1}{6}$",
+        "$\\frac{5}{13}$",
+        "$\\frac{3}{18}$",
+        "$\\frac{2}{3}$"
+      ],
+      "correct": 0,
+      "explanation": "$3/4\\times2/9=6/36=1/6$."
+    },
+    {
+      "q": "Write $4:5$ as a fraction of the whole represented by the first part.",
+      "options": [
+        "$\\frac{4}{5}$",
+        "$\\frac{4}{9}$",
+        "$\\frac{5}{9}$",
+        "$\\frac{9}{4}$"
+      ],
+      "correct": 1,
+      "explanation": "The total number of parts is $4+5=9$, so the first part is $4/9$ of the whole."
+    },
+    {
+      "q": "If $\\frac{x}{12}=\\frac{5}{6}$, find $x$.",
+      "options": [
+        "$8$",
+        "$10$",
+        "$12$",
+        "$15$"
+      ],
+      "correct": 1,
+      "explanation": "$x=12\\times5/6=10$."
+    },
+    {
+      "q": "A bank pays $8\\%$ simple interest on GHS $500$ for one year. Find the interest.",
+      "options": [
+        "GHS $20$",
+        "GHS $30$",
+        "GHS $40$",
+        "GHS $80$"
+      ],
+      "correct": 2,
+      "explanation": "Interest is $8/100\\times500=40$."
+    },
+    {
+      "q": "Convert $72\\%$ to a fraction in simplest form.",
+      "options": [
+        "$\\frac{18}{25}$",
+        "$\\frac{36}{50}$",
+        "$\\frac{72}{10}$",
+        "$\\frac{7}{2}$"
+      ],
+      "correct": 0,
+      "explanation": "$72\\%=72/100=18/25$."
+    },
+    {
+      "q": "What is $\\frac{1}{3}$ of $60\\%$?",
+      "options": [
+        "$10\\%$",
+        "$15\\%$",
+        "$20\\%$",
+        "$30\\%$"
+      ],
+      "correct": 2,
+      "explanation": "$60\\%/3=20\\%$."
+    },
+    {
+      "q": "Order these fractions from smallest to largest: $\\frac{1}{2},\\frac{2}{3},\\frac{3}{5}$.",
+      "options": [
+        "$\\frac12,\\frac35,\\frac23$",
+        "$\\frac23,\\frac35,\\frac12$",
+        "$\\frac35,\\frac12,\\frac23$",
+        "$\\frac12,\\frac23,\\frac35$"
+      ],
+      "correct": 0,
+      "explanation": "Using decimals: $1/2=0.5$, $3/5=0.6$, and $2/3\\approx0.667$."
+    },
+    {
+      "q": "A discount of $15\\%$ is given on GHS $240$. Find the discount.",
+      "options": [
+        "GHS $24$",
+        "GHS $30$",
+        "GHS $36$",
+        "GHS $40$"
+      ],
+      "correct": 2,
+      "explanation": "$15\\%$ of $240$ is $0.15\\times240=36$."
+    },
+    {
+      "q": "A mixture contains $2\\frac12$ litres of water and $1\\frac34$ litres of juice. Find the total volume.",
+      "options": [
+        "$3\\frac14$ litres",
+        "$4\\frac14$ litres",
+        "$4\\frac12$ litres",
+        "$5\\frac14$ litres"
+      ],
+      "correct": 1,
+      "explanation": "$2\\frac12+1\\frac34=2\\frac24+1\\frac34=3\\frac54=4\\frac14$."
+    }
+  ]
+}
