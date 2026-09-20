@@ -2,227 +2,239 @@
   "id": "angles-pythagorean-theorem",
   "title": "Angles & the Pythagorean Theorem",
   "module": 16,
-  "description": "Angle facts, parallel lines, triangle angles, and Pythagorean calculations.",
+  "description": "WASSCE-style questions on angle facts, parallel lines, polygons, bearings, and Pythagorean applications.",
   "questions": [
     {
-      "q": "Angles on a straight line add up to:",
+      "q": "Using the diagram, find the value of $x$.",
       "options": [
-        "$90^\\circ$",
-        "$180^\\circ$",
-        "$270^\\circ$",
-        "$360^\\circ$"
-      ],
-      "correct": 1,
-      "explanation": "Adjacent angles on a straight line sum to $180^\\circ$."
-    },
-    {
-      "q": "Angles around a point add up to:",
-      "options": [
-        "$90^\\circ$",
-        "$180^\\circ$",
-        "$270^\\circ$",
-        "$360^\\circ$"
-      ],
-      "correct": 3,
-      "explanation": "A full turn around a point is $360^\\circ$."
-    },
-    {
-      "q": "The angles in a triangle add up to:",
-      "options": [
-        "$90^\\circ$",
-        "$120^\\circ$",
-        "$180^\\circ$",
-        "$360^\\circ$"
-      ],
-      "correct": 2,
-      "explanation": "The interior angles of a triangle sum to $180^\\circ$."
-    },
-    {
-      "q": "Find the third angle of a triangle with angles $50^\\circ$ and $60^\\circ$.",
-      "options": [
-        "$60^\\circ$",
-        "$70^\\circ$",
-        "$80^\\circ$",
-        "$90^\\circ$"
-      ],
-      "correct": 1,
-      "explanation": "$180-50-60=70^\\circ$."
-    },
-    {
-      "q": "A right triangle has shorter sides $6$ cm and $8$ cm. Find the hypotenuse.",
-      "options": [
-        "$10$ cm",
-        "$12$ cm",
-        "$14$ cm",
-        "$48$ cm"
-      ],
-      "correct": 0,
-      "explanation": "$c=\\sqrt{6^2+8^2}=\\sqrt{100}=10$ cm."
-    },
-    {
-      "q": "A right triangle has hypotenuse $13$ cm and one side $5$ cm. Find the other side.",
-      "options": [
-        "$8$ cm",
-        "$10$ cm",
-        "$12$ cm",
-        "$18$ cm"
-      ],
-      "correct": 2,
-      "explanation": "$b=\\sqrt{13^2-5^2}=\\sqrt{169-25}=12$ cm."
-    },
-    {
-      "q": "Which triple forms a right-angled triangle?",
-      "options": [
-        "$3,4,5$",
-        "$4,5,6$",
-        "$5,6,7$",
-        "$6,7,8$"
-      ],
-      "correct": 0,
-      "explanation": "$3^2+4^2=9+16=25=5^2$."
-    },
-    {
-      "q": "Vertically opposite angles are:",
-      "options": [
-        "equal",
-        "supplementary",
-        "complementary",
-        "always right angles"
-      ],
-      "correct": 0,
-      "explanation": "Vertically opposite angles are equal."
-    },
-    {
-      "q": "Complementary angles add up to:",
-      "options": [
-        "$45^\\circ$",
-        "$90^\\circ$",
-        "$180^\\circ$",
-        "$360^\\circ$"
-      ],
-      "correct": 1,
-      "explanation": "Complementary angles have sum $90^\\circ$."
-    },
-    {
-      "q": "Supplementary angles add up to:",
-      "options": [
-        "$90^\\circ$",
-        "$120^\\circ$",
-        "$180^\\circ$",
-        "$360^\\circ$"
-      ],
-      "correct": 2,
-      "explanation": "Supplementary angles have sum $180^\\circ$."
-    },
-    {
-      "q": "Find the supplement of $115^\\circ$.",
-      "options": [
-        "$55^\\circ$",
-        "$65^\\circ$",
-        "$75^\\circ$",
-        "$245^\\circ$"
-      ],
-      "correct": 1,
-      "explanation": "$180-115=65^\\circ$."
-    },
-    {
-      "q": "Find the complement of $38^\\circ$.",
-      "options": [
-        "$42^\\circ$",
-        "$52^\\circ$",
         "$62^\\circ$",
-        "$142^\\circ$"
+        "$118^\\circ$",
+        "$180^\\circ$",
+        "$242^\\circ$"
       ],
       "correct": 1,
-      "explanation": "$90-38=52^\\circ$."
+      "explanation": "Since the two lines are parallel, the marked angles are corresponding angles. Corresponding angles are equal, so $x=118^\\circ$.",
+      "stimulusId": "parallel-transversal"
     },
     {
-      "q": "Each angle of an equilateral triangle is:",
+      "q": "Using the diagram, find the exterior angle $x$.",
       "options": [
-        "$30^\\circ$",
+        "$68^\\circ$",
+        "$70^\\circ$",
+        "$110^\\circ$",
+        "$138^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "The interior angle at C is $180^\\circ-42^\\circ-68^\\circ=70^\\circ$. The exterior angle is supplementary to it, so $x=110^\\circ$.",
+      "stimulusId": "triangle-exterior"
+    },
+    {
+      "q": "A ladder problem is shown in the diagram. Find $x$.",
+      "options": [
+        "$5$ m",
+        "$7$ m",
+        "$10$ m",
+        "$25$ m"
+      ],
+      "correct": 0,
+      "explanation": "Use Pythagoras: $x^2+12^2=13^2$. Hence $x^2=169-144=25$, so $x=5$ m.",
+      "stimulusId": "right-triangle-ladder"
+    },
+    {
+      "q": "In the isosceles triangle shown, find $x$.",
+      "options": [
+        "$44^\\circ$",
+        "$68^\\circ$",
+        "$72^\\circ$",
+        "$136^\\circ$"
+      ],
+      "correct": 1,
+      "explanation": "The base angles are equal. Their sum is $180^\\circ-44^\\circ=136^\\circ$, so each base angle is $68^\\circ$.",
+      "stimulusId": "isosceles"
+    },
+    {
+      "q": "The exterior angle of a regular polygon is $45^\\circ$. How many sides has the polygon?",
+      "options": [
+        "$6$",
+        "$8$",
+        "$10$",
+        "$12$"
+      ],
+      "correct": 1,
+      "explanation": "For a regular polygon, each exterior angle is $360^\\circ/n$. Thus $n=360/45=8$.",
+      "stimulusId": "polygon-exterior"
+    },
+    {
+      "q": "Using the rectangle diagram, find the diagonal $d$.",
+      "options": [
+        "$17$ cm",
+        "$19$ cm",
+        "$23$ cm",
+        "$120$ cm"
+      ],
+      "correct": 0,
+      "explanation": "The diagonal is the hypotenuse of a right triangle: $d^2=15^2+8^2=225+64=289$, so $d=17$ cm.",
+      "stimulusId": "rectangle-diagonal"
+    },
+    {
+      "q": "Write the bearing of $B$ from $A$ shown in the diagram.",
+      "options": [
+        "$068^\\circ$",
+        "$112^\\circ$",
+        "$248^\\circ$",
+        "$292^\\circ$"
+      ],
+      "correct": 0,
+      "explanation": "Bearings are measured clockwise from north and written with three digits. Therefore the bearing is $068^\\circ$.",
+      "stimulusId": "bearing"
+    },
+    {
+      "q": "Using the route diagram, find the direct distance $d$.",
+      "options": [
+        "$15$ km",
+        "$18$ km",
+        "$21$ km",
+        "$108$ km"
+      ],
+      "correct": 0,
+      "explanation": "The route forms a right triangle. $d=\\sqrt{9^2+12^2}=\\sqrt{225}=15$ km.",
+      "stimulusId": "compound-right"
+    },
+    {
+      "q": "In the circle diagram, find $x$, the angle between the radius and tangent at $T$.",
+      "options": [
         "$45^\\circ$",
         "$60^\\circ$",
-        "$90^\\circ$"
-      ],
-      "correct": 2,
-      "explanation": "An equilateral triangle has three equal angles, each $180/3=60^\\circ$."
-    },
-    {
-      "q": "The base angles of an isosceles triangle are:",
-      "options": [
-        "equal",
-        "right angles",
-        "supplementary",
-        "always obtuse"
-      ],
-      "correct": 0,
-      "explanation": "An isosceles triangle has equal base angles."
-    },
-    {
-      "q": "A square has diagonal $10$ cm. Find its side length.",
-      "options": [
-        "$5$ cm",
-        "$5\\sqrt2$ cm",
-        "$10\\sqrt2$ cm",
-        "$20$ cm"
-      ],
-      "correct": 1,
-      "explanation": "For side $s$, $s^2+s^2=10^2$, so $2s^2=100$ and $s=5\\sqrt2$."
-    },
-    {
-      "q": "A ladder $15$ m long reaches a point $12$ m up a wall. How far is its foot from the wall?",
-      "options": [
-        "$3$ m",
-        "$6$ m",
-        "$9$ m",
-        "$12$ m"
-      ],
-      "correct": 2,
-      "explanation": "Distance $=\\sqrt{15^2-12^2}=\\sqrt{81}=9$ m."
-    },
-    {
-      "q": "If two parallel lines are cut by a transversal, corresponding angles are:",
-      "options": [
-        "equal",
-        "supplementary",
-        "complementary",
-        "unequal"
-      ],
-      "correct": 0,
-      "explanation": "Corresponding angles are equal for parallel lines."
-    },
-    {
-      "q": "Alternate interior angles between parallel lines are:",
-      "options": [
-        "equal",
-        "right angles",
-        "supplementary",
-        "zero"
-      ],
-      "correct": 0,
-      "explanation": "Alternate interior angles are equal when the lines are parallel."
-    },
-    {
-      "q": "Interior angles on the same side of a transversal add up to:",
-      "options": [
         "$90^\\circ$",
-        "$120^\\circ$",
-        "$180^\\circ$",
-        "$360^\\circ$"
+        "$180^\\circ$"
       ],
       "correct": 2,
-      "explanation": "Co-interior angles between parallel lines are supplementary."
+      "explanation": "A radius drawn to the point of contact of a tangent is perpendicular to the tangent. Therefore $x=90^\\circ$.",
+      "stimulusId": "circle-tangent"
     },
     {
-      "q": "Find $x$ if $x+35^\\circ=90^\\circ$.",
+      "q": "Using the similar triangles diagram, find $x$.",
       "options": [
-        "$45^\\circ$",
-        "$55^\\circ$",
-        "$65^\\circ$",
-        "$125^\\circ$"
+        "$12$",
+        "$18$",
+        "$20$",
+        "$24$"
+      ],
+      "correct": 2,
+      "explanation": "The scale factor from the small to large triangle is $15/6=2.5$. The side corresponding to $8$ is $8\\times2.5=20$.",
+      "stimulusId": "similar-triangles"
+    },
+    {
+      "q": "Using the straight-line diagram, find $x$.",
+      "options": [
+        "$17^\\circ$",
+        "$24^\\circ$",
+        "$34^\\circ$",
+        "$38^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "Angles on a straight line add to $180^\\circ$: $(3x+20)+(2x-10)=180$. Thus $5x+10=180$, so $x=34^\\circ$.",
+      "stimulusId": "straight-line"
+    },
+    {
+      "q": "Using the rhombus diagram, find the side length $x$.",
+      "options": [
+        "$13$ cm",
+        "$17$ cm",
+        "$26$ cm",
+        "$34$ cm"
+      ],
+      "correct": 0,
+      "explanation": "The diagonals of a rhombus bisect each other at right angles. Half the diagonals are $5$ cm and $12$ cm, so $x=\\sqrt{5^2+12^2}=13$ cm.",
+      "stimulusId": "rhombus-diagonals"
+    },
+    {
+      "q": "Two parallel lines are cut by a transversal. Co-interior angles are $(2x+15)^\\circ$ and $(3x-5)^\\circ$. Find $x$.",
+      "options": [
+        "$30$",
+        "$34$",
+        "$38$",
+        "$42$"
       ],
       "correct": 1,
-      "explanation": "$x=90-35=55^\\circ$."
+      "explanation": "Co-interior angles on parallel lines sum to $180^\\circ$. So $2x+15+3x-5=180$, giving $5x=170$ and $x=34$."
+    },
+    {
+      "q": "The angles of a triangle are $45^\\circ$, $(2x+5)^\\circ$, and $(3x-20)^\\circ$. Find $x$.",
+      "options": [
+        "$20$",
+        "$25$",
+        "$30$",
+        "$35$"
+      ],
+      "correct": 2,
+      "explanation": "Angles in a triangle sum to $180^\\circ$. So $45+2x+5+3x-20=180$, giving $5x+30=180$, so $x=30$."
+    },
+    {
+      "q": "A regular polygon has each interior angle equal to $150^\\circ$. How many sides has it?",
+      "options": [
+        "$8$",
+        "$10$",
+        "$12$",
+        "$15$"
+      ],
+      "correct": 2,
+      "explanation": "Each exterior angle is $180^\\circ-150^\\circ=30^\\circ$. Number of sides is $360/30=12$."
+    },
+    {
+      "q": "A rectangle has diagonal $25$ cm and width $7$ cm. Find its length.",
+      "options": [
+        "$18$ cm",
+        "$20$ cm",
+        "$24$ cm",
+        "$32$ cm"
+      ],
+      "correct": 2,
+      "explanation": "Let the length be $l$. Then $l^2+7^2=25^2$, so $l^2=625-49=576$ and $l=24$ cm."
+    },
+    {
+      "q": "A man walks $6$ km north and then $8$ km east. Find his bearing from the starting point, correct to the nearest degree.",
+      "options": [
+        "$037^\\circ$",
+        "$053^\\circ$",
+        "$127^\\circ$",
+        "$233^\\circ$"
+      ],
+      "correct": 1,
+      "explanation": "The bearing angle from north satisfies $\\tan\\theta=8/6$. Thus $\\theta\\approx53^\\circ$, so the bearing is $053^\\circ$."
+    },
+    {
+      "q": "The exterior angle of a triangle is $126^\\circ$. One opposite interior angle is $48^\\circ$. Find the other opposite interior angle.",
+      "options": [
+        "$48^\\circ$",
+        "$66^\\circ$",
+        "$78^\\circ$",
+        "$132^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "An exterior angle equals the sum of the two opposite interior angles. The missing angle is $126^\\circ-48^\\circ=78^\\circ$."
+    },
+    {
+      "q": "A chord is $24$ cm long and is $5$ cm from the centre of a circle. Find the radius of the circle.",
+      "options": [
+        "$12$ cm",
+        "$13$ cm",
+        "$17$ cm",
+        "$29$ cm"
+      ],
+      "correct": 1,
+      "explanation": "The perpendicular from the centre bisects the chord, so half the chord is $12$ cm. Radius $=\\sqrt{12^2+5^2}=13$ cm."
+    },
+    {
+      "q": "The bearing of $B$ from $A$ is $070^\\circ$. Find the bearing of $A$ from $B$.",
+      "options": [
+        "$070^\\circ$",
+        "$110^\\circ$",
+        "$250^\\circ$",
+        "$290^\\circ$"
+      ],
+      "correct": 2,
+      "explanation": "Reverse bearings differ by $180^\\circ$. $070^\\circ+180^\\circ=250^\\circ$."
     },
     {
       "q": "Find $x$ if $2x+40^\\circ=180^\\circ$.",
@@ -444,5 +456,727 @@
       "correct": 2,
       "explanation": "The side opposite the right angle is the hypotenuse."
     }
-  ]
+  ],
+  "stimuli": {
+    "parallel-transversal": {
+      "type": "diagram",
+      "title": "Parallel lines cut by a transversal",
+      "description": "Lines l and m are parallel.",
+      "alt": "Two parallel horizontal lines crossed by a slanting transversal. The angle above line l on the left is 118 degrees. The corresponding angle at line m is x.",
+      "viewBox": [
+        0,
+        0,
+        260,
+        170
+      ],
+      "elements": [
+        {
+          "type": "line",
+          "x1": 25,
+          "y1": 45,
+          "x2": 235,
+          "y2": 45
+        },
+        {
+          "type": "line",
+          "x1": 25,
+          "y1": 125,
+          "x2": 235,
+          "y2": 125
+        },
+        {
+          "type": "line",
+          "x1": 95,
+          "y1": 15,
+          "x2": 165,
+          "y2": 155
+        },
+        {
+          "type": "text",
+          "x": 230,
+          "y": 28,
+          "text": "l"
+        },
+        {
+          "type": "text",
+          "x": 230,
+          "y": 108,
+          "text": "m"
+        },
+        {
+          "type": "text",
+          "x": 72,
+          "y": 30,
+          "text": "118 deg"
+        },
+        {
+          "type": "text",
+          "x": 132,
+          "y": 106,
+          "text": "x"
+        }
+      ]
+    },
+    "triangle-exterior": {
+      "type": "diagram",
+      "title": "Exterior angle of a triangle",
+      "description": "The side BC is extended to D.",
+      "alt": "Triangle ABC with angle A 42 degrees, angle B 68 degrees, and exterior angle x at C.",
+      "viewBox": [
+        0,
+        0,
+        260,
+        180
+      ],
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              55,
+              130
+            ],
+            [
+              125,
+              35
+            ],
+            [
+              190,
+              130
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 190,
+          "y1": 130,
+          "x2": 235,
+          "y2": 130
+        },
+        {
+          "type": "text",
+          "x": 125,
+          "y": 20,
+          "text": "A"
+        },
+        {
+          "type": "text",
+          "x": 45,
+          "y": 142,
+          "text": "B"
+        },
+        {
+          "type": "text",
+          "x": 192,
+          "y": 145,
+          "text": "C"
+        },
+        {
+          "type": "text",
+          "x": 238,
+          "y": 145,
+          "text": "D"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 62,
+          "text": "42 deg"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 116,
+          "text": "68 deg"
+        },
+        {
+          "type": "text",
+          "x": 214,
+          "y": 113,
+          "text": "x"
+        }
+      ]
+    },
+    "right-triangle-ladder": {
+      "type": "diagram",
+      "title": "Ladder against a wall",
+      "description": "The wall and ground meet at a right angle.",
+      "alt": "Right triangle with vertical height 12 metres, hypotenuse 13 metres, and ground distance x.",
+      "viewBox": [
+        0,
+        0,
+        260,
+        180
+      ],
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              70,
+              140
+            ],
+            [
+              70,
+              40
+            ],
+            [
+              210,
+              140
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 90,
+          "text": "12 m"
+        },
+        {
+          "type": "text",
+          "x": 148,
+          "y": 82,
+          "text": "13 m"
+        },
+        {
+          "type": "text",
+          "x": 140,
+          "y": 158,
+          "text": "x"
+        },
+        {
+          "type": "text",
+          "x": 84,
+          "y": 128,
+          "text": "90 deg"
+        }
+      ]
+    },
+    "isosceles": {
+      "type": "diagram",
+      "title": "Isosceles triangle",
+      "description": "AB = AC.",
+      "alt": "Isosceles triangle ABC with vertex angle 44 degrees and equal base angles x.",
+      "viewBox": [
+        0,
+        0,
+        260,
+        180
+      ],
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              130,
+              35
+            ],
+            [
+              55,
+              135
+            ],
+            [
+              205,
+              135
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "x": 130,
+          "y": 20,
+          "text": "A"
+        },
+        {
+          "type": "text",
+          "x": 45,
+          "y": 150,
+          "text": "B"
+        },
+        {
+          "type": "text",
+          "x": 215,
+          "y": 150,
+          "text": "C"
+        },
+        {
+          "type": "text",
+          "x": 130,
+          "y": 62,
+          "text": "44 deg"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 120,
+          "text": "x"
+        },
+        {
+          "type": "text",
+          "x": 180,
+          "y": 120,
+          "text": "x"
+        }
+      ]
+    },
+    "polygon-exterior": {
+      "type": "diagram",
+      "title": "Regular polygon exterior angle",
+      "description": "The marked exterior angle belongs to a regular polygon.",
+      "alt": "A regular polygon corner with exterior angle x shown outside.",
+      "viewBox": [
+        0,
+        0,
+        260,
+        170
+      ],
+      "elements": [
+        {
+          "type": "line",
+          "x1": 60,
+          "y1": 120,
+          "x2": 135,
+          "y2": 45
+        },
+        {
+          "type": "line",
+          "x1": 135,
+          "y1": 45,
+          "x2": 210,
+          "y2": 120
+        },
+        {
+          "type": "line",
+          "x1": 135,
+          "y1": 45,
+          "x2": 230,
+          "y2": 45
+        },
+        {
+          "type": "arc",
+          "cx": 135,
+          "cy": 45,
+          "r": 38,
+          "start": 90,
+          "end": 128
+        },
+        {
+          "type": "text",
+          "x": 184,
+          "y": 64,
+          "text": "45 deg"
+        }
+      ]
+    },
+    "rectangle-diagonal": {
+      "type": "diagram",
+      "title": "Rectangle diagonal",
+      "description": "ABCD is a rectangle.",
+      "alt": "Rectangle with length 15 centimetres, width 8 centimetres, and diagonal d.",
+      "viewBox": [
+        0,
+        0,
+        280,
+        180
+      ],
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              45,
+              45
+            ],
+            [
+              230,
+              45
+            ],
+            [
+              230,
+              135
+            ],
+            [
+              45,
+              135
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 45,
+          "y1": 45,
+          "x2": 230,
+          "y2": 135
+        },
+        {
+          "type": "text",
+          "x": 137,
+          "y": 32,
+          "text": "15 cm"
+        },
+        {
+          "type": "text",
+          "x": 245,
+          "y": 90,
+          "text": "8 cm"
+        },
+        {
+          "type": "text",
+          "x": 145,
+          "y": 98,
+          "text": "d"
+        }
+      ]
+    },
+    "bearing": {
+      "type": "diagram",
+      "title": "Bearing diagram",
+      "description": "North is shown at point A.",
+      "alt": "Point A with north line upward and line AB slanting down to the right. The clockwise bearing angle is 68 degrees.",
+      "viewBox": [
+        0,
+        0,
+        260,
+        180
+      ],
+      "elements": [
+        {
+          "type": "line",
+          "x1": 90,
+          "y1": 140,
+          "x2": 90,
+          "y2": 35
+        },
+        {
+          "type": "line",
+          "x1": 90,
+          "y1": 140,
+          "x2": 205,
+          "y2": 95
+        },
+        {
+          "type": "arc",
+          "cx": 90,
+          "cy": 140,
+          "r": 45,
+          "start": 0,
+          "end": 68
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 22,
+          "text": "N"
+        },
+        {
+          "type": "text",
+          "x": 78,
+          "y": 154,
+          "text": "A"
+        },
+        {
+          "type": "text",
+          "x": 215,
+          "y": 96,
+          "text": "B"
+        },
+        {
+          "type": "text",
+          "x": 132,
+          "y": 102,
+          "text": "68 deg"
+        }
+      ]
+    },
+    "compound-right": {
+      "type": "diagram",
+      "title": "Compound route",
+      "description": "A student walks east, then north.",
+      "alt": "Right angled route with east distance 9 kilometres, north distance 12 kilometres, and direct distance d.",
+      "viewBox": [
+        0,
+        0,
+        260,
+        170
+      ],
+      "elements": [
+        {
+          "type": "line",
+          "x1": 55,
+          "y1": 130,
+          "x2": 170,
+          "y2": 130
+        },
+        {
+          "type": "line",
+          "x1": 170,
+          "y1": 130,
+          "x2": 170,
+          "y2": 35
+        },
+        {
+          "type": "line",
+          "x1": 55,
+          "y1": 130,
+          "x2": 170,
+          "y2": 35
+        },
+        {
+          "type": "text",
+          "x": 112,
+          "y": 148,
+          "text": "9 km"
+        },
+        {
+          "type": "text",
+          "x": 188,
+          "y": 82,
+          "text": "12 km"
+        },
+        {
+          "type": "text",
+          "x": 105,
+          "y": 78,
+          "text": "d"
+        }
+      ]
+    },
+    "circle-tangent": {
+      "type": "diagram",
+      "title": "Radius and tangent",
+      "description": "OT is a radius and PT is a tangent.",
+      "alt": "Circle with centre O, tangent PT touching the circle at T, and angle OTP marked x.",
+      "viewBox": [
+        0,
+        0,
+        260,
+        180
+      ],
+      "elements": [
+        {
+          "type": "circle",
+          "cx": 120,
+          "cy": 90,
+          "r": 45
+        },
+        {
+          "type": "line",
+          "x1": 120,
+          "y1": 90,
+          "x2": 165,
+          "y2": 90
+        },
+        {
+          "type": "line",
+          "x1": 165,
+          "y1": 35,
+          "x2": 165,
+          "y2": 145
+        },
+        {
+          "type": "text",
+          "x": 118,
+          "y": 105,
+          "text": "O"
+        },
+        {
+          "type": "text",
+          "x": 178,
+          "y": 90,
+          "text": "T"
+        },
+        {
+          "type": "text",
+          "x": 183,
+          "y": 55,
+          "text": "P"
+        },
+        {
+          "type": "text",
+          "x": 153,
+          "y": 76,
+          "text": "x"
+        }
+      ]
+    },
+    "similar-triangles": {
+      "type": "diagram",
+      "title": "Similar right triangles",
+      "description": "The two triangles are similar.",
+      "alt": "Small right triangle has sides 6 and 8. Large similar triangle has corresponding side 15 and unknown base x.",
+      "viewBox": [
+        0,
+        0,
+        300,
+        180
+      ],
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              35,
+              135
+            ],
+            [
+              35,
+              75
+            ],
+            [
+              95,
+              135
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              150,
+              135
+            ],
+            [
+              150,
+              35
+            ],
+            [
+              250,
+              135
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "x": 24,
+          "y": 105,
+          "text": "6"
+        },
+        {
+          "type": "text",
+          "x": 65,
+          "y": 151,
+          "text": "8"
+        },
+        {
+          "type": "text",
+          "x": 136,
+          "y": 85,
+          "text": "15"
+        },
+        {
+          "type": "text",
+          "x": 200,
+          "y": 151,
+          "text": "x"
+        }
+      ]
+    },
+    "straight-line": {
+      "type": "diagram",
+      "title": "Angles on a straight line",
+      "description": "The angles lie on one straight line.",
+      "alt": "A straight line with adjacent angles 3x plus 20 degrees and 2x minus 10 degrees.",
+      "viewBox": [
+        0,
+        0,
+        280,
+        160
+      ],
+      "elements": [
+        {
+          "type": "line",
+          "x1": 35,
+          "y1": 105,
+          "x2": 245,
+          "y2": 105
+        },
+        {
+          "type": "line",
+          "x1": 140,
+          "y1": 105,
+          "x2": 105,
+          "y2": 45
+        },
+        {
+          "type": "text",
+          "x": 87,
+          "y": 88,
+          "text": "3x+20"
+        },
+        {
+          "type": "text",
+          "x": 176,
+          "y": 88,
+          "text": "2x-10"
+        }
+      ]
+    },
+    "rhombus-diagonals": {
+      "type": "diagram",
+      "title": "Rhombus diagonals",
+      "description": "The diagonals meet at right angles and bisect each other.",
+      "alt": "Rhombus with diagonals 10 centimetres and 24 centimetres crossing at right angles. Side length is x.",
+      "viewBox": [
+        0,
+        0,
+        260,
+        180
+      ],
+      "elements": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              130,
+              25
+            ],
+            [
+              220,
+              90
+            ],
+            [
+              130,
+              155
+            ],
+            [
+              40,
+              90
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 130,
+          "y1": 25,
+          "x2": 130,
+          "y2": 155
+        },
+        {
+          "type": "line",
+          "x1": 40,
+          "y1": 90,
+          "x2": 220,
+          "y2": 90
+        },
+        {
+          "type": "text",
+          "x": 115,
+          "y": 58,
+          "text": "10 cm"
+        },
+        {
+          "type": "text",
+          "x": 82,
+          "y": 106,
+          "text": "24 cm"
+        },
+        {
+          "type": "text",
+          "x": 177,
+          "y": 54,
+          "text": "x"
+        }
+      ]
+    }
+  }
 }

@@ -14,11 +14,59 @@ export type QuizTableStimulus = {
   rows: string[][];
 };
 
+export type QuizDiagramStimulusElement =
+  | {
+      type: "line";
+      x1: number;
+      y1: number;
+      x2: number;
+      y2: number;
+      label?: string;
+    }
+  | {
+      type: "polygon";
+      points: [number, number][];
+      label?: string;
+    }
+  | {
+      type: "circle";
+      cx: number;
+      cy: number;
+      r: number;
+      label?: string;
+    }
+  | {
+      type: "arc";
+      cx: number;
+      cy: number;
+      r: number;
+      start: number;
+      end: number;
+      label?: string;
+    }
+  | {
+      type: "text";
+      x: number;
+      y: number;
+      text: string;
+    };
+
+export type QuizDiagramStimulus = {
+  type: "diagram";
+  title: string;
+  description: string | null;
+  alt: string;
+  viewBox: [number, number, number, number];
+  elements: QuizDiagramStimulusElement[];
+};
+
+export type QuizStimulusData = QuizTableStimulus | QuizDiagramStimulus;
+
 export type LearnerQuizQuestion = {
   id: string;
   prompt: string;
   orderIndex: number;
-  stimulus: QuizTableStimulus | null;
+  stimulus: QuizStimulusData | null;
   options: LearnerQuizOption[];
 };
 
@@ -27,6 +75,10 @@ export type RenderedQuizTableStimulus = Omit<QuizTableStimulus, "columns" | "row
   rows: RenderedMathText[][];
 };
 
+export type RenderedQuizDiagramStimulus = QuizDiagramStimulus;
+
+export type RenderedQuizStimulus = RenderedQuizTableStimulus | RenderedQuizDiagramStimulus;
+
 export type RenderedLearnerQuizOption = LearnerQuizOption & {
   renderedText: RenderedMathText;
 };
@@ -34,7 +86,7 @@ export type RenderedLearnerQuizOption = LearnerQuizOption & {
 export type RenderedLearnerQuizQuestion = Omit<LearnerQuizQuestion, "prompt" | "stimulus" | "options"> & {
   prompt: string;
   renderedPrompt: RenderedMathText;
-  stimulus: RenderedQuizTableStimulus | null;
+  stimulus: RenderedQuizStimulus | null;
   options: RenderedLearnerQuizOption[];
 };
 

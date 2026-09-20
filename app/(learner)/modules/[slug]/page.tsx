@@ -6,6 +6,7 @@ import { SetupBanner } from "@/components/setup-banner";
 import { getModuleBySlug } from "@/lib/data/modules";
 import { renderMathText } from "@/lib/math/render";
 import { getModulePageSnapshot } from "@/lib/quiz/data";
+import type { QuizTableStimulus, RenderedQuizTableStimulus } from "@/lib/quiz/types";
 
 type ModulePageProps = {
   params: Promise<{
@@ -14,6 +15,14 @@ type ModulePageProps = {
 };
 
 export const dynamic = "force-dynamic";
+
+function renderTableStimulus(stimulus: QuizTableStimulus): RenderedQuizTableStimulus {
+  return {
+    ...stimulus,
+    columns: stimulus.columns.map(renderMathText),
+    rows: stimulus.rows.map((row) => row.map(renderMathText))
+  };
+}
 
 export default async function ModulePage({ params }: ModulePageProps) {
   const { slug } = await params;
@@ -30,11 +39,9 @@ export default async function ModulePage({ params }: ModulePageProps) {
       ...question,
       renderedPrompt: renderMathText(question.prompt),
       stimulus: question.stimulus
-        ? {
-            ...question.stimulus,
-            columns: question.stimulus.columns.map(renderMathText),
-            rows: question.stimulus.rows.map((row) => row.map(renderMathText))
-          }
+        ? question.stimulus.type === "diagram"
+          ? question.stimulus
+          : renderTableStimulus(question.stimulus)
         : null,
       options: question.options.map((option) => ({
         ...option,
