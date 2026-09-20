@@ -37,8 +37,7 @@
         "$25$ m"
       ],
       "correct": 0,
-      "explanation": "Use Pythagoras: $x^2+12^2=13^2$. Hence $x^2=169-144=25$, so $x=5$ m.",
-      "stimulusId": "right-triangle-ladder"
+      "explanation": "Use Pythagoras: $x^2+12^2=13^2$. Hence $x^2=169-144=25$, so $x=5$ m."
     },
     {
       "q": "In an isosceles triangle, the vertex angle is $44^\\circ$. Find each base angle $x$.",
@@ -49,8 +48,7 @@
         "$136^\\circ$"
       ],
       "correct": 1,
-      "explanation": "The base angles are equal. Their sum is $180^\\circ-44^\\circ=136^\\circ$, so each base angle is $68^\\circ$.",
-      "stimulusId": "isosceles"
+      "explanation": "The base angles are equal. Their sum is $180^\\circ-44^\\circ=136^\\circ$, so each base angle is $68^\\circ$."
     },
     {
       "q": "The exterior angle of a regular polygon is $45^\\circ$. How many sides has the polygon?",
@@ -61,8 +59,7 @@
         "$12$"
       ],
       "correct": 1,
-      "explanation": "For a regular polygon, each exterior angle is $360^\\circ/n$. Thus $n=360/45=8$.",
-      "stimulusId": "polygon-exterior"
+      "explanation": "For a regular polygon, each exterior angle is $360^\\circ/n$. Thus $n=360/45=8$."
     },
     {
       "q": "A rectangle has length $15$ cm and width $8$ cm. Use the diagonal idea to find the diagonal $d$.",
@@ -73,8 +70,7 @@
         "$120$ cm"
       ],
       "correct": 0,
-      "explanation": "The diagonal is the hypotenuse of a right triangle: $d^2=15^2+8^2=225+64=289$, so $d=17$ cm.",
-      "stimulusId": "rectangle-diagonal"
+      "explanation": "The diagonal is the hypotenuse of a right triangle: $d^2=15^2+8^2=225+64=289$, so $d=17$ cm."
     },
     {
       "q": "A line from $A$ to $B$ makes a clockwise angle of $68^\\circ$ from north. Write the bearing of $B$ from $A$.",
@@ -85,8 +81,7 @@
         "$292^\\circ$"
       ],
       "correct": 0,
-      "explanation": "Bearings are measured clockwise from north and written with three digits. Therefore the bearing is $068^\\circ$.",
-      "stimulusId": "bearing"
+      "explanation": "Bearings are measured clockwise from north and written with three digits. Therefore the bearing is $068^\\circ$."
     },
     {
       "q": "A student walks $9$ km east and then $12$ km north. Use the right-triangle route idea to find the direct distance from the starting point.",
@@ -97,8 +92,7 @@
         "$108$ km"
       ],
       "correct": 0,
-      "explanation": "The route forms a right triangle. $d=\\sqrt{9^2+12^2}=\\sqrt{225}=15$ km.",
-      "stimulusId": "compound-right"
+      "explanation": "The route forms a right triangle. $d=\\sqrt{9^2+12^2}=\\sqrt{225}=15$ km."
     },
     {
       "q": "A tangent touches a circle at $T$, and $OT$ is a radius to the point of contact. Find the angle between $OT$ and the tangent.",
@@ -109,8 +103,7 @@
         "$180^\\circ$"
       ],
       "correct": 2,
-      "explanation": "A radius drawn to the point of contact of a tangent is perpendicular to the tangent. Therefore $x=90^\\circ$.",
-      "stimulusId": "circle-tangent"
+      "explanation": "A radius drawn to the point of contact of a tangent is perpendicular to the tangent. Therefore $x=90^\\circ$."
     },
     {
       "q": "Two right triangles are similar. The smaller triangle has corresponding sides $6$ and $8$; the larger triangle has the side corresponding to $6$ equal to $15$. Find the side corresponding to $8$.",
@@ -121,8 +114,7 @@
         "$24$"
       ],
       "correct": 2,
-      "explanation": "The scale factor from the small to large triangle is $15/6=2.5$. The side corresponding to $8$ is $8\\times2.5=20$.",
-      "stimulusId": "similar-triangles"
+      "explanation": "The scale factor from the small to large triangle is $15/6=2.5$. The side corresponding to $8$ is $8\\times2.5=20$."
     },
     {
       "q": "Two adjacent angles on a straight line are $(3x+20)^\\circ$ and $(2x-10)^\\circ$. Find $x$.",
@@ -133,8 +125,7 @@
         "$38^\\circ$"
       ],
       "correct": 2,
-      "explanation": "Angles on a straight line add to $180^\\circ$: $(3x+20)+(2x-10)=180$. Thus $5x+10=180$, so $x=34^\\circ$.",
-      "stimulusId": "straight-line"
+      "explanation": "Angles on a straight line add to $180^\\circ$: $(3x+20)+(2x-10)=180$. Thus $5x+10=180$, so $x=34^\\circ$."
     },
     {
       "q": "A rhombus has diagonals $10$ cm and $24$ cm. Use the diagonal property to find its side length.",
@@ -145,8 +136,7 @@
         "$34$ cm"
       ],
       "correct": 0,
-      "explanation": "The diagonals of a rhombus bisect each other at right angles. Half the diagonals are $5$ cm and $12$ cm, so $x=\\sqrt{5^2+12^2}=13$ cm.",
-      "stimulusId": "rhombus-diagonals"
+      "explanation": "The diagonals of a rhombus bisect each other at right angles. Half the diagonals are $5$ cm and $12$ cm, so $x=\\sqrt{5^2+12^2}=13$ cm."
     },
     {
       "q": "Two parallel lines are cut by a transversal. Co-interior angles are $(2x+15)^\\circ$ and $(3x-5)^\\circ$. Find $x$.",
@@ -473,86 +463,6 @@
       "src": "https://commons.wikimedia.org/wiki/Special:FilePath/External_angle_triangle_el.svg",
       "alt": "A triangle with one side extended to form an exterior angle.",
       "attribution": "Diagram: Wikimedia Commons, External angle triangle el.svg. See Commons file page for license details."
-    },
-    "right-triangle-ladder": {
-      "type": "image",
-      "title": "Right triangle model",
-      "description": "Treat the ladder, wall, and ground as a right triangle.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Triangle-right.svg",
-      "alt": "A right triangle diagram.",
-      "attribution": "Diagram: Wikimedia Commons, Triangle-right.svg, public domain."
-    },
-    "isosceles": {
-      "type": "image",
-      "title": "Isosceles triangle",
-      "description": "Use the equal-side/equal-angle property of an isosceles triangle.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Triangle-isosceles.svg",
-      "alt": "An isosceles triangle with equal sides and equal base angles marked.",
-      "attribution": "Diagram: Wikimedia Commons, Triangle-isosceles.svg, public domain."
-    },
-    "polygon-exterior": {
-      "type": "image",
-      "title": "Regular polygon exterior angle",
-      "description": "Use the exterior-angle idea for a regular polygon.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Regular_polygon_5_annotated.svg",
-      "alt": "A regular polygon diagram with exterior angle idea.",
-      "attribution": "Diagram: Wikimedia Commons, Regular polygon annotated diagram. See Commons file page for license details."
-    },
-    "rectangle-diagonal": {
-      "type": "image",
-      "title": "Rectangle diagonal",
-      "description": "The diagonal splits the rectangle into two right triangles.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Rectangle.svg",
-      "alt": "A rectangle with a diagonal drawn from one corner to the opposite corner.",
-      "attribution": "Diagram: Wikimedia Commons, Rectangle.svg. See Commons file page for license details."
-    },
-    "bearing": {
-      "type": "image",
-      "title": "Bearing from north",
-      "description": "Bearings are measured clockwise from north.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Compass_rose_pale.svg",
-      "alt": "A compass rose showing north, east, south, and west directions.",
-      "attribution": "Diagram: Wikimedia Commons, Compass rose pale.svg. See Commons file page for license details."
-    },
-    "compound-right": {
-      "type": "image",
-      "title": "Right-triangle route",
-      "description": "A north/east route can be modelled as a right triangle.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Triangle-right.svg",
-      "alt": "A right triangle used to model a two-leg route and direct distance.",
-      "attribution": "Diagram: Wikimedia Commons, Triangle-right.svg, public domain."
-    },
-    "circle-tangent": {
-      "type": "image",
-      "title": "Radius and tangent",
-      "description": "A radius to a tangent point is perpendicular to the tangent.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Circle-withsegments.svg",
-      "alt": "A circle diagram with radius and line segments.",
-      "attribution": "Diagram: Wikimedia Commons, Circle-withsegments.svg. See Commons file page for license details."
-    },
-    "similar-triangles": {
-      "type": "image",
-      "title": "Similar triangles",
-      "description": "Corresponding sides of similar triangles are in the same ratio.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Similar-geometric-shapes.svg",
-      "alt": "Two similar triangles shown side by side.",
-      "attribution": "Diagram: Wikimedia Commons, Similar-geometric-shapes.svg. See Commons file page for license details."
-    },
-    "straight-line": {
-      "type": "image",
-      "title": "Angles on a straight line",
-      "description": "Adjacent angles on a straight line sum to 180 degrees.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Supplementary_Angles.svg",
-      "alt": "Two adjacent supplementary angles on a straight line.",
-      "attribution": "Diagram: Wikimedia Commons, Supplementary Angles.svg. See Commons file page for license details."
-    },
-    "rhombus-diagonals": {
-      "type": "image",
-      "title": "Rhombus diagonals",
-      "description": "The diagonals of a rhombus bisect each other at right angles.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Rhombus.svg",
-      "alt": "A rhombus diagram.",
-      "attribution": "Diagram: Wikimedia Commons, Rhombus.svg. See Commons file page for license details."
     }
   }
 }

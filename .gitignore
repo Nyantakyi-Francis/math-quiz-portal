@@ -1,6 +1,7 @@
 node_modules
 .next
 out
+output
 coverage
 .vercel
 .DS_Store
@@ -12,3 +13,4 @@ desktop.ini
 .env.development.local
 .env.production.local
 !.env.example
+WASSCE_MODULE_UPGRADE_PLAN.md

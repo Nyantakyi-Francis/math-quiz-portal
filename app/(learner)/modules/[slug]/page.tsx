@@ -4,6 +4,7 @@ import { AppShell } from "@/components/app-shell";
 import { QuizRunner } from "@/components/quiz-runner";
 import { SetupBanner } from "@/components/setup-banner";
 import { getModuleBySlug } from "@/lib/data/modules";
+import { draftModuleMessage, isDraftModule } from "@/lib/data/module-status";
 import { renderMathText } from "@/lib/math/render";
 import { getModulePageSnapshot } from "@/lib/quiz/data";
 import type { QuizTableStimulus, RenderedQuizTableStimulus } from "@/lib/quiz/types";
@@ -34,6 +35,7 @@ export default async function ModulePage({ params }: ModulePageProps) {
 
   const snapshot = await getModulePageSnapshot(slug);
   const quizModule = snapshot.module;
+  const isComingSoon = isDraftModule(slug);
   const renderedQuestions =
     quizModule?.questions.map((question) => ({
       ...question,
@@ -75,7 +77,9 @@ export default async function ModulePage({ params }: ModulePageProps) {
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               <div className="neo-stat rounded-[1.5rem] p-5">
                 <p className="text-sm text-slate-500">Difficulty</p>
-                <p className="mt-2 text-lg font-bold text-slate-900">{legacyModule.difficulty}</p>
+                <p className="mt-2 text-lg font-bold text-slate-900">
+                  {isComingSoon ? "Coming soon" : legacyModule.difficulty}
+                </p>
               </div>
               <div className="neo-stat rounded-[1.5rem] p-5">
                 <p className="text-sm text-slate-500">Questions</p>
@@ -94,7 +98,15 @@ export default async function ModulePage({ params }: ModulePageProps) {
             <p className="text-lg font-bold text-slate-950">Module status</p>
             <div className="academic-rule mt-4" />
             <div className="mt-5 space-y-4 text-sm leading-7 text-slate-600">
-              {quizModule?.questions.length ? (
+              {isComingSoon ? (
+                <>
+                  <p>{draftModuleMessage}</p>
+                  <p>
+                    The resource notes remain available while the quiz is rebuilt with checked
+                    diagrams and stronger WASSCE-style items.
+                  </p>
+                </>
+              ) : quizModule?.questions.length ? (
                 <>
 
                   <p>Your score and answer explanations will be shown after you submit the quiz.</p>
@@ -110,14 +122,29 @@ export default async function ModulePage({ params }: ModulePageProps) {
               <Link className="button-secondary" href="/dashboard">
                 Back to dashboard
               </Link>
-              <Link className="button-primary" href="/messages">
-                Open message center
+              <Link className="button-primary" href={isComingSoon ? "/resources" : "/messages"}>
+                {isComingSoon ? "Open resources" : "Open message center"}
               </Link>
             </div>
           </div>
         </section>
 
-        {quizModule?.questions.length ? (
+        {isComingSoon ? (
+          <section className="glass-card rounded-[2rem] p-6">
+            <p className="text-lg font-bold text-slate-950">Coming soon</p>
+            <div className="academic-rule mt-4" />
+            <div className="mt-5 max-w-3xl space-y-3 text-sm leading-7 text-slate-600">
+              <p>
+                This module is paused for quality review. The draft question bank is preserved in
+                the repository, but learners will not attempt it until the diagrams, questions,
+                answer keys, and explanations have been checked together.
+              </p>
+              <p>
+                Use the matching resource from the Resources page for now.
+              </p>
+            </div>
+          </section>
+        ) : quizModule?.questions.length ? (
           <QuizRunner
             moduleSlug={quizModule.slug}
             moduleTitle={quizModule.title}

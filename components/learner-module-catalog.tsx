@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { ModuleMeta } from "@/lib/data/modules";
+import { isDraftModule } from "@/lib/data/module-status";
 
 type LearnerModuleCatalogProps = {
   modules: ModuleMeta[];
@@ -75,11 +76,14 @@ export function LearnerModuleCatalog({ modules }: LearnerModuleCatalogProps) {
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {filteredModules.map((module) => (
-          <article
-            className={`glass-card flex h-full flex-col border ${module.tone.accent} rounded-[2rem] p-6 transition hover:-translate-y-1`}
-            key={module.slug}
-          >
+        {filteredModules.map((module) => {
+          const isComingSoon = isDraftModule(module.slug);
+
+          return (
+            <article
+              className={`glass-card flex h-full flex-col border ${module.tone.accent} rounded-[2rem] p-6 transition ${isComingSoon ? "" : "hover:-translate-y-1"}`}
+              key={module.slug}
+            >
             <div className="flex items-start justify-between gap-3">
               <span
                 className={`inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] ${module.tone.badge} ${module.tone.badgeText}`}
@@ -87,7 +91,7 @@ export function LearnerModuleCatalog({ modules }: LearnerModuleCatalogProps) {
                 Module {module.moduleNumber}
               </span>
               <span className="soft-well rounded-full px-3 py-1 text-xs font-medium text-slate-600">
-                {module.difficulty}
+                {isComingSoon ? "Coming soon" : module.difficulty}
               </span>
             </div>
 
@@ -97,16 +101,23 @@ export function LearnerModuleCatalog({ modules }: LearnerModuleCatalogProps) {
 
             <div className="soft-well mt-5 flex items-center justify-between rounded-[1.35rem] px-4 py-3 text-sm text-slate-500">
               <span>{module.questionCount} questions</span>
-              <span>Tracked progress</span>
+              <span>{isComingSoon ? "Under review" : "Tracked progress"}</span>
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link className="button-primary" href={`/modules/${module.slug}`}>
-                Start module
-              </Link>
+              {isComingSoon ? (
+                <Link className="button-secondary" href={`/modules/${module.slug}`}>
+                  View status
+                </Link>
+              ) : (
+                <Link className="button-primary" href={`/modules/${module.slug}`}>
+                  Start module
+                </Link>
+              )}
             </div>
           </article>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
