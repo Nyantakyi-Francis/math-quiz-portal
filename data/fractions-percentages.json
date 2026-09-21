@@ -2,447 +2,248 @@
   "id": "fractions-percentages",
   "title": "Fractions & Percentages",
   "module": 12,
-  "description": "Practice on fraction operations, percentage change, discounts, profit, and comparison.",
+  "description": "Book-backed practice on percentages, ratio sharing, profit and loss, discount, interest, hire purchase, rates, and density.",
   "questions": [
     {
-      "q": "Simplify $\\frac{18}{24}$.",
-      "options": [
-        "$\\frac{3}{4}$",
-        "$\\frac{2}{3}$",
-        "$\\frac{4}{3}$",
-        "$\\frac{6}{8}$"
-      ],
+      "q": "Write $\\frac{7}{25}$ as a percentage.",
+      "options": ["$14\\%$", "$21\\%$", "$28\\%$", "$35\\%$"],
+      "correct": 2,
+      "explanation": "$\\frac{7}{25}=\\frac{28}{100}=28\\%$."
+    },
+    {
+      "q": "Express $0.625$ as a percentage.",
+      "options": ["$6.25\\%$", "$12.5\\%$", "$62.5\\%$", "$625\\%$"],
+      "correct": 2,
+      "explanation": "Multiply by $100$: $0.625\\times100=62.5\\%$."
+    },
+    {
+      "q": "Express $36\\%$ as a fraction in its lowest terms.",
+      "options": ["$\\frac{9}{25}$", "$\\frac{18}{25}$", "$\\frac{3}{25}$", "$\\frac{4}{9}$"],
       "correct": 0,
-      "explanation": "Divide numerator and denominator by $6$: $18/24=3/4$."
+      "explanation": "$36\\%=\\frac{36}{100}=\\frac{9}{25}$."
     },
     {
-      "q": "Evaluate $\\frac{2}{3}+\\frac{1}{6}$.",
-      "options": [
-        "$\\frac{1}{2}$",
-        "$\\frac{5}{6}$",
-        "$\\frac{3}{9}$",
-        "$\\frac{2}{9}$"
-      ],
+      "q": "Find $18\\%$ of $250$.",
+      "options": ["$35$", "$40$", "$45$", "$50$"],
+      "correct": 2,
+      "explanation": "$18\\%$ of $250$ is $\\frac{18}{100}\\times250=45$."
+    },
+    {
+      "q": "A candidate scored $54$ marks out of $75$. What percentage did the candidate score?",
+      "options": ["$62\\%$", "$68\\%$", "$72\\%$", "$78\\%$"],
+      "correct": 2,
+      "explanation": "$\\frac{54}{75}\\times100\\%=72\\%$."
+    },
+    {
+      "q": "Increase $GHc480$ by $12.5\\%$.",
+      "options": ["$GHc520$", "$GHc540$", "$GHc560$", "$GHc600$"],
       "correct": 1,
-      "explanation": "Use denominator $6$: $2/3=4/6$, so $4/6+1/6=5/6$."
+      "explanation": "$12.5\\%=\\frac18$, and $\\frac18$ of $480$ is $60$. The increased amount is $480+60=540$."
     },
     {
-      "q": "Evaluate $\\frac{5}{8}-\\frac{1}{4}$.",
-      "options": [
-        "$\\frac{3}{8}$",
-        "$\\frac{4}{4}$",
-        "$\\frac{1}{8}$",
-        "$\\frac{1}{2}$"
-      ],
+      "q": "A price of $GHc320$ is reduced by $15\\%$. Find the new price.",
+      "options": ["$GHc248$", "$GHc260$", "$GHc272$", "$GHc305$"],
+      "correct": 2,
+      "explanation": "$15\\%$ of $320$ is $48$. New price $=320-48=272$."
+    },
+    {
+      "q": "After a $20\\%$ increase, the population of a town is $18,000$. What was the original population?",
+      "options": ["$12,000$", "$14,400$", "$15,000$", "$16,200$"],
+      "correct": 2,
+      "explanation": "The new population is $120\\%$ of the original. Original $=18000\\div1.2=15000$."
+    },
+    {
+      "q": "A trader bought an article for $GHc240$ and sold it for $GHc300$. Find the percentage profit.",
+      "options": ["$20\\%$", "$25\\%$", "$30\\%$", "$40\\%$"],
+      "correct": 1,
+      "explanation": "Profit $=300-240=60$. Percentage profit $=\\frac{60}{240}\\times100\\%=25\\%$."
+    },
+    {
+      "q": "An item bought for $GHc500$ was sold for $GHc425$. Find the percentage loss.",
+      "options": ["$10\\%$", "$12.5\\%$", "$15\\%$", "$17.5\\%$"],
+      "correct": 2,
+      "explanation": "Loss $=500-425=75$. Percentage loss $=\\frac{75}{500}\\times100\\%=15\\%$."
+    },
+    {
+      "q": "A shopkeeper wants a $30\\%$ profit on an article that cost $GHc180$. What should be the selling price?",
+      "options": ["$GHc210$", "$GHc224$", "$GHc234$", "$GHc260$"],
+      "correct": 2,
+      "explanation": "$30\\%$ of $180$ is $54$. Selling price $=180+54=234$."
+    },
+    {
+      "q": "A trader sold a radio for $GHc414$ and made a $15\\%$ profit. Find the cost price.",
+      "options": ["$GHc330$", "$GHc345$", "$GHc360$", "$GHc390$"],
+      "correct": 2,
+      "explanation": "$414$ is $115\\%$ of the cost price. Cost price $=414\\div1.15=360$."
+    },
+    {
+      "q": "The marked price of a pair of shoes is $GHc260$. If a discount of $10\\%$ is allowed, find the selling price.",
+      "options": ["$GHc224$", "$GHc230$", "$GHc234$", "$GHc250$"],
+      "correct": 2,
+      "explanation": "Discount $=10\\%$ of $260=26$. Selling price $=260-26=234$."
+    },
+    {
+      "q": "After a discount of $20\\%$, a bag is sold for $GHc160$. Find its marked price.",
+      "options": ["$GHc180$", "$GHc192$", "$GHc200$", "$GHc220$"],
+      "correct": 2,
+      "explanation": "$160$ is $80\\%$ of the marked price. Marked price $=160\\div0.8=200$."
+    },
+    {
+      "q": "A shop gives a $12\\%$ discount on a television marked $GHc750$. How much is paid?",
+      "options": ["$GHc630$", "$GHc650$", "$GHc660$", "$GHc690$"],
+      "correct": 2,
+      "explanation": "Discount $=12\\%$ of $750=90$. Amount paid $=750-90=660$."
+    },
+    {
+      "q": "Find the simple interest on $GHc800$ for $3$ years at $5\\%$ per annum.",
+      "options": ["$GHc40$", "$GHc80$", "$GHc120$", "$GHc160$"],
+      "correct": 2,
+      "explanation": "Simple interest $=\\frac{PRT}{100}=\\frac{800\\times5\\times3}{100}=120$."
+    },
+    {
+      "q": "At what rate will $GHc600$ earn $GHc90$ simple interest in $3$ years?",
+      "options": ["$4\\%$", "$5\\%$", "$6\\%$", "$7.5\\%$"],
+      "correct": 1,
+      "explanation": "$R=\\frac{100I}{PT}=\\frac{100\\times90}{600\\times3}=5\\%$."
+    },
+    {
+      "q": "A sum of $GHc1,000$ is invested for $2$ years at $8\\%$ simple interest. Find the amount.",
+      "options": ["$GHc1,080$", "$GHc1,120$", "$GHc1,160$", "$GHc1,200$"],
+      "correct": 2,
+      "explanation": "Simple interest $=\\frac{1000\\times8\\times2}{100}=160$. Amount $=1000+160=1160$."
+    },
+    {
+      "q": "A machine is bought on hire purchase. The deposit is $GHc250$ and $12$ monthly payments of $GHc85$ are made. Find the hire-purchase price.",
+      "options": ["$GHc1,020$", "$GHc1,170$", "$GHc1,270$", "$GHc1,520$"],
+      "correct": 2,
+      "explanation": "Hire-purchase price $=250+12\\times85=250+1020=1270$."
+    },
+    {
+      "q": "The cash price of a refrigerator is $GHc1,500$. On hire purchase, a buyer pays $GHc400$ deposit and $10$ monthly instalments of $GHc130$. Find the extra cost of hire purchase.",
+      "options": ["$GHc100$", "$GHc150$", "$GHc200$", "$GHc300$"],
+      "correct": 2,
+      "explanation": "Hire-purchase price $=400+10\\times130=1700$. Extra cost $=1700-1500=200$."
+    },
+    {
+      "q": "The ratio of cars to motor bikes passing an intersection is $7:2$. If $63$ cars and motor bikes pass, how many are motor bikes?",
+      "options": ["$7$", "$14$", "$18$", "$21$"],
+      "correct": 1,
+      "explanation": "Total parts $=7+2=9$. Motor bikes $=\\frac{2}{9}\\times63=14$."
+    },
+    {
+      "q": "Sadia's age and her father's age are in the ratio $3:5$. Their total age is $96$ years. Find Sadia's age.",
+      "options": ["$24$ years", "$30$ years", "$36$ years", "$40$ years"],
+      "correct": 2,
+      "explanation": "Total parts $=8$. Sadia's age $=\\frac{3}{8}\\times96=36$ years."
+    },
+    {
+      "q": "Lois and Gina share $GHc100$ in the ratio $2:5$. How much does Gina receive?",
+      "options": ["$GHc28.57$", "$GHc40.00$", "$GHc71.43$", "$GHc80.00$"],
+      "correct": 2,
+      "explanation": "Total parts $=2+5=7$. Gina receives $\\frac{5}{7}\\times100=71.43$ to the nearest pesewa."
+    },
+    {
+      "q": "The angles of a triangle are in the ratio $6:5:7$. Find the smallest angle.",
+      "options": ["$40^\\circ$", "$50^\\circ$", "$60^\\circ$", "$70^\\circ$"],
+      "correct": 1,
+      "explanation": "Total parts $=18$. One part $=180^\\circ\\div18=10^\\circ$. The smallest angle is $5\\times10^\\circ=50^\\circ$."
+    },
+    {
+      "q": "The perimeter of a triangle is $240$ cm and its sides are in the ratio $3:4:5$. Find the longest side.",
+      "options": ["$60$ cm", "$80$ cm", "$100$ cm", "$120$ cm"],
+      "correct": 2,
+      "explanation": "Total parts $=12$. One part $=240\\div12=20$ cm. Longest side $=5\\times20=100$ cm."
+    },
+    {
+      "q": "Three boys share $GHc420$ in the ratio $2:3:5$. Find the largest share.",
+      "options": ["$GHc84$", "$GHc126$", "$GHc168$", "$GHc210$"],
+      "correct": 3,
+      "explanation": "Total parts $=10$. One part $=420\\div10=42$. Largest share $=5\\times42=210$."
+    },
+    {
+      "q": "A map is drawn to a scale of $1:20,000$. What distance on the map represents $12$ km on the ground?",
+      "options": ["$6$ cm", "$24$ cm", "$60$ cm", "$120$ cm"],
+      "correct": 2,
+      "explanation": "$1$ cm represents $20,000$ cm $=0.2$ km. Therefore $12$ km is represented by $12\\div0.2=60$ cm."
+    },
+    {
+      "q": "A map has scale $1:100,000$. A road is $4$ cm long on the map. Find the actual distance in kilometres.",
+      "options": ["$0.4$ km", "$2$ km", "$4$ km", "$40$ km"],
+      "correct": 2,
+      "explanation": "$1$ cm represents $100,000$ cm $=1$ km. Therefore $4$ cm represents $4$ km."
+    },
+    {
+      "q": "Using the exchange rate $\\pounds1=GHc1.60$, convert $\\pounds3,000$ to Ghana cedis.",
+      "options": ["$GHc1,875$", "$GHc3,001.60$", "$GHc4,800$", "$GHc6,000$"],
+      "correct": 2,
+      "explanation": "$\\pounds3000=3000\\times GHc1.60=GHc4,800$."
+    },
+    {
+      "q": "Using the exchange rate $\\$1=GHc0.94$, convert $\\$4,500$ to Ghana cedis.",
+      "options": ["$GHc3,830$", "$GHc4,230$", "$GHc4,500.94$", "$GHc5,319$"],
+      "correct": 1,
+      "explanation": "$\\$4500=4500\\times GHc0.94=GHc4,230$."
+    },
+    {
+      "q": "A car moves steadily for $5$ minutes and covers $60$ m. Find its average speed in m/s.",
+      "options": ["$0.2$ m/s", "$2$ m/s", "$12$ m/s", "$300$ m/s"],
       "correct": 0,
-      "explanation": "$1/4=2/8$, so $5/8-2/8=3/8$."
+      "explanation": "$5$ minutes $=300$ seconds. Speed $=\\frac{60}{300}=0.2$ m/s."
     },
     {
-      "q": "Find $\\frac{3}{5}$ of $45$.",
-      "options": [
-        "$15$",
-        "$18$",
-        "$27$",
-        "$30$"
-      ],
-      "correct": 2,
-      "explanation": "$3/5$ of $45$ is $(3/5)\\times45=27$."
-    },
-    {
-      "q": "Evaluate $2\\frac{1}{3}+1\\frac{1}{6}$.",
-      "options": [
-        "$3\\frac{1}{2}$",
-        "$3\\frac{1}{3}$",
-        "$4\\frac{1}{6}$",
-        "$2\\frac{1}{2}$"
-      ],
-      "correct": 0,
-      "explanation": "$2\\frac13=14/6$ and $1\\frac16=7/6$. Their sum is $21/6=3\\frac12$."
-    },
-    {
-      "q": "Which is greater: $\\frac{3}{4}$ or $\\frac{5}{8}$?",
-      "options": [
-        "$\\frac{5}{8}$",
-        "$\\frac{3}{4}$",
-        "They are equal",
-        "Cannot be compared"
-      ],
+      "q": "Find the average speed in km/h of a car that travels $90$ km in $3$ hours $15$ minutes.",
+      "options": ["$24.6$ km/h", "$27.7$ km/h", "$30$ km/h", "$36$ km/h"],
       "correct": 1,
-      "explanation": "$3/4=6/8$, and $6/8>5/8$."
+      "explanation": "$3$ hours $15$ minutes $=3.25$ hours. Speed $=90\\div3.25=27.69$ km/h, about $27.7$ km/h."
     },
     {
-      "q": "Convert $0.35$ to a fraction in its simplest form.",
-      "options": [
-        "$\\frac{7}{20}$",
-        "$\\frac{35}{10}$",
-        "$\\frac{3}{5}$",
-        "$\\frac{5}{7}$"
-      ],
-      "correct": 0,
-      "explanation": "$0.35=35/100=7/20$."
+      "q": "Convert $10$ m/s to km/h.",
+      "options": ["$18$ km/h", "$24$ km/h", "$30$ km/h", "$36$ km/h"],
+      "correct": 3,
+      "explanation": "To convert m/s to km/h, multiply by $3.6$. Thus $10$ m/s $=36$ km/h."
     },
     {
-      "q": "Convert $\\frac{7}{20}$ to a percentage.",
-      "options": [
-        "$20\\%$",
-        "$28\\%$",
-        "$35\\%$",
-        "$70\\%$"
-      ],
+      "q": "Convert $100$ km/h to m/s, correct to one decimal place.",
+      "options": ["$10.0$ m/s", "$16.7$ m/s", "$27.8$ m/s", "$36.0$ m/s"],
       "correct": 2,
-      "explanation": "$7/20=0.35=35\\%$."
+      "explanation": "$100$ km/h $=100\\times\\frac{1000}{3600}=27.8$ m/s to one decimal place."
     },
     {
-      "q": "Find $15\\%$ of $240$.",
-      "options": [
-        "$24$",
-        "$30$",
-        "$36$",
-        "$42$"
-      ],
+      "q": "A piece of iron has volume $15$ cm$^3$ and mass $27$ g. Calculate its density in g/cm$^3$.",
+      "options": ["$0.56$ g/cm$^3$", "$1.8$ g/cm$^3$", "$12$ g/cm$^3$", "$405$ g/cm$^3$"],
+      "correct": 1,
+      "explanation": "Density $=\\frac{\\text{mass}}{\\text{volume}}=\\frac{27}{15}=1.8$ g/cm$^3$."
+    },
+    {
+      "q": "A town has area $7$ km$^2$ and population $49,000$. Find its population density.",
+      "options": ["$700$ people/km$^2$", "$4,900$ people/km$^2$", "$7,000$ people/km$^2$", "$49,000$ people/km$^2$"],
       "correct": 2,
-      "explanation": "$15\\%$ of $240$ is $0.15\\times240=36$."
+      "explanation": "Population density $=\\frac{49000}{7}=7000$ people/km$^2$."
     },
     {
-      "q": "Increase $80$ by $25\\%$.",
-      "options": [
-        "$95$",
-        "$100$",
-        "$105$",
-        "$120$"
-      ],
+      "q": "A student spends $\\frac{3}{8}$ of her money on books and $\\frac{1}{4}$ on food. What fraction of her money is left?",
+      "options": ["$\\frac{1}{8}$", "$\\frac{3}{8}$", "$\\frac{5}{8}$", "$\\frac{7}{8}$"],
       "correct": 1,
-      "explanation": "$25\\%$ of $80$ is $20$, so the increased value is $100$."
+      "explanation": "Spent fraction $=\\frac38+\\frac14=\\frac38+\\frac28=\\frac58$. Left $=1-\\frac58=\\frac38$."
     },
     {
-      "q": "Decrease $150$ by $20\\%$.",
-      "options": [
-        "$120$",
-        "$130$",
-        "$140$",
-        "$100$"
-      ],
-      "correct": 0,
-      "explanation": "$20\\%$ of $150$ is $30$, so $150-30=120$."
-    },
-    {
-      "q": "A shirt costs GHS $120$ after a $25\\%$ discount. What was the original price?",
-      "options": [
-        "GHS $140$",
-        "GHS $150$",
-        "GHS $160$",
-        "GHS $180$"
-      ],
+      "q": "A man spends $40\\%$ of his salary on rent and $25\\%$ on food. What percentage of his salary remains?",
+      "options": ["$25\\%$", "$30\\%$", "$35\\%$", "$65\\%$"],
       "correct": 2,
-      "explanation": "After a $25\\%$ discount, the price is $75\\%$ of the original. $120/0.75=160$."
+      "explanation": "Total spent $=40\\%+25\\%=65\\%$. Remaining percentage $=100\\%-65\\%=35\\%$."
     },
     {
-      "q": "A trader buys an item for GHS $80$ and sells it for GHS $100$. Find the percentage profit.",
-      "options": [
-        "$20\\%$",
-        "$25\\%$",
-        "$30\\%$",
-        "$80\\%$"
-      ],
+      "q": "A quantity is increased from $80$ to $100$. Find the percentage increase.",
+      "options": ["$20\\%$", "$25\\%$", "$30\\%$", "$80\\%$"],
       "correct": 1,
-      "explanation": "Profit is $20$. Percentage profit is $20/80\\times100\\%=25\\%$."
+      "explanation": "Increase $=100-80=20$. Percentage increase $=\\frac{20}{80}\\times100\\%=25\\%$."
     },
     {
-      "q": "A price rises from GHS $50$ to GHS $65$. Find the percentage increase.",
-      "options": [
-        "$15\\%$",
-        "$23\\%$",
-        "$30\\%$",
-        "$35\\%$"
-      ],
-      "correct": 2,
-      "explanation": "Increase is $15$. $15/50\\times100\\%=30\\%$."
-    },
-    {
-      "q": "Express $\\frac{5}{8}$ as a decimal.",
-      "options": [
-        "$0.58$",
-        "$0.625$",
-        "$0.675$",
-        "$0.75$"
-      ],
+      "q": "A quantity is decreased from $240$ to $204$. Find the percentage decrease.",
+      "options": ["$12\\%$", "$15\\%$", "$18\\%$", "$36\\%$"],
       "correct": 1,
-      "explanation": "$5\\div8=0.625$."
-    },
-    {
-      "q": "Evaluate $\\frac{4}{9}\\div\\frac{2}{3}$.",
-      "options": [
-        "$\\frac{2}{3}$",
-        "$\\frac{8}{27}$",
-        "$\\frac{3}{2}$",
-        "$\\frac{6}{13}$"
-      ],
-      "correct": 0,
-      "explanation": "Divide by multiplying by the reciprocal: $4/9\\times3/2=12/18=2/3$."
-    },
-    {
-      "q": "Evaluate $\\frac{7}{10}\\times\\frac{5}{14}$.",
-      "options": [
-        "$\\frac{1}{2}$",
-        "$\\frac{1}{4}$",
-        "$\\frac{35}{140}$",
-        "$\\frac{7}{28}$"
-      ],
-      "correct": 1,
-      "explanation": "$7/10\\times5/14=35/140=1/4$."
-    },
-    {
-      "q": "What percentage of $80$ is $12$?",
-      "options": [
-        "$12\\%$",
-        "$15\\%$",
-        "$18\\%$",
-        "$20\\%$"
-      ],
-      "correct": 1,
-      "explanation": "$12/80\\times100\\%=15\\%$."
-    },
-    {
-      "q": "A class has $18$ boys and $12$ girls. What fraction of the class are girls?",
-      "options": [
-        "$\\frac{2}{5}$",
-        "$\\frac{3}{5}$",
-        "$\\frac{12}{18}$",
-        "$\\frac{5}{2}$"
-      ],
-      "correct": 0,
-      "explanation": "There are $30$ learners. The fraction of girls is $12/30=2/5$."
-    },
-    {
-      "q": "Share GHS $84$ in the ratio $3:4$. What is the larger share?",
-      "options": [
-        "GHS $36$",
-        "GHS $42$",
-        "GHS $48$",
-        "GHS $54$"
-      ],
-      "correct": 2,
-      "explanation": "There are $7$ parts. One part is $84/7=12$, so the larger share is $4\\times12=48$."
-    },
-    {
-      "q": "A fraction equals $\\frac{3}{5}$. If its denominator is $35$, find its numerator.",
-      "options": [
-        "$15$",
-        "$18$",
-        "$21$",
-        "$25$"
-      ],
-      "correct": 2,
-      "explanation": "$5$ is multiplied by $7$ to get $35$, so $3$ is also multiplied by $7$ to get $21$."
-    },
-    {
-      "q": "Find the value of $\\frac{2}{5}$ as a percentage.",
-      "options": [
-        "$20\\%$",
-        "$25\\%$",
-        "$40\\%$",
-        "$50\\%$"
-      ],
-      "correct": 2,
-      "explanation": "$2/5=0.4=40\\%$."
-    },
-    {
-      "q": "A student scored $36$ out of $45$. Express the score as a percentage.",
-      "options": [
-        "$75\\%$",
-        "$80\\%$",
-        "$85\\%$",
-        "$90\\%$"
-      ],
-      "correct": 1,
-      "explanation": "$36/45\\times100\\%=80\\%$."
-    },
-    {
-      "q": "Find $125\\%$ of $64$.",
-      "options": [
-        "$72$",
-        "$76$",
-        "$80$",
-        "$96$"
-      ],
-      "correct": 2,
-      "explanation": "$125\\%=1.25$, and $1.25\\times64=80$."
-    },
-    {
-      "q": "If $40\\%$ of a number is $28$, find the number.",
-      "options": [
-        "$56$",
-        "$64$",
-        "$70$",
-        "$84$"
-      ],
-      "correct": 2,
-      "explanation": "Let the number be $x$. $0.4x=28$, so $x=70$."
-    },
-    {
-      "q": "A value changes from $200$ to $170$. Find the percentage decrease.",
-      "options": [
-        "$10\\%$",
-        "$15\\%$",
-        "$20\\%$",
-        "$30\\%$"
-      ],
-      "correct": 1,
-      "explanation": "Decrease is $30$. $30/200\\times100\\%=15\\%$."
-    },
-    {
-      "q": "Simplify $\\frac{3}{7}+\\frac{2}{21}$.",
-      "options": [
-        "$\\frac{5}{28}$",
-        "$\\frac{11}{21}$",
-        "$\\frac{5}{21}$",
-        "$\\frac{1}{3}$"
-      ],
-      "correct": 1,
-      "explanation": "$3/7=9/21$, so $9/21+2/21=11/21$."
-    },
-    {
-      "q": "Evaluate $3-\\frac{5}{6}$.",
-      "options": [
-        "$2\\frac{1}{6}$",
-        "$2\\frac{5}{6}$",
-        "$3\\frac{5}{6}$",
-        "$1\\frac{1}{6}$"
-      ],
-      "correct": 0,
-      "explanation": "$3=18/6$, so $18/6-5/6=13/6=2\\frac16$."
-    },
-    {
-      "q": "Which fraction is equivalent to $0.125$?",
-      "options": [
-        "$\\frac{1}{4}$",
-        "$\\frac{1}{8}$",
-        "$\\frac{1}{5}$",
-        "$\\frac{3}{8}$"
-      ],
-      "correct": 1,
-      "explanation": "$0.125=125/1000=1/8$."
-    },
-    {
-      "q": "A phone is sold for GHS $900$ at a loss of $10\\%$. Find the cost price.",
-      "options": [
-        "GHS $810$",
-        "GHS $990$",
-        "GHS $1000$",
-        "GHS $1100$"
-      ],
-      "correct": 2,
-      "explanation": "Selling price is $90\\%$ of cost price. $900/0.9=1000$."
-    },
-    {
-      "q": "A quantity is increased by $10\\%$ and then decreased by $10\\%$. What is the final percentage change?",
-      "options": [
-        "No change",
-        "$1\\%$ decrease",
-        "$1\\%$ increase",
-        "$10\\%$ decrease"
-      ],
-      "correct": 1,
-      "explanation": "Using $100$ as the original value: $100\\to110\\to99$, so the final value is $1\\%$ lower."
-    },
-    {
-      "q": "Find $\\frac{3}{4}$ of $\\frac{2}{9}$.",
-      "options": [
-        "$\\frac{1}{6}$",
-        "$\\frac{5}{13}$",
-        "$\\frac{3}{18}$",
-        "$\\frac{2}{3}$"
-      ],
-      "correct": 0,
-      "explanation": "$3/4\\times2/9=6/36=1/6$."
-    },
-    {
-      "q": "Write $4:5$ as a fraction of the whole represented by the first part.",
-      "options": [
-        "$\\frac{4}{5}$",
-        "$\\frac{4}{9}$",
-        "$\\frac{5}{9}$",
-        "$\\frac{9}{4}$"
-      ],
-      "correct": 1,
-      "explanation": "The total number of parts is $4+5=9$, so the first part is $4/9$ of the whole."
-    },
-    {
-      "q": "If $\\frac{x}{12}=\\frac{5}{6}$, find $x$.",
-      "options": [
-        "$8$",
-        "$10$",
-        "$12$",
-        "$15$"
-      ],
-      "correct": 1,
-      "explanation": "$x=12\\times5/6=10$."
-    },
-    {
-      "q": "A bank pays $8\\%$ simple interest on GHS $500$ for one year. Find the interest.",
-      "options": [
-        "GHS $20$",
-        "GHS $30$",
-        "GHS $40$",
-        "GHS $80$"
-      ],
-      "correct": 2,
-      "explanation": "Interest is $8/100\\times500=40$."
-    },
-    {
-      "q": "Convert $72\\%$ to a fraction in simplest form.",
-      "options": [
-        "$\\frac{18}{25}$",
-        "$\\frac{36}{50}$",
-        "$\\frac{72}{10}$",
-        "$\\frac{7}{2}$"
-      ],
-      "correct": 0,
-      "explanation": "$72\\%=72/100=18/25$."
-    },
-    {
-      "q": "What is $\\frac{1}{3}$ of $60\\%$?",
-      "options": [
-        "$10\\%$",
-        "$15\\%$",
-        "$20\\%$",
-        "$30\\%$"
-      ],
-      "correct": 2,
-      "explanation": "$60\\%/3=20\\%$."
-    },
-    {
-      "q": "Order these fractions from smallest to largest: $\\frac{1}{2},\\frac{2}{3},\\frac{3}{5}$.",
-      "options": [
-        "$\\frac12,\\frac35,\\frac23$",
-        "$\\frac23,\\frac35,\\frac12$",
-        "$\\frac35,\\frac12,\\frac23$",
-        "$\\frac12,\\frac23,\\frac35$"
-      ],
-      "correct": 0,
-      "explanation": "Using decimals: $1/2=0.5$, $3/5=0.6$, and $2/3\\approx0.667$."
-    },
-    {
-      "q": "A discount of $15\\%$ is given on GHS $240$. Find the discount.",
-      "options": [
-        "GHS $24$",
-        "GHS $30$",
-        "GHS $36$",
-        "GHS $40$"
-      ],
-      "correct": 2,
-      "explanation": "$15\\%$ of $240$ is $0.15\\times240=36$."
-    },
-    {
-      "q": "A mixture contains $2\\frac12$ litres of water and $1\\frac34$ litres of juice. Find the total volume.",
-      "options": [
-        "$3\\frac14$ litres",
-        "$4\\frac14$ litres",
-        "$4\\frac12$ litres",
-        "$5\\frac14$ litres"
-      ],
-      "correct": 1,
-      "explanation": "$2\\frac12+1\\frac34=2\\frac24+1\\frac34=3\\frac54=4\\frac14$."
+      "explanation": "Decrease $=240-204=36$. Percentage decrease $=\\frac{36}{240}\\times100\\%=15\\%$."
     }
   ]
 }
+

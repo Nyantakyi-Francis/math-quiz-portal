@@ -1,5 +1,4 @@
 const draftModuleSlugs = new Set([
-  "fractions-percentages",
   "number-sets",
   "algebraic-expressions-factorisation",
   "linear-equations-relations-functions",
