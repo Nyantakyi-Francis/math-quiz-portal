@@ -5,245 +5,444 @@
   "description": "Book-backed practice on percentages, ratio sharing, profit and loss, discount, interest, hire purchase, rates, and density.",
   "questions": [
     {
-      "q": "Write $\\frac{7}{25}$ as a percentage.",
-      "options": ["$14\\%$", "$21\\%$", "$28\\%$", "$35\\%$"],
+      "q": "Write 7/25 as a percentage.",
+      "options": [
+        "14%",
+        "21%",
+        "28%",
+        "35%"
+      ],
       "correct": 2,
-      "explanation": "$\\frac{7}{25}=\\frac{28}{100}=28\\%$."
+      "explanation": "7/25=28/100=28%."
     },
     {
-      "q": "Express $0.625$ as a percentage.",
-      "options": ["$6.25\\%$", "$12.5\\%$", "$62.5\\%$", "$625\\%$"],
+      "q": "Express 0.625 as a percentage.",
+      "options": [
+        "6.25%",
+        "12.5%",
+        "62.5%",
+        "625%"
+      ],
       "correct": 2,
-      "explanation": "Multiply by $100$: $0.625\\times100=62.5\\%$."
+      "explanation": "Multiply by 100: 0.625 x 100=62.5%."
     },
     {
-      "q": "Express $36\\%$ as a fraction in its lowest terms.",
-      "options": ["$\\frac{9}{25}$", "$\\frac{18}{25}$", "$\\frac{3}{25}$", "$\\frac{4}{9}$"],
+      "q": "Express 36% as a fraction in its lowest terms.",
+      "options": [
+        "9/25",
+        "18/25",
+        "3/25",
+        "4/9"
+      ],
       "correct": 0,
-      "explanation": "$36\\%=\\frac{36}{100}=\\frac{9}{25}$."
+      "explanation": "36%=36/100=9/25."
     },
     {
-      "q": "Find $18\\%$ of $250$.",
-      "options": ["$35$", "$40$", "$45$", "$50$"],
+      "q": "Find 18% of 250.",
+      "options": [
+        "35",
+        "40",
+        "45",
+        "50"
+      ],
       "correct": 2,
-      "explanation": "$18\\%$ of $250$ is $\\frac{18}{100}\\times250=45$."
+      "explanation": "18% of 250 is 18/100 x 250=45."
     },
     {
-      "q": "A candidate scored $54$ marks out of $75$. What percentage did the candidate score?",
-      "options": ["$62\\%$", "$68\\%$", "$72\\%$", "$78\\%$"],
+      "q": "A candidate scored 54 marks out of 75. What percentage did the candidate score?",
+      "options": [
+        "62%",
+        "68%",
+        "72%",
+        "78%"
+      ],
       "correct": 2,
-      "explanation": "$\\frac{54}{75}\\times100\\%=72\\%$."
+      "explanation": "54/75 x 100%=72%."
     },
     {
-      "q": "Increase $GHc480$ by $12.5\\%$.",
-      "options": ["$GHc520$", "$GHc540$", "$GHc560$", "$GHc600$"],
+      "q": "Increase GHS 480 by 12.5%.",
+      "options": [
+        "GHS 520",
+        "GHS 540",
+        "GHS 560",
+        "GHS 600"
+      ],
       "correct": 1,
-      "explanation": "$12.5\\%=\\frac18$, and $\\frac18$ of $480$ is $60$. The increased amount is $480+60=540$."
+      "explanation": "12.5%=1/8, and 1/8 of 480 is 60. The increased amount is 480+60=540."
     },
     {
-      "q": "A price of $GHc320$ is reduced by $15\\%$. Find the new price.",
-      "options": ["$GHc248$", "$GHc260$", "$GHc272$", "$GHc305$"],
+      "q": "A price of GHS 320 is reduced by 15%. Find the new price.",
+      "options": [
+        "GHS 248",
+        "GHS 260",
+        "GHS 272",
+        "GHS 305"
+      ],
       "correct": 2,
-      "explanation": "$15\\%$ of $320$ is $48$. New price $=320-48=272$."
+      "explanation": "15% of 320 is 48. New price =320-48=272."
     },
     {
-      "q": "After a $20\\%$ increase, the population of a town is $18,000$. What was the original population?",
-      "options": ["$12,000$", "$14,400$", "$15,000$", "$16,200$"],
+      "q": "After a 20% increase, the population of a town is 18,000. What was the original population?",
+      "options": [
+        "12,000",
+        "14,400",
+        "15,000",
+        "16,200"
+      ],
       "correct": 2,
-      "explanation": "The new population is $120\\%$ of the original. Original $=18000\\div1.2=15000$."
+      "explanation": "The new population is 120% of the original. Original =18000 / 1.2=15000."
     },
     {
-      "q": "A trader bought an article for $GHc240$ and sold it for $GHc300$. Find the percentage profit.",
-      "options": ["$20\\%$", "$25\\%$", "$30\\%$", "$40\\%$"],
+      "q": "A trader bought an article for GHS 240 and sold it for GHS 300. Find the percentage profit.",
+      "options": [
+        "20%",
+        "25%",
+        "30%",
+        "40%"
+      ],
       "correct": 1,
-      "explanation": "Profit $=300-240=60$. Percentage profit $=\\frac{60}{240}\\times100\\%=25\\%$."
+      "explanation": "Profit =300-240=60. Percentage profit =60/240 x 100%=25%."
     },
     {
-      "q": "An item bought for $GHc500$ was sold for $GHc425$. Find the percentage loss.",
-      "options": ["$10\\%$", "$12.5\\%$", "$15\\%$", "$17.5\\%$"],
+      "q": "An item bought for GHS 500 was sold for GHS 425. Find the percentage loss.",
+      "options": [
+        "10%",
+        "12.5%",
+        "15%",
+        "17.5%"
+      ],
       "correct": 2,
-      "explanation": "Loss $=500-425=75$. Percentage loss $=\\frac{75}{500}\\times100\\%=15\\%$."
+      "explanation": "Loss =500-425=75. Percentage loss =75/500 x 100%=15%."
     },
     {
-      "q": "A shopkeeper wants a $30\\%$ profit on an article that cost $GHc180$. What should be the selling price?",
-      "options": ["$GHc210$", "$GHc224$", "$GHc234$", "$GHc260$"],
+      "q": "A shopkeeper wants a 30% profit on an article that cost GHS 180. What should be the selling price?",
+      "options": [
+        "GHS 210",
+        "GHS 224",
+        "GHS 234",
+        "GHS 260"
+      ],
       "correct": 2,
-      "explanation": "$30\\%$ of $180$ is $54$. Selling price $=180+54=234$."
+      "explanation": "30% of 180 is 54. Selling price =180+54=234."
     },
     {
-      "q": "A trader sold a radio for $GHc414$ and made a $15\\%$ profit. Find the cost price.",
-      "options": ["$GHc330$", "$GHc345$", "$GHc360$", "$GHc390$"],
+      "q": "A trader sold a radio for GHS 414 and made a 15% profit. Find the cost price.",
+      "options": [
+        "GHS 330",
+        "GHS 345",
+        "GHS 360",
+        "GHS 390"
+      ],
       "correct": 2,
-      "explanation": "$414$ is $115\\%$ of the cost price. Cost price $=414\\div1.15=360$."
+      "explanation": "414 is 115% of the cost price. Cost price =414 / 1.15=360."
     },
     {
-      "q": "The marked price of a pair of shoes is $GHc260$. If a discount of $10\\%$ is allowed, find the selling price.",
-      "options": ["$GHc224$", "$GHc230$", "$GHc234$", "$GHc250$"],
+      "q": "The marked price of a pair of shoes is GHS 260. If a discount of 10% is allowed, find the selling price.",
+      "options": [
+        "GHS 224",
+        "GHS 230",
+        "GHS 234",
+        "GHS 250"
+      ],
       "correct": 2,
-      "explanation": "Discount $=10\\%$ of $260=26$. Selling price $=260-26=234$."
+      "explanation": "Discount =10% of 260=26. Selling price =260-26=234."
     },
     {
-      "q": "After a discount of $20\\%$, a bag is sold for $GHc160$. Find its marked price.",
-      "options": ["$GHc180$", "$GHc192$", "$GHc200$", "$GHc220$"],
+      "q": "After a discount of 20%, a bag is sold for GHS 160. Find its marked price.",
+      "options": [
+        "GHS 180",
+        "GHS 192",
+        "GHS 200",
+        "GHS 220"
+      ],
       "correct": 2,
-      "explanation": "$160$ is $80\\%$ of the marked price. Marked price $=160\\div0.8=200$."
+      "explanation": "160 is 80% of the marked price. Marked price =160 / 0.8=200."
     },
     {
-      "q": "A shop gives a $12\\%$ discount on a television marked $GHc750$. How much is paid?",
-      "options": ["$GHc630$", "$GHc650$", "$GHc660$", "$GHc690$"],
+      "q": "A shop gives a 12% discount on a television marked GHS 750. How much is paid?",
+      "options": [
+        "GHS 630",
+        "GHS 650",
+        "GHS 660",
+        "GHS 690"
+      ],
       "correct": 2,
-      "explanation": "Discount $=12\\%$ of $750=90$. Amount paid $=750-90=660$."
+      "explanation": "Discount =12% of 750=90. Amount paid =750-90=660."
     },
     {
-      "q": "Find the simple interest on $GHc800$ for $3$ years at $5\\%$ per annum.",
-      "options": ["$GHc40$", "$GHc80$", "$GHc120$", "$GHc160$"],
+      "q": "Find the simple interest on GHS 800 for 3 years at 5% per annum.",
+      "options": [
+        "GHS 40",
+        "GHS 80",
+        "GHS 120",
+        "GHS 160"
+      ],
       "correct": 2,
-      "explanation": "Simple interest $=\\frac{PRT}{100}=\\frac{800\\times5\\times3}{100}=120$."
+      "explanation": "Simple interest =PRT/100=800 x 5 x 3/100=120."
     },
     {
-      "q": "At what rate will $GHc600$ earn $GHc90$ simple interest in $3$ years?",
-      "options": ["$4\\%$", "$5\\%$", "$6\\%$", "$7.5\\%$"],
+      "q": "At what rate will GHS 600 earn GHS 90 simple interest in 3 years?",
+      "options": [
+        "4%",
+        "5%",
+        "6%",
+        "7.5%"
+      ],
       "correct": 1,
-      "explanation": "$R=\\frac{100I}{PT}=\\frac{100\\times90}{600\\times3}=5\\%$."
+      "explanation": "R=100I/PT=100 x 90/600 x 3=5%."
     },
     {
-      "q": "A sum of $GHc1,000$ is invested for $2$ years at $8\\%$ simple interest. Find the amount.",
-      "options": ["$GHc1,080$", "$GHc1,120$", "$GHc1,160$", "$GHc1,200$"],
+      "q": "A sum of GHS 1,000 is invested for 2 years at 8% simple interest. Find the amount.",
+      "options": [
+        "GHS 1,080",
+        "GHS 1,120",
+        "GHS 1,160",
+        "GHS 1,200"
+      ],
       "correct": 2,
-      "explanation": "Simple interest $=\\frac{1000\\times8\\times2}{100}=160$. Amount $=1000+160=1160$."
+      "explanation": "Simple interest =1000 x 8 x 2/100=160. Amount =1000+160=1160."
     },
     {
-      "q": "A machine is bought on hire purchase. The deposit is $GHc250$ and $12$ monthly payments of $GHc85$ are made. Find the hire-purchase price.",
-      "options": ["$GHc1,020$", "$GHc1,170$", "$GHc1,270$", "$GHc1,520$"],
+      "q": "A machine is bought on hire purchase. The deposit is GHS 250 and 12 monthly payments of GHS 85 are made. Find the hire-purchase price.",
+      "options": [
+        "GHS 1,020",
+        "GHS 1,170",
+        "GHS 1,270",
+        "GHS 1,520"
+      ],
       "correct": 2,
-      "explanation": "Hire-purchase price $=250+12\\times85=250+1020=1270$."
+      "explanation": "Hire-purchase price =250+12 x 85=250+1020=1270."
     },
     {
-      "q": "The cash price of a refrigerator is $GHc1,500$. On hire purchase, a buyer pays $GHc400$ deposit and $10$ monthly instalments of $GHc130$. Find the extra cost of hire purchase.",
-      "options": ["$GHc100$", "$GHc150$", "$GHc200$", "$GHc300$"],
+      "q": "The cash price of a refrigerator is GHS 1,500. On hire purchase, a buyer pays GHS 400 deposit and 10 monthly instalments of GHS 130. Find the extra cost of hire purchase.",
+      "options": [
+        "GHS 100",
+        "GHS 150",
+        "GHS 200",
+        "GHS 300"
+      ],
       "correct": 2,
-      "explanation": "Hire-purchase price $=400+10\\times130=1700$. Extra cost $=1700-1500=200$."
+      "explanation": "Hire-purchase price =400+10 x 130=1700. Extra cost =1700-1500=200."
     },
     {
-      "q": "The ratio of cars to motor bikes passing an intersection is $7:2$. If $63$ cars and motor bikes pass, how many are motor bikes?",
-      "options": ["$7$", "$14$", "$18$", "$21$"],
+      "q": "The ratio of cars to motor bikes passing an intersection is 7:2. If 63 cars and motor bikes pass, how many are motor bikes?",
+      "options": [
+        "7",
+        "14",
+        "18",
+        "21"
+      ],
       "correct": 1,
-      "explanation": "Total parts $=7+2=9$. Motor bikes $=\\frac{2}{9}\\times63=14$."
+      "explanation": "Total parts =7+2=9. Motor bikes =2/9 x 63=14."
     },
     {
-      "q": "Sadia's age and her father's age are in the ratio $3:5$. Their total age is $96$ years. Find Sadia's age.",
-      "options": ["$24$ years", "$30$ years", "$36$ years", "$40$ years"],
+      "q": "Sadia's age and her father's age are in the ratio 3:5. Their total age is 96 years. Find Sadia's age.",
+      "options": [
+        "24 years",
+        "30 years",
+        "36 years",
+        "40 years"
+      ],
       "correct": 2,
-      "explanation": "Total parts $=8$. Sadia's age $=\\frac{3}{8}\\times96=36$ years."
+      "explanation": "Total parts =8. Sadia's age =3/8 x 96=36 years."
     },
     {
-      "q": "Lois and Gina share $GHc100$ in the ratio $2:5$. How much does Gina receive?",
-      "options": ["$GHc28.57$", "$GHc40.00$", "$GHc71.43$", "$GHc80.00$"],
+      "q": "Lois and Gina share GHS 100 in the ratio 2:5. How much does Gina receive?",
+      "options": [
+        "GHS 28.57",
+        "GHS 40.00",
+        "GHS 71.43",
+        "GHS 80.00"
+      ],
       "correct": 2,
-      "explanation": "Total parts $=2+5=7$. Gina receives $\\frac{5}{7}\\times100=71.43$ to the nearest pesewa."
+      "explanation": "Total parts =2+5=7. Gina receives 5/7 x 100=71.43 to the nearest pesewa."
     },
     {
-      "q": "The angles of a triangle are in the ratio $6:5:7$. Find the smallest angle.",
-      "options": ["$40^\\circ$", "$50^\\circ$", "$60^\\circ$", "$70^\\circ$"],
+      "q": "The angles of a triangle are in the ratio 6:5:7. Find the smallest angle.",
+      "options": [
+        "40 degrees",
+        "50 degrees",
+        "60 degrees",
+        "70 degrees"
+      ],
       "correct": 1,
-      "explanation": "Total parts $=18$. One part $=180^\\circ\\div18=10^\\circ$. The smallest angle is $5\\times10^\\circ=50^\\circ$."
+      "explanation": "Total parts =18. One part =180 degrees / 18=10 degrees. The smallest angle is 5 x 10 degrees=50 degrees."
     },
     {
-      "q": "The perimeter of a triangle is $240$ cm and its sides are in the ratio $3:4:5$. Find the longest side.",
-      "options": ["$60$ cm", "$80$ cm", "$100$ cm", "$120$ cm"],
+      "q": "The perimeter of a triangle is 240 cm and its sides are in the ratio 3:4:5. Find the longest side.",
+      "options": [
+        "60 cm",
+        "80 cm",
+        "100 cm",
+        "120 cm"
+      ],
       "correct": 2,
-      "explanation": "Total parts $=12$. One part $=240\\div12=20$ cm. Longest side $=5\\times20=100$ cm."
+      "explanation": "Total parts =12. One part =240 / 12=20 cm. Longest side =5 x 20=100 cm."
     },
     {
-      "q": "Three boys share $GHc420$ in the ratio $2:3:5$. Find the largest share.",
-      "options": ["$GHc84$", "$GHc126$", "$GHc168$", "$GHc210$"],
+      "q": "Three boys share GHS 420 in the ratio 2:3:5. Find the largest share.",
+      "options": [
+        "GHS 84",
+        "GHS 126",
+        "GHS 168",
+        "GHS 210"
+      ],
       "correct": 3,
-      "explanation": "Total parts $=10$. One part $=420\\div10=42$. Largest share $=5\\times42=210$."
+      "explanation": "Total parts =10. One part =420 / 10=42. Largest share =5 x 42=210."
     },
     {
-      "q": "A map is drawn to a scale of $1:20,000$. What distance on the map represents $12$ km on the ground?",
-      "options": ["$6$ cm", "$24$ cm", "$60$ cm", "$120$ cm"],
+      "q": "A map is drawn to a scale of 1:20,000. What distance on the map represents 12 km on the ground?",
+      "options": [
+        "6 cm",
+        "24 cm",
+        "60 cm",
+        "120 cm"
+      ],
       "correct": 2,
-      "explanation": "$1$ cm represents $20,000$ cm $=0.2$ km. Therefore $12$ km is represented by $12\\div0.2=60$ cm."
+      "explanation": "1 cm represents 20,000 cm =0.2 km. Therefore 12 km is represented by 12 / 0.2=60 cm."
     },
     {
-      "q": "A map has scale $1:100,000$. A road is $4$ cm long on the map. Find the actual distance in kilometres.",
-      "options": ["$0.4$ km", "$2$ km", "$4$ km", "$40$ km"],
+      "q": "A map has scale 1:100,000. A road is 4 cm long on the map. Find the actual distance in kilometres.",
+      "options": [
+        "0.4 km",
+        "2 km",
+        "4 km",
+        "40 km"
+      ],
       "correct": 2,
-      "explanation": "$1$ cm represents $100,000$ cm $=1$ km. Therefore $4$ cm represents $4$ km."
+      "explanation": "1 cm represents 100,000 cm =1 km. Therefore 4 cm represents 4 km."
     },
     {
-      "q": "Using the exchange rate $\\pounds1=GHc1.60$, convert $\\pounds3,000$ to Ghana cedis.",
-      "options": ["$GHc1,875$", "$GHc3,001.60$", "$GHc4,800$", "$GHc6,000$"],
+      "q": "Using the exchange rate GBP 1=GHS 1.60, convert GBP 3,000 to Ghana cedis.",
+      "options": [
+        "GHS 1,875",
+        "GHS 3,001.60",
+        "GHS 4,800",
+        "GHS 6,000"
+      ],
       "correct": 2,
-      "explanation": "$\\pounds3000=3000\\times GHc1.60=GHc4,800$."
+      "explanation": "GBP 3000=3000 x GHS 1.60=GHS 4,800."
     },
     {
-      "q": "Using the exchange rate $\\$1=GHc0.94$, convert $\\$4,500$ to Ghana cedis.",
-      "options": ["$GHc3,830$", "$GHc4,230$", "$GHc4,500.94$", "$GHc5,319$"],
+      "q": "Using the exchange rate US$1=GHS 0.94, convert US$4,500 to Ghana cedis.",
+      "options": [
+        "GHS 3,830",
+        "GHS 4,230",
+        "GHS 4,500.94",
+        "GHS 5,319"
+      ],
       "correct": 1,
-      "explanation": "$\\$4500=4500\\times GHc0.94=GHc4,230$."
+      "explanation": "US$4500=4500 x GHS 0.94=GHS 4,230."
     },
     {
-      "q": "A car moves steadily for $5$ minutes and covers $60$ m. Find its average speed in m/s.",
-      "options": ["$0.2$ m/s", "$2$ m/s", "$12$ m/s", "$300$ m/s"],
+      "q": "A car moves steadily for 5 minutes and covers 60 m. Find its average speed in m/s.",
+      "options": [
+        "0.2 m/s",
+        "2 m/s",
+        "12 m/s",
+        "300 m/s"
+      ],
       "correct": 0,
-      "explanation": "$5$ minutes $=300$ seconds. Speed $=\\frac{60}{300}=0.2$ m/s."
+      "explanation": "5 minutes =300 seconds. Speed =60/300=0.2 m/s."
     },
     {
-      "q": "Find the average speed in km/h of a car that travels $90$ km in $3$ hours $15$ minutes.",
-      "options": ["$24.6$ km/h", "$27.7$ km/h", "$30$ km/h", "$36$ km/h"],
+      "q": "Find the average speed in km/h of a car that travels 90 km in 3 hours 15 minutes.",
+      "options": [
+        "24.6 km/h",
+        "27.7 km/h",
+        "30 km/h",
+        "36 km/h"
+      ],
       "correct": 1,
-      "explanation": "$3$ hours $15$ minutes $=3.25$ hours. Speed $=90\\div3.25=27.69$ km/h, about $27.7$ km/h."
+      "explanation": "3 hours 15 minutes =3.25 hours. Speed =90 / 3.25=27.69 km/h, about 27.7 km/h."
     },
     {
-      "q": "Convert $10$ m/s to km/h.",
-      "options": ["$18$ km/h", "$24$ km/h", "$30$ km/h", "$36$ km/h"],
+      "q": "Convert 10 m/s to km/h.",
+      "options": [
+        "18 km/h",
+        "24 km/h",
+        "30 km/h",
+        "36 km/h"
+      ],
       "correct": 3,
-      "explanation": "To convert m/s to km/h, multiply by $3.6$. Thus $10$ m/s $=36$ km/h."
+      "explanation": "To convert m/s to km/h, multiply by 3.6. Thus 10 m/s =36 km/h."
     },
     {
-      "q": "Convert $100$ km/h to m/s, correct to one decimal place.",
-      "options": ["$10.0$ m/s", "$16.7$ m/s", "$27.8$ m/s", "$36.0$ m/s"],
+      "q": "Convert 100 km/h to m/s, correct to one decimal place.",
+      "options": [
+        "10.0 m/s",
+        "16.7 m/s",
+        "27.8 m/s",
+        "36.0 m/s"
+      ],
       "correct": 2,
-      "explanation": "$100$ km/h $=100\\times\\frac{1000}{3600}=27.8$ m/s to one decimal place."
+      "explanation": "100 km/h =100 x 1000/3600=27.8 m/s to one decimal place."
     },
     {
-      "q": "A piece of iron has volume $15$ cm$^3$ and mass $27$ g. Calculate its density in g/cm$^3$.",
-      "options": ["$0.56$ g/cm$^3$", "$1.8$ g/cm$^3$", "$12$ g/cm$^3$", "$405$ g/cm$^3$"],
+      "q": "A piece of iron has volume 15 cm^3 and mass 27 g. Calculate its density in g/cm^3.",
+      "options": [
+        "0.56 g/cm^3",
+        "1.8 g/cm^3",
+        "12 g/cm^3",
+        "405 g/cm^3"
+      ],
       "correct": 1,
-      "explanation": "Density $=\\frac{\\text{mass}}{\\text{volume}}=\\frac{27}{15}=1.8$ g/cm$^3$."
+      "explanation": "Density = mass/volume = 27/15 = 1.8 g/cm^3."
     },
     {
-      "q": "A town has area $7$ km$^2$ and population $49,000$. Find its population density.",
-      "options": ["$700$ people/km$^2$", "$4,900$ people/km$^2$", "$7,000$ people/km$^2$", "$49,000$ people/km$^2$"],
+      "q": "A town has area 7 km^2 and population 49,000. Find its population density.",
+      "options": [
+        "700 people/km^2",
+        "4,900 people/km^2",
+        "7,000 people/km^2",
+        "49,000 people/km^2"
+      ],
       "correct": 2,
-      "explanation": "Population density $=\\frac{49000}{7}=7000$ people/km$^2$."
+      "explanation": "Population density =49000/7=7000 people/km^2."
     },
     {
-      "q": "A student spends $\\frac{3}{8}$ of her money on books and $\\frac{1}{4}$ on food. What fraction of her money is left?",
-      "options": ["$\\frac{1}{8}$", "$\\frac{3}{8}$", "$\\frac{5}{8}$", "$\\frac{7}{8}$"],
+      "q": "A student spends 3/8 of her money on books and 1/4 on food. What fraction of her money is left?",
+      "options": [
+        "1/8",
+        "3/8",
+        "5/8",
+        "7/8"
+      ],
       "correct": 1,
-      "explanation": "Spent fraction $=\\frac38+\\frac14=\\frac38+\\frac28=\\frac58$. Left $=1-\\frac58=\\frac38$."
+      "explanation": "Spent fraction =3/8+1/4=3/8+2/8=5/8. Left =1-5/8=3/8."
     },
     {
-      "q": "A man spends $40\\%$ of his salary on rent and $25\\%$ on food. What percentage of his salary remains?",
-      "options": ["$25\\%$", "$30\\%$", "$35\\%$", "$65\\%$"],
+      "q": "A man spends 40% of his salary on rent and 25% on food. What percentage of his salary remains?",
+      "options": [
+        "25%",
+        "30%",
+        "35%",
+        "65%"
+      ],
       "correct": 2,
-      "explanation": "Total spent $=40\\%+25\\%=65\\%$. Remaining percentage $=100\\%-65\\%=35\\%$."
+      "explanation": "Total spent =40%+25%=65%. Remaining percentage =100%-65%=35%."
     },
     {
-      "q": "A quantity is increased from $80$ to $100$. Find the percentage increase.",
-      "options": ["$20\\%$", "$25\\%$", "$30\\%$", "$80\\%$"],
+      "q": "A quantity is increased from 80 to 100. Find the percentage increase.",
+      "options": [
+        "20%",
+        "25%",
+        "30%",
+        "80%"
+      ],
       "correct": 1,
-      "explanation": "Increase $=100-80=20$. Percentage increase $=\\frac{20}{80}\\times100\\%=25\\%$."
+      "explanation": "Increase =100-80=20. Percentage increase =20/80 x 100%=25%."
     },
     {
-      "q": "A quantity is decreased from $240$ to $204$. Find the percentage decrease.",
-      "options": ["$12\\%$", "$15\\%$", "$18\\%$", "$36\\%$"],
+      "q": "A quantity is decreased from 240 to 204. Find the percentage decrease.",
+      "options": [
+        "12%",
+        "15%",
+        "18%",
+        "36%"
+      ],
       "correct": 1,
-      "explanation": "Decrease $=240-204=36$. Percentage decrease $=\\frac{36}{240}\\times100\\%=15\\%$."
+      "explanation": "Decrease =240-204=36. Percentage decrease =36/240 x 100%=15%."
     }
   ]
 }
-
