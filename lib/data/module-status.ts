@@ -1,5 +1,4 @@
 const draftModuleSlugs = new Set([
-  "number-sets",
   "linear-equations-relations-functions",
   "angles-pythagorean-theorem",
   "perimeter-area-volume",
