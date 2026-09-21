@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { RenderedMathText } from "@/components/rendered-math-text";
 import { QuizStimulus } from "@/components/quiz-stimulus";
@@ -33,7 +33,7 @@ function shuffleOptions(questions: RenderedLearnerQuizQuestion[]) {
 }
 
 export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerProps) {
-  const [displayQuestions, setDisplayQuestions] = useState(() => shuffleOptions(questions));
+  const [displayQuestions, setDisplayQuestions] = useState(questions);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -45,6 +45,10 @@ export function QuizRunner({ moduleSlug, moduleTitle, questions }: QuizRunnerPro
   const allExplanationsExpanded = Boolean(
     result && result.breakdown.every((item) => expandedExplanations.has(item.questionId))
   );
+
+  useEffect(() => {
+    setDisplayQuestions(shuffleOptions(questions));
+  }, [questions]);
 
   function handleSelect(questionId: string, optionId: string) {
     setAnswers((current) => ({
