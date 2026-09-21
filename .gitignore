@@ -17,3 +17,5 @@ WASSCE_MODULE_UPGRADE_PLAN.md
 tmp/
 Aki-Ola Core Mathematics.pdf
 Aki-Ola Elective Mathematics.pdf
+*.md
+!README.md

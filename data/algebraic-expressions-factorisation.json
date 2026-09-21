@@ -2,447 +2,247 @@
   "id": "algebraic-expressions-factorisation",
   "title": "Algebraic Expressions & Factorisation",
   "module": 14,
-  "description": "Expanding, simplifying, substitution, and factorisation practice.",
+  "description": "Book-backed practice on forming expressions, substitution, simplification, expansion, and factorisation.",
   "questions": [
     {
-      "q": "Simplify $3x+5x-2x$.",
-      "options": [
-        "$6x$",
-        "$8x$",
-        "$10x$",
-        "$6x^2$"
-      ],
+      "q": "If x represents a number, write an expression for two more than x.",
+      "options": ["x + 2", "2x", "x - 2", "2 - x"],
       "correct": 0,
-      "explanation": "Combine like terms: $3x+5x-2x=6x$."
+      "explanation": "Two more than x means add 2 to x, giving x + 2."
     },
     {
-      "q": "Expand $4(x+3)$.",
-      "options": [
-        "$4x+3$",
-        "$x+12$",
-        "$4x+12$",
-        "$7x$"
-      ],
+      "q": "If x represents a number, write an expression for four times the number.",
+      "options": ["x + 4", "4/x", "4x", "x - 4"],
       "correct": 2,
-      "explanation": "Multiply each term in the bracket by $4$: $4x+12$."
+      "explanation": "Four times x means 4 multiplied by x, which is 4x."
     },
     {
-      "q": "Expand $(x+5)(x+2)$.",
-      "options": [
-        "$x^2+7x+10$",
-        "$x^2+10x+7$",
-        "$x^2+3x+10$",
-        "$2x+7$"
-      ],
-      "correct": 0,
-      "explanation": "$x^2+2x+5x+10=x^2+7x+10$."
-    },
-    {
-      "q": "Factorise $6x+9$.",
-      "options": [
-        "$3(2x+3)$",
-        "$6(x+9)$",
-        "$9(x+6)$",
-        "$3(6x+9)$"
-      ],
-      "correct": 0,
-      "explanation": "The highest common factor is $3$, so $6x+9=3(2x+3)$."
-    },
-    {
-      "q": "Factorise $x^2-9$.",
-      "options": [
-        "$(x-9)(x+1)$",
-        "$(x-3)^2$",
-        "$(x-3)(x+3)$",
-        "$(x+9)(x-1)$"
-      ],
-      "correct": 2,
-      "explanation": "$x^2-9$ is a difference of two squares: $(x-3)(x+3)$."
-    },
-    {
-      "q": "Simplify $2a+3b-a+5b$.",
-      "options": [
-        "$a+8b$",
-        "$3a+8b$",
-        "$a+2b$",
-        "$2a+8b$"
-      ],
-      "correct": 0,
-      "explanation": "Collect like terms: $2a-a=a$ and $3b+5b=8b$."
-    },
-    {
-      "q": "Expand $-3(2x-5)$.",
-      "options": [
-        "$-6x+15$",
-        "$-6x-15$",
-        "$6x+15$",
-        "$-x+2$"
-      ],
-      "correct": 0,
-      "explanation": "Multiply both terms by $-3$: $-6x+15$."
-    },
-    {
-      "q": "Factorise $x^2+5x+6$.",
-      "options": [
-        "$(x+1)(x+6)$",
-        "$(x+2)(x+3)$",
-        "$(x-2)(x-3)$",
-        "$(x+5)(x+1)$"
-      ],
+      "q": "Write an expression for 7 less than y.",
+      "options": ["7 - y", "y - 7", "7y", "y + 7"],
       "correct": 1,
-      "explanation": "Find two numbers that multiply to $6$ and add to $5$: $2$ and $3$."
+      "explanation": "7 less than y means subtract 7 from y, giving y - 7."
     },
     {
-      "q": "Factorise $x^2-x-12$.",
-      "options": [
-        "$(x-4)(x+3)$",
-        "$(x+4)(x-3)$",
-        "$(x-6)(x+2)$",
-        "$(x-12)(x+1)$"
-      ],
-      "correct": 0,
-      "explanation": "The numbers $-4$ and $3$ multiply to $-12$ and add to $-1$."
+      "q": "Kofi is 3 years older than Ama. If Ama is x years old, what is Kofi's age?",
+      "options": ["3x", "x - 3", "x + 3", "3 - x"],
+      "correct": 2,
+      "explanation": "Older by 3 years means add 3 to Ama's age, so Kofi's age is x + 3."
     },
     {
-      "q": "Simplify $5p-2q+3p+q$.",
-      "options": [
-        "$8p-q$",
-        "$2p+3q$",
-        "$8p+3q$",
-        "$5pq$"
-      ],
-      "correct": 0,
-      "explanation": "$5p+3p=8p$ and $-2q+q=-q$."
+      "q": "Kojo has GHc75 more than Kofi. If Kofi has GHc x, write an expression for Kojo's amount.",
+      "options": ["75x", "x + 75", "x - 75", "75 - x"],
+      "correct": 1,
+      "explanation": "GHc75 more than x is x + 75."
     },
     {
-      "q": "Evaluate $2x^2-3x$ when $x=4$.",
-      "options": [
-        "$20$",
-        "$28$",
-        "$32$",
-        "$44$"
-      ],
-      "correct": 0,
-      "explanation": "$2(4^2)-3(4)=32-12=20$."
+      "q": "There are x men, y women, and z children in a hall. Write an expression for the total number of people.",
+      "options": ["xyz", "x + y + z", "x + yz", "xy + z"],
+      "correct": 1,
+      "explanation": "The total is found by adding the three groups: x + y + z."
     },
     {
-      "q": "Simplify $\\frac{6x^2}{3x}$.",
-      "options": [
-        "$2x$",
-        "$3x$",
-        "$2x^2$",
-        "$\\frac{1}{2}x$"
-      ],
+      "q": "Simplify 22x - 4xy - 7x + 3xy.",
+      "options": ["15x - xy", "29x - xy", "15x - 7xy", "15xy"],
       "correct": 0,
-      "explanation": "$6/3=2$ and $x^2/x=x$, so the result is $2x$."
+      "explanation": "Collect like terms: 22x - 7x = 15x and -4xy + 3xy = -xy."
     },
     {
-      "q": "Expand $(2x-3)(x+4)$.",
-      "options": [
-        "$2x^2+5x-12$",
-        "$2x^2+8x-3$",
-        "$2x^2-11x-12$",
-        "$3x^2+x+12$"
-      ],
+      "q": "Simplify 14y - x + 2y - 6x - 5y.",
+      "options": ["11y - 7x", "21y - 7x", "11y + 5x", "y - 7x"],
       "correct": 0,
-      "explanation": "$2x^2+8x-3x-12=2x^2+5x-12$."
+      "explanation": "Combine y terms: 14y + 2y - 5y = 11y. Combine x terms: -x - 6x = -7x."
     },
     {
-      "q": "Factorise $4x^2-25$.",
-      "options": [
-        "$(2x-5)(2x+5)$",
-        "$(4x-5)(x+5)$",
-        "$(2x-25)(2x+1)$",
-        "$(x-5)(4x+5)$"
-      ],
+      "q": "Simplify 2m + 9m - n - 2m.",
+      "options": ["9m - n", "13m - n", "9mn", "m - n"],
       "correct": 0,
-      "explanation": "Use difference of squares: $(2x)^2-5^2=(2x-5)(2x+5)$."
+      "explanation": "2m + 9m - 2m = 9m, so the expression is 9m - n."
     },
     {
-      "q": "Simplify $3(x+2)-2(x-5)$.",
-      "options": [
-        "$x+16$",
-        "$5x-4$",
-        "$x-4$",
-        "$5x+16$"
-      ],
+      "q": "Simplify 18d - 8e - d + 2e.",
+      "options": ["17d - 6e", "19d - 10e", "17d + 10e", "16de"],
       "correct": 0,
-      "explanation": "$3x+6-2x+10=x+16$."
+      "explanation": "18d - d = 17d and -8e + 2e = -6e."
     },
     {
-      "q": "Factorise $ab+ac$.",
-      "options": [
-        "$a(b+c)$",
-        "$b(a+c)$",
-        "$c(a+b)$",
-        "$abc$"
-      ],
+      "q": "Simplify 2c + 5c - 9c.",
+      "options": ["-2c", "2c", "7c", "-12c"],
       "correct": 0,
-      "explanation": "Both terms contain $a$, so factor it out."
+      "explanation": "2c + 5c - 9c = 7c - 9c = -2c."
     },
     {
-      "q": "Simplify $(x^3)(x^4)$.",
-      "options": [
-        "$x^7$",
-        "$x^{12}$",
-        "$2x^7$",
-        "$x$"
-      ],
-      "correct": 0,
-      "explanation": "For the same base, add powers: $x^3x^4=x^7$."
+      "q": "Simplify 6a + 7a + 8a.",
+      "options": ["13a", "15a", "21a", "21a^2"],
+      "correct": 2,
+      "explanation": "Add the coefficients: 6 + 7 + 8 = 21, so the answer is 21a."
     },
     {
-      "q": "Simplify $\\frac{x^5}{x^2}$.",
-      "options": [
-        "$x^3$",
-        "$x^7$",
-        "$x^{10}$",
-        "$x^2$"
-      ],
+      "q": "Simplify 11x + 5y - 4x + 2y - x.",
+      "options": ["6x + 7y", "7x + 7y", "6x + 3y", "16x + 7y"],
       "correct": 0,
-      "explanation": "Subtract powers when dividing: $x^{5-2}=x^3$."
+      "explanation": "x terms: 11x - 4x - x = 6x. y terms: 5y + 2y = 7y."
     },
     {
-      "q": "Expand $(x-6)^2$.",
-      "options": [
-        "$x^2-12x+36$",
-        "$x^2-36$",
-        "$x^2+12x+36$",
-        "$x^2-6x+36$"
-      ],
-      "correct": 0,
-      "explanation": "$(x-6)^2=x^2-12x+36$."
+      "q": "Evaluate 2x + 5y - 7 when x = 2 and y = 3.",
+      "options": ["8", "10", "12", "14"],
+      "correct": 2,
+      "explanation": "Substitute x = 2 and y = 3: 2(2) + 5(3) - 7 = 4 + 15 - 7 = 12."
     },
     {
-      "q": "Factorise $2x^2+7x+3$.",
-      "options": [
-        "$(2x+1)(x+3)$",
-        "$(2x+3)(x+1)$",
-        "$(x+1)(x+3)$",
-        "$(2x-1)(x-3)$"
-      ],
+      "q": "Evaluate x - 4y + 2z when x = 2, y = 3, and z = 4.",
+      "options": ["-2", "-1", "0", "2"],
       "correct": 0,
-      "explanation": "$(2x+1)(x+3)=2x^2+7x+3$."
+      "explanation": "2 - 4(3) + 2(4) = 2 - 12 + 8 = -2."
     },
     {
-      "q": "Simplify $4a^2b\\times3ab^2$.",
-      "options": [
-        "$12a^3b^3$",
-        "$7a^3b^3$",
-        "$12a^2b^2$",
-        "$12ab$"
-      ],
-      "correct": 0,
-      "explanation": "Multiply coefficients and add powers of like bases: $4\\times3a^{3}b^{3}$."
+      "q": "If a = -2, b = -1, c = -3, and d = -2, evaluate ab - 3c + 4d.",
+      "options": ["1", "3", "5", "7"],
+      "correct": 1,
+      "explanation": "ab = (-2)(-1) = 2, -3c = -3(-3) = 9, and 4d = -8. Total = 2 + 9 - 8 = 3."
     },
     {
-      "q": "Factorise $9y^2-16$.",
-      "options": [
-        "$(3y-4)(3y+4)$",
-        "$(9y-4)(y+4)$",
-        "$(3y-16)(3y+1)$",
-        "$(y-4)(9y+4)$"
-      ],
+      "q": "Expand 4a(2a + 3).",
+      "options": ["8a^2 + 12a", "8a + 12", "6a^2 + 7a", "4a^2 + 12a"],
       "correct": 0,
-      "explanation": "$9y^2-16=(3y)^2-4^2=(3y-4)(3y+4)$."
+      "explanation": "Multiply 4a by each term: 4a x 2a = 8a^2 and 4a x 3 = 12a."
     },
     {
-      "q": "Simplify $2m(3m-4)+5m$.",
-      "options": [
-        "$6m^2-3m$",
-        "$6m^2-8m$",
-        "$6m^2+m$",
-        "$11m^2-4$"
-      ],
+      "q": "Expand -3(2x - 4).",
+      "options": ["-6x + 12", "-6x - 12", "6x + 12", "-x + 4"],
       "correct": 0,
-      "explanation": "$2m(3m-4)+5m=6m^2-8m+5m=6m^2-3m$."
+      "explanation": "-3 x 2x = -6x and -3 x -4 = +12."
     },
     {
-      "q": "Factorise $x^2+2x-15$.",
-      "options": [
-        "$(x+5)(x-3)$",
-        "$(x-5)(x+3)$",
-        "$(x+15)(x-1)$",
-        "$(x+2)(x-15)$"
-      ],
+      "q": "Expand 5a + 2(2a - 3) + 4.",
+      "options": ["9a - 2", "9a + 2", "7a - 2", "5a - 2"],
       "correct": 0,
-      "explanation": "$5$ and $-3$ multiply to $-15$ and add to $2$."
+      "explanation": "2(2a - 3) = 4a - 6, so 5a + 4a - 6 + 4 = 9a - 2."
     },
     {
-      "q": "If $a=2$ and $b=-3$, evaluate $a^2-2b$.",
-      "options": [
-        "$10$",
-        "$-2$",
-        "$1$",
-        "$14$"
-      ],
+      "q": "Expand 3(x + 5) - 2(x - 4).",
+      "options": ["x + 23", "5x + 7", "x + 7", "5x + 23"],
       "correct": 0,
-      "explanation": "$a^2-2b=2^2-2(-3)=4+6=10$."
+      "explanation": "3(x + 5) = 3x + 15 and -2(x - 4) = -2x + 8. Total = x + 23."
     },
     {
-      "q": "Simplify $7x-3(2x-4)$.",
-      "options": [
-        "$x+12$",
-        "$x-12$",
-        "$13x-12$",
-        "$5x+4$"
-      ],
+      "q": "Expand (x + 3)(x + 4).",
+      "options": ["x^2 + 7x + 12", "x^2 + 12x + 7", "x^2 + x + 12", "2x + 7"],
       "correct": 0,
-      "explanation": "$7x-6x+12=x+12$."
+      "explanation": "(x + 3)(x + 4) = x^2 + 4x + 3x + 12 = x^2 + 7x + 12."
     },
     {
-      "q": "Factorise $12pq-8p$.",
-      "options": [
-        "$4p(3q-2)$",
-        "$4q(3p-2)$",
-        "$8p(12q-1)$",
-        "$p(12q-8p)$"
-      ],
+      "q": "Expand (x - 5)(x + 2).",
+      "options": ["x^2 - 3x - 10", "x^2 + 7x - 10", "x^2 - 7x + 10", "x^2 - 10"],
       "correct": 0,
-      "explanation": "The common factor is $4p$, giving $4p(3q-2)$."
+      "explanation": "x^2 + 2x - 5x - 10 = x^2 - 3x - 10."
     },
     {
-      "q": "Simplify $(2x)^3$.",
-      "options": [
-        "$8x^3$",
-        "$6x^3$",
-        "$2x^3$",
-        "$8x$"
-      ],
+      "q": "Expand (2x + 3)(x - 4).",
+      "options": ["2x^2 - 5x - 12", "2x^2 + 11x - 12", "2x^2 - 8x + 3", "3x^2 - x - 12"],
       "correct": 0,
-      "explanation": "Cube both the coefficient and the variable: $(2x)^3=8x^3$."
+      "explanation": "2x(x - 4) + 3(x - 4) = 2x^2 - 8x + 3x - 12 = 2x^2 - 5x - 12."
     },
     {
-      "q": "Expand $(x+2)(x-2)$.",
-      "options": [
-        "$x^2-4$",
-        "$x^2+4$",
-        "$x^2-2x+4$",
-        "$2x^2$"
-      ],
+      "q": "Factorise 6x + 9.",
+      "options": ["3(2x + 3)", "6(x + 9)", "9(x + 6)", "3(6x + 9)"],
       "correct": 0,
-      "explanation": "This is a difference of squares: $x^2-4$."
+      "explanation": "The highest common factor of 6x and 9 is 3, so 6x + 9 = 3(2x + 3)."
     },
     {
-      "q": "Factorise $3x^2-12x$.",
-      "options": [
-        "$3x(x-4)$",
-        "$3(x-4)$",
-        "$x(3x-12x)$",
-        "$12x(x-3)$"
-      ],
+      "q": "Factorise 12a - 18.",
+      "options": ["6(2a - 3)", "3(4a - 18)", "12(a - 18)", "6(a - 3)"],
       "correct": 0,
-      "explanation": "The common factor is $3x$, so $3x^2-12x=3x(x-4)$."
+      "explanation": "The highest common factor is 6. 12a - 18 = 6(2a - 3)."
     },
     {
-      "q": "Simplify $\\frac{a}{3}+\\frac{2a}{3}$.",
-      "options": [
-        "$a$",
-        "$3a$",
-        "$\\frac{3a}{6}$",
-        "$\\frac{2a^2}{3}$"
-      ],
+      "q": "Factorise 15xy + 10x.",
+      "options": ["5x(3y + 2)", "5(3xy + 10x)", "10x(5y + 1)", "x(15y + 10x)"],
       "correct": 0,
-      "explanation": "The denominators are equal, so add numerators: $a/3+2a/3=3a/3=a$."
+      "explanation": "Both terms have common factor 5x. Dividing gives 3y and 2."
     },
     {
-      "q": "Evaluate $x^2+3x+2$ when $x=-1$.",
-      "options": [
-        "$0$",
-        "$2$",
-        "$4$",
-        "$6$"
-      ],
+      "q": "Factorise 8m^2n - 12mn^2.",
+      "options": ["4mn(2m - 3n)", "2mn(4m - 12n)", "4m(2mn - 3n)", "mn(8m - 12n)"],
       "correct": 0,
-      "explanation": "$(-1)^2+3(-1)+2=1-3+2=0$."
+      "explanation": "The common factor is 4mn. 8m^2n / 4mn = 2m and 12mn^2 / 4mn = 3n."
     },
     {
-      "q": "Which expression is equivalent to $2(x+4)+3(x-1)$?",
-      "options": [
-        "$5x+5$",
-        "$5x+7$",
-        "$x+5$",
-        "$6x+1$"
-      ],
+      "q": "Factorise x^2 + 7x + 12.",
+      "options": ["(x + 3)(x + 4)", "(x + 6)(x + 2)", "(x - 3)(x - 4)", "(x + 12)(x + 1)"],
       "correct": 0,
-      "explanation": "$2x+8+3x-3=5x+5$."
+      "explanation": "Find two numbers that multiply to 12 and add to 7: 3 and 4."
     },
     {
-      "q": "Factorise $x^2-7x+10$.",
-      "options": [
-        "$(x-5)(x-2)$",
-        "$(x+5)(x+2)$",
-        "$(x-10)(x+1)$",
-        "$(x-7)(x+10)$"
-      ],
+      "q": "Factorise x^2 - 3x - 10.",
+      "options": ["(x - 5)(x + 2)", "(x + 5)(x - 2)", "(x - 10)(x + 1)", "(x - 3)(x + 10)"],
       "correct": 0,
-      "explanation": "$-5$ and $-2$ multiply to $10$ and add to $-7$."
+      "explanation": "The numbers are -5 and +2 because -5 x 2 = -10 and -5 + 2 = -3."
     },
     {
-      "q": "Simplify $4x+2-3x+9$.",
-      "options": [
-        "$x+11$",
-        "$7x+11$",
-        "$x-7$",
-        "$12x$"
-      ],
+      "q": "Factorise x^2 - 9.",
+      "options": ["(x - 3)(x + 3)", "(x - 9)(x + 1)", "(x - 3)^2", "(x + 9)(x - 1)"],
       "correct": 0,
-      "explanation": "Combine like terms: $4x-3x=x$ and $2+9=11$."
+      "explanation": "x^2 - 9 is a difference of two squares: x^2 - 3^2 = (x - 3)(x + 3)."
     },
     {
-      "q": "Factorise $x^2+9x+20$.",
-      "options": [
-        "$(x+4)(x+5)$",
-        "$(x+2)(x+10)$",
-        "$(x-4)(x-5)$",
-        "$(x+20)(x+1)$"
-      ],
+      "q": "Factorise 4x^2 - 25.",
+      "options": ["(2x - 5)(2x + 5)", "(4x - 5)(x + 5)", "(2x - 25)(2x + 1)", "(4x - 25)(x + 1)"],
       "correct": 0,
-      "explanation": "$4$ and $5$ multiply to $20$ and add to $9$."
+      "explanation": "4x^2 - 25 = (2x)^2 - 5^2, so it factorises as (2x - 5)(2x + 5)."
     },
     {
-      "q": "Simplify $2a^2+3a^2-a^2$.",
-      "options": [
-        "$4a^2$",
-        "$4a$",
-        "$6a^2$",
-        "$5a^4$"
-      ],
+      "q": "Factorise xy + 3x + 2y + 6 by grouping.",
+      "options": ["(x + 2)(y + 3)", "(x + 3)(y + 2)", "(x + y)(2 + 3)", "(xy + 2)(x + 3)"],
       "correct": 0,
-      "explanation": "Combine like terms: $(2+3-1)a^2=4a^2$."
+      "explanation": "Group as x(y + 3) + 2(y + 3). The common bracket is y + 3, giving (x + 2)(y + 3)."
     },
     {
-      "q": "Which is the coefficient of $x$ in $7x-4$?",
-      "options": [
-        "$7$",
-        "$-4$",
-        "$x$",
-        "$3$"
-      ],
+      "q": "Simplify 24xy / 3y.",
+      "options": ["8x", "8xy", "21x", "72xy"],
       "correct": 0,
-      "explanation": "The coefficient is the number multiplying $x$, which is $7$."
+      "explanation": "24xy divided by 3y gives 8x because 24/3 = 8 and y cancels."
     },
     {
-      "q": "Which expression has degree $2$?",
-      "options": [
-        "$3x^2+1$",
-        "$5x+4$",
-        "$7$",
-        "$x^3-x$"
-      ],
+      "q": "Simplify 6st / 12t.",
+      "options": ["s/2", "2s", "st/2", "1/2t"],
       "correct": 0,
-      "explanation": "The highest power in $3x^2+1$ is $2$."
+      "explanation": "6st / 12t = (6/12)(s)(t/t) = s/2."
     },
     {
-      "q": "Expand $5(2a-b)$.",
-      "options": [
-        "$10a-5b$",
-        "$10a-b$",
-        "$7a-5b$",
-        "$5a-2b$"
-      ],
+      "q": "Simplify (x^2 - 9) / (x + 3), where x is not -3.",
+      "options": ["x - 3", "x + 3", "x^2 - 3", "x - 9"],
       "correct": 0,
-      "explanation": "Multiply both terms by $5$: $10a-5b$."
+      "explanation": "x^2 - 9 = (x - 3)(x + 3). Cancel x + 3 to get x - 3."
+    },
+    {
+      "q": "Simplify (x^2 + 7x + 12) / (x + 3), where x is not -3.",
+      "options": ["x + 4", "x + 3", "x + 7", "x + 12"],
+      "correct": 0,
+      "explanation": "x^2 + 7x + 12 = (x + 3)(x + 4). Cancel x + 3 to get x + 4."
+    },
+    {
+      "q": "If 5 is added to three-fifths of a number, write the expression using x for the number.",
+      "options": ["3x/5 + 5", "5x/3 + 5", "3/(5x) + 5", "5 - 3x/5"],
+      "correct": 0,
+      "explanation": "Three-fifths of x is 3x/5. Adding 5 gives 3x/5 + 5."
+    },
+    {
+      "q": "Alex has 5 exercise books more than Fred. If Fred has x exercise books, how many books has Alex?",
+      "options": ["x + 5", "5x", "x - 5", "5 - x"],
+      "correct": 0,
+      "explanation": "5 more than x is x + 5."
+    },
+    {
+      "q": "Akua is x years old now. How old was she 6 years ago?",
+      "options": ["x - 6", "x + 6", "6x", "6 - x"],
+      "correct": 0,
+      "explanation": "Six years ago means subtract 6 from her present age, giving x - 6."
+    },
+    {
+      "q": "Akua is x years old now. How old will she be 8 years from now?",
+      "options": ["x + 8", "x - 8", "8x", "8 - x"],
+      "correct": 0,
+      "explanation": "Eight years from now means add 8 to her present age, giving x + 8."
     }
   ]
 }
