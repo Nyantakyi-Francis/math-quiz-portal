@@ -2,12 +2,12 @@
 
 Math Quiz Portal is a branded Elective Mathematics learning portal by Nyantakyi Francis. It combines topic-based quizzes, protected learner accounts, server-side scoring, score history, structured explanations, downloadable learning resources, and admin messaging.
 
-The current product contains 11 quiz modules and 470 authored questions with explanations. Learners sign up, confirm their email, log in, practise by module, submit answers to a trusted server route, and review their results after scoring. Admin users can monitor recent learners and attempts, send announcements, manage learner roles, and reply to messages.
+The current product contains 19 quiz modules and 790 authored questions with explanations. Learners sign up, confirm their email, log in, practise by module, submit answers to a trusted server route, and review their results after scoring. Admin users can monitor recent learners and attempts, send announcements, manage learner roles, and reply to messages.
 
 ## Product Highlights
 
 - Branded learner portal for Elective Mathematics.
-- 470 questions across 11 modules.
+- 790 questions across 19 modules.
 - Authenticated learner and admin areas.
 - Server-side quiz scoring so answer keys are not exposed before submission.
 - Post-submission explanations, correct answers, selected answers, and misconception feedback.
