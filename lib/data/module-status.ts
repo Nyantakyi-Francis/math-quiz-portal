@@ -1,10 +1,4 @@
-const draftModuleSlugs = new Set([
-  "linear-equations-relations-functions",
-  "angles-pythagorean-theorem",
-  "perimeter-area-volume",
-  "probability-independent-events",
-  "data-organisation-analysis-presentation"
-]);
+const draftModuleSlugs = new Set<string>([]);
 
 export function isDraftModule(slug: string) {
   return draftModuleSlugs.has(slug);

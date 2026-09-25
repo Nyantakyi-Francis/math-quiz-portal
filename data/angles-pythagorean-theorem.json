@@ -5,7 +5,7 @@
   "description": "WASSCE-style questions on angle facts, parallel lines, polygons, bearings, and Pythagorean applications.",
   "questions": [
     {
-      "q": "In the parallel-lines diagram, the marked angle corresponding to $x$ is $118^\\circ$. Find $x$.",
+      "q": "Two parallel lines are cut by a transversal. If an angle corresponding to $x$ is $118^\\circ$, find $x$.",
       "options": [
         "$62^\\circ$",
         "$118^\\circ$",
@@ -13,11 +13,10 @@
         "$242^\\circ$"
       ],
       "correct": 1,
-      "explanation": "Since the two lines are parallel, the marked angles are corresponding angles. Corresponding angles are equal, so $x=118^\\circ$.",
-      "stimulusId": "parallel-transversal"
+      "explanation": "When parallel lines are cut by a transversal, corresponding angles are equal. Therefore $x=118^\\circ$."
     },
     {
-      "q": "In the exterior-angle diagram, the two remote interior angles are $42^\\circ$ and $68^\\circ$. Find the exterior angle $x$.",
+      "q": "The two remote interior angles of a triangle are $42^\\circ$ and $68^\\circ$. Find the exterior angle $x$.",
       "options": [
         "$68^\\circ$",
         "$70^\\circ$",
@@ -25,8 +24,7 @@
         "$138^\\circ$"
       ],
       "correct": 2,
-      "explanation": "The interior angle at C is $180^\\circ-42^\\circ-68^\\circ=70^\\circ$. The exterior angle is supplementary to it, so $x=110^\\circ$.",
-      "stimulusId": "triangle-exterior"
+      "explanation": "An exterior angle of a triangle equals the sum of the two remote interior angles: $42^\\circ+68^\\circ=110^\\circ$."
     },
     {
       "q": "The right-triangle diagram models a ladder against a wall. The ladder is $13$ m and the wall height is $12$ m. Find the distance of the foot of the ladder from the wall.",
@@ -446,23 +444,5 @@
       "correct": 2,
       "explanation": "The side opposite the right angle is the hypotenuse."
     }
-  ],
-  "stimuli": {
-    "parallel-transversal": {
-      "type": "image",
-      "title": "Parallel lines and a transversal",
-      "description": "Use the labelled angle positions in the diagram.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Corresponding_angles_with_parallel_line.svg",
-      "alt": "Two parallel lines cut by a transversal, showing corresponding angle positions.",
-      "attribution": "Diagram: Wikimedia Commons, Corresponding angles with parallel line.svg, CC0 public domain."
-    },
-    "triangle-exterior": {
-      "type": "image",
-      "title": "Exterior angle of a triangle",
-      "description": "Use the exterior angle relationship shown in the diagram.",
-      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/External_angle_triangle_el.svg",
-      "alt": "A triangle with one side extended to form an exterior angle.",
-      "attribution": "Diagram: Wikimedia Commons, External angle triangle el.svg. See Commons file page for license details."
-    }
-  }
+  ]
 }

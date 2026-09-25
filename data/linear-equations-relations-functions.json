@@ -2,447 +2,247 @@
   "id": "linear-equations-relations-functions",
   "title": "Linear Equations, Relations & Functions",
   "module": 15,
-  "description": "Solving linear equations, evaluating functions, mappings, relations, domain, and range.",
+  "description": "Book-backed practice on formulae, linear equations, inequalities, relations, mappings, functions, gradients, straight lines, distance, and midpoint.",
   "questions": [
     {
-      "q": "Solve $x+7=15$.",
-      "options": [
-        "$8$",
-        "$22$",
-        "$7$",
-        "$15$"
-      ],
+      "q": "Make $c$ the subject of the formula $y=mx+c$.",
+      "options": ["$c=y-mx$", "$c=mx-y$", "$c=y+mx$", "$c=\\frac{y}{mx}$"],
       "correct": 0,
-      "explanation": "Subtract $7$ from both sides: $x=8$."
+      "explanation": "Subtract $mx$ from both sides of $y=mx+c$ to isolate $c$, so $c=y-mx$."
     },
     {
-      "q": "Solve $3x=24$.",
-      "options": [
-        "$6$",
-        "$8$",
-        "$21$",
-        "$72$"
-      ],
+      "q": "From the formula $3c+2r=md+k$, make $r$ the subject.",
+      "options": ["$r=md+k-3c$", "$r=\\frac{md+k-3c}{2}$", "$r=\\frac{3c-md-k}{2}$", "$r=\\frac{md+k+3c}{2}$"],
       "correct": 1,
-      "explanation": "Divide both sides by $3$: $x=8$."
+      "explanation": "Move $3c$ to the right to get $2r=md+k-3c$, then divide by $2$."
     },
     {
-      "q": "Solve $2x-5=11$.",
-      "options": [
-        "$3$",
-        "$6$",
-        "$8$",
-        "$16$"
-      ],
+      "q": "If $A=L\\times W$, make $W$ the subject.",
+      "options": ["$W=AL$", "$W=A-L$", "$W=\\frac{A}{L}$", "$W=\\frac{L}{A}$"],
       "correct": 2,
-      "explanation": "$2x=16$, so $x=8$."
+      "explanation": "Divide both sides of $A=LW$ by $L$ to get $W=\\frac{A}{L}$."
     },
     {
-      "q": "Solve $5(x-2)=20$.",
-      "options": [
-        "$2$",
-        "$4$",
-        "$6$",
-        "$8$"
-      ],
-      "correct": 2,
-      "explanation": "Divide by $5$ to get $x-2=4$, so $x=6$."
-    },
-    {
-      "q": "Solve $\\frac{x}{4}+3=9$.",
-      "options": [
-        "$12$",
-        "$18$",
-        "$24$",
-        "$36$"
-      ],
-      "correct": 2,
-      "explanation": "$x/4=6$, so $x=24$."
-    },
-    {
-      "q": "Solve $3x+4=x+18$.",
-      "options": [
-        "$5$",
-        "$7$",
-        "$9$",
-        "$11$"
-      ],
+      "q": "The area of a rectangular field is $24$ square units and its length is $6$ units. Find its width.",
+      "options": ["$3$ units", "$4$ units", "$6$ units", "$18$ units"],
       "correct": 1,
-      "explanation": "$2x=14$, so $x=7$."
+      "explanation": "Using $A=LW$, $W=\\frac{24}{6}=4$ units."
     },
     {
-      "q": "If $f(x)=2x+3$, find $f(5)$.",
-      "options": [
-        "$10$",
-        "$11$",
-        "$13$",
-        "$15$"
-      ],
-      "correct": 2,
-      "explanation": "$f(5)=2(5)+3=13$."
-    },
-    {
-      "q": "If $g(x)=x^2-1$, find $g(4)$.",
-      "options": [
-        "$7$",
-        "$15$",
-        "$16$",
-        "$17$"
-      ],
-      "correct": 1,
-      "explanation": "$g(4)=4^2-1=15$."
-    },
-    {
-      "q": "Find the gradient of $y=4x-7$.",
-      "options": [
-        "$-7$",
-        "$4$",
-        "$7$",
-        "$x$"
-      ],
-      "correct": 1,
-      "explanation": "In $y=mx+c$, the gradient is $m$, so it is $4$."
-    },
-    {
-      "q": "Find the intercept of $y=3x+5$ on the $y$-axis.",
-      "options": [
-        "$3$",
-        "$5$",
-        "$8$",
-        "$15$"
-      ],
-      "correct": 1,
-      "explanation": "The $y$-intercept in $y=mx+c$ is $c$, so it is $5$."
-    },
-    {
-      "q": "Which relation is a function?",
-      "options": [
-        "$\\{(1,2),(1,3)\\}$",
-        "$\\{(1,2),(2,3)\\}$",
-        "$\\{(2,4),(2,5)\\}$",
-        "$\\{(3,1),(3,2)\\}$"
-      ],
-      "correct": 1,
-      "explanation": "A function gives each input exactly one output."
-    },
-    {
-      "q": "For $\\{(1,4),(2,5),(3,6)\\}$, find the domain.",
-      "options": [
-        "$\\{4,5,6\\}$",
-        "$\\{1,2,3\\}$",
-        "$\\{1,4\\}$",
-        "$\\{2,5\\}$"
-      ],
-      "correct": 1,
-      "explanation": "The domain is the set of first coordinates."
-    },
-    {
-      "q": "For $\\{(1,4),(2,5),(3,6)\\}$, find the range.",
-      "options": [
-        "$\\{1,2,3\\}$",
-        "$\\{4,5,6\\}$",
-        "$\\{1,4\\}$",
-        "$\\{3,6\\}$"
-      ],
-      "correct": 1,
-      "explanation": "The range is the set of second coordinates."
-    },
-    {
-      "q": "Solve $7-2x=1$.",
-      "options": [
-        "$2$",
-        "$3$",
-        "$4$",
-        "$-3$"
-      ],
-      "correct": 1,
-      "explanation": "$-2x=-6$, so $x=3$."
-    },
-    {
-      "q": "Solve $4(x+1)=2x+10$.",
-      "options": [
-        "$1$",
-        "$2$",
-        "$3$",
-        "$4$"
-      ],
-      "correct": 2,
-      "explanation": "$4x+4=2x+10$, so $2x=6$ and $x=3$."
-    },
-    {
-      "q": "If $h(x)=5-x$, find $h(-2)$.",
-      "options": [
-        "$3$",
-        "$5$",
-        "$7$",
-        "$-7$"
-      ],
-      "correct": 2,
-      "explanation": "$h(-2)=5-(-2)=7$."
-    },
-    {
-      "q": "Find $x$ if $2x+1=9$.",
-      "options": [
-        "$3$",
-        "$4$",
-        "$5$",
-        "$8$"
-      ],
-      "correct": 1,
-      "explanation": "$2x=8$, so $x=4$."
-    },
-    {
-      "q": "Solve $\\frac{2x-1}{3}=5$.",
-      "options": [
-        "$7$",
-        "$8$",
-        "$9$",
-        "$16$"
-      ],
-      "correct": 1,
-      "explanation": "$2x-1=15$, so $2x=16$ and $x=8$."
-    },
-    {
-      "q": "Which equation has solution $x=6$?",
-      "options": [
-        "$x+4=9$",
-        "$2x=10$",
-        "$3x-4=14$",
-        "$x-6=6$"
-      ],
-      "correct": 2,
-      "explanation": "$3(6)-4=14$, so that equation has solution $6$."
-    },
-    {
-      "q": "If $f(x)=3x-2$, find $x$ when $f(x)=10$.",
-      "options": [
-        "$2$",
-        "$3$",
-        "$4$",
-        "$5$"
-      ],
-      "correct": 2,
-      "explanation": "Set $3x-2=10$, so $3x=12$ and $x=4$."
-    },
-    {
-      "q": "The mapping $x\\mapsto 2x+1$ sends $4$ to:",
-      "options": [
-        "$8$",
-        "$9$",
-        "$10$",
-        "$7$"
-      ],
-      "correct": 1,
-      "explanation": "$2(4)+1=9$."
-    },
-    {
-      "q": "Which is a linear equation?",
-      "options": [
-        "$x^2+1=0$",
-        "$2x+5=11$",
-        "$xy=6$",
-        "$\\frac{1}{x}=3$"
-      ],
-      "correct": 1,
-      "explanation": "$2x+5=11$ has the variable only to the first power."
-    },
-    {
-      "q": "Solve $9=2x+1$.",
-      "options": [
-        "$3$",
-        "$4$",
-        "$5$",
-        "$8$"
-      ],
-      "correct": 1,
-      "explanation": "$2x=8$, so $x=4$."
-    },
-    {
-      "q": "Solve $5x-3=2x+9$.",
-      "options": [
-        "$2$",
-        "$3$",
-        "$4$",
-        "$5$"
-      ],
-      "correct": 2,
-      "explanation": "$3x=12$, so $x=4$."
-    },
-    {
-      "q": "If $f(x)=x/2+6$, find $f(10)$.",
-      "options": [
-        "$8$",
-        "$10$",
-        "$11$",
-        "$16$"
-      ],
-      "correct": 2,
-      "explanation": "$10/2+6=11$."
-    },
-    {
-      "q": "Find the inverse operation needed first to solve $x-9=4$.",
-      "options": [
-        "Add $9$",
-        "Subtract $9$",
-        "Multiply by $9$",
-        "Divide by $9$"
-      ],
+      "q": "Given $E=mv^2$, find $v$ when $E=20$ and $m=5$.",
+      "options": ["$2$", "$4$", "$5$", "$10$"],
       "correct": 0,
-      "explanation": "Since $9$ is subtracted, add $9$ to both sides."
+      "explanation": "$v^2=\\frac{E}{m}=\\frac{20}{5}=4$, so $v=2$."
     },
     {
-      "q": "A number is doubled and $5$ is added to get $21$. Find the number.",
-      "options": [
-        "$6$",
-        "$8$",
-        "$10$",
-        "$13$"
-      ],
-      "correct": 1,
-      "explanation": "Let the number be $x$. $2x+5=21$, so $x=8$."
+      "q": "Solve $3x-12=21$.",
+      "options": ["$3$", "$9$", "$11$", "$33$"],
+      "correct": 2,
+      "explanation": "Add $12$ to both sides to get $3x=33$, then divide by $3$."
     },
     {
-      "q": "Solve $\\frac{x+2}{5}=4$.",
-      "options": [
-        "$18$",
-        "$20$",
-        "$22$",
-        "$24$"
-      ],
+      "q": "Solve $5-3y=3y+7$.",
+      "options": ["$y=-\\frac{1}{3}$", "$y=\\frac{1}{3}$", "$y=-2$", "$y=2$"],
       "correct": 0,
-      "explanation": "$x+2=20$, so $x=18$."
+      "explanation": "Group like terms: $5-7=3y+3y$, so $-2=6y$ and $y=-\\frac{1}{3}$."
     },
     {
-      "q": "If $f(x)=4x$, which input gives output $28$?",
-      "options": [
-        "$6$",
-        "$7$",
-        "$8$",
-        "$9$"
-      ],
+      "q": "John is $5$ years older than twice Maria's age. If John is $25$ years old, how old is Maria?",
+      "options": ["$8$ years", "$10$ years", "$12$ years", "$15$ years"],
       "correct": 1,
-      "explanation": "$4x=28$, so $x=7$."
+      "explanation": "Let Maria's age be $x$. Then $25=2x+5$, so $20=2x$ and $x=10$."
     },
     {
-      "q": "Which set of ordered pairs fails the vertical-line test idea?",
-      "options": [
-        "$\\{(1,2),(2,2)\\}$",
-        "$\\{(1,2),(1,5)\\}$",
-        "$\\{(2,1),(3,1)\\}$",
-        "$\\{(4,5),(5,6)\\}$"
-      ],
+      "q": "Solve $7(x-6)=3(x+9)$.",
+      "options": ["$\\frac{27}{4}$", "$\\frac{69}{4}$", "$\\frac{42}{7}$", "$\\frac{9}{4}$"],
       "correct": 1,
-      "explanation": "Input $1$ has two different outputs, so it is not a function."
+      "explanation": "Expand to get $7x-42=3x+27$. Then $4x=69$, so $x=\\frac{69}{4}$."
     },
     {
-      "q": "Solve $2(3x-1)=16$.",
-      "options": [
-        "$2$",
-        "$3$",
-        "$4$",
-        "$5$"
-      ],
+      "q": "Solve $\\frac{3x}{2}-2=\\frac{1}{2}$.",
+      "options": ["$\\frac{1}{3}$", "$\\frac{5}{3}$", "$3$", "$5$"],
       "correct": 1,
-      "explanation": "$6x-2=16$, so $6x=18$ and $x=3$."
+      "explanation": "Multiply by $2$ to get $3x-4=1$. Then $3x=5$, so $x=\\frac{5}{3}$."
     },
     {
-      "q": "Find $f(0)$ if $f(x)=7x-4$.",
-      "options": [
-        "$-4$",
-        "$0$",
-        "$4$",
-        "$7$"
-      ],
+      "q": "A company's cost is $C=100x-500$ and revenue is $R=px$. Which expression gives profit $P$?",
+      "options": ["$P=px+100x-500$", "$P=px-100x+500$", "$P=100x-px-500$", "$P=px-100x-500$"],
+      "correct": 1,
+      "explanation": "Profit is revenue minus cost: $P=R-C=px-(100x-500)=px-100x+500$."
+    },
+    {
+      "q": "Using $P=px-100x+500$, find the break-even value of $x$ when $p=20$.",
+      "options": ["$5.25$", "$6.25$", "$7.5$", "$25$"],
+      "correct": 1,
+      "explanation": "Set profit to zero: $20x-100x+500=0$, so $-80x=-500$ and $x=6.25$."
+    },
+    {
+      "q": "Solve the inequality $2x-5>3$.",
+      "options": ["$x>4$", "$x<4$", "$x>1$", "$x<1$"],
       "correct": 0,
-      "explanation": "$f(0)=7(0)-4=-4$."
+      "explanation": "Add $5$ to get $2x>8$, then divide by $2$ to get $x>4$."
     },
     {
-      "q": "Solve $11-x=4$.",
-      "options": [
-        "$5$",
-        "$6$",
-        "$7$",
-        "$15$"
-      ],
-      "correct": 2,
-      "explanation": "$-x=-7$, so $x=7$."
-    },
-    {
-      "q": "For $y=2x+1$, find $y$ when $x=6$.",
-      "options": [
-        "$11$",
-        "$12$",
-        "$13$",
-        "$14$"
-      ],
-      "correct": 2,
-      "explanation": "$y=2(6)+1=13$."
-    },
-    {
-      "q": "Which expression represents 'five less than twice $x$'?",
-      "options": [
-        "$5-2x$",
-        "$2x-5$",
-        "$5x-2$",
-        "$2(x-5)$"
-      ],
+      "q": "Solve $3x-2\\geq 12-x$.",
+      "options": ["$x\\geq \\frac{5}{2}$", "$x\\geq \\frac{7}{2}$", "$x\\leq \\frac{7}{2}$", "$x\\leq 5$"],
       "correct": 1,
-      "explanation": "Twice $x$ is $2x$; five less than that is $2x-5$."
+      "explanation": "Add $x$ and add $2$ to get $4x\\geq14$, so $x\\geq\\frac{7}{2}$."
     },
     {
-      "q": "Solve $0.5x=6$.",
-      "options": [
-        "$3$",
-        "$6.5$",
-        "$12$",
-        "$30$"
-      ],
-      "correct": 2,
-      "explanation": "$0.5x=6$ means half of $x$ is $6$, so $x=12$."
-    },
-    {
-      "q": "If $f(x)=x^2$ and the domain is $\\{-2,3\\}$, find the range.",
-      "options": [
-        "$\\{-2,3\\}$",
-        "$\\{4,9\\}$",
-        "$\\{-4,9\\}$",
-        "$\\{1,6\\}$"
-      ],
-      "correct": 1,
-      "explanation": "$(-2)^2=4$ and $3^2=9$, so the range is $\\{4,9\\}$."
-    },
-    {
-      "q": "Solve $3(x+2)-x=14$.",
-      "options": [
-        "$2$",
-        "$3$",
-        "$4$",
-        "$5$"
-      ],
-      "correct": 2,
-      "explanation": "$3x+6-x=14$, so $2x=8$ and $x=4$."
-    },
-    {
-      "q": "Which table could represent $y=x+2$?",
-      "options": [
-        "$(1,3),(2,4)$",
-        "$(1,2),(2,3)$",
-        "$(1,4),(2,5)$",
-        "$(1,1),(2,2)$"
-      ],
+      "q": "Solve $\\frac{1}{2}x-\\frac{1}{3}(x+4)>4x+\\frac{2}{3}$.",
+      "options": ["$x<-\\frac{12}{23}$", "$x>\\frac{12}{23}$", "$x<-4$", "$x>4$"],
       "correct": 0,
-      "explanation": "For $y=x+2$, inputs $1$ and $2$ give outputs $3$ and $4$."
+      "explanation": "Multiply by $6$: $3x-2x-8>24x+4$. Thus $x-8>24x+4$, so $-12>23x$ and $x<-\\frac{12}{23}$."
     },
     {
-      "q": "Solve $\\frac{3x}{2}=12$.",
-      "options": [
-        "$6$",
-        "$8$",
-        "$12$",
-        "$18$"
-      ],
+      "q": "Which statement correctly describes a relation between two sets?",
+      "options": ["It must pair every input with exactly two outputs.", "It is a collection of ordered pairs linking elements of one set to elements of another.", "It is always a straight-line graph.", "It must have equal domain and range."],
       "correct": 1,
-      "explanation": "Multiply by $2$: $3x=24$, so $x=8$."
+      "explanation": "A relation connects elements of one set to elements of another, often written as ordered pairs."
+    },
+    {
+      "q": "Which relation type is always a function?",
+      "options": ["One-to-many", "Many-to-many", "One-to-one", "A relation where one input has two images"],
+      "correct": 2,
+      "explanation": "A function gives each domain element exactly one image. One-to-one relations satisfy this condition."
+    },
+    {
+      "q": "Which relation is not a function?",
+      "options": ["$\\{(1,2),(2,3),(3,4)\\}$", "$\\{(1,2),(1,3),(2,4)\\}$", "$\\{(1,5),(2,5),(3,5)\\}$", "$\\{(0,1),(1,2),(2,3)\\}$"],
+      "correct": 1,
+      "explanation": "Input $1$ has two different images, $2$ and $3$, so this relation is not a function."
+    },
+    {
+      "q": "For the function $y=3x+1$, find $y$ when $x=4$.",
+      "options": ["$7$", "$12$", "$13$", "$15$"],
+      "correct": 2,
+      "explanation": "Substitute $x=4$: $y=3(4)+1=13$."
+    },
+    {
+      "q": "For $y=150-x$, how many whole wheat loaves $x$ are sold when $75$ white loaves are sold?",
+      "options": ["$50$", "$75$", "$150$", "$225$"],
+      "correct": 1,
+      "explanation": "Put $y=75$: $75=150-x$, so $x=75$."
+    },
+    {
+      "q": "A person's height $h$ in inches is related to shoe size $s$ by $h=5s+20$. Find $h$ when $s=8$.",
+      "options": ["$28$", "$40$", "$60$", "$100$"],
+      "correct": 2,
+      "explanation": "$h=5(8)+20=40+20=60$ inches."
+    },
+    {
+      "q": "For the mapping $x:0,1,2,3$ and $y:4,6,8,10$, find the linear rule.",
+      "options": ["$y=x+4$", "$y=2x+4$", "$y=4x+2$", "$y=2x-4$"],
+      "correct": 1,
+      "explanation": "The output increases by $2$ for each increase of $1$ in $x$, and $y=4$ when $x=0$, so $y=2x+4$."
+    },
+    {
+      "q": "For the mapping $P:5,6,7,8$ and $q:17,21,25,29$, find the rule.",
+      "options": ["$q=4P-3$", "$q=3P+2$", "$q=4P+3$", "$q=P+12$"],
+      "correct": 0,
+      "explanation": "The output rises by $4$ when $P$ rises by $1$, so $q=4P+c$. Using $P=5$, $17=20+c$, hence $c=-3$."
+    },
+    {
+      "q": "Which set is the range of the mapping $x:1,2,3$ to $y:5,7,9$?",
+      "options": ["$\\{1,2,3\\}$", "$\\{5,7,9\\}$", "$\\{1,5\\}$", "$\\{3,9\\}$"],
+      "correct": 1,
+      "explanation": "The range is the set of output values actually used by the mapping."
+    },
+    {
+      "q": "If $y=2x^2-1$ and $x\\in\\{0,1,2,3,4\\}$, find the value of $y$ when $x=3$.",
+      "options": ["$5$", "$9$", "$17$", "$19$"],
+      "correct": 2,
+      "explanation": "$y=2(3^2)-1=18-1=17$."
+    },
+    {
+      "q": "In the straight-line equation $y=mx+c$, what does $m$ represent?",
+      "options": ["The $x$-intercept", "The gradient", "The midpoint", "The range"],
+      "correct": 1,
+      "explanation": "In $y=mx+c$, the coefficient of $x$ is the gradient of the line."
+    },
+    {
+      "q": "Find the gradient of the line joining $P(-4,5)$ and $Q(4,17)$.",
+      "options": ["$\\frac{2}{3}$", "$\\frac{3}{2}$", "$2$", "$3$"],
+      "correct": 1,
+      "explanation": "$m=\\frac{17-5}{4-(-4)}=\\frac{12}{8}=\\frac{3}{2}$."
+    },
+    {
+      "q": "Find the gradient of the line joining $A(6,0)$ and $B(0,3)$.",
+      "options": ["$\\frac{1}{2}$", "$-\\frac{1}{2}$", "$2$", "$-2$"],
+      "correct": 1,
+      "explanation": "$m=\\frac{3-0}{0-6}=\\frac{3}{-6}=-\\frac{1}{2}$."
+    },
+    {
+      "q": "A horse covers $15$ km in $20$ minutes. What is the gradient of its distance-time graph?",
+      "options": ["$\\frac{3}{4}$ km/min", "$\\frac{4}{3}$ km/min", "$5$ km/min", "$35$ km/min"],
+      "correct": 0,
+      "explanation": "Gradient on a distance-time graph is $\\frac{\\text{distance}}{\\text{time}}=\\frac{15}{20}=\\frac{3}{4}$ km/min."
+    },
+    {
+      "q": "A courier graph passes through $(0,5)$ and $(6,23)$, where $x$ is distance and $y$ is cost. Find the gradient.",
+      "options": ["$2$", "$3$", "$5$", "$18$"],
+      "correct": 1,
+      "explanation": "$m=\\frac{23-5}{6-0}=\\frac{18}{6}=3$."
+    },
+    {
+      "q": "Find the gradient of $2y-6x=12$.",
+      "options": ["$-3$", "$2$", "$3$", "$6$"],
+      "correct": 2,
+      "explanation": "Rewrite as $2y=6x+12$, so $y=3x+6$. The gradient is $3$."
+    },
+    {
+      "q": "Find the gradient of $3y+2x=7$.",
+      "options": ["$\\frac{2}{3}$", "$-\\frac{2}{3}$", "$3$", "$7$"],
+      "correct": 1,
+      "explanation": "$3y=7-2x$, so $y=-\\frac{2}{3}x+\\frac{7}{3}$. The gradient is $-\\frac{2}{3}$."
+    },
+    {
+      "q": "Find the equation of the line with gradient $-2$ passing through $(3,-4)$.",
+      "options": ["$y=-2x+2$", "$y=-2x-2$", "$y=2x-10$", "$y=2x+2$"],
+      "correct": 0,
+      "explanation": "Use $y-y_1=m(x-x_1)$: $y+4=-2(x-3)$, so $y=-2x+2$."
+    },
+    {
+      "q": "Which pair of lines is parallel?",
+      "options": ["$y=3x+1$ and $y=3x+12$", "$y=3x+1$ and $y=-3x+12$", "$y=\\frac{1}{4}x-5$ and $y=-4x+1$", "$y=2x+1$ and $y=-\\frac{1}{2}x+1$"],
+      "correct": 0,
+      "explanation": "Parallel lines have the same gradient. Both $y=3x+1$ and $y=3x+12$ have gradient $3$."
+    },
+    {
+      "q": "Which pair of lines is perpendicular?",
+      "options": ["$y=3x+1$ and $y=3x+12$", "$y=\\frac{1}{4}x-5$ and $y=-4x+1$", "$y=2x+1$ and $y=2x-5$", "$y=-x+1$ and $y=-x$"],
+      "correct": 1,
+      "explanation": "Perpendicular gradients are negative reciprocals. $\\frac{1}{4}$ and $-4$ multiply to $-1$."
+    },
+    {
+      "q": "Find the equation of the line perpendicular to $y=2x-2$ and passing through $(1,3)$.",
+      "options": ["$y=2x+1$", "$y=-2x+5$", "$y=-\\frac{1}{2}x+\\frac{7}{2}$", "$y=\\frac{1}{2}x+\\frac{5}{2}$"],
+      "correct": 2,
+      "explanation": "The perpendicular gradient is $-\\frac{1}{2}$. Substitute $(1,3)$: $3=-\\frac{1}{2}+c$, so $c=\\frac{7}{2}$."
+    },
+    {
+      "q": "Find the equation of the line parallel to $x+y-1=0$ and passing through $(-1,1)$.",
+      "options": ["$y=x+2$", "$y=-x$", "$y=-x+1$", "$y=x$"],
+      "correct": 1,
+      "explanation": "Rewrite $x+y-1=0$ as $y=-x+1$, so the parallel gradient is $-1$. Through $(-1,1)$ gives $y=-x$."
+    },
+    {
+      "q": "Find the distance between $P(2,1)$ and $Q(5,5)$.",
+      "options": ["$3$ units", "$4$ units", "$5$ units", "$7$ units"],
+      "correct": 2,
+      "explanation": "Distance $=\\sqrt{(5-2)^2+(5-1)^2}=\\sqrt{3^2+4^2}=5$ units."
+    },
+    {
+      "q": "Find the midpoint of the line segment joining $(1,3)$ and $(5,6)$.",
+      "options": ["$(2,3)$", "$(3,\\frac{9}{2})$", "$(4,9)$", "$(6,9)$"],
+      "correct": 1,
+      "explanation": "Midpoint $=(\\frac{1+5}{2},\\frac{3+6}{2})=(3,\\frac{9}{2})$."
+    },
+    {
+      "q": "City A is at $(30,40)$ and City B is at $(60,80)$. Find the midpoint.",
+      "options": ["$(45,60)$", "$(30,40)$", "$(90,120)$", "$(15,20)$"],
+      "correct": 0,
+      "explanation": "Midpoint $=(\\frac{30+60}{2},\\frac{40+80}{2})=(45,60)$."
     }
   ]
 }
