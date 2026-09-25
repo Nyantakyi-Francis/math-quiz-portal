@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
+import { ResourceLibrary } from "@/components/resource-library";
 import { SetupBanner } from "@/components/setup-banner";
 import { resources } from "@/lib/data/resources";
 import { getPortalShellSnapshot } from "@/lib/db/portal";
@@ -67,53 +67,7 @@ export default async function ResourcesPage() {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {resources.map((resource, index) => (
-            <article
-              className={`glass-card group flex h-full flex-col border ${resource.tone.accent} p-6 transition hover:-translate-y-1`}
-              key={resource.slug}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <span
-                  className={`inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] ${resource.tone.badge} ${resource.tone.badgeText}`}
-                >
-                  Resource {index + 1}
-                </span>
-                <span className="soft-well rounded-full px-3 py-1 text-xs font-semibold text-slate-600">
-                  {resource.sizeLabel}
-                </span>
-              </div>
-
-              <div className="mt-6 flex items-center gap-4">
-                <div className="flex h-14 w-12 shrink-0 items-center justify-center rounded-lg bg-[var(--brand-deep)] text-xs font-black tracking-[0.14em] text-white shadow-[12px_12px_24px_-18px_rgba(22,52,103,0.7)]">
-                  PDF
-                </div>
-                <h3 className="text-xl font-black tracking-tight text-slate-950">
-                  {resource.title}
-                </h3>
-              </div>
-
-              <div className="academic-rule mt-5" />
-              <p className="mt-4 flex-1 text-sm leading-6 text-slate-600">
-                {resource.description}
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  className="button-primary"
-                  href={resource.href}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Open PDF
-                </Link>
-                <Link className="button-secondary" href={resource.href} download>
-                  Download
-                </Link>
-              </div>
-            </article>
-          ))}
-        </section>
+        <ResourceLibrary resources={resources} />
       </div>
     </AppShell>
   );

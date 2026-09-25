@@ -19,7 +19,19 @@ export function LearnerModuleCatalog({ modules }: LearnerModuleCatalogProps) {
       return modules;
     }
 
-    return modules.filter((module) => module.title.toLowerCase().includes(value));
+    return modules.filter((module) =>
+      [
+        module.title,
+        module.description,
+        module.slug,
+        module.difficulty,
+        `module ${module.moduleNumber}`,
+        `${module.questionCount} questions`
+      ]
+        .join(" ")
+        .toLowerCase()
+        .includes(value)
+    );
   }, [modules, query]);
 
   return (
@@ -33,12 +45,12 @@ export function LearnerModuleCatalog({ modules }: LearnerModuleCatalogProps) {
             Choose a module to practise the topic and track your scores.
           </p>
         </div>
-        <label className="relative block min-w-[280px]">
+        <label className="relative block min-w-0 sm:min-w-[280px]">
           <span className="sr-only">Search modules</span>
           <input
             className="field field-has-leading"
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search..."
+            placeholder="Search modules..."
             type="search"
             value={query}
           />
@@ -75,8 +87,9 @@ export function LearnerModuleCatalog({ modules }: LearnerModuleCatalogProps) {
         </label>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {filteredModules.map((module) => {
+      {filteredModules.length ? (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {filteredModules.map((module) => {
           const isComingSoon = isDraftModule(module.slug);
 
           return (
@@ -118,7 +131,12 @@ export function LearnerModuleCatalog({ modules }: LearnerModuleCatalogProps) {
           </article>
           );
         })}
-      </div>
+        </div>
+      ) : (
+        <div className="panel-soft p-6 text-sm text-slate-600">
+          No modules match <span className="font-semibold text-slate-800">{query.trim()}</span>.
+        </div>
+      )}
     </section>
   );
 }
