@@ -1,6 +1,6 @@
 # Math Quiz Portal
 
-Math Quiz Portal is a branded Elective Mathematics learning portal by Nyantakyi Francis. It combines topic-based quizzes, protected learner accounts, server-side scoring, score history, structured explanations, downloadable learning resources, and admin messaging.
+Math Quiz Portal is a branded Elective Mathematics learning portal by Nyantakyi Francis. It combines topic-based quizzes, protected learner accounts, server-side scoring, score history, structured explanations, authenticated learning resources, and admin messaging.
 
 The current product contains 19 quiz modules and 790 authored questions with explanations. Learners sign up, confirm their email, log in, practise by module, submit answers to a trusted server route, and review their results after scoring. Admin users can monitor recent learners and attempts, send announcements, manage learner roles, and reply to messages.
 
@@ -13,7 +13,7 @@ The current product contains 19 quiz modules and 790 authored questions with exp
 - Post-submission explanations, correct answers, selected answers, and misconception feedback.
 - Learner dashboard with recommendations, score history, messages, and progress analytics.
 - Admin console for recent learners, recent performance, announcements, direct messages, and role management.
-- Protected PDF resource library with 19 authored study packs.
+- Protected PDF resource library with 19 study packs served through authenticated app routes.
 - PWA assets and offline fallback page.
 - Supabase schema with row-level security policies for profiles, quiz data, attempts, messages, and admin-only answer data.
 
@@ -81,6 +81,14 @@ The current product contains 19 quiz modules and 790 authored questions with exp
 After creating the first account, set that account's `profiles.role` to `admin` in Supabase. Once one admin exists, the Admin Console can promote or demote other users through the role-management controls.
 
 Do not commit `.env.local` or service-role credentials. `.env.example` is the only environment file intended for source control.
+
+## Resource Protection
+
+PDF study packs are stored outside `public/` under `resources/`. The resource library links to `/api/resources/[slug]`, where the app checks the Supabase session before streaming the PDF. Do not move protected PDFs back into `public/`, because files in `public/` can be fetched directly by anyone with the URL.
+
+## Content Rights
+
+Quiz questions and explanations should be authored practice content aligned to WASSCE mathematics topics. Local Aki-Ola books may be used as private source material for topic and skill alignment, but the books, copied pages, copied question text, answer keys, and copied diagrams must not be placed online. Review every protected PDF pack before release to confirm that the project owns the material or has permission to distribute it.
 
 ## Validation
 

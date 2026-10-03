@@ -567,20 +567,10 @@ for select
 to authenticated
 using (auth.uid() = learner_id or public.is_admin(auth.uid()));
 
+-- Attempt rows are score records. Authenticated clients can read their own
+-- records, but writes must go through the trusted server route/service-role RPC.
 drop policy if exists "Learners can create their own attempts" on public.attempts;
-create policy "Learners can create their own attempts"
-on public.attempts
-for insert
-to authenticated
-with check (auth.uid() = learner_id or public.is_admin(auth.uid()));
-
 drop policy if exists "Learners can update their own attempts" on public.attempts;
-create policy "Learners can update their own attempts"
-on public.attempts
-for update
-to authenticated
-using (auth.uid() = learner_id or public.is_admin(auth.uid()))
-with check (auth.uid() = learner_id or public.is_admin(auth.uid()));
 
 drop policy if exists "Attempt answers are readable by owner or admin" on public.attempt_answers;
 create policy "Attempt answers are readable by owner or admin"
@@ -597,26 +587,6 @@ using (
 );
 
 drop policy if exists "Attempt answers are writable by owner or admin" on public.attempt_answers;
-create policy "Attempt answers are writable by owner or admin"
-on public.attempt_answers
-for all
-to authenticated
-using (
-  exists (
-    select 1
-    from public.attempts
-    where public.attempts.id = public.attempt_answers.attempt_id
-      and (public.attempts.learner_id = auth.uid() or public.is_admin(auth.uid()))
-  )
-)
-with check (
-  exists (
-    select 1
-    from public.attempts
-    where public.attempts.id = public.attempt_answers.attempt_id
-      and (public.attempts.learner_id = auth.uid() or public.is_admin(auth.uid()))
-  )
-);
 
 drop policy if exists "Messages are readable by admins or senders" on public.messages;
 drop policy if exists "Messages are readable by admins senders or recipients" on public.messages;

@@ -28,7 +28,8 @@ function NavIcon({ name }: { name: IconName }) {
 
 export function MobileNavigation({ role }: MobileNavigationProps) {
   const pathname = usePathname();
-  const items: Array<{ href: string; label: string; icon: IconName }> = role === "admin"
+  const isAdmin = role === "admin";
+  const items: Array<{ href: string; label: string; icon: IconName }> = isAdmin
     ? [
         { href: "/dashboard", label: "Home", icon: "dashboard" },
         { href: "/progress", label: "Progress", icon: "progress" },
@@ -47,7 +48,7 @@ export function MobileNavigation({ role }: MobileNavigationProps) {
 
   return (
     <nav aria-label="Primary navigation" className="mobile-navigation fixed inset-x-0 bottom-0 z-50 px-2 pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_30px_rgba(15,23,42,0.08)] md:hidden">
-      <div className="mx-auto grid h-16 max-w-lg grid-cols-5">
+      <div className={`mx-auto grid h-16 max-w-lg ${isAdmin ? "grid-cols-6" : "grid-cols-5"}`}>
         {items.map((item) => {
           const active = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(`${item.href}/`));
 

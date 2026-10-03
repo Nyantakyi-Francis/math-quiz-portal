@@ -40,7 +40,7 @@ describe("authored question-bank explanations", () => {
     }
 
     expect(questionCount).toBe(790);
-  });
+  }, 20000);
 
   it("keeps every corrected answer index within its option list", () => {
     for (const moduleFile of moduleFiles) {

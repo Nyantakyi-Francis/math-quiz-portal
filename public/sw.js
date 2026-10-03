@@ -16,6 +16,17 @@ const PRECACHE_URLS = [
   "/icons/apple-touch-icon.png"
 ];
 
+const PRIVATE_PATH_PREFIXES = [
+  "/admin",
+  "/api",
+  "/dashboard",
+  "/messages",
+  "/modules",
+  "/progress",
+  "/resources",
+  "/students"
+];
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
@@ -43,10 +54,23 @@ function isSameOrigin(requestUrl) {
   }
 }
 
+function isPrivatePath(requestUrl) {
+  try {
+    const { pathname } = new URL(requestUrl);
+    return PRIVATE_PATH_PREFIXES.some(
+      (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+    );
+  } catch {
+    return true;
+  }
+}
+
 self.addEventListener("fetch", (event) => {
   const { request } = event;
 
   if (request.method !== "GET") return;
+
+  if (isPrivatePath(request.url)) return;
 
   // Navigations: try network first, then fall back to offline page.
   if (request.mode === "navigate") {
@@ -66,7 +90,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Only cache same-origin assets.
+  // Only cache same-origin public assets.
   if (!isSameOrigin(request.url)) return;
 
   event.respondWith(

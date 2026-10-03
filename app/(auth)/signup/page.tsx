@@ -103,6 +103,13 @@ export default async function SignupPage({ searchParams }: SignupPageProps) {
                     href="/terms"
                   >
                     Terms of Service
+                  </Link>{" "}
+                  and understand the{" "}
+                  <Link
+                    className="font-semibold text-blue-700 hover:text-blue-800"
+                    href="/privacy"
+                  >
+                    Privacy Policy
                   </Link>
                   .
                 </span>

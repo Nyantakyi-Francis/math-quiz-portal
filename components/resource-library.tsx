@@ -131,7 +131,7 @@ export function ResourceLibrary({ resources }: ResourceLibraryProps) {
                 >
                   Open PDF
                 </Link>
-                <Link className="button-secondary" href={resource.href} download>
+                <Link className="button-secondary" href={`${resource.href}?download=1`}>
                   Download
                 </Link>
               </div>

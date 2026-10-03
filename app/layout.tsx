@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { PwaRegister } from "@/components/pwa-register";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { getConfiguredSiteUrl } from "@/lib/site/url";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -9,9 +10,7 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta"
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ??
-  "https://math-quiz-portal-j83k.vercel.app";
+const siteUrl = getConfiguredSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

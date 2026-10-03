@@ -17,7 +17,7 @@ const termsSections = [
   {
     title: "2. Learning content",
     body:
-      "The quizzes, notes, score history, and messages are provided for mathematics practice and classroom support. They do not replace your teacher's instructions, school policies, or formal assessment requirements."
+      "The quizzes, protected notes, score history, and messages are provided for mathematics practice and classroom support. Questions are authored practice questions aligned to WASSCE mathematics topics. They do not replace your teacher's instructions, school policies, or formal assessment requirements."
   },
   {
     title: "3. Acceptable use",
@@ -27,7 +27,7 @@ const termsSections = [
   {
     title: "4. Learner data",
     body:
-      "The platform stores account details, quiz attempts, scores, and messages so learners can continue their work and receive feedback. Access is limited by learner and admin roles inside the platform."
+      "The platform stores account details, quiz attempts, scores, protected resource access, and messages so learners can continue their work and receive feedback. Access is limited by learner and admin roles inside the platform. The Privacy Policy explains this in more detail."
   },
   {
     title: "5. Service availability",
@@ -40,7 +40,12 @@ const termsSections = [
       "If you do not want to keep using the platform, contact the teacher or site administrator to request account removal where possible."
   },
   {
-    title: "7. Changes to these Terms",
+    title: "7. Resource use",
+    body:
+      "Protected PDFs are provided for use inside the portal. Do not share account-only links, copy protected files into public folders, or redistribute resources unless the teacher or site administrator permits it."
+  },
+  {
+    title: "8. Changes to these Terms",
     body:
       "These Terms may be updated as the platform changes. New users will be asked to accept the current version during signup."
   }
@@ -93,7 +98,11 @@ export default function TermsPage() {
               <div className="soft-well rounded-lg p-5">
                 <p className="text-sm leading-7 text-slate-700">
                   By creating an account, you agree to these Terms. If you do not agree, do not
-                  create an account or use the protected learning areas.
+                  create an account or use the protected learning areas. Read the{" "}
+                  <Link className="font-semibold text-blue-700 hover:text-blue-800" href="/privacy">
+                    Privacy Policy
+                  </Link>{" "}
+                  before signing up.
                 </p>
               </div>
 
@@ -117,6 +126,9 @@ export default function TermsPage() {
                 </Link>
                 <Link className="button-secondary" href="/">
                   Back home
+                </Link>
+                <Link className="button-secondary" href="/privacy">
+                  Privacy Policy
                 </Link>
               </div>
             </div>

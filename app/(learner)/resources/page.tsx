@@ -29,12 +29,11 @@ export default async function ResourcesPage() {
                 PDF Collection
               </p>
               <h2 className="mt-4 max-w-md text-3xl font-black tracking-tight text-white sm:text-4xl">
-                Notes ready for focused revision.
+                Protected notes ready for focused revision.
               </h2>
               <div className="academic-rule mt-5" />
               <p className="mt-5 max-w-lg text-sm leading-7 text-slate-200">
-                Topic packs are gathered in one protected place, with links that are easy to open
-                during revision.
+                Topic packs are served through authenticated links for learners and admins.
               </p>
             </div>
 
