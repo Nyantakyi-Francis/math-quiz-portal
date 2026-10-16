@@ -1,0 +1,22 @@
+name: Supabase database health
+
+on:
+  schedule:
+    # UTC, also Ghana time. Avoid the busy start of each hour.
+    - cron: '17 0,6,12,18 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  database-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read database through the public API
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_HEALTH_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_HEALTH_ANON_KEY }}
+        run: node scripts/supabase-health.mjs

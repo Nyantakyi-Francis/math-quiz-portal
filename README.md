@@ -76,7 +76,25 @@ The current product contains 19 quiz modules and 790 authored questions with exp
    http://localhost:3000
    ```
 
-## Admin Setup
+## Scheduled database check
+
+`.github/workflows/supabase-health.yml` reads at most one module ID through
+the Supabase database API daily at 00:17, 06:17, 12:17, and 18:17 UTC (Ghana time).
+It does not write data. Existing row-level security remains in force; anonymous
+reads can return an empty array, which is a successful database response.
+
+The GitHub Actions repository secrets `SUPABASE_HEALTH_URL` and
+`SUPABASE_HEALTH_ANON_KEY` must contain the Supabase project URL and public anon
+key respectively. Never use the service-role key for this check.
+The workflow must be on the default branch. Run it manually from GitHub Actions
+using **Supabase database health > Run workflow** to verify the configuration.
+
+This is a best-effort way to generate database activity on Supabase Free, not
+a guarantee against pausing. Resume an already-paused project in Supabase first.
+GitHub disables schedules in public repositories after 60 days without repository
+activity; re-enable the workflow if that happens. Check failed-run notifications.
+
+## Admin account
 
 After creating the first account, set that account's `profiles.role` to `admin` in Supabase. Once one admin exists, the Admin Console can promote or demote other users through the role-management controls.
 
