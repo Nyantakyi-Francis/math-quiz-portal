@@ -359,6 +359,18 @@ html[data-theme="night"] .button-secondary:hover {
   padding-left: 2.75rem;
 }
 
+.password-input {
+  padding-right: 4.5rem;
+}
+
+.password-visibility-toggle {
+  color: var(--brand-deep);
+}
+
+.password-visibility-toggle:hover {
+  background-color: var(--brand-soft);
+}
+
 select.field {
   color-scheme: light;
 }

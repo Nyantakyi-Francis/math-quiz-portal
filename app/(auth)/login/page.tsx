@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PasswordInput } from "@/components/password-input";
 import { normalizeAppPath } from "@/lib/auth/redirect";
 import { SetupBanner } from "@/components/setup-banner";
 import { getSupabaseEnv } from "@/lib/supabase/env";
@@ -82,7 +83,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               >
                 Password
               </label>
-              <input className="field" id="password" name="password" required type="password" />
+              <PasswordInput autoComplete="current-password" />
             </div>
 
             <button className="button-primary w-full" type="submit">
